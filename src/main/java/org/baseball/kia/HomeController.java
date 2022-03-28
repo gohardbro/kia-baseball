@@ -19,4 +19,17 @@ public class HomeController {
 		return "index";
 	}
 	
+	// 기본 템플릿 참고용
+	@RequestMapping(value = "/no", method = RequestMethod.GET)
+	public String no() {
+		return "/template/no-sidebar";
+	}
+	@RequestMapping(value = "/left", method = RequestMethod.GET)
+	public String left() {
+		return "/template/left-sidebar";
+	}
+	@RequestMapping(value = "/right", method = RequestMethod.GET)
+	public String right() {
+		return "/template/right-sidebar";
+	}
 }
