@@ -7,9 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class HomeController {
 	
@@ -22,7 +19,7 @@ public class HomeController {
 	// 기본 템플릿 참고용
 	@RequestMapping(value = "/no", method = RequestMethod.GET)
 	public String no() {
-		return "/template/no-sidebar";
+		return "/yg/no-sidebar";
 	}
 	@RequestMapping(value = "/left", method = RequestMethod.GET)
 	public String left() {
@@ -32,4 +29,5 @@ public class HomeController {
 	public String right() {
 		return "/template/right-sidebar";
 	}
+	
 }

@@ -44,9 +44,9 @@
 				<br>
 				<ul>
 					<li><a href="#">KIA tigers</a></li>
-					<li><a href="#">예매</a></li>
-					<li><a href="#">커뮤니티</a></li>
-					<li><a href="#">굿즈샵</a></li>
+					<li><a href="/left">예매</a></li>
+					<li><a href="/no">커뮤니티</a></li>
+					<li><a href="/right">굿즈샵</a></li>
 				</ul>
 			</nav>
 
