@@ -40,6 +40,7 @@
 						<ul style="float: right; border-left: 0; border-right: 0;">
 							<li><a href="#">로그인</a></li>
 							<li><a href="#">회원가입</a></li>
+							<li><a href="/admin">Admin</a></li>
 						</ul>
 				<br>
 				

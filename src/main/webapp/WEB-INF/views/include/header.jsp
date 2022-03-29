@@ -9,7 +9,7 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="assets/css/main.css" />
+<link rel="stylesheet" href="/assets/css/main.css" />
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 <noscript>
@@ -36,6 +36,7 @@
 				<ul style="float: right; border-left: 0; border-right: 0;">
 					<li><a href="#">로그인</a></li>
 					<li><a href="#">회원가입</a></li>
+					<li><a href="/admin">Admin</a></li>
 				</ul>
 				<br>
 				<ul class="kia_nav">
