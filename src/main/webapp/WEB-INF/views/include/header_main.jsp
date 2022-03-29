@@ -37,12 +37,13 @@
 
 			<!-- Nav -->
 			<nav id="nav">
-						<ul style="float: right;">
+						<ul style="float: right; border-left: 0; border-right: 0;">
 							<li><a href="#">로그인</a></li>
 							<li><a href="#">회원가입</a></li>
 						</ul>
 				<br>
-				<ul>
+				
+				<ul class="kia_nav">
 					<li><a href="#">KIA tigers</a></li>
 					<li><a href="#">예매</a></li>
 					<li><a href="#">커뮤니티</a></li>
