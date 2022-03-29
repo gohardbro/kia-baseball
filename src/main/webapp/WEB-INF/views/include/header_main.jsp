@@ -25,7 +25,7 @@
 			<div class="inner">
 				<header>
 					<h1>
-						<a href="index.html" id="logo">KIA Tigers</a>
+						<a href="/" id="logo">KIA Tigers</a>
 					</h1>
 					<hr />
 					<p>환영합니다. 기아타이거즈 팬 페이지 입니다</p>

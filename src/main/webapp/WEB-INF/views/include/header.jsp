@@ -26,7 +26,7 @@
 			<div class="inner">
 				<header>
 					<h1>
-						<a href="index.html" id="logo">KIA Tigers</a>
+						<a href="/" id="logo">KIA Tigers</a>
 					</h1>
 				</header>
 			</div>
