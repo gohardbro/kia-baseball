@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<setting name="jdbcTypeForNull" value="VARCHAR" />
+	</settings>
+	<typeAliases>
+		<typeAlias type="net.edupoll.kr.entity.AccountVo" alias="account"/>
+		<typeAlias type="net.edupoll.kr.entity.MessageVo" alias="message"/>
+		<typeAlias type="net.edupoll.kr.entity.TimeCountVo" alias="timeCount"/>
+		<typeAlias type="net.edupoll.kr.entity.FreeBoardVo" alias="freeboard"/>
+		
+	</typeAliases>
+</configuration> 
+
