@@ -8,7 +8,9 @@ create table account (
     admin varchar2(1),
     point number,
     report_cnt number,
-    join_date date
+    join_date date,
+    phone varchar2(20),
+    report varchar2(1) --차단여부(Y,N)
 );
 
 -- 자유게시판
@@ -65,7 +67,9 @@ create table schedule (
     game_date varchar2(20),
     game_time varchar2(20),
     rival varchar2(10),
-    constraint game_uk unique(game_date, game_time)
+    
+    constraint game_uk unique(game_date, game_time),
+    constraint schedule_fk foreign key(rival) references team(team_name)
 );
 
 -- 라인업 
@@ -82,8 +86,11 @@ create table Lineup(
     hitter8 varchar2(30),
     hitter9 varchar2(30),
     game_date varchar2(20),
-    game_time varchar2(20)
+	game_time varchar2(20),
+	constraint lineup_uk unique(game_date, game_time)
 );
+
+create sequence seq_lineup;
 
 alter table LINEUP add constraint LINEUP_FK foreign key(GAME_DATE, GAME_TIME) references SCHEDULE(GAME_DATE, GAME_TIME);
 
@@ -103,30 +110,32 @@ create table Record(
     writedate date
 );
 
--- 유니폼 가격 
-create table uniform_price (
-    uni_price_no number primary key,
+-- 유니폼 정보
+create table uniform_info (
+    uni_info_no number primary key,
     uniform_size varchar2(3),
     color varchar2(3),
     player_name varchar2(15),
-    price number
+    price number,
+    uniform_img varchar2(500)
 );
 
 -- 유니폼 예약 
 create table uniform(
     uniform_no number primary key,
     buyer varchar2(3),
-    uni_price_no number,
+    uni_info_no number,
     uni_cnt number,
     total number,
     buy_date date,
-    constraint uni_fk foreign key(uni_price_no) references uniform_price(uni_price_no)
+    refund varchar2(1), --환불여부 (Y,N)
+    state varchar2(10), --(찜 cart, 구매 buy)
+    constraint uni_fk foreign key(uni_info_no) references uniform_info(uni_info_no)
 );
 
--- 야구장 가격
-create table Baseball_Price (
-    base_price_no number primary key,
-    baseball_size varchar2(3),
+-- 야구장 정보
+create table Baseball_info (
+    base_info_no number primary key,
     price number,
     baseball_zone varchar2(5)
 );
@@ -138,11 +147,28 @@ create table baseball (
     game_time varchar2(20),
     buyer varchar2(15),
     buy_date date,
-    base_price_no number,
+    base_info_no number,
     total number,
     buyer_cnt number,
     baseball_zone varchar2(5),
-    constraint baseball_price_fk foreign key(base_price_no) references baseball_price(base_price_no)
+    refund varchar2(1), --환불여부 (Y,N)
+    constraint baseball_info_fk foreign key(base_info_no) references baseball_info(base_info_no)
 );
 
 alter table baseball add constraint baseball_game_fk foreign key(GAME_DATE, GAME_TIME) references SCHEDULE(GAME_DATE, GAME_TIME);
+
+-- 팀 정보
+create table team (
+	team_name varchar2(50) primary key,
+	team_img varchar2(100),
+	field varchar2(50),
+	director varchar2(10),
+	captain varchar2(10)
+);
+
+-- 선수 정보
+create table player (
+	no varchar2(100) primary key, --등번호
+	name varchar2(50),
+	position varchar2(50)
+);
