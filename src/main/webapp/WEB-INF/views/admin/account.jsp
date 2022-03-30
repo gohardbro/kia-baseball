@@ -24,6 +24,7 @@
 							<th>포인트</th>
 							<th>가입일자</th>
 							<th>신고</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -35,6 +36,17 @@
 							<td>55</td>
 							<td>2022-03-01</td>
 							<td>3</td>
+						</tr>
+						<tr class="table-danger">
+							<td>2</td>
+							<td>hong</td>
+							<td>홍길동</td>
+							<td>hh</td>
+							<td>55</td>
+							<td>2022-03-01</td>
+							<td>3</td>
+							<td><button type="button" class="btn btn-danger">탈퇴</button>
+							</td>
 						</tr>
 					</tbody>
 				</table>

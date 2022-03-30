@@ -15,9 +15,17 @@
 
 			<section>
 				<nav class="navbar navbar-expand-sm">
-					<form class="form-inline" action="/action_page.php">
-						<input class="form-control mr-sm-2" type="text" placeholder="Search">
-						<button class="btn btn-success" type="submit">검색</button>
+					<form class="form-inline" action="/">
+						<select class="form-control" id="sel1" style="margin: 10px;">
+							<option>-- 선택 --</option>
+							<option>상품명</option>
+							<option>색상</option>
+							<option>선수명</option>
+						</select>
+						
+						<input class="form-control mr-sm-2" type="text"
+							placeholder="Search">
+						<button type="button" class="btn btn-info">검색</button>
 					</form>
 				</nav>
 				<table class="table">

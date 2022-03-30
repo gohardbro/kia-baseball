@@ -10,34 +10,81 @@
 	<div class="container">
 		<article id="main" class="special">
 			<header>
-				<h2>
-					<a href="#">계정 관리</a>
-				</h2>
+				<h2>라인업</h2>
 			</header>
 
 			<section>
-				<header>
-					<h3>Ultrices tempor sagittis nisl</h3>
-				</header>
-				<p>Nascetur volutpat nibh ullamcorper vivamus at purus. Cursus
-					ultrices porttitor sollicitudin imperdiet at pretium tellus in
-					euismod a integer sodales neque. Nibh quis dui quis mattis eget
-					imperdiet venenatis feugiat. Neque primis ligula cum erat aenean
-					tristique luctus risus ipsum praesent iaculis. Fermentum elit
-					fringilla consequat dis arcu. Pellentesque mus tempor vitae pretium
-					sodales porttitor lacus. Phasellus egestas odio nisl duis sociis
-					purus faucibus morbi. Eget massa mus etiam sociis pharetra magna.</p>
-				<p>Eleifend auctor turpis magnis sed porta nisl pretium. Aenean
-					suspendisse nulla eget sed etiam parturient orci cursus nibh.
-					Quisque eu nec neque felis laoreet diam morbi egestas. Dignissim
-					cras rutrum consectetur ut penatibus fermentum nibh erat malesuada
-					varius.</p>
+				<select name="cars" class="custom-select" style="width: 180px;">
+					<option selected>== 경기 날짜 ==</option>
+					<option value="2022-04-02">2022-04-02</option>
+					<option value="2022-04-03">2022-04-03</option>
+					<option value="2022-04-05">2022-04-05</option>
+				</select>
+
+				<form action="">
+					<table class="table">
+						<tr>
+							<th>선발 투수</th>
+							<td><input type="text" class="form-control form-control-sm"></td>
+						</tr>
+						<tr>
+							<th>1번 타자</th>
+							<td><input type="text" class="form-control form-control-sm"></td>
+						</tr>
+						<tr>
+							<th>2번 타자</th>
+							<td><input type="text" class="form-control form-control-sm"></td>
+						</tr>
+						<tr>
+							<th>3번 타자</th>
+							<td><input type="text" class="form-control form-control-sm"></td>
+						</tr>
+						<tr>
+							<th>4번 타자</th>
+							<td><input type="text" class="form-control form-control-sm"></td>
+						</tr>
+						<tr>
+							<th>5번 타자</th>
+							<td><input type="text" class="form-control form-control-sm"></td>
+						</tr>
+						<tr>
+							<th>6번 타자</th>
+							<td><input type="text" class="form-control form-control-sm"></td>
+						</tr>
+						<tr>
+							<th>7번 타자</th>
+							<td><input type="text" class="form-control form-control-sm"></td>
+						</tr>
+						<tr>
+							<th>8번 타자</th>
+							<td><input type="text" class="form-control form-control-sm"></td>
+						</tr>
+						<tr>
+							<th>9번 타자</th>
+							<td><input type="text" class="form-control form-control-sm"></td>
+						</tr>
+						<tr>
+							<td colspan="2" style="text-align: center;"><button
+									type="button" class="btn btn-info">등록</button></td>
+						</tr>
+					</table>
+				</form>
 			</section>
 		</article>
-
 	</div>
-
 </div>
+
+<style>
+table tr th {
+	background-color: #E8F5FF;
+	width: 100px;
+	text-align: center;
+}
+
+table {
+	margin: 10px;
+}
+</style>
 
 
 <jsp:include page="/WEB-INF/views/admin/include/bottom.jsp" />

@@ -16,22 +16,32 @@
 			</header>
 
 			<section>
-				<header>
-					<h3>Ultrices tempor sagittis nisl</h3>
-				</header>
-				<p>Nascetur volutpat nibh ullamcorper vivamus at purus. Cursus
-					ultrices porttitor sollicitudin imperdiet at pretium tellus in
-					euismod a integer sodales neque. Nibh quis dui quis mattis eget
-					imperdiet venenatis feugiat. Neque primis ligula cum erat aenean
-					tristique luctus risus ipsum praesent iaculis. Fermentum elit
-					fringilla consequat dis arcu. Pellentesque mus tempor vitae pretium
-					sodales porttitor lacus. Phasellus egestas odio nisl duis sociis
-					purus faucibus morbi. Eget massa mus etiam sociis pharetra magna.</p>
-				<p>Eleifend auctor turpis magnis sed porta nisl pretium. Aenean
-					suspendisse nulla eget sed etiam parturient orci cursus nibh.
-					Quisque eu nec neque felis laoreet diam morbi egestas. Dignissim
-					cras rutrum consectetur ut penatibus fermentum nibh erat malesuada
-					varius.</p>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>경기 날짜</th>
+							<th>경기 시간</th>
+							<th>구매자</th>
+							<th>구역</th>
+							<th>수량</th>
+							<th>금액</th>
+							<th>구매 일자</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>2022-04-02</td>
+							<td>14:00</td>
+							<td>홍길동</td>
+							<td>K5</td>
+							<td>3</td>
+							<td>68,000</td>
+							<td>2022-03-30</td>
+						</tr>
+					</tbody>
+				</table>
 			</section>
 		</article>
 

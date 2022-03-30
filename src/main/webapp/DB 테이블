@@ -1,0 +1,148 @@
+-- 회원
+create table account (
+    id varchar2(100) primary key,
+    pw varchar2(50),
+    profile varchar2(500),
+    name varchar2(10),
+    nickname varchar2(10),
+    admin varchar2(1),
+    point number,
+    report_cnt number,
+    join_date date
+);
+
+-- 자유게시판
+create table board(
+    board_no number primary key,
+    title varchar2(10),
+    content varchar2(500),
+    write_date date,
+    writer varchar2(100),
+    views number,
+    likes number,
+    constraint board_fk foreign key(writer) references account(id)
+);
+
+
+--  댓글
+create table board_comment(
+    comment_no number primary key,
+    writer varchar2(100),
+    board_no number,
+    write_date date,
+    content varchar2(100),
+    constraint comment_writer_fk foreign key(writer) references account(id),
+    constraint comment_board_fk foreign key(board_no) references board(board_no)
+);
+
+--파일 
+create table file_data(
+    file_no number primary key,
+    board_no number,
+    notice_no number,
+    file_name varchar2(50),
+    file_type varchar2(50),
+    file_size varchar2(100),
+    file_location varchar2(500),
+    constraint file_board_fk foreign key(board_no) references board(board_no),
+    constraint file_notice_fk foreign key(notice_no) references notice(notice_no)
+);
+
+-- 공지사항
+create table notice (
+    notice_no number primary key,
+    title varchar2(10),
+    content varchar2(500),
+    writer varchar2(100),
+    write_date date,
+    views number,
+    constraint notice_fk foreign key(writer) references account(id)
+);
+
+-- 경기 일정 
+create table schedule (
+    schedule_no number primary key,
+    game_date varchar2(20),
+    game_time varchar2(20),
+    rival varchar2(10),
+    constraint game_uk unique(game_date, game_time)
+);
+
+-- 라인업 
+create table Lineup(
+    lineup_no number primary key,
+    pitcher varchar2(30),
+    hitter1 varchar2(30),
+    hitter2 varchar2(30),
+    hitter3 varchar2(30),
+    hitter4 varchar2(30),
+    hitter5 varchar2(30),
+    hitter6 varchar2(30),
+    hitter7 varchar2(30),
+    hitter8 varchar2(30),
+    hitter9 varchar2(30),
+    game_date varchar2(20),
+    game_time varchar2(20)
+);
+
+alter table LINEUP add constraint LINEUP_FK foreign key(GAME_DATE, GAME_TIME) references SCHEDULE(GAME_DATE, GAME_TIME);
+
+-- 게임기록(승률)
+create table Record(
+    record_no number primary key,
+    kia number,
+    doosan number,
+    lg number,
+    lotte number,
+    ssg number,
+    kiwoom number,
+    nc number,
+    kt number,
+    samsung number,
+    hanwha number,
+    writedate date
+);
+
+-- 유니폼 가격 
+create table uniform_price (
+    uni_price_no number primary key,
+    uniform_size varchar2(3),
+    color varchar2(3),
+    player_name varchar2(15),
+    price number
+);
+
+-- 유니폼 예약 
+create table uniform(
+    uniform_no number primary key,
+    buyer varchar2(3),
+    uni_price_no number,
+    uni_cnt number,
+    total number,
+    buy_date date,
+    constraint uni_fk foreign key(uni_price_no) references uniform_price(uni_price_no)
+);
+
+-- 야구장 가격
+create table Baseball_Price (
+    base_price_no number primary key,
+    baseball_size varchar2(3),
+    price number,
+    baseball_zone varchar2(5)
+);
+
+-- 야구장 예매 
+create table baseball (
+    baseball_no number primary key,
+    game_date varchar2(20),
+    game_time varchar2(20),
+    buyer varchar2(15),
+    buy_date date,
+    base_price_no number,
+    total number,
+    buyer_cnt number,
+    baseball_zone varchar2(5),
+    constraint baseball_price_fk foreign key(base_price_no) references baseball_price(base_price_no)
+);
+
+alter table baseball add constraint baseball_game_fk foreign key(GAME_DATE, GAME_TIME) references SCHEDULE(GAME_DATE, GAME_TIME);

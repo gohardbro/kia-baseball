@@ -10,28 +10,46 @@
 	<div class="container">
 		<article id="main" class="special">
 			<header>
-				<h2>
-					<a href="#">상품 구매내역</a>
-				</h2>
+				<h2>상품 구매내역</h2>
 			</header>
 
 			<section>
-				<header>
-					<h3>Ultrices tempor sagittis nisl</h3>
-				</header>
-				<p>Nascetur volutpat nibh ullamcorper vivamus at purus. Cursus
-					ultrices porttitor sollicitudin imperdiet at pretium tellus in
-					euismod a integer sodales neque. Nibh quis dui quis mattis eget
-					imperdiet venenatis feugiat. Neque primis ligula cum erat aenean
-					tristique luctus risus ipsum praesent iaculis. Fermentum elit
-					fringilla consequat dis arcu. Pellentesque mus tempor vitae pretium
-					sodales porttitor lacus. Phasellus egestas odio nisl duis sociis
-					purus faucibus morbi. Eget massa mus etiam sociis pharetra magna.</p>
-				<p>Eleifend auctor turpis magnis sed porta nisl pretium. Aenean
-					suspendisse nulla eget sed etiam parturient orci cursus nibh.
-					Quisque eu nec neque felis laoreet diam morbi egestas. Dignissim
-					cras rutrum consectetur ut penatibus fermentum nibh erat malesuada
-					varius.</p>
+				<nav class="navbar navbar-expand-sm">
+					<form class="form-inline" action="/">
+						<select class="form-control" id="sel1" style="margin: 10px;">
+							<option>-- 선택 --</option>
+							<option>상품명</option>
+							<option>색상</option>
+							<option>선수명</option>
+						</select>
+						
+						<input class="form-control mr-sm-2" type="text"
+							placeholder="Search">
+						<button type="button" class="btn btn-info">검색</button>
+					</form>
+				</nav>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>상품번호</th>
+							<th>상품명</th>
+							<th>구매자</th>
+							<th>수량</th>
+							<th>구매일자</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>32</td>
+							<td>어센틱</td>
+							<td>홍길동</td>
+							<td>1</td>
+							<td>2022-03-29</td>
+						</tr>
+					</tbody>
+				</table>
 			</section>
 		</article>
 

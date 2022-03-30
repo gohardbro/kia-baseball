@@ -34,7 +34,7 @@
 					</div>
 				</section>
 				<!-- 인기 게시물 top 5 -->
-				<section id="content" style="padding: 10; width: 100%;">
+				<section id="content" style="padding: 10; width: 100%; padding: 24px;">
 					<h2>인기게시물 Top 5</h2>
 					<table class="table">
 						<thead>
