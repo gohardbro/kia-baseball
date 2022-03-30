@@ -1,35 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans
-	xmlns="http://www.springframework.org/schema/mvc"
+<beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
-		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
-
-	<!-- DispatcherServlet Context: defines this servlet's request-processing 
-		infrastructure -->
-
-	<!-- Enables the Spring MVC @Controller programming model -->
-	<annotation-driven />
-
-	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
-		up static resources in the ${webappRoot}/resources directory -->
-	<default-servlet-handler/>
-	<resources mapping="/**" location="/resources/" />
-
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
-		in the /WEB-INF/views directory -->
-	<beans:bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
-		<beans:property name="suffix" value=".jsp" />
-	</beans:bean>
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<context:component-scan
 		base-package="org.baseball.kia" />
+	<mvc:annotation-driven />
 
+	<mvc:default-servlet-handler />
+	<mvc:resources mapping="/**" location="/resources/"
+		cache-period="60" />
 
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
 
-</beans:beans>
+	<bean id="ds" class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName"
+			value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url"
+			value="jdbc:oracle:thin:@3.35.16.193:1521:orcl" />
+		<property name="username" value="taejeong" />
+		<property name="password" value="0000" />
+	</bean>
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean"
+		id="factory">
+		<property name="dataSource" ref="ds" />
+		<property name="configLocation"
+			value="/WEB-INF/mybatis/config.xml" />
+		<property name="mapperLocations"
+			value="/WEB-INF/mybatis/mapper/*.xml" />
+	</bean>
+	<bean class="org.mybatis.spring.SqlSessionTemplate"
+		id="sqlSession">
+		<constructor-arg name="sqlSessionFactory"
+			ref="factory" />
+	</bean>
+
+</beans>

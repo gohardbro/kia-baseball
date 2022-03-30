@@ -17,9 +17,9 @@ public class HomeController {
 	}
 	
 	// 기본 템플릿 참고용
-	@RequestMapping(value = "/no", method = RequestMethod.GET)
+	@RequestMapping(value = "/announce", method = RequestMethod.GET)
 	public String no() {
-		return "/yg/no-sidebar";
+		return "/yg/announcement";
 	}
 	@RequestMapping(value = "/left", method = RequestMethod.GET)
 	public String left() {
