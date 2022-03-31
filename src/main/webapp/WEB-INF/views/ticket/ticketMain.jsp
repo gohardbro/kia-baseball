@@ -16,6 +16,14 @@
 
 
 <style>
+#glTable,th,td {
+ border : 1px solid #;
+}
+.gl-logo {
+	width: 70px;
+	height: 70px;
+	object-fit: scale-down;
+}
 </style>
 
 
@@ -30,7 +38,6 @@
 				<h2>
 					<a>경기 좌석도 안내 및 예매</a>
 				</h2>
-				<p>[!] 제휴카드 할인을 받으실경우 KIA TIGERS 공식 홈페이지에서 예매 가능 합니다.</p>
 			</header>
 
 
@@ -57,31 +64,32 @@
 			</section>
 			<!-- accordian end-->
 			<section>
+				<div id="glTable">
+					<!-- gamelist + button[예매하기] -->
+					<table>
+						<c:forEach var="gl" items="${gameList}">
+							<tr>
+								<td>${gl.gameDate}</td>
+								<td>${gl.gameTime}</td>
+								<td>
+								<img src="/images/Logo_Mini/KIA.jpg" class="gl-logo" />
+								</td>
+								<td>기아타이거즈</td>
 
-				<!-- gamelist + button[예매하기] -->
-				<table>
-					<c:forEach var="gl" items="gameList">
-						<tr>
-							<td>${gameDate} 날짜</td>
-							<td>${gameTime}시간</td>
-							<div>
-								<td><img 기아></td>
-								<td>기아 타이거즈</td>
-							</div>
-							<td>VS</td>
-							<div>
-								<td><img rival></td>
-								<td>${sponsor}sponsor</td>
-								<td>${teamName}teamName </td>
-							</div>
-							<td>챔피언스필드</td>
-							<td>
-								<button type="button" onclick="#">예매버튼</button>
-							</td>
-						</tr>
-					</c:forEach>
-				</table>
+								<td>VS</td>
 
+								<td>
+								<img src="/images/Logo_Mini/${gl.teamImg}" class="gl-logo" />
+								</td> 
+								<td>${gl.sponsor}${gl.teamName}</td>
+								<td>챔피언스필드</td>
+								<td id="gl-btn">
+									<button type="button" onclick="#">예매버튼</button>
+								</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
 			</section>
 		</article>
 	</div>
