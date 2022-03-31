@@ -59,7 +59,13 @@
 	height: 33px;
 	margin: 8px 0;
 }
+.member-header {
+	text-align: center;
+}
 
+.member-logo {
+	margin: 47px 0 auto;
+}
 </style>
 
 
@@ -67,11 +73,16 @@
 </head>
 <body>
 
-	<main>
-	<div class="b-example-divider"></div>
 
 	<div class="container col-xl-10 col-xxl-8 px-4 py-5">
 		<div class="row align-items-center g-lg-5 py-5">
+			<header class="member-header">
+				<h1 class="member-logo">
+					<a class="member-logo_link" href="/home"> <img alt="tigers"
+						src="images/wordmark.jpg" width="300px" height="100px">
+					</a>
+				</h1>
+			</header>
 			<div class="col-md-10 mx-auto col-lg-5">
 				<form:form class="p-4 p-md-5 border rounded-3 bg-light"
 					id="signup_Form" action="/signup" method="post"
@@ -162,7 +173,7 @@
 	</div>
  -->
 	<div class="b-example-divider mb-0"></div>
-	</main>
+	
 	<script>
 		$("#req").click(function() {
 			var id = $(".email_input").val();
@@ -235,22 +246,22 @@
 			});
 		};
 
-		$("#confirmBtn").on("click", function() {
+		$("#confirmBtn").on(
+				"click",
+				function() {
 					var elements = [ $(".email_input").attr("class"),
 							$(".authKey_input").attr("class"),
 							$(".password").attr("class"),
 							$(".passwordAgain").attr("class"),
 							$(".password").attr("class") ];
-					
+
 					var classSearch = [];
-					
-					for(var i=0; i<elements.length; i++){
+
+					for (var i = 0; i < elements.length; i++) {
 						classSearch[i] = elements[i].indexOf("is-valid");
-						
-						if (classSearch[0] != -1 
-								&& classSearch[1] != -1 
-								&& classSearch[2] != -1 
-								&& classSearch[3] != -1 
+
+						if (classSearch[0] != -1 && classSearch[1] != -1
+								&& classSearch[2] != -1 && classSearch[3] != -1
 								&& classSearch[4] != -1) {
 							$("#signup_Form").submit();
 							console.log("서브밋까진 성공");
