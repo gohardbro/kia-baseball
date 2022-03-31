@@ -3,7 +3,7 @@
 <mapper namespace="ticket">
 
 <!--ticketHome 예매가능한 경기 일정 5개 보여주기 -->
-<insert id="GamelistRevAble" resultType="TicketVo"> <!--별칭 config 만들기   -->
+<select id="GamelistRevAble" resultType="TicketVo"> <!--별칭 config 만들기   -->
 
 select *
 from (select t.team_img, s.*  
@@ -12,12 +12,7 @@ from (select t.team_img, s.*
         order by s.schedule_no)
 <![CDATA[where rownum <= 6]]> and <![CDATA[game_date >= sysdate-1 ]]>
 
-</insert>
-
-
-
-
-
+</select>
 
 
 
