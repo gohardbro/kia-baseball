@@ -1,5 +1,8 @@
 package org.baseball.kia.controller;
 
+import java.util.List;
+
+import org.baseball.kia.entity.AccountVo;
 import org.baseball.kia.entity.LineupVo;
 import org.baseball.kia.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +20,24 @@ public class AdminController {
 	AdminService adminService;
 	
 	@RequestMapping(value = "/admin")
-	public String adminAccountHandle(Model model) { // 계정 관리 페이지 호출
+	public String adminHandle(Model model) { // 계정 관리 페이지 호출
+		model.addAttribute("accountList", adminService.selectAccountByType("all"));
 		model.addAttribute("menu", "account");
 		return "/admin/account";
 	}
+
+	@RequestMapping(value = "/admin/account")
+	public String adminAccountHandle(Model model, @RequestParam String type) { // 타입별 계정 정보 조회
+		model.addAttribute("accountList", adminService.selectAccountByType(type));
+		return "/admin/account-list";
+	}
+	
+	@RequestMapping(value = "/admin/account/report")
+	public String adminAccountReportHandle(@RequestParam String id) { // 신고 계정 차단 설정
+		adminService.reportAccount(id);
+		return "redirect: /admin";
+	}
+	
 
 	@RequestMapping(value = "/admin/uniform")
 	public String uniformHandle(Model model) { // 상품 관리 페이지 호출
@@ -42,9 +59,9 @@ public class AdminController {
 			adminService.insertLineup(vo);
 			
 		} else if (service.equals("update")) { // 라인업 수정
-			adminService.updateLine(vo);
-			
+			adminService.updateLineup(vo);
 		}
+		
 		model.addAttribute("menu", "lineup");
 		return "redirect: /admin/lineup";
 	}

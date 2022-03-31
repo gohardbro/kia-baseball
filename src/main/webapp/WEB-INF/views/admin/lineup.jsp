@@ -13,7 +13,7 @@
 				<h2>라인업</h2>
 			</header>
 
-			<section >
+			<section>
 				<select id="dateAndTime" class="custom-select" style="width: 180px;">
 					<option selected>== 경기 날짜 ==</option>
 					<c:forEach items="${ scheduleList }" var="schedule">
@@ -105,19 +105,19 @@
 				"gameDate": gameDate,
 				"gameTime": gameTime
 			}
-		}).done(function(rst){
-			$("[name=pitcher]").attr("value", rst.pitcher);
-			$("[name=hitter1]").attr("value", rst.hitter1);
-			$("[name=hitter2]").attr("value", rst.hitter2);
-			$("[name=hitter3]").attr("value", rst.hitter3);
-			$("[name=hitter4]").attr("value", rst.hitter4);
-			$("[name=hitter5]").attr("value", rst.hitter5);
-			$("[name=hitter6]").attr("value", rst.hitter6);
-			$("[name=hitter7]").attr("value", rst.hitter7);
-			$("[name=hitter8]").attr("value", rst.hitter8);
-			$("[name=hitter9]").attr("value", rst.hitter9);
+		}).done(function(data){
+			$("[name=pitcher]").attr("value", data.pitcher);
+			$("[name=hitter1]").attr("value", data.hitter1);
+			$("[name=hitter2]").attr("value", data.hitter2);
+			$("[name=hitter3]").attr("value", data.hitter3);
+			$("[name=hitter4]").attr("value", data.hitter4);
+			$("[name=hitter5]").attr("value", data.hitter5);
+			$("[name=hitter6]").attr("value", data.hitter6);
+			$("[name=hitter7]").attr("value", data.hitter7);
+			$("[name=hitter8]").attr("value", data.hitter8);
+			$("[name=hitter9]").attr("value", data.hitter9);
 			
-			if(rst != "") {
+			if(data != "") {
 				$(".btn-info").html("수정");
 				$("#service").val("update");
 			}

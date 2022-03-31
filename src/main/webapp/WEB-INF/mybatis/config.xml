@@ -12,6 +12,8 @@
 	<typeAliases>
 		<typeAlias type="org.baseball.kia.entity.LineupVo" alias="lineupVo"/>
 		<typeAlias type="org.baseball.kia.entity.ScheduleVo" alias="scheduleVo"/>
+		<typeAlias type="org.baseball.kia.entity.AccountVo" alias="accountVo"/>
+		<typeAlias type="org.baseball.kia.entity.BoardVo" alias="boardVo"/>
 	</typeAliases>
 	
 </configuration>
