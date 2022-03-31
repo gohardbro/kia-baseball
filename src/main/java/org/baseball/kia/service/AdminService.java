@@ -5,10 +5,12 @@ import java.util.List;
 import org.baseball.kia.entity.AccountVo;
 import org.baseball.kia.entity.LineupVo;
 import org.baseball.kia.entity.ScheduleVo;
+import org.baseball.kia.entity.UniformInfoVo;
 import org.baseball.kia.repository.AccountDao;
 import org.baseball.kia.repository.BoardDao;
 import org.baseball.kia.repository.LineupDao;
 import org.baseball.kia.repository.ScheduleDao;
+import org.baseball.kia.repository.UniformInfoDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,9 @@ public class AdminService {
 	
 	@Autowired
 	BoardDao boardDao;
+	
+	@Autowired
+	UniformInfoDao uniformInfoDao;
 	
 	public boolean insertLineup(LineupVo vo) { // 라인업 등록
 		return lineupDao.insertOne(vo) == 1;
@@ -52,5 +57,17 @@ public class AdminService {
 			return false;
 		}
 		return accountDao.updateReportById(id) == 1;
+	}
+	
+	public List<UniformInfoVo> selectUniformInfo(UniformInfoVo vo){ // 유니폼 정보 조회
+		return uniformInfoDao.selectUniformInfo(vo);
+	}
+	
+	public boolean updateUniformInfo(UniformInfoVo vo) { // 유니폼 정보 수정
+		return uniformInfoDao.updateUniformInfo(vo) == 1;
+	}
+
+	public boolean insertUniformInfo(UniformInfoVo vo) { // 유니폼 정보 등록
+		return uniformInfoDao.insertUniformInfo(vo) == 1;
 	}
 }

@@ -117,7 +117,9 @@ create table uniform_info (
     color varchar2(3),
     player_name varchar2(15),
     price number,
-    uniform_img varchar2(500)
+    uniform_img varchar2(500),
+    uniform_name varchar2(50),
+    uniform_cnt number
 );
 
 -- 유니폼 예약 
@@ -128,7 +130,7 @@ create table uniform(
     uni_cnt number,
     total number,
     buy_date date,
-    refund varchar2(1), --환불여부 (Y,N)
+    refund date, --환불한 날짜
     state varchar2(10), --(찜 cart, 구매 buy)
     constraint uni_fk foreign key(uni_info_no) references uniform_info(uni_info_no)
 );

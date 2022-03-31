@@ -1,9 +1,7 @@
 package org.baseball.kia.controller;
 
-import java.util.List;
-
-import org.baseball.kia.entity.AccountVo;
 import org.baseball.kia.entity.LineupVo;
+import org.baseball.kia.entity.UniformInfoVo;
 import org.baseball.kia.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,11 +37,43 @@ public class AdminController {
 	}
 	
 
-	@RequestMapping(value = "/admin/uniform")
+	@RequestMapping(value = "/admin/uniformInfo")
 	public String uniformHandle(Model model) { // 상품 관리 페이지 호출
+		model.addAttribute("uniformInfoList", adminService.selectUniformInfo(null));
 		model.addAttribute("menu", "uniform");
-		return "/admin/uniform";
+		return "/admin/uniformInfo";
 	}
+	
+	@RequestMapping(value = "/admin/uniformInfo/search")
+	public String uniformInfoSearchHandle(@RequestParam String type, @RequestParam String word, Model model) { // 유니폼 검색
+		UniformInfoVo vo = new UniformInfoVo();
+		if (type.equals("uniformName")) {
+			vo.setUniformName(word);
+		
+		} else if(type.equals("color")) {
+			vo.setColor(word);
+		
+		} else if(type.equals("playerName")) {
+			vo.setPlayerName(word);
+		}
+		
+		model.addAttribute("uniformInfoList", adminService.selectUniformInfo(vo));
+		return "/admin/uniformInfo-list";
+	}
+	
+	@RequestMapping(value = "/admin/uniformInfo/update")
+	public String uniformInfoUpdateHandle(@ModelAttribute UniformInfoVo vo) { // 유니폼 정보 수정
+		adminService.updateUniformInfo(vo);
+		return "redirect: /admin/uniformInfo";
+	}
+
+	@RequestMapping(value = "/admin/uniformInfo/insert")
+	public String uniformInfoInsertHandle(@ModelAttribute UniformInfoVo vo) { // 유니폼 정보 등록
+		System.out.println(vo);
+		adminService.insertUniformInfo(vo);
+		return "redirect: /admin/uniformInfo";
+	}
+	
 
 	@RequestMapping(value = "/admin/lineup")
 	public String lineupHandle(Model model) { // 라인업 페이지 호출
