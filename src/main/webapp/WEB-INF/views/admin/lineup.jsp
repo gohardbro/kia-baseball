@@ -24,6 +24,7 @@
 				<form action="/admin/lineup/insert">
 					<input type="hidden" id="gameDate" name="gameDate" value=""/>
 					<input type="hidden" id="gameTime" name="gameTime" value=""/>
+					<input type="hidden" id="service" name="service" value=""/>
 					<table class="table">
 						<tr>
 							<th>선발 투수</th>
@@ -66,7 +67,7 @@
 							<td><input type="text" name="hitter9" class="form-control form-control-sm"></td>
 						</tr>
 						<tr>
-							<td colspan="2" id="test" style="text-align: center;"><button
+							<td colspan="2" style="text-align: center;"><button
 									type="submit" class="btn btn-info">등록</button></td>
 						</tr>
 					</table>
@@ -88,10 +89,12 @@
 		$("[name=hitter7]").attr("value", "");
 		$("[name=hitter8]").attr("value", "");
 		$("[name=hitter9]").attr("value", "");
+		$(".btn-info").html("등록");
  		var sp = $("#dateAndTime").val().split(" ");
 
 		$("#gameDate").val(sp[0]);
 		$("#gameTime").val(sp[1]);
+		$("#service").val("insert");
 		
 		var gameDate = sp[0];
  		var gameTime = sp[1];
@@ -113,6 +116,11 @@
 			$("[name=hitter7]").attr("value", rst.hitter7);
 			$("[name=hitter8]").attr("value", rst.hitter8);
 			$("[name=hitter9]").attr("value", rst.hitter9);
+			
+			if(rst != "") {
+				$(".btn-info").html("수정");
+				$("#service").val("update");
+			}
 		});		
  		
  	}); 

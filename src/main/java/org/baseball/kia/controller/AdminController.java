@@ -36,10 +36,17 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/admin/lineup/insert")
-	public String lineupInsertHandle(Model model, @ModelAttribute LineupVo vo) { // 라인업 입력
-		System.out.println(adminService.insertLineup(vo));
+	public String lineupInsertHandle(Model model, @ModelAttribute LineupVo vo, @RequestParam String service) { // 라인업 입력, 수정
+		
+		if (service.equals("insert")) { // 라인업 입력
+			adminService.insertLineup(vo);
+			
+		} else if (service.equals("update")) { // 라인업 수정
+			adminService.updateLine(vo);
+			
+		}
 		model.addAttribute("menu", "lineup");
-		return "/admin/lineup";
+		return "redirect: /admin/lineup";
 	}
 
 	@ResponseBody
