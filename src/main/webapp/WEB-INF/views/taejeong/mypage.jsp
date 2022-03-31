@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:include page="/WEB-INF/views/test/include/top.jsp" />
+<jsp:include page="/WEB-INF/views/taejeong/include/top.jsp" />
 <div class="contentMain">
 	<div class="contentMain_main">
 		<div class="contentMain_main_title">
@@ -37,4 +37,4 @@
 
 
 
-<jsp:include page="/WEB-INF/views/test/include/bottom.jsp" />
+<jsp:include page="/WEB-INF/views/taejeong/include/bottom.jsp" />

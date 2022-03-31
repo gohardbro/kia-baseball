@@ -96,7 +96,7 @@ footer {
 		</header>
 
 		<div class="member-main">
-			<form class="login-form" action="/test/home" method="post">
+			<form class="login-form" action="/home" method="post">
 				<div class="login_content">
 					<div class="login-input_id">
 						<input type="email" maxlength="80" name="email"
@@ -111,12 +111,12 @@ footer {
 					<label class="auto-login-label" for="auto-login"> <input
 						type="checkbox" id="auto-login"> <span
 						class="auto-login-span">자동로그인</span>
-					</label> <a class="login-accountInfoFind" href="/test/login/accountFind">아이디(이메일)/비밀번호
+					</label> <a class="login-accountInfoFind" href="/login/accountFind">아이디(이메일)/비밀번호
 						찾기</a>
 				</div>
 				<div class="login_trigger">
 					<button class="login_button" type="submit">로그인</button>
-					<a class="sginup_botton" href="/test/login/signup">회원가입</a>
+					<a class="sginup_botton" href="/signup">회원가입</a>
 				</div>
 			</form>
 		</div>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="account">
+	<insert id="insertOne">
+		INSERT INTO	ACCOUNT
+			(ID, PW, PROFILE, NAME, NICKNAME, JOIN_DATE, PHONE)
+		VALUES
+			(#{id}, #{pw}, #{profile}, #{name}, #{nickname}, SYSDATE, #{phone})
+	</insert>
+	
+	<select id="selectOneById" resultType="accountVo">
+		SELECT * FROM ACCOUNT WHERE ID=#{id}
+	</select>
+	<select id="selectPassById" resultType="string">
+		SELECT PW FROM ACCOUNT WHERE ID=#{id}
+	</select>
+	<select id="selectCntByNickName" parameterType="String" resultType="int">
+        SELECT COUNT(*) FROM ACCOUNT WHERE NICKNAME = #{nickName}
+    </select>
+	
+	<update id="updateOne">
+		UPDATE ACCOUNT 
+		<set>
+			<if test="userPass != null">
+				PW = #{userPass},
+			</if>
+			<if test="zipcode != null">
+				ZIPCODE = #{zipcode},
+			</if>
+			<if test="address != null">
+				ADDRESS = #{address},
+			</if>
+			<if test="email != null">
+				EMAIL = #{email},
+			</if>
+			<if test="profile != null">
+				PROFILE = #{profile},
+			</if>
+			<if test="auth != null">
+				AUTH = #{auth},
+			</if>
+		</set>
+		WHERE USER_ID = #{userId}
+	</update>
+</mapper>

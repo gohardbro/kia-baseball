@@ -69,7 +69,7 @@ td{
 	<section class="contents">
 		<div class="contents_container">
 			<section class="usermodify_auth">
-				<form action="/test/mypage/account" method="post">
+				<form action="/mypage/account" method="post">
 					<h1 class="usermodify_auth_title">회원정보확인</h1>
 					<p class="usermodify_auth_msg">
 						<strong class="usermodify_auth_mail">jangci@naver.com</strong> 님의
