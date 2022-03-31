@@ -13,16 +13,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class BoardController {
 	@Autowired
 	BoardService boardService;
-
+	
+	@RequestMapping(value = "/announce", method = RequestMethod.GET)
+	public String no() {
+		return "/yg/announcement";
+	}
 	@RequestMapping(value = "/intro", method = RequestMethod.GET)
 	public String introduction() {
 		return "/yg/intro";
-	}
-
-	@RequestMapping(method = RequestMethod.GET)
-	public String defaultBoard(Model model) {
-		model.addAttribute("all", boardService.getAll());
-		return "/yg/board";
 	}
 
 	@RequestMapping(value = "/free", method = RequestMethod.GET)

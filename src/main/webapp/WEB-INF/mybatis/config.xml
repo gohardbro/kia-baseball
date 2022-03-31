@@ -12,6 +12,6 @@
 		<typeAlias type="org.baseball.kia.entity.BoardVo"
 			alias="board" />
 		<typeAlias type="org.baseball.kia.entity.PagingVo"
-			alias="board" />
+			alias="paging" />
 	</typeAliases>
 </configuration>

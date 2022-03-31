@@ -3,13 +3,29 @@ package org.baseball.kia.entity;
 import java.util.Date;
 
 public class BoardVo {
-	int notice_No;
+	int board_No;
 	String title;
 	String content;
 	String writer;
 	Date write_Date;
 	int views;
-	int numbers;
+	int likes;
+
+	public int getBoard_No() {
+		return board_No;
+	}
+
+	public void setBoard_No(int board_No) {
+		this.board_No = board_No;
+	}
+
+	public int getLikes() {
+		return likes;
+	}
+
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
 
 	public int getViews() {
 		return views;
@@ -17,22 +33,6 @@ public class BoardVo {
 
 	public void setViews(int views) {
 		this.views = views;
-	}
-
-	public int getNumbers() {
-		return numbers;
-	}
-
-	public void setNumbers(int numbers) {
-		this.numbers = numbers;
-	}
-
-	public int getNotice_No() {
-		return notice_No;
-	}
-
-	public void setNotice_No(int notice_No) {
-		this.notice_No = notice_No;
 	}
 
 	public String getTitle() {
@@ -69,10 +69,11 @@ public class BoardVo {
 	
 	@Override
 	public String toString() {
-		return "BoardVo [notice_No=" + notice_No + ", title=" + title + ", content=" + content + ", writer=" + writer
-				+ ", write_Date=" + write_Date + ", views=" + views + ", getNotice_No()=" + getNotice_No()
-				+ ", getTitle()=" + getTitle() + ", getContent()=" + getContent() + ", getWriter()=" + getWriter()
-				+ ", getWrite_Date()=" + getWrite_Date() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+		return "BoardVo [board_No=" + board_No + ", title=" + title + ", content=" + content + ", writer=" + writer
+				+ ", write_Date=" + write_Date + ", views=" + views + ", likes=" + likes + ", getBoard_No()="
+				+ getBoard_No() + ", getLikes()=" + getLikes() + ", getViews()=" + getViews() + ", getTitle()="
+				+ getTitle() + ", getContent()=" + getContent() + ", getWriter()=" + getWriter() + ", getWrite_Date()="
+				+ getWrite_Date() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
 	}
 }

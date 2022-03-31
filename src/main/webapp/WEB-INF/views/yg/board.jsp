@@ -13,7 +13,7 @@
 		<h2>자유게시판</h2>
 		<nav id="subnav">
 			<ul>
-				<li><a href="/no">공지사항</a></li>
+				<li><a href="/announce">공지사항</a></li>
 				<li><a href="#">자유게시판</a></li>
 				<li><a href="#">선수소개</a></li>
 				<li><a href="/intro">팀소개</a></li>
@@ -36,12 +36,12 @@
 			</tr>
 			<c:forEach var="one" items="${all }">
 				<tr>
-					<td>${one.no }</td>
-					<td><a href="/yg/boardview?no=${one.no }">${one.title }|</a></td>
-					<td>${one.writer }| <fmt:formatDate value="${one.writedate }"
+					<%-- <td>${one.no }</td>
+					<td><a href="/yg/boardview?no=${one.board_no }">${one.title }|</a></td>
+					<td>${one.writer }|<fmt:formatDate value="${one.writedate }"
 							pattern="yyyy.MM.dd" /> | <img src="/images/eye.png"> 37 |
 						<img src="/images/like.png"> 43
-					</td>
+					</td> --%>
 				</tr>
 			</c:forEach>
 		</table>

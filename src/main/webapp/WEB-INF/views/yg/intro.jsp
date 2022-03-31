@@ -13,7 +13,7 @@
 		<h2>팀소개</h2>
 		<nav id="subnav">
 			<ul>
-				<li><a href="/no">공지사항</a></li>
+				<li><a href="/announce">공지사항</a></li>
 				<li><a href="/free">자유게시판</a></li>
 				<li><a href="#">선수소개</a></li>
 				<li><a href="#">팀소개</a></li>

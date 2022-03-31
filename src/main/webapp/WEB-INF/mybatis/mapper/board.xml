@@ -9,7 +9,7 @@
 	</insert>
 	<select id="selectAll" resultType="board">
 		SELECT * FROM BOARD ORDER
-		BY NO DESC
+		BY BOARD_NO DESC
 	</select>
 	<select id="selectOne" resultType="board" parameterType="int">
 		SELECT
