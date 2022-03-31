@@ -13,7 +13,7 @@ public class TicketDao {
 	@Autowired
 	SqlSession sqlSession;
 	
-	public List<TicketVo> GamelistRevAble() {
+	public List<TicketVo> gamelistAbleRev() {
 		return sqlSession.selectList("ticket.GamelistRevAble");
 	}
 	

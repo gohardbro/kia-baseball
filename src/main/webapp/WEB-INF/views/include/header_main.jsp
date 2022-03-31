@@ -9,13 +9,22 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="/assets/css/main.css" />
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+	
 <noscript>
 	<link rel="stylesheet" href="/assets/css/noscript.css" />
 </noscript>
 </head>
 <body class="homepage is-preload">
+	<!-- Scripts -->
+	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/assets/js/jquery.dropotron.min.js"></script>
+	<script src="/assets/js/jquery.scrolly.min.js"></script>
+	<script src="/assets/js/jquery.scrollex.min.js"></script>
+	<script src="/assets/js/browser.min.js"></script>
+	<script src="/assets/js/breakpoints.min.js"></script>
+	<script src="/assets/js/util.js"></script>
+	<script src="/assets/js/main.js"></script>
 	<div id="page-wrapper">
 
 		<!-- Header -->
@@ -37,14 +46,14 @@
 
 			<!-- Nav -->
 			<nav id="nav">
-						<ul style="float: right;">
-							<li><a href="#">로그인</a></li>
-							<li><a href="#">회원가입</a></li>
-						</ul>
+				<ul style="float: right;">
+					<li><a href="#">로그인</a></li>
+					<li><a href="#">회원가입</a></li>
+				</ul>
 				<br>
 				<ul>
 					<li><a href="#">KIA tigers</a></li>
-					<li><a href="#">예매</a></li>
+					<li><a href="/ticket">예매</a></li>
 					<li><a href="#">커뮤니티</a></li>
 					<li><a href="#">굿즈샵</a></li>
 				</ul>

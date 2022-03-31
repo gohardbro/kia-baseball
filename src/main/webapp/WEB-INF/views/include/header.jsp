@@ -17,6 +17,15 @@
 </noscript>
 </head>
 <body class="left-sidebar is-preload">
+<!-- Scripts -->
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/jquery.dropotron.min.js"></script>
+<script src="/assets/js/jquery.scrolly.min.js"></script>
+<script src="/assets/js/jquery.scrollex.min.js"></script>
+<script src="/assets/js/browser.min.js"></script>
+<script src="/assets/js/breakpoints.min.js"></script>
+<script src="/assets/js/util.js"></script>
+<script src="/assets/js/main.js"></script>
 	<div id="page-wrapper">
 
 		<!-- Header -->
@@ -40,7 +49,7 @@
 				<br>
 				<ul>
 					<li><a href="#">KIA tigers</a></li>
-					<li><a href="#">예매</a></li>
+					<li><a href="/ticket">예매</a></li>
 					<li><a href="#">커뮤니티</a></li>
 					<li><a href="#">굿즈샵</a></li>
 				</ul>

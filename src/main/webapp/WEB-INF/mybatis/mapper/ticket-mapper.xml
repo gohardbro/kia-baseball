@@ -6,9 +6,9 @@
 <select id="GamelistRevAble" resultType="TicketVo"> <!--별칭 config 만들기   -->
 
 select *
-from (select t.team_img, s.*  
+from (select t.*, s.*  
         from team t join schedule s 
-        on (t.SPONSOR = s.rival)
+        on (t.sponsor = s.rival)
         order by s.schedule_no)
 <![CDATA[where rownum <= 6]]> and <![CDATA[game_date >= sysdate-1 ]]>
 
