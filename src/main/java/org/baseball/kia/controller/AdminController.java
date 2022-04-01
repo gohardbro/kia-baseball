@@ -8,8 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class AdminController {
@@ -39,39 +41,63 @@ public class AdminController {
 
 	@RequestMapping(value = "/admin/uniformInfo")
 	public String uniformHandle(Model model) { // 상품 관리 페이지 호출
-		model.addAttribute("uniformInfoList", adminService.selectUniformInfo(null));
 		model.addAttribute("menu", "uniform");
 		return "/admin/uniformInfo";
 	}
 	
 	@RequestMapping(value = "/admin/uniformInfo/search")
-	public String uniformInfoSearchHandle(@RequestParam String type, @RequestParam String word, Model model) { // 유니폼 검색
+	public String uniformInfoSearchHandle(@RequestParam(required = false) String type, @RequestParam(required = false) String word, Model model) { // 유니폼 검색
 		UniformInfoVo vo = new UniformInfoVo();
-		if (type.equals("uniformName")) {
-			vo.setUniformName(word);
-		
-		} else if(type.equals("color")) {
-			vo.setColor(word);
-		
-		} else if(type.equals("playerName")) {
-			vo.setPlayerName(word);
+		if (type != null) {
+			if (type.equals("uniformName")) {
+				vo.setUniformName(word);
+			
+			} else if(type.equals("color")) {
+				vo.setColor(word);
+			
+			} else if(type.equals("playerName")) {
+				vo.setPlayerName(word);
+			}
+			model.addAttribute("uniformInfoList", adminService.selectUniformInfo(vo));
+			return "/admin/uniformInfo-list";
+		} else {
+			model.addAttribute("uniformInfoList", adminService.selectUniformInfo(null));
+			return "/admin/uniformInfo-list";
+			
 		}
-		
-		model.addAttribute("uniformInfoList", adminService.selectUniformInfo(vo));
-		return "/admin/uniformInfo-list";
 	}
 	
-	@RequestMapping(value = "/admin/uniformInfo/update")
-	public String uniformInfoUpdateHandle(@ModelAttribute UniformInfoVo vo) { // 유니폼 정보 수정
-		adminService.updateUniformInfo(vo);
-		return "redirect: /admin/uniformInfo";
+	@RequestMapping(value = "/admin/uniformInfo/update", method = RequestMethod.GET)
+	public String uniformInfoUpdateHandle( @RequestParam int uniInfoNo, Model model ) { // 유니폼 정보 수정 페이지 요청
+		UniformInfoVo vo = new UniformInfoVo();
+		vo.setUniInfoNo(uniInfoNo);
+		model.addAttribute("uniformInfo", adminService.selectUniformInfo(vo).get(0));
+		model.addAttribute("menu", "uniform");
+		return "/admin/uniformInfo-update";
 	}
 
-	@RequestMapping(value = "/admin/uniformInfo/insert")
-	public String uniformInfoInsertHandle(@ModelAttribute UniformInfoVo vo) { // 유니폼 정보 등록
-		System.out.println(vo);
-		adminService.insertUniformInfo(vo);
-		return "redirect: /admin/uniformInfo";
+	@RequestMapping(value = "/admin/uniformInfo/update", method = RequestMethod.POST)
+	public String uniformInfoUpdatePostHandle(@ModelAttribute UniformInfoVo vo, @RequestParam MultipartFile attach) { // 유니폼 정보 수정
+		if (adminService.updateUniformInfo(vo, attach)) {
+			return "redirect: /admin/uniformInfo";
+		} else {
+			return "redirect: /admin/uniformInfo/update?uniInfoNo="+vo.getUniInfoNo();
+		}
+	}
+
+	@RequestMapping(value = "/admin/uniformInfo/insert", method = RequestMethod.GET)
+	public String uniformInfoInsertHandle(@ModelAttribute UniformInfoVo vo, Model model) { // 유니폼 정보 등록 페이지 요청
+		model.addAttribute("menu", "uniform");
+		return "/admin/uniformInfo-insert";
+	}
+
+	@RequestMapping(value = "/admin/uniformInfo/insert", method = RequestMethod.POST)
+	public String uniformInfoInsertPostHandle(@ModelAttribute UniformInfoVo vo, @RequestParam MultipartFile attach) { // 유니폼 정보 등록
+		if(adminService.insertUniformInfo(vo, attach)) {
+			return "redirect: /admin/uniformInfo";
+		} else {
+			return "redirect: /admin/uniformInfo/insert";
+		}
 	}
 	
 

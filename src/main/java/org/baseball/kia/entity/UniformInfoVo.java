@@ -70,9 +70,9 @@ public class UniformInfoVo {
 
 	@Override
 	public String toString() {
-		return "UniformInfoVo [uniInfoNo=" + uniInfoNo + ", price=" + price + ", uniformSize=" + uniformSize
-				+ ", color=" + color + ", playerName=" + playerName + ", uniformImg=" + uniformImg + ", uniformName="
-				+ uniformName + "]";
+		return "UniformInfoVo [uniInfoNo=" + uniInfoNo + ", price=" + price + ", uniformCnt=" + uniformCnt
+				+ ", uniformSize=" + uniformSize + ", color=" + color + ", playerName=" + playerName + ", uniformImg="
+				+ uniformImg + ", uniformName=" + uniformName + "]";
 	}
 
 }

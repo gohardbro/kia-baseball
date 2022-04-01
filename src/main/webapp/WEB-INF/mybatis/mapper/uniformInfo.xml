@@ -5,10 +5,12 @@
 	<select id="selectUniformInfo" resultType="uniformInfoVo"> <!-- 유니폼 조회 -->
 		SELECT * FROM UNIFORM_INFO
 		<where>
+			<if test="uniInfoNo != null">UNI_INFO_NO = #{uniInfoNo}</if>
 			<if test="uniformName != null">UNIFORM_NAME LIKE '%'||#{uniformName}||'%'</if>
 			<if test="color != null">COLOR = #{color}</if>
 			<if test="playerName != null">PLAYER LIKE '%'||#{palyerName}||'%'</if>
-		</where> 
+		</where>
+		ORDER BY UNI_INFO_NO
 	</select>
 	
 	<update id="updateUniformInfo"> <!--유니폼 정보 수정 -->

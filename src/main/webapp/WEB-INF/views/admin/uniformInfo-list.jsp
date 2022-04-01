@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<table class="table table-responsive">
+<table class="table table-responsive d-flex">
 	<thead>
 		<tr>
 			<th>#</th>
@@ -17,27 +17,19 @@
 	</thead>
 	<tbody>
 		<c:forEach items="${ uniformInfoList }" var="uniformInfo">
-			<form action="/admin/uniformInfo/update">
-				<tr>
-					<td>${ uniformInfo.uniInfoNo }</td>
-					<td style="width: 30%"><input type="text"
-						value="${ uniformInfo.uniformName }" class="form-control" /></td>
-					<td><input type="text" value="${ uniformInfo.color }"
-						class="form-control" /></td>
-					<td><input type="text" value="${ uniformInfo.uniformSize }"
-						class="form-control" /></td>
-					<td><input type="text" value="${ uniformInfo.playerName }"
-						class="form-control" /></td>
-					<td><input type="text" value="${ uniformInfo.price }"
-						class="form-control" /></td>
-					<td><input type="text" value="${ uniformInfo.uniformCnt }"
-						class="form-control" /></td>
-					<td style="width: 7%"><button type="submit"
-							class="btn btn-warning">수정</button></td>
-				</tr>
-			</form>
+			<tr>
+				<td>${ uniformInfo.uniInfoNo }</td>
+				<td style="width: 30%">${ uniformInfo.uniformName }</td>
+				<td>${ uniformInfo.color }</td>
+				<td>${ uniformInfo.uniformSize }</td>
+				<td>${ uniformInfo.playerName }</td>
+				<td>${ uniformInfo.price }</td>
+				<td>${ uniformInfo.uniformCnt }</td>
+				<td style="width: 7%"><button type="submit" onclick="location.href='/admin/uniformInfo/update?uniInfoNo=${uniformInfo.uniInfoNo}'"
+						class="btn btn-warning">수정</button></td>
+			</tr>
 		</c:forEach>
-		<tr>
+		<!-- <tr>
 			<td><span class="glyphicon glyphicon-plus"></span></td>
 			<td><input type="text" class="form-control" /></td>
 			<td><input type="text" class="form-control" /></td>
@@ -46,6 +38,6 @@
 			<td><input type="text" class="form-control" /></td>
 			<td><input type="text" class="form-control" /></td>
 			<td><button type="button" class="btn btn-primary">등록</button></td>
-		</tr>
+		</tr> -->
 	</tbody>
 </table>
