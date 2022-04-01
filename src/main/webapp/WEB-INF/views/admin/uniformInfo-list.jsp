@@ -29,15 +29,5 @@
 						class="btn btn-warning">수정</button></td>
 			</tr>
 		</c:forEach>
-		<!-- <tr>
-			<td><span class="glyphicon glyphicon-plus"></span></td>
-			<td><input type="text" class="form-control" /></td>
-			<td><input type="text" class="form-control" /></td>
-			<td><input type="text" class="form-control" /></td>
-			<td><input type="text" class="form-control" /></td>
-			<td><input type="text" class="form-control" /></td>
-			<td><input type="text" class="form-control" /></td>
-			<td><button type="button" class="btn btn-primary">등록</button></td>
-		</tr> -->
 	</tbody>
 </table>

@@ -27,6 +27,7 @@
 							<th>수량</th>
 							<th>금액</th>
 							<th>구매 일자</th>
+							<th>취소/환불</th>
 						</tr>
 					</thead>
 					<tbody>
