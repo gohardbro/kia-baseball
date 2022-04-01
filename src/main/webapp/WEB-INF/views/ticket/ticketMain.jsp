@@ -84,7 +84,7 @@
 								<td>${gl.sponsor}${gl.teamName}</td>
 								<td>챔피언스필드</td>
 								<td id="gl-btn">
-									<button type="button" onclick="#">예매버튼</button>
+									<button type="button" onclick="#">예매하기</button>
 								</td>
 							</tr>
 						</c:forEach>

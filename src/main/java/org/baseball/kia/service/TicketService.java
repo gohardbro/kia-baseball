@@ -17,6 +17,9 @@ public class TicketService {
 	
 	public List<TicketVo> gamelistAbleRev(){
 		List<TicketVo> list = ticketDao.gamelistAbleRev();
+	 
+	 
+		
 		return list; 
 	}
  
