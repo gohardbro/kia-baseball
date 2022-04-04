@@ -65,9 +65,11 @@
 .member-logo {
 	margin: 47px 0 auto;
 }
-.alert{
+
+.alert, .w-100 {
 	margin-top: 10px;
 }
+
 </style>
 
 
@@ -112,12 +114,13 @@
 					<div class="checkbox mb-3">
 						<label> <input type="checkbox" value="remember-me"
 							name="remember-me"> 자동로그인
-						</label><a class="accountFind" href="/login/accountFind">아이디(이메일)/비밀번호
-							찾기</a>
+						</label><a class="accountFind" href="/login/accountFind">아이디/비밀번호 찾기</a>
 
 					</div>
 					<button class="w-100 btn btn-lg btn-primary" type="submit"
 						id="confirmBtn">로그인</button>
+					<a class="w-100 btn btn-lg" type="button" 
+						id="signupBtn" style="border:1px solid black;" href="/signup">회원가입</a>
 					<hr class="my-4">
 					<small class="text-muted">@KiaTigers Corp. All rights
 						reserved.</small>

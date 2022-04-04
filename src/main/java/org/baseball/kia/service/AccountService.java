@@ -33,4 +33,20 @@ public class AccountService {
 		
 		return r ==1;
 	}
+	
+	public boolean updatePw(AccountVo vo) {
+		String pass = vo.getPw();
+		String encodedPass = passwordEncoder.encode(pass);
+		vo.setPw(encodedPass);
+		int r = accountDao.updateOne(vo);
+		
+		return r == 1 ? true : false;
+	}
+	
+	
+	public String phone_format(String phone) {
+		String reg = "(\\d{3})(\\d{3,4})(\\d{4})";
+		return phone.replaceAll(reg, "$1-$2-$3");
+	}
+	
 }

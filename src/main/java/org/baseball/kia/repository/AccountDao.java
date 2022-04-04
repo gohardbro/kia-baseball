@@ -22,14 +22,16 @@ public class AccountDao {
 	public AccountVo selectOneById(String id) {
 		return sqlSession.selectOne("account.selectOneById", id);
 	}
+	
+	public int selectCntByNickName(String nickName) {
+		return sqlSession.selectOne("account.selectCntByNickName", nickName);
+	}
 
 	public int updateOne(AccountVo vo) {
 		return sqlSession.update("account.updateOne", vo);
 	}
 	
-	public int selectCntByNickName(String nickName) {
-		return sqlSession.selectOne("account.selectCntByNickName", nickName);
-	}
+	
 	
 	
 }

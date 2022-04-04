@@ -8,7 +8,7 @@ import javax.validation.constraints.Pattern;
 
 public class AccountVo {
 
-//	@Email(message = "이메일만 가능합니다.")
+	@Email(message = "이메일만 가능합니다.")
 	@NotBlank(message = "아이디(이메일)를 입력하세요.")
 	String id;
 
@@ -26,7 +26,11 @@ public class AccountVo {
 	int point;
 	int report_cnt;
 	Date join_date;
+	
+	@NotBlank(message = "휴대폰 번호를 입력하세요.")
+	@Pattern(regexp = "^01(?:0|1|[6-9])[-]?(?:\\d{3}|\\d{4})[-]?(\\d{4}$)", message = "ex) 01022224444 또는 010-2222-4444")
 	String phone;
+	
 	String report;
 
 	public String getId() {

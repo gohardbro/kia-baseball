@@ -59,12 +59,17 @@
 	height: 33px;
 	margin: 8px 0;
 }
+
 .member-header {
 	text-align: center;
 }
 
 .member-logo {
 	margin: 47px 0 auto;
+}
+
+.pw_rule {
+	display: none;
 }
 </style>
 
@@ -89,7 +94,7 @@
 					modelAttribute="accountVo">
 					<div class="form-floating mb-3">
 						<form:input type="text" class="email_input form-control"
-							id="floatingInput" placeholder="name@example.com" path="id" />
+							id="floatingInput" placeholder="name@example.com" path="id"/>
 						<label for="floatingInput">아이디(이메일)</label>
 						<form:errors path="id" />
 						<div class="auth_wrapper">
@@ -107,10 +112,11 @@
 								확인</button>
 						</div>
 					</div>
-					<small>비밀번호: 영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩 포함된 8자 ~ 20자</small>
+					<small class="pw_rule">비밀번호: 영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩
+						포함된 8자 ~ 20자</small>
 					<div class="form-floating mb-3">
 						<form:input type="password" class="password form-control"
-							placeholder="Password" path="pw" />
+							placeholder="Password" path="pw" onfocus="display_pw_rule()" />
 						<label for="floatingPassword">비밀번호</label>
 						<form:errors path="pw" />
 					</div>
@@ -127,13 +133,25 @@
 							id="validationServer03 floatingInput"
 							aria-describedby="validationServer03Feedback"
 							placeholder="name@example.com" path="nickname"
-							onchange="nicknameCheck()" />
+							onkeyup="nicknameCheck()" />
 						<label for="floatingInput">닉네임</label>
 						<div id="validationServer03Feedback" class="invalid-feedback">
 							해당 닉네임이 이미 있습니다.</div>
 						<div id="validationServer03Feedback" class="valid-feedback">
 							사용가능한 닉네임 입니다.</div>
 						<form:errors path="nickname" />
+					</div>
+					<div class="form-floating mb-3">
+						<form:input type="text" class="phone form-control"
+							id="validationServer04 floatingInput" path="phone"
+							aria-describedby="validationServer04Feedback"
+							placeholder="name@example.com" />
+						<label for="floatingInput">휴대폰 번호</label>
+						<div id="validationServer04Feedback" class="invalid-feedback">
+							validationServer04Feedback invalid</div>
+						<div id="validationServer04Feedback" class="valid-feedback">
+							validationServer04Feedback valid</div>
+						<form:errors path="phone" />
 					</div>
 					<div class="checkbox mb-3">
 						<label> <input type="checkbox" value="remember-me">
@@ -173,7 +191,7 @@
 	</div>
  -->
 	<div class="b-example-divider mb-0"></div>
-	
+
 	<script>
 		$("#req").click(function() {
 			var id = $(".email_input").val();
@@ -195,6 +213,8 @@
 						if (written_authKey == res) {
 							$(".email_input").addClass("is-valid");
 							$(".authKey_input").addClass("is-valid");
+							$(".email_input").attr("readonly","true");
+							$(".authKey_input").attr("readonly","true");
 						} else {
 							$(".email_input").addClass("is-invalid");
 							$(".authKey_input").addClass("is-invalid");
@@ -208,15 +228,16 @@
 			});
 		});
 
-		$(".passwordAgain").change(function() {
+		$(".passwordAgain").keyup(function() {
 			var password = $(".password").val();
 			var passwordAgain = $(".passwordAgain").val();
-			if (passwordAgain != password)
+			if (passwordAgain != password) {
+				$(".passwordAgain").removeClass("is-valid");
 				$(".passwordAgain").addClass("is-invalid");
-			else
+			} else {
+				$(".passwordAgain").removeClass("is-invalid");
 				$(".passwordAgain").addClass("is-valid");
-			$(".password").addClass("is-valid");
-
+			}
 		});
 
 		/* 닉네임 중복체크 */
@@ -246,32 +267,40 @@
 			});
 		};
 
-		$("#confirmBtn").on(
-				"click",
-				function() {
-					var elements = [ $(".email_input").attr("class"),
-							$(".authKey_input").attr("class"),
-							$(".password").attr("class"),
-							$(".passwordAgain").attr("class"),
-							$(".password").attr("class") ];
+		
+		$("#confirmBtn")
+				.on(
+						"click",
+						function() {
+							var elements = [ $(".email_input").attr("class"),
+									$(".authKey_input").attr("class"),
+									$(".passwordAgain").attr("class"),
+									$(".nickname").attr("class") ];
 
-					var classSearch = [];
+							var classSearch = [];
 
-					for (var i = 0; i < elements.length; i++) {
-						classSearch[i] = elements[i].indexOf("is-valid");
+							for (var i = 0; i < elements.length; i++) {
+								classSearch[i] = elements[i]
+										.indexOf("is-valid");
 
-						if (classSearch[0] != -1 && classSearch[1] != -1
-								&& classSearch[2] != -1 && classSearch[3] != -1
-								&& classSearch[4] != -1) {
-							$("#signup_Form").submit();
-							console.log("서브밋까진 성공");
+								if (classSearch[0] != -1
+										&& classSearch[1] != -1
+										&& classSearch[2] != -1
+										&& classSearch[3] != -1) {
+									$("#signup_Form").submit();
+									console.log("서브밋까진 성공");
 
-						} else {
-							console.log(i);
-						}
-					}
+								} else {
+									console.log("회원가입실패");
+								}
+							}
 
-				});
+						});
+
+		function display_pw_rule() {
+			$(".pw_rule").css("display", "inline-block");
+
+		}
 	</script>
 
 

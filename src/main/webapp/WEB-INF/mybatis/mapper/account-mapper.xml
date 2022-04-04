@@ -21,25 +21,28 @@
 	<update id="updateOne">
 		UPDATE ACCOUNT 
 		<set>
-			<if test="userPass != null">
-				PW = #{userPass},
-			</if>
-			<if test="zipcode != null">
-				ZIPCODE = #{zipcode},
-			</if>
-			<if test="address != null">
-				ADDRESS = #{address},
-			</if>
-			<if test="email != null">
-				EMAIL = #{email},
+			<if test="pw != null">
+				PW = #{pw},
 			</if>
 			<if test="profile != null">
 				PROFILE = #{profile},
 			</if>
-			<if test="auth != null">
-				AUTH = #{auth},
+			<if test="name != null">
+				NAME = #{name},
+			</if>
+			<if test="nickname != null">
+				NICKNAME = #{nickname},
+			</if>
+			<if test="point != null">
+				POINT = #{point},
+			</if>
+			<if test="report_cnt != null">
+				REPORT_CNT = #{report_cnt},
+			</if>
+			<if test="phone != null">
+				PHONE = #{phone},
 			</if>
 		</set>
-		WHERE USER_ID = #{userId}
+		WHERE ID = #{id}
 	</update>
 </mapper>
