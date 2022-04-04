@@ -10,10 +10,11 @@
 <div class="wrapper style1">
 
 	<div class="container">
-		<form method="post">
+		<
+		<!-- form method="post">
 			<div style="margin-top: 10px;">
 				<input type="text" name="writer" placeholder="작성자.."
-					style="width: 40%" /> 
+					style="width: 40%" />
 			</div>
 			<div style="margin-top: 10px;">
 				<input type="text" name="title" class="form-control"
@@ -30,8 +31,33 @@
 		</form>
 		<div style="margin-top: 10px;">
 			<button type="button" onclick="location.href='/free'">목록</button>
-			<button type="button">좋아요</button>
-		</div>
+		</div> -->
+		<form method="post" enctype="multipart/form-data">
+			<table border="1">
+				<tr>
+					<td bgcolor="orange" width="70">제목</td>
+					<td align="left"><input type="text" name="title"></td>
+				</tr>
+				<tr>
+					<td bgcolor="orange">작성자</td>
+					<td align="left"><input type="text" name="writer" size="10"></td>
+				</tr>
+				<tr>
+					<td bgcolor="orange">내용</td>
+					<td align="left"><textarea name="content" cols="40" rows="10"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td bgcolor="orange" width="70">업로드</td>
+					<td align="left"><input type="file" name="uploadFiles"
+						multiple="multiple"></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center"><input type="submit"
+						value="새 글 등록"></td>
+				</tr>
+			</table>
+		</form>
 	</div>
 </div>
 <style>

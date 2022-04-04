@@ -2,6 +2,8 @@ package org.baseball.kia.entity;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class BoardVo {
 	int board_No;
 	String title;
@@ -10,6 +12,15 @@ public class BoardVo {
 	Date write_Date;
 	int views;
 	int likes;
+	MultipartFile uploadFile;
+
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
 
 	public int getBoard_No() {
 		return board_No;
@@ -76,4 +87,5 @@ public class BoardVo {
 				+ getWrite_Date() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
 				+ super.toString() + "]";
 	}
+
 }

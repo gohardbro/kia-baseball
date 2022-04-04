@@ -4,18 +4,21 @@
 	<insert id="insertOne" parameterType="board">
 		INSERT INTO BOARD
 		VALUES
-		(NOTICE_SEQ.NEXTVAL, #{title},
-		#{content}, #{writer}, SYSDATE)
+		(BOARD_SEQ.NEXTVAL,#{title},#{content}, SYSDATE, #{writer},
+		#{views}, #{likes} )
 	</insert>
 	<select id="selectAll" resultType="board">
 		SELECT * FROM BOARD ORDER
-		BY BOARD_NO DESC
+		BY
+		BOARD_NO DESC
 	</select>
-	<select id="selectOne" resultType="board" parameterType="int">
+	<select id="selectOne" resultType="board">
 		SELECT
-		* FROM BOARD WHERE NO = #{no}
+		* FROM BOARD WHERE
+		BOARD_NO = #{no}
 	</select>
-	<update id="updateCnt">
-		UPDATE BOARD SET VIEWS = VIEWS + 1 WHERE VIEWCNT = #{viewCnt}
+	<update id="updateCnt" parameterType="int">
+		UPDATE BOARD SET VIEWS =
+		VIEWS + 1 WHERE BOARD_NO = #{no}
 	</update>
 </mapper> 

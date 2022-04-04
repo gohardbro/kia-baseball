@@ -29,7 +29,8 @@ public class BoardDao {
 		return sqlSession.selectList("board.selectOne", no);
 	}
 	
-	public int updateCntview(int viewCnt) {
-		return sqlSession.update("board.updateCnt",viewCnt);
+	public void updateCntview(int no) {
+		sqlSession.update("board.updateCnt", no);
 	}
+	
 }

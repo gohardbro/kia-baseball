@@ -20,31 +20,20 @@
 			</ul>
 		</nav>
 		<table class="table">
-			<tr>
-				<td>no.1</td>
-				<td><a href="/view">왼쪽 번호 오른쪽 작성자/작성일/조회수/좋아요</a></td>
-				<td>22/03/29 | <img src="/images/eye.png"> 31 | <img
-					src="/images/like.png"> 41
-				</td>
-			</tr>
-			<tr>
-				<td>no.2</td>
-				<td>왼쪽 번호 오른쪽 작성자/작성일/조회수/좋아요</td>
-				<td>22/03/29 | <img src="/images/eye.png"> 35 | <img
-					src="/images/like.png"> 42
-				</td>
-			</tr>
 			<c:forEach var="one" items="${all }">
 				<tr>
-					<%-- <td>${one.no }</td>
-					<td><a href="/yg/boardview?no=${one.board_no }">${one.title }|</a></td>
-					<td>${one.writer }|<fmt:formatDate value="${one.writedate }"
-							pattern="yyyy.MM.dd" /> | <img src="/images/eye.png"> 37 |
-						<img src="/images/like.png"> 43
-					</td> --%>
+					<td>${one.board_No }</td>
+					<td><a href="/boardview?no=${one.board_No }">${one.title }</a></td>
+					<td>${one.writer }|<fmt:formatDate value="${one.write_Date }"
+							pattern="yyyy.MM.dd" /> | <img src="/images/eye.png">
+						${one.views } | <img src="/images/like.png"> 43
+					</td>
 				</tr>
 			</c:forEach>
 		</table>
+		<div style="margin-top: 10px;">
+			<button type="button" onclick="location.href='/write'">글쓰기</button>
+		</div>
 	</div>
 </div>
 

@@ -26,5 +26,11 @@ public class BoardService {
 		BoardVo vo = boardDao.selectOne(no);
 		return vo;
 	}
+
+	public BoardVo updateCnt(int no) {
+		boardDao.updateCntview(no);
+		return boardDao.selectOne(no);
+	}
 	
+
 }

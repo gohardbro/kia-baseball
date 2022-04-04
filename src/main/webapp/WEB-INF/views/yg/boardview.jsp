@@ -10,7 +10,7 @@
 <div class="wrapper style1">
 
 	<div class="container">
-		<table class="table">
+		<!-- <table class="table">
 			<tr>
 				<td>no.1</td>
 				<td>왼쪽 번호 오른쪽 작성일/조회수/좋아요</td>
@@ -18,22 +18,40 @@
 					src="/images/like.png"> 41
 				</td>
 			</tr>
-		</table>
-		<div style="margin-left: 20px; width: 80%">
-			<h4>${one.title }</h4>
-			<p style="font-size: small;">
-				${one.writer } |
-				<fmt:formatDate value="${one.writedate }"
-					pattern="yyyy.MM.dd hh:mm:ss" />
-			</p>
-			<p style="min-height: 300px; white-space: break-spaces">
-				<c:out value="${one.content}" />
-			</p>
-			<div style="margin-top: 10px;">
-				<button type="button">수정</button>
-				<button type="button">삭제</button>
-			</div>
-		</div>
+		</table> -->
+		<table border="1">
+				<tr>
+					<td bgcolor="orange" width="70">제목</td>
+					<td align="left"><input name="title" type="text"
+						value="${one.title }"></td>
+				</tr>
+				<tr>
+					<td bgcolor="orange">작성자</td>
+					<td align="left">${one.writer }</td>
+				</tr>
+				<tr>
+					<td bgcolor="orange">내용</td>
+					<td align="left"><textarea name="content" cols="40" rows="10">${one.content }</textarea>
+					</td>
+				</tr>
+				<tr>
+					<td bgcolor="orange">등록일</td>
+					<td align="left">${one.write_Date }</td>
+				</tr>
+				<tr>
+					<td bgcolor="orange">조회수</td>
+					<td align="left">${one.views }</td>
+				</tr>
+				<tr>
+					<td bgcolor="orange">첨부파일 목록</td>
+					<td><c:forEach var="file" items="${fileList }">
+							<a class="downlink" id="${file.fSeq }"
+								href="${file.originalFileName }">${file.originalFileName }</a>
+							<button type="button" onclick="deleteFile('${file.fSeq }');">삭제</button>
+							<br>
+						</c:forEach></td>
+				</tr>
+			</table>
 	</div>
 </div>
 <style>
