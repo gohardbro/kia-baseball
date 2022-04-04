@@ -7,10 +7,12 @@ import java.util.UUID;
 import javax.servlet.ServletContext;
 
 import org.baseball.kia.entity.AccountVo;
+import org.baseball.kia.entity.BaseballVo;
 import org.baseball.kia.entity.LineupVo;
 import org.baseball.kia.entity.ScheduleVo;
 import org.baseball.kia.entity.UniformInfoVo;
 import org.baseball.kia.repository.AccountDao;
+import org.baseball.kia.repository.BaseballDao;
 import org.baseball.kia.repository.BoardDao;
 import org.baseball.kia.repository.LineupDao;
 import org.baseball.kia.repository.ScheduleDao;
@@ -39,6 +41,9 @@ public class AdminService {
 	
 	@Autowired
 	ServletContext ctx;
+	
+	@Autowired
+	BaseballDao baseballDao;
 	
 	public boolean insertLineup(LineupVo vo) { // 라인업 등록
 		return lineupDao.insertOne(vo) == 1;
@@ -109,5 +114,9 @@ public class AdminService {
 			return null;
 		}
 		return fileName;
+	}
+	
+	public List<BaseballVo> selectBaseball(BaseballVo vo){ // 야구장 티켓 예매내역 조회
+		return baseballDao.selectBaseball(vo);
 	}
 }

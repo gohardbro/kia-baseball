@@ -5,7 +5,7 @@
 	<select id="selectUniformInfo" resultType="uniformInfoVo"> <!-- 유니폼 조회 -->
 		SELECT * FROM UNIFORM_INFO
 		<where>
-			<if test="uniInfoNo != null">UNI_INFO_NO = #{uniInfoNo}</if>
+			<if test="uniInfoNo != null and uniInfoNo != 0">UNI_INFO_NO = #{uniInfoNo}</if>
 			<if test="uniformName != null">UNIFORM_NAME LIKE '%'||#{uniformName}||'%'</if>
 			<if test="color != null">COLOR = #{color}</if>
 			<if test="playerName != null">PLAYER LIKE '%'||#{palyerName}||'%'</if>

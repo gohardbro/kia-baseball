@@ -5,7 +5,7 @@
 <table class="table table-responsive d-flex">
 	<thead>
 		<tr>
-			<th>#</th>
+			<th>상품번호</th>
 			<th>상품명</th>
 			<th>색상</th>
 			<th>사이즈</th>

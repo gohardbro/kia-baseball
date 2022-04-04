@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="baseball">
+	
+	<select id="selectBaseball" resultType="baseballVo">
+		SELECT B.*, BI.BASEBALL_ZONE ZONE 
+		FROM BASEBALL B LEFT OUTER JOIN BASEBALL_INFO BI
+		ON (B.BASE_INFO_NO = BI.BASE_INFO_NO)
+		<if test="gameDate != null and gameTime != null">
+			WHERE GAME_DATE = #{gameDate}
+			AND GAME_TIME = #{gameTime}
+		</if>
+		ORDER BY B.GAME_DATE DESC
+	</select>
+
+</mapper>

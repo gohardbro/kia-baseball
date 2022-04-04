@@ -19,7 +19,6 @@
 					<c:forEach items="${ scheduleList }" var="schedule">
 						<option value="${ schedule.gameDate } ${ schedule.gameTime }">${ schedule.gameDate } ${ schedule.gameTime }</option>
 					</c:forEach>
-					
 				</select>
 				<form action="/admin/lineup/insert">
 					<input type="hidden" id="gameDate" name="gameDate" value=""/>

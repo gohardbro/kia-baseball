@@ -36,7 +36,6 @@
 
 <script>
 	$(function() { // 페이지 로딩시 자동 실행
-		console.log("!!");
 		$.ajax({
 			url : "/admin/uniformInfo/search",
 
@@ -48,8 +47,6 @@
 	$(".btn-info").click(function(e) { // 검색 버튼 클릭
 		var type = $("#search").val();
 		var word = $("#word").val();
-		console.log(type);
-		console.log(word);
 
 		$.ajax({
 			url : "/admin/uniformInfo/search",

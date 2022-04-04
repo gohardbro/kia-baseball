@@ -1,5 +1,6 @@
 package org.baseball.kia.controller;
 
+import org.baseball.kia.entity.BaseballVo;
 import org.baseball.kia.entity.LineupVo;
 import org.baseball.kia.entity.UniformInfoVo;
 import org.baseball.kia.service.AdminService;
@@ -60,6 +61,7 @@ public class AdminController {
 			}
 			model.addAttribute("uniformInfoList", adminService.selectUniformInfo(vo));
 			return "/admin/uniformInfo-list";
+			
 		} else {
 			model.addAttribute("uniformInfoList", adminService.selectUniformInfo(null));
 			return "/admin/uniformInfo-list";
@@ -132,9 +134,22 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/admin/ticket")
-	public String ticketHandle(Model model) { // 티켓 예매내역 조회 페이지 호출
+	public String ticketHandle(Model model) { // 티켓 예매내역 페이지 호출
 		model.addAttribute("menu", "ticket");
 		return "/admin/ticket";
+	}
+
+	@RequestMapping(value = "/admin/ticket/search")
+	public String ticketSearchHandle(@RequestParam(required = false) String gameDate, Model model) { // 티켓예매내역 검색
+		if (gameDate != null) {
+			BaseballVo vo = new BaseballVo();
+			vo.setGameDate(gameDate);
+			model.addAttribute("ticketList", adminService.selectBaseball(vo));
+
+		} else {
+			model.addAttribute("ticketList", adminService.selectBaseball(null));
+		}
+		return "/admin/ticket-list";
 	}
 
 	@RequestMapping(value = "/admin/uniformList")
@@ -142,5 +157,4 @@ public class AdminController {
 		model.addAttribute("menu", "uniformList");
 		return "/admin/uniformList";
 	}
-	
 }
