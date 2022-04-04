@@ -10,9 +10,9 @@
 	color: navy;
 }
 
-.active {
+.nav-link.active {
 	background-color: navy;
-}
+} 
 
 .wrapper.style1 {
 	padding-top: 40px;

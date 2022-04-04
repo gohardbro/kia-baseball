@@ -13,4 +13,16 @@
 		ORDER BY B.GAME_DATE DESC
 	</select>
 
+	<select id="StatusByWeekAndZone"> <!-- 주차, 구역별 야구장 예매 현황 -->
+		SELECT B.GAME_DATE, SUM(B.BUYER_CNT) AS SUM 
+		FROM BASEBALL B LEFT OUTER JOIN BASEBALL_INFO BI
+		ON (B.BASE_INFO_NO = BI.BASE_INFO_NO)
+		WHERE B.GAME_DATE LIKE #{month}||'%' 
+		AND TO_CHAR(TO_DATE(B.GAME_DATE), 'W') = #{week} <!-- 몇주차인지 -->
+		GROUP BY B.GAME_DATE, BI.BASEBALL_ZONE
+		<if test="zone != null">
+			HAVING BI.BASEBALL_ZONE = #{zone} <!-- 구역 -->
+		</if>
+		ORDER BY B.GAME_DATE
+	</select>
 </mapper>
