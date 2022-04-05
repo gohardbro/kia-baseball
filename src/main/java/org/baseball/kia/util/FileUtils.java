@@ -43,10 +43,10 @@ public class FileUtils {
 			for (MultipartFile mf : list) {
 				if (mf.getSize() > 0) {
 					FileVo boardFile = new FileVo();
-					boardFile.setBoard_No(seq);
-					boardFile.setFile_Size(mf.getSize());
-					boardFile.setFile_Name(mf.getOriginalFilename());
-					boardFile.setFile_Location(root_path + attach_path);
+					boardFile.setBoardNo(seq);
+					boardFile.setFileSize(mf.getSize());
+					boardFile.setFileName(mf.getOriginalFilename());
+					boardFile.setFileLocation(root_path + attach_path);
 					fileList.add(boardFile);
 
 					file = new File(root_path + attach_path + mf.getOriginalFilename());

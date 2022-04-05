@@ -22,9 +22,9 @@
 		<table class="table">
 			<c:forEach var="one" items="${all }">
 				<tr>
-					<td>no.${one.board_No }</td>
-					<td><a href="/boardview?no=${one.board_No }">${one.title }</a></td>
-					<td>${one.writer }|<fmt:formatDate value="${one.write_Date }"
+					<td>${one.boardNo }</td>
+					<td><a href="/boardview?no=${one.boardNo }">${one.title }</a></td>
+					<td>${one.writer }|<fmt:formatDate value="${one.writeDate }"
 							pattern="yyyy.MM.dd" /> | <img src="/images/eye.png">
 						${one.views } | <img src="/images/like.png"> 43
 					</td>

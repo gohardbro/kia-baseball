@@ -11,7 +11,7 @@
 
 	<div class="container">
 		<form method="post" enctype="multipart/form-data">
-			<input type="hidden" id="seq" name="one" value="${all }">
+			<input type="hidden" name="one" value="${board.boardNo }">
 			<table border="1">
 				<tr>
 					<td bgcolor="orange" width="70">제목</td>
