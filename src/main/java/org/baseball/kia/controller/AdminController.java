@@ -1,6 +1,8 @@
 package org.baseball.kia.controller;
 
-import org.baseball.kia.entity.BaseballVo;
+import java.util.Map;
+
+import org.baseball.kia.entity.BaseballChartVo;
 import org.baseball.kia.entity.LineupVo;
 import org.baseball.kia.entity.UniformInfoVo;
 import org.baseball.kia.service.AdminService;
@@ -138,18 +140,11 @@ public class AdminController {
 		model.addAttribute("menu", "ticket");
 		return "/admin/ticket";
 	}
-
+	
+	@ResponseBody
 	@RequestMapping(value = "/admin/ticket/search")
-	public String ticketSearchHandle(@RequestParam(required = false) String gameDate, Model model) { // 티켓예매내역 검색
-		if (gameDate != null) {
-			BaseballVo vo = new BaseballVo();
-			vo.setGameDate(gameDate);
-			model.addAttribute("ticketList", adminService.selectBaseball(vo));
-
-		} else {
-			model.addAttribute("ticketList", adminService.selectBaseball(null));
-		}
-		return "/admin/ticket-list";
+	public Map<String, Object> ticketSearchHandle(@ModelAttribute BaseballChartVo vo, Model model) { // 티켓예매내역 검색
+		return adminService.selectBaseballChartData(vo);
 	}
 
 	@RequestMapping(value = "/admin/uniformList")

@@ -27,7 +27,7 @@
 						<option value="4">넷째 주</option>
 					</select>
 					<select id="zone" class="custom-select" style="width: 10%; margin: 5px;">
-						<option selected value="전체">전체</option>
+						<option selected value="all">전체</option>
 						<option value="K3">K3석</option>
 						<option value="K5">K5석</option>
 						<option value="K8">K8석</option>
@@ -54,54 +54,77 @@
 
 	$("#gameMonth").val(Year + "-" + Month);
 
-	/* 
-	$("[name=gameMonth]").change(function(e) { // 게임 일정 목록값이 바뀌면
-	var gameDate = $(this).val();
-
-	$.ajax({
-	url : "/admin/ticket/search",
-	data : {
-	"gameDate" : gameDate
-	}
-	}).done(function(data) {
-	console.log(data);
+	$(function() { // 페이지 로딩시 자동 실행
+		var chartData= getChartData($("#gameMonth").val(), $("#week").val(), $("#zone").val());
+		showChart(chartData);
 	});
-	}); */
+	
+	$("#gameMonth").change(function(e) { // Month 목록값이 바뀌면
+		var chartData= getChartData($("#gameMonth").val(), $("#week").val(), $("#zone").val());
+		showChart(chartData);
+	}); 
+	$("#week").change(function(e) { // week 목록값이 바뀌면
+		var chartData= getChartData($("#gameMonth").val(), $("#week").val(), $("#zone").val());
+		showChart(chartData);
+	}); 
+	$("#zone").change(function(e) { // zone 목록값이 바뀌면
+		var chartData= getChartData($("#gameMonth").val(), $("#week").val(), $("#zone").val());
+		showChart(chartData);
+	}); 
 
-	// 차트
+	
 	var ctx = document.getElementById('myChart').getContext('2d');
-	var chart = new Chart(ctx, {
-		type : 'bar',
-		data : {
-			labels : [ '화요일', '수요일', '목요일', '금요일', '토요일', '일요일' ],
-			datasets : [ {
-				label : $("#zone").val(),
-				backgroundColor : 'rgb(200,	153, 126)',
-				borderColor : 'rgb(200,	153, 126)',
-				data : [ 20, 80, 50, 85, 76, 64 ]
-			}, ]
-		},
-		options : {
-			responsive : true,
-			plugins : {
-				legend : {
-					position : 'top',
-				},
-				title : {
-					display : true,
-					text : '야구장 티켓 예매 현황'
-				}
+	function showChart(data){	// 차트
+		var chart = new Chart(ctx, {
+			type : 'bar',
+			data : {
+				labels : data.date,
+				datasets : [ {
+					label : $("#zone").val(),
+					backgroundColor : 'rgb(200,	153, 126)',
+					borderColor : 'rgb(200,	153, 126)',
+					data : data.cnt
+				}, ]
 			},
-			scales : {
-				yAxes : [ {
-					ticks : {
-						suggestedMin : 0,
-						suggestedMax : 100
+			options : {
+				responsive : true,
+				plugins : {
+					legend : {
+						position : 'top',
+					},
+					title : {
+						display : true,
+						text : '야구장 티켓 예매 현황'
 					}
-				} ]
+				},
+				scales : {
+					yAxes : [ {
+						ticks : {
+							suggestedMin : 0,
+							suggestedMax : 100
+						}
+					} ]
+				}
 			}
-		}
-	});
+		});
+	} // end showChart
+	
+	function getChartData(month, week, zone){ //차트데이터 불러오기
+		var result;
+		$.ajax({
+			url: "/admin/ticket/search",
+			data: {
+				"month": month,
+				"week": week,
+				"zone": zone
+			},
+			async : false
+		}).done(function(data){
+			result = data;
+		});	
+		return result;
+	}// end getChartData
+	
 </script>
 
 <jsp:include page="/WEB-INF/views/admin/include/bottom.jsp" />
