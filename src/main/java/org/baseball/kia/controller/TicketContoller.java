@@ -24,5 +24,8 @@ public class TicketContoller {
 		model.addAttribute("gameList" , list); 
 		return "/ticket/ticketMain";
 	}
+	
+	//ticketMiddle 구역과 매수 정하기 
+	
 
 }
