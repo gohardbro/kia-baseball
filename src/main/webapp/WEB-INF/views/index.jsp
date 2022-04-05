@@ -11,10 +11,7 @@
 				<!-- 유니폼 카드 10개 작성 -->
 				<section class="carousel">
 					<div class="reel">
-<<<<<<< HEAD
-=======
 					
->>>>>>> refs/remotes/origin/master
 						<article>
 							<a href="#" class="image featured"><img
 								src="images/pic01.jpg" alt="" /></a>
