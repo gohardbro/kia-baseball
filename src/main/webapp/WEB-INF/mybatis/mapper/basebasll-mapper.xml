@@ -15,10 +15,10 @@
 			AND dateTypeSelect = #{dateTypeSelect}
 		</if> 
 		-->
-		
+		<!-- 
 		<if test="yearSelect != null">
 			AND SUBSTR(GAME_DATE, 0, INSTR(GAME_DATE, '-', 1, 1)-1 ) = #{yearSelect}
-		</if>
+		</if> -->
 		
 		<!-- 
 		<if test="monSelect != null">

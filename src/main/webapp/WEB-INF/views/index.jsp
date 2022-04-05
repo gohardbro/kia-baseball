@@ -63,9 +63,6 @@
 				</section>
 			</div>
 
-<jsp:include page="/WEB-INF/views/include/footer.jsp" />
-
-
 
 			<!-- 채팅 -->
 			<div class="col-5" id="sidebar">
