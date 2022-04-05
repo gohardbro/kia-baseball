@@ -64,6 +64,7 @@
 			</section>
 			<!-- accordian end-->
 			<section>
+			
 				<div id="glTable">
 					<!-- gamelist + button[예매하기] -->
 					<table>
@@ -71,11 +72,11 @@
 							<tr>
 								<td>${gl.gameDate}</td>
 								<td>${gl.gameTime}</td>
+								<td>기아타이거즈</td>
 								<td>
 								<img src="/images/Logo_Mini/KIA.jpg" class="gl-logo" />
 								</td>
-								<td>기아타이거즈</td>
-
+	
 								<td>VS</td>
 
 								<td>
@@ -84,12 +85,14 @@
 								<td>${gl.sponsor}${gl.teamName}</td>
 								<td>챔피언스필드</td>
 								<td id="gl-btn">
-									<button type="button" onclick="#">예매하기</button>
+									<button type="button" onclick="/ticketMiddle?scheduleNo=${gl.scheduleNo}">예매하기</button>
 								</td>
+								
 							</tr>
 						</c:forEach>
 					</table>
 				</div>
+				
 			</section>
 		</article>
 	</div>

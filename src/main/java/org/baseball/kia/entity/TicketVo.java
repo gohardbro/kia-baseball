@@ -9,7 +9,14 @@ public class TicketVo {
 	String teamImg;
 	String field;
 	String sponsor;
+	int scheduleNo;
 	
+	public int getScheduleNo() {
+		return scheduleNo;
+	}
+	public void setScheduleNo(int scheduleNo) {
+		this.scheduleNo = scheduleNo;
+	}
 	public String getGameDate() {
 		return gameDate;
 	}
