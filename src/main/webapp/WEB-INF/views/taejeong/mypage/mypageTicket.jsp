@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
 
 <style>
@@ -80,16 +81,16 @@ td {
 .selectFrom {
 	float: right;
 }
+
 .selectBtn {
 	display: inline-block;
 	padding: 6px 12px;
 }
+
 select, option {
 	font-size: 14px;
 	padding: 0 12px;
 }
-
-
 </style>
 
 <div class="row">
@@ -113,42 +114,43 @@ select, option {
 					<div class="selectZone">
 						<div class="btn-group" role="group" aria-label="First group">
 							<strong>기간별 조회</strong>
-							<button type="button" class="btn btn-outline-secondary" id="15d">15일</button>
-							<button type="button" class="btn btn-outline-secondary">1개월</button>
-							<button type="button" class="btn btn-outline-secondary">2개월</button>
-							<button type="button" class="btn btn-outline-secondary">3개월</button>
+							<button type="button" class="btn btn-outline-secondary" id="15dBtn">15일</button>
+							<button type="button" class="btn btn-outline-secondary" id="1monBtn">1개월</button>
+							<button type="button" class="btn btn-outline-secondary" id="2monBtn">2개월</button>
+							<button type="button" class="btn btn-outline-secondary" id="3monBtn">3개월</button>
 						</div>
 
 						<form class="selectFrom" action="/ticket/search" method="get">
-							<strong>월 별 조회</strong>
-							<select class="selectBtn" name="dateTypeSelect" style="width: 70px;">
+							<strong>월 별 조회</strong> 
+							<select class="selectBtn" name="dateTypeSelect" style="width: 85px;">
 								<option value="예매일" class="">예매일</option>
-								<option value="관람일" class="">관람일</option>
+								<option value="관람일" class="">경기일</option>
 							</select> 
-							<select class="selectBtn" name="yearSelect" style="width: 70px;" >
+							<select class="selectBtn" name="yearSelect" style="width: 90px;">
 								<!-- 바꿔: 이번년도 부터 -3년도 까지 자동계산으로 바꾸기  -->
 								<option value="연도" class="">연도</option>
-								<option value="2022년" class="">2022년</option>
-								<option value="2021년" class="">2021년</option>
-								<option value="2020년" class="">2020년</option>
+								<option value="2022" class="">2022년</option>
+								<option value="2021" class="">2021년</option>
+								<option value="2020" class="">2020년</option>
 							</select> 
 							<select class="selectBtn" name="monSelect" style="width: 70px;">
-								<option value="월" class="">월</option>
-								<option value="1월" class="">1월</option>
-								<option value="2월" class="">2월</option>
-								<option value="3월" class="">3월</option>
-								<option value="4월" class="">4월</option>
-								<option value="5월" class="">5월</option>
-								<option value="6월" class="">6월</option>
-								<option value="7월" class="">7월</option>
-								<option value="8월" class="">8월</option>
-								<option value="9월" class="">9월</option>
-								<option value="10월" class="">10월</option>
-								<option value="11월" class="">11월</option>
-								<option value="12월" class="">12월</option>
+								<option value="" class="">월</option>
+								<option value="01" class="">1월</option>
+								<option value="02" class="">2월</option>
+								<option value="03" class="">3월</option>
+								<option value="04" class="">4월</option>
+								<option value="05" class="">5월</option>
+								<option value="06" class="">6월</option>
+								<option value="07" class="">7월</option>
+								<option value="08" class="">8월</option>
+								<option value="09" class="">9월</option>
+								<option value="10" class="">10월</option>
+								<option value="11" class="">11월</option>
+								<option value="12" class="">12월</option>
 							</select>
 							<button type="submit" class="btn btn-success">조회</button>
 						</form>
+
 					</div>
 					<div class="divider"></div>
 					<div>
@@ -183,6 +185,17 @@ select, option {
 									<td>22/03/28 까지</td>
 									<td>결제완료</td>
 								</tr>
+								<c:forEach items="${ticketList }" var="ticketList">
+									<tr>
+										<td>${ticketList.baseballNo }</td>
+										<td>KIA Tigers vs ${ticketList.rival }</td>
+										<td>${ticketList.gameDate } ${ticketList.gameTime }</td>
+										<td>${ticketList.buyerCnt }장</td>
+										<td>${ticketList.buyDate }</td>
+										<td>22/03/28 까지</td>
+										<td>결제완료</td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>

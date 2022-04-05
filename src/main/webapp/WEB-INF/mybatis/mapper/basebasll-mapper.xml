@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="baseball">
+	<select id="selectAllById" resultType="baseballVo" parameterType="baseballVo">
+		SELECT *
+		FROM BASEBALL B INNER JOIN SCHEDULE S
+		USING(SCHEDULE_NO)
+		INNER
+		JOIN BASEBALL_INFO
+		USING(BASE_INFO_NO)
+		WHERE BUYER = #{buyer}
+
+		<!--
+		<if test="dateTypeSelect != null">
+			AND dateTypeSelect = #{dateTypeSelect}
+		</if> 
+		-->
+		
+		<if test="yearSelect != null">
+			AND SUBSTR(GAME_DATE, 0, INSTR(GAME_DATE, '-', 1, 1)-1 ) = #{yearSelect}
+		</if>
+		
+		<!-- 
+		<if test="monSelect != null">
+			AND SUBSTR(GAME_DATE, 0, INSTR(GAME_DATE, '-', 1, 2)-1 ) = '#{yearSelect}-#{monSelect}'
+		</if> 
+		-->
+	</select>
+</mapper>

@@ -38,8 +38,8 @@
 			<!-- Nav -->
 			<nav id="nav">
 						<ul style="float: right;">
-							<li><a href="#">로그인</a></li>
-							<li><a href="#">회원가입</a></li>
+							<li><a href="/login">로그인</a></li>
+							<li><a href="/signup">회원가입</a></li>
 						</ul>
 				<br>
 				<ul>
