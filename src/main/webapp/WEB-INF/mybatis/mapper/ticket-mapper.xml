@@ -16,9 +16,13 @@
 		where game_date = to_char(sysdate, 'yyyy-MM-dd')
 		and sysdate between to_date('00:00', 'HH24:Mi') and to_date(game_time,
 		'HH24:Mi')+3/48
-		) s inner join team t on(s.rival = t.sponsor)
-
+		) s inner join team t on(s.rival = t.sponsor) 
+		order by game_date asc
 	</select>
-
+	
+	<select id="selectScheduleNo" resultType="TicketVo">
+		select *
+		from schedule s inner join team t on (s.rival = t.sponsor) where s.schedule_no = #{no} 
+	</select>
 
 </mapper>

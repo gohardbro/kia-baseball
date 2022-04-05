@@ -85,7 +85,7 @@
 								<td>${gl.sponsor}${gl.teamName}</td>
 								<td>챔피언스필드</td>
 								<td id="gl-btn">
-									<button type="button" onclick="/ticketMiddle?scheduleNo=${gl.scheduleNo}">예매하기</button>
+									<button type="button" onclick="location.href='/ticketDetail?scheduleNo=${gl.scheduleNo}'">예매하기</button> 
 								</td>
 								
 							</tr>

@@ -14,13 +14,16 @@ public class TicketService {
 	@Autowired
 	TicketDao ticketDao; 
 	
-	
+	//ticketMain
 	public List<TicketVo> gamelistAbleRev(){
 		List<TicketVo> list = ticketDao.gamelistAbleRev();
-	 
-	 
-		
 		return list; 
+	}
+	
+	//ticketDetail
+	public TicketVo getOneByScheduleNo(int scheduleNo){
+		TicketVo vo = ticketDao.selectScheduleNo(scheduleNo);
+		return vo ;
 	}
  
 	

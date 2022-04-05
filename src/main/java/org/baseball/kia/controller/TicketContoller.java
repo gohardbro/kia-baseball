@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class TicketContoller {
@@ -25,7 +26,12 @@ public class TicketContoller {
 		return "/ticket/ticketMain";
 	}
 	
-	//ticketMiddle 구역과 매수 정하기 
+	//ticketMiddle 구역과 매수
+	@RequestMapping("/ticketDetail")
+	public String ticketMiddle(@RequestParam int scheduleNo, Model model) {
+		model.addAttribute("gl", ticketService.getOneByScheduleNo(scheduleNo));
+		return "/ticket/ticketDetail"; 
+	}
 	
 
 }

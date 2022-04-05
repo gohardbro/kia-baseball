@@ -17,5 +17,7 @@ public class TicketDao {
 		return sqlSession.selectList("ticket.GamelistRevAble");
 	}
 	
-
+	public TicketVo selectScheduleNo(int scheduleNo) {
+		return sqlSession.selectOne("ticket.selectScheduleNo",scheduleNo);
+	}
 }

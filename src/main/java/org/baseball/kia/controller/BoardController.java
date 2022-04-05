@@ -1,4 +1,4 @@
-package org.baseball.kia.controll;
+package org.baseball.kia.controller;
 
 import java.io.IOException;
 import java.util.List;

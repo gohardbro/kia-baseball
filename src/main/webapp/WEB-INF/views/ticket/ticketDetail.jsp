@@ -16,7 +16,6 @@
 
 
 <style>
- 
 </style>
 
 
@@ -26,53 +25,26 @@
 <div class="wrapper style1">
 
 	<div class="container">
-		<article id="main" class="special">
+		<article id="detail" class="special">
 			<header>
 				<h2>
 					<a> 구역/매수 선택</a>
 				</h2>
 			</header>
 
- 
 			<section>
-				<div id="glTable">
-					<!-- gamelist + button[예매하기] -->
-					<table>
-						<c:forEach var="gl" items="${gameList}">
-							<tr>
-								<td>${gl.gameDate}</td>
-								<td>${gl.gameTime}</td>
-								<td>기아타이거즈</td>
-								<td>
-								<img src="/images/Logo_Mini/KIA.jpg" class="gl-logo" />
-								</td>
-	
-								<td>VS</td>
 
-								<td>
-								<img src="/images/Logo_Mini/${gl.teamImg}" class="gl-logo" />
-								</td> 
-								<td>${gl.sponsor}${gl.teamName}</td>
-								<td>챔피언스필드</td>
-							</tr>
-						</c:forEach>
-					</table>
+				<div class="container">
+					<div class="item">구역</div>
+					<div class="item">매수</div>
+					<div class="item">결제하기 버튼</div>
+
 				</div>
+
 			</section>
-			
-			<section>
-			
-			<div class="container">
-	<div class="item">구역</div>
-	<div class="item">매수</div>
-	<div class="item">결제하기 버튼</div>
-	
-</div>		
-			
-			</section>
-			
-			
-			
+
+
+
 		</article>
 	</div>
 </div>
