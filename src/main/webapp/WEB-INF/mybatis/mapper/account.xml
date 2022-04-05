@@ -12,7 +12,7 @@
 		ORDER BY JOIN_DATE DESC
 	</select>
 
-	<update id="updateReportById"> <!-- 신고계정 차단 설정 -->
+	<update id="updateReportById"> <!-- 신고계정 차단 설정 --> 
 		UPDATE ACCOUNT SET REPORT = 'Y' WHERE ID = #{id}
 	</update>
 </mapper>

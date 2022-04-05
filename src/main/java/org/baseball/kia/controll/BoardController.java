@@ -57,7 +57,7 @@ public class BoardController {
 			MultipartHttpServletRequest mhsr) throws IOException {
 		boolean rst = boardService.addNewOne(vo);
 		
-		int seq = vo.getBoard_No();
+		int seq = vo.getBoardNo();
 		FileUtils fileUtils = new FileUtils();
 		List<FileVo> fileList = fileUtils.parseFileInfo(seq, request, mhsr);
 		if (!rst && CollectionUtils.isEmpty(fileList) == false) {
