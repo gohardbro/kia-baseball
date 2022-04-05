@@ -31,7 +31,13 @@ public class AccountDao {
 		return sqlSession.update("account.updateOne", vo);
 	}
 	
+	public List<AccountVo> selectByType(String type){ // 타입별 회원계정 조회
+		return sqlSession.selectList("account.selectByType", type);
+	}
 	
+	public int updateReportById(String id) { // 신고계정 차단 설정
+		return sqlSession.update("account.updateReportById", id);
+	}
 	
 	
 }
