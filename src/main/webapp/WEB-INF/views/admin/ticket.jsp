@@ -60,6 +60,26 @@
 	});
 	
 	$("#gameMonth").change(function(e) { // Month 목록값이 바뀌면
+		var target = new Date($("#gameMonth").val()+"-01");
+		var dayOne = target.getDay();	// 1일이 요일 (0~6 : 일~토)
+		var limit = dayOne<=5 && dayOne != 0;
+		target.setMonth(target.getMonth()+1);
+		target.setDate(0);
+		
+		var dayLast = target.getDate();	// 해당달의 마지막 날
+		target = new Date($("#gameMonth").val()+"-"+dayLast);
+		dayLast = target.getDay();
+		var limitLast = dayLast>=5||dayLast ==0;
+		console.log(dayOne);
+		console.log(dayLast);
+		console.log(limit);
+		console.log(limitLast);
+		
+		//
+		console.log('!!!!!');
+		console.log(parseInt(((dayOne+dayLast)/7) +1));
+		
+		 
 		var chartData= getChartData($("#gameMonth").val(), $("#week").val(), $("#zone").val());
 		showChart(chartData);
 	}); 
