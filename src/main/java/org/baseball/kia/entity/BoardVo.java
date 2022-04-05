@@ -5,11 +5,11 @@ import java.util.Date;
 import org.springframework.web.multipart.MultipartFile;
 
 public class BoardVo {
-	int board_No;
+	int boardNo;
 	String title;
 	String content;
 	String writer;
-	Date write_Date;
+	Date writeDate;
 	int views;
 	int likes;
 	MultipartFile uploadFile;
@@ -20,14 +20,6 @@ public class BoardVo {
 
 	public void setUploadFile(MultipartFile uploadFile) {
 		this.uploadFile = uploadFile;
-	}
-
-	public int getBoard_No() {
-		return board_No;
-	}
-
-	public void setBoard_No(int board_No) {
-		this.board_No = board_No;
 	}
 
 	public int getLikes() {
@@ -70,22 +62,20 @@ public class BoardVo {
 		this.writer = writer;
 	}
 
-	public Date getWrite_Date() {
-		return write_Date;
+	public int getBoardNo() {
+		return boardNo;
 	}
 
-	public void setWrite_Date(Date write_Date) {
-		this.write_Date = write_Date;
+	public void setBoardNo(int boardNo) {
+		this.boardNo = boardNo;
 	}
-	
-	@Override
-	public String toString() {
-		return "BoardVo [board_No=" + board_No + ", title=" + title + ", content=" + content + ", writer=" + writer
-				+ ", write_Date=" + write_Date + ", views=" + views + ", likes=" + likes + ", getBoard_No()="
-				+ getBoard_No() + ", getLikes()=" + getLikes() + ", getViews()=" + getViews() + ", getTitle()="
-				+ getTitle() + ", getContent()=" + getContent() + ", getWriter()=" + getWriter() + ", getWrite_Date()="
-				+ getWrite_Date() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+
+	public Date getWriteDate() {
+		return writeDate;
+	}
+
+	public void setWriteDate(Date writeDate) {
+		this.writeDate = writeDate;
 	}
 
 }

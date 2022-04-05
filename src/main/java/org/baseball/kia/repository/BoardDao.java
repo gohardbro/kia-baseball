@@ -33,4 +33,8 @@ public class BoardDao {
 		sqlSession.update("board.updateCnt", no);
 	}
 	
+	public int deleteBoardByReportId(String id) { //차단된 계정 게시물 삭제
+		return sqlSession.delete("board.deleteBoardByReportId", id);
+	}
+	
 }

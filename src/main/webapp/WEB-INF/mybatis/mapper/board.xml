@@ -21,4 +21,8 @@
 		UPDATE BOARD SET VIEWS =
 		VIEWS + 1 WHERE BOARD_NO = #{no}
 	</update>
+	<delete id="deleteBoardByReportId"> <!-- 차단계정 게시물 삭제 -->
+		DELETE FROM BOARD
+		WHERE WRITER = #{id}
+	</delete>
 </mapper> 

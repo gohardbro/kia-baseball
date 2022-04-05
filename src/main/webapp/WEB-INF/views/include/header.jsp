@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML>
@@ -26,6 +26,16 @@
 <script src="/assets/js/util.js"></script>
 </head>
 <body class="left-sidebar is-preload">
+	 <!-- Scripts -->
+	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/assets/js/jquery.dropotron.min.js"></script>
+	<script src="/assets/js/jquery.scrolly.min.js"></script>
+	<script src="/assets/js/jquery.scrollex.min.js"></script>
+	<script src="/assets/js/browser.min.js"></script>
+	<script src="/assets/js/breakpoints.min.js"></script>
+	<script src="/assets/js/util.js"></script>
+	<script src="/assets/js/main.js"></script>
+
 	<div id="page-wrapper">
 
 		<!-- Header -->
@@ -42,12 +52,13 @@
 
 			<!-- Nav -->
 			<nav id="nav">
-				<ul style="float: right;">
+				<ul style="float: right; border-left: 0; border-right: 0;">
 					<li><a href="#">로그인</a></li>
 					<li><a href="#">회원가입</a></li>
+					<li><a href="/admin">Admin</a></li>
 				</ul>
 				<br>
-				<ul>
+				<ul class="kia_nav">
 					<li><a href="#">KIA tigers</a></li>
 					<li><a href="#">예매</a></li>
 					<li><a href="#">커뮤니티</a></li>
