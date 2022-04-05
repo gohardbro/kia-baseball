@@ -13,5 +13,7 @@
 			alias="board" />
 		<typeAlias type="org.baseball.kia.entity.PagingVo"
 			alias="paging" />
+		<typeAlias type="org.baseball.kia.entity.FileVo"
+			alias="file" />
 	</typeAliases>
 </configuration>

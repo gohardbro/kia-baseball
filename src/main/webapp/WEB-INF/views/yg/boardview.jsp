@@ -10,20 +10,12 @@
 <div class="wrapper style1">
 
 	<div class="container">
-		<!-- <table class="table">
-			<tr>
-				<td>no.1</td>
-				<td>왼쪽 번호 오른쪽 작성일/조회수/좋아요</td>
-				<td>22/03/29 | <img src="/images/eye.png"> 31 | <img
-					src="/images/like.png"> 41
-				</td>
-			</tr>
-		</table> -->
-		<table border="1">
+		<form method="post" enctype="multipart/form-data">
+			<input type="hidden" id="seq" name="one" value="${all }">
+			<table border="1">
 				<tr>
 					<td bgcolor="orange" width="70">제목</td>
-					<td align="left"><input name="title" type="text"
-						value="${one.title }"></td>
+					<td align="left">${one.title }</td>
 				</tr>
 				<tr>
 					<td bgcolor="orange">작성자</td>
@@ -36,22 +28,37 @@
 				</tr>
 				<tr>
 					<td bgcolor="orange">등록일</td>
-					<td align="left">${one.write_Date }</td>
+					<td align="left">${one.regDate }</td>
 				</tr>
 				<tr>
 					<td bgcolor="orange">조회수</td>
-					<td align="left">${one.views }</td>
+					<td align="left">${one.cnt }</td>
 				</tr>
 				<tr>
 					<td bgcolor="orange">첨부파일 목록</td>
-					<td><c:forEach var="file" items="${fileList }">
-							<a class="downlink" id="${file.fSeq }"
-								href="${file.originalFileName }">${file.originalFileName }</a>
-							<button type="button" onclick="deleteFile('${file.fSeq }');">삭제</button>
+					<td><c:forEach var="file" items="${file }">
+							<a class="downlink" id="${file.board_no }"
+								href="${file.file_name }">${file.file_name }</a>
+							<button type="button" onclick="deleteFile('${file.board_no }');">삭제</button>
 							<br>
 						</c:forEach></td>
 				</tr>
+				<tr>
+					<td bgcolor="orange" width="70">업로드</td>
+					<td align="left"><input type="file" name="uploadFiles"
+						multiple="multiple"></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center"><input type="submit"
+						value="글 수정"></td>
+				</tr>
 			</table>
+		</form>
+		<hr>
+		<a href="insertBoard.jsp">글 등록</a>&nbsp;&nbsp;&nbsp; <a
+			href="deleteBoard.do?seq=${board.seq }">글 삭제</a>&nbsp;&nbsp;&nbsp; <a
+			href="getBoardList.do?pageNum=${criteria.pageNum }&amount=${criteria.amount}">글
+			목록</a>
 	</div>
 </div>
 <style>

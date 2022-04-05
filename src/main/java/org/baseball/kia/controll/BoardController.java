@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.baseball.kia.entity.BoardVo;
 import org.baseball.kia.entity.FileVo;
 import org.baseball.kia.service.BoardService;
+import org.baseball.kia.service.FileService;
 import org.baseball.kia.util.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 public class BoardController {
 	@Autowired
 	BoardService boardService;
+
+	@Autowired
+	FileService fileService;
 
 	@RequestMapping(value = "/announce", method = RequestMethod.GET)
 	public String no() {
@@ -52,14 +56,15 @@ public class BoardController {
 	public String insertPostHandle(@ModelAttribute("vo") BoardVo vo, Model model, HttpServletRequest request,
 			MultipartHttpServletRequest mhsr) throws IOException {
 		boolean rst = boardService.addNewOne(vo);
+		
 		int seq = vo.getBoard_No();
 		FileUtils fileUtils = new FileUtils();
 		List<FileVo> fileList = fileUtils.parseFileInfo(seq, request, mhsr);
 		if (!rst && CollectionUtils.isEmpty(fileList) == false) {
-			return "yg/boardwrite";
+			fileService.insertFile(fileList);
 		}
 
-		return "redirect:/yg";
+		return "/yg/board";
 	}
 
 	@RequestMapping("/boardview")
@@ -68,9 +73,13 @@ public class BoardController {
 
 		BoardVo vo = boardService.getOneByNo(no);
 		if (vo == null) {
-			return "redirect:/yg";
+			return "/yg/boardview";
 		}
-		model.addAttribute("one", vo);
+		 
+		
+		
+		
+		model.addAttribute("file",fileService.getFile(no));
 
 		return "/yg/boardview";
 	}

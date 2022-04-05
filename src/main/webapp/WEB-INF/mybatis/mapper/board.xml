@@ -4,7 +4,7 @@
 	<insert id="insertOne" parameterType="board">
 		INSERT INTO BOARD
 		VALUES
-		(BOARD_SEQ.NEXTVAL,#{title},#{content}, SYSDATE, #{writer},
+		(BOARD_SEQ.NEXTVAL, #{title},#{content}, SYSDATE, #{writer},
 		#{views}, #{likes} )
 	</insert>
 	<select id="selectAll" resultType="board">
