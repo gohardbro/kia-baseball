@@ -7,22 +7,28 @@
 
 <!-- Main -->
 <div class="subheader"></div>
-<div class="wrapper style1 container">
+<div class="wrapper style1">
 
-		<form method="post" enctype="multipart/form-data">
+	<div class="container">
+		<form name="update" method="post" enctype="multipart/form-data"
+			action="${path }/update">
+			<input type="hidden" name="boardNo" value="${one.boardNo}"/>
 			<table border="1">
 				<tr>
 					<td bgcolor="orange" width="70">제목</td>
-					<td align="left">${one.title }</td>
+					<td align="left"><input type="text" name="title" value="${one.title }"/></td>
 				</tr>
 				<tr>
 					<td bgcolor="orange">작성자</td>
 					<td align="left">${one.writer }</td>
 				</tr>
 				<tr>
-					<td bgcolor="orange">내용</td>
-					<td align="left"><textarea name="content" cols="40" rows="10">${one.content }</textarea>
-					</td>
+					<td bgcolor="orange">이전내용</td>
+					<td align="left"></td>
+				</tr>
+				<tr>
+					<td bgcolor="orange">바꿀내용</td>
+					<td align="left"><textarea name="content" cols="40" rows="10">${one.content }</textarea></td>
 				</tr>
 				<tr>
 					<td bgcolor="orange">등록일</td>
@@ -47,13 +53,19 @@
 					<td align="left"><input type="file" name="uploadFiles"
 						multiple="multiple"></td>
 				</tr>
+				<tr>
+					<td colspan="2" align="center"><input type="submit"
+						value="글 수정"></td>
+				</tr>
 			</table>
+			<div>
+				<input type="submit" class="btn btn-outing-info" value="완료" /> <input
+					type="reset" class="btn btn-outing-info" value="취소" />
+			</div>
 		</form>
 		<hr>
-		<a href="/update?no=${one.boardNo }">글 수정</a>&nbsp;&nbsp;&nbsp; <a
-			href="/delete?no=${one.boardNo }">글 삭제</a>&nbsp;&nbsp;&nbsp;
 	</div>
-	<jsp:include page="/WEB-INF/views/yg/include/comment.jsp" />
+</div>
 <style>
 ._small img table tr td {
 	width: 10px;

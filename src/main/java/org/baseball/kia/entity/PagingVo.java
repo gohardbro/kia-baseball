@@ -1,18 +1,44 @@
 package org.baseball.kia.entity;
 
-import org.springframework.stereotype.Repository;
-
-@Repository
 public class PagingVo {
-	int nowPage, startPage, endPage, total, cntPerPage, lastPage, start, end;
-	int cntPage = 5;
+	Criteria cri;
+	int totalCount;
+	int startPage;
+	int endPage;
+	boolean prev;
+	boolean next;
+	int displayPageNum = 5;
 
-	public int getNowPage() {
-		return nowPage;
+	public void calcData() {
+        
+        endPage = (int) (Math.ceil(cri.getPage() / (double) displayPageNum) * displayPageNum);
+ 
+        startPage = (endPage - displayPageNum) + 1;
+        if(startPage <= 0) startPage = 1;
+        
+        int tempEndPage = (int) (Math.ceil(totalCount / (double) cri.getPerPageNum()));
+        if (endPage > tempEndPage) {
+            endPage = tempEndPage;
+        }
+ 
+        prev = startPage == 1 ? false : true;
+        next = endPage * cri.getPerPageNum() < totalCount ? true : false;
+    }
+
+	public Criteria getCri() {
+		return cri;
 	}
 
-	public void setNowPage(int nowPage) {
-		this.nowPage = nowPage;
+	public void setCri(Criteria cri) {
+		this.cri = cri;
+	}
+
+	public int getTotalCount() {
+		return totalCount;
+	}
+
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
 	}
 
 	public int getStartPage() {
@@ -31,58 +57,28 @@ public class PagingVo {
 		this.endPage = endPage;
 	}
 
-	public int getTotal() {
-		return total;
+	public boolean isPrev() {
+		return prev;
 	}
 
-	public void setTotal(int total) {
-		this.total = total;
+	public void setPrev(boolean prev) {
+		this.prev = prev;
 	}
 
-	public int getCntPerPage() {
-		return cntPerPage;
+	public boolean isNext() {
+		return next;
 	}
 
-	public void setCntPerPage(int cntPerPage) {
-		this.cntPerPage = cntPerPage;
+	public void setNext(boolean next) {
+		this.next = next;
 	}
 
-	public int getLastPage() {
-		return lastPage;
+	public int getDisplayPageNum() {
+		return displayPageNum;
 	}
 
-	public void setLastPage(int lastPage) {
-		this.lastPage = lastPage;
+	public void setDisplayPageNum(int displayPageNum) {
+		this.displayPageNum = displayPageNum;
 	}
 
-	public int getStart() {
-		return start;
-	}
-
-	public void setStart(int start) {
-		this.start = start;
-	}
-
-	public int getEnd() {
-		return end;
-	}
-
-	public void setEnd(int end) {
-		this.end = end;
-	}
-
-	public int getCntPage() {
-		return cntPage;
-	}
-
-	public void setCntPage(int cntPage) {
-		this.cntPage = cntPage;
-	}
-
-	@Override
-	public String toString() {
-		return "PagingVO [nowPage=" + nowPage + ", startPage=" + startPage + ", endPage=" + endPage + ", total=" + total
-				+ ", cntPerPage=" + cntPerPage + ", lastPage=" + lastPage + ", start=" + start + ", end=" + end
-				+ ", cntPage=" + cntPage + "]";
-	}
 }

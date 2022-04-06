@@ -5,7 +5,8 @@
 		INSERT INTO BOARD
 		VALUES
 		(BOARD_SEQ.NEXTVAL, #{title},#{content}, SYSDATE, #{writer},
-		#{views}, #{likes} )
+		#{views},
+		#{likes} )
 	</insert>
 	<select id="selectAll" resultType="board">
 		SELECT * FROM BOARD ORDER
@@ -15,14 +16,23 @@
 	<select id="selectOne" resultType="board">
 		SELECT
 		* FROM BOARD WHERE
-		BOARD_NO = #{no}
+		BOARD_NO = #{boardNo}
 	</select>
 	<update id="updateCnt" parameterType="int">
 		UPDATE BOARD SET VIEWS =
-		VIEWS + 1 WHERE BOARD_NO = #{no}
+		VIEWS + 1 WHERE BOARD_NO = #{boardNo}
 	</update>
 	<delete id="deleteBoardByReportId"> <!-- 차단계정 게시물 삭제 -->
 		DELETE FROM BOARD
 		WHERE WRITER = #{id}
 	</delete>
+	<delete id="boardDelete" parameterType="int">
+		DELETE FROM BOARD WHERE
+		BOARD_NO = #{boardNo}
+	</delete>
+	<update id="boardUpdate" parameterType="board">
+		UPDATE BOARD SET TITLE =
+		#{title}, CONTENT = #{content} WHERE BOARD_NO = #{boardNo}
+	</update>
+
 </mapper> 

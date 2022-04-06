@@ -10,7 +10,7 @@ public class BoardVo {
 	String content;
 	String writer;
 	Date writeDate;
-	int views;
+	Integer views;
 	int likes;
 	MultipartFile uploadFile;
 
@@ -30,11 +30,11 @@ public class BoardVo {
 		this.likes = likes;
 	}
 
-	public int getViews() {
+	public Integer getViews() {
 		return views;
 	}
 
-	public void setViews(int views) {
+	public void setViews(Integer views) {
 		this.views = views;
 	}
 
@@ -68,7 +68,7 @@ public class BoardVo {
 
 	public void setBoardNo(int boardNo) {
 		this.boardNo = boardNo;
-	}
+	} 
 
 	public Date getWriteDate() {
 		return writeDate;

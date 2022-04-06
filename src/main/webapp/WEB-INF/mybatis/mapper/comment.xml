@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="comment">
+	<insert id="insertOne" parameterType="comment">
+		INSERT INTO BOARD_COMMENT
+		VALUES
+		(COMMENT_SEQ.NEXTVAL, #{writer},#{boardNo}, SYSDATE, #{content} )
+	</insert>
+	
+	<select id="selectAll" resultType="comment">
+		SELECT * FROM BOARD_COMMENT ORDER
+		BY
+		COMMENT_NO DESC
+	</select>
+</mapper> 

@@ -34,6 +34,24 @@
 		<div style="margin-top: 10px;">
 			<button type="button" onclick="location.href='/write'">글쓰기</button>
 		</div>
+		<ul class="btn-group pagination">
+			<c:if test="${vo.prev }">
+				<li><a
+					href='<c:url value="/board/boardList?page=${vo.startPage-1 }"/>'><i
+						class="fa fa-chevron-left"></i></a></li>
+			</c:if>
+			<c:forEach begin="${vo.startPage }"
+				end="${vo.endPage }" var="pageNum">
+				<li><a
+					href='<c:url value="/board/boardList?page=${pageNum }"/>'><i
+						class="fa">${pageNum }</i></a></li>
+			</c:forEach>
+			<c:if test="${vo.next && vo.endPage >0 }">
+				<li><a
+					href='<c:url value="/board/boardList?page=${vo.endPage+1 }"/>'><i
+						class="fa fa-chevron-right"></i></a></li>
+			</c:if>
+		</ul>
 	</div>
 </div>
 
