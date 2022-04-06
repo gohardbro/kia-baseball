@@ -8,10 +8,11 @@
 			<th>상품번호</th>
 			<th>상품명</th>
 			<th>색상</th>
-			<th>사이즈</th>
-			<th>선수명</th>
+			<th>S 수량</th>
+			<th>M 수량</th>
+			<th>L 수량</th>
+			<th>XL 수량</th>
 			<th>가격</th>
-			<th>수량</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -21,10 +22,11 @@
 				<td>${ uniformInfo.uniInfoNo }</td>
 				<td style="width: 30%">${ uniformInfo.uniformName }</td>
 				<td>${ uniformInfo.color }</td>
-				<td>${ uniformInfo.uniformSize }</td>
-				<td>${ uniformInfo.playerName }</td>
+				<td>${ uniformInfo.sCount }</td>
+				<td>${ uniformInfo.mCount }</td>
+				<td>${ uniformInfo.lCount }</td>
+				<td>${ uniformInfo.xlCount }</td>
 				<td>${ uniformInfo.price }</td>
-				<td>${ uniformInfo.uniformCnt }</td>
 				<td style="width: 7%"><button type="submit" onclick="location.href='/admin/uniformInfo/update?uniInfoNo=${uniformInfo.uniInfoNo}'"
 						class="btn btn-warning">수정</button></td>
 			</tr>

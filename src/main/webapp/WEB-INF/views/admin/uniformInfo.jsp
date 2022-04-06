@@ -20,7 +20,6 @@
 							<select class="form-control" id="search" style="margin: 10px;">
 								<option selected value="uniformName">상품명</option>
 								<option value="color">색상</option>
-								<option value="playerName">선수명</option>
 							</select> <input class="form-control mr-sm-2" type="text" id="word"
 								placeholder="Search">
 							<button type="button" class="btn btn-info">검색</button>

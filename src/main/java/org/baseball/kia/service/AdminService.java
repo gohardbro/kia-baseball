@@ -99,6 +99,10 @@ public class AdminService {
 		}
 		return uniformInfoDao.insertUniformInfo(vo) == 1;
 	}
+	
+	public boolean deleteUniformInfo(int uniInfoNo) { // 유니폼 정보 삭제
+		return uniformInfoDao.deleteUniformInfo(uniInfoNo) == 1;
+	}
 
 	public String uniformImgUpload(MultipartFile attach) { // 유니폼 사진 업로드
 		String path = ctx.getRealPath("/images/uniform/"); // 저장경로

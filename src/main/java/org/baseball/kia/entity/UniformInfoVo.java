@@ -1,16 +1,8 @@
 package org.baseball.kia.entity;
 
 public class UniformInfoVo {
-	int uniInfoNo, price, uniformCnt;
-	String uniformSize, color, playerName, uniformImg, uniformName;
-
-	public int getUniformCnt() {
-		return uniformCnt;
-	}
-
-	public void setUniformCnt(int uniformCnt) {
-		this.uniformCnt = uniformCnt;
-	}
+	int uniInfoNo, price, sCount, mCount, lCount, xlCount;
+	String uniformImg, uniformName, color;
 
 	public int getUniInfoNo() {
 		return uniInfoNo;
@@ -28,28 +20,36 @@ public class UniformInfoVo {
 		this.price = price;
 	}
 
-	public String getUniformSize() {
-		return uniformSize;
+	public int getsCount() {
+		return sCount;
 	}
 
-	public void setUniformSize(String uniformSize) {
-		this.uniformSize = uniformSize;
+	public void setsCount(int sCount) {
+		this.sCount = sCount;
 	}
 
-	public String getColor() {
-		return color;
+	public int getmCount() {
+		return mCount;
 	}
 
-	public void setColor(String color) {
-		this.color = color;
+	public void setmCount(int mCount) {
+		this.mCount = mCount;
 	}
 
-	public String getPlayerName() {
-		return playerName;
+	public int getlCount() {
+		return lCount;
 	}
 
-	public void setPlayerName(String playerName) {
-		this.playerName = playerName;
+	public void setlCount(int lCount) {
+		this.lCount = lCount;
+	}
+
+	public int getXlCount() {
+		return xlCount;
+	}
+
+	public void setXlCount(int xlCount) {
+		this.xlCount = xlCount;
 	}
 
 	public String getUniformImg() {
@@ -68,11 +68,19 @@ public class UniformInfoVo {
 		this.uniformName = uniformName;
 	}
 
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
 	@Override
 	public String toString() {
-		return "UniformInfoVo [uniInfoNo=" + uniInfoNo + ", price=" + price + ", uniformCnt=" + uniformCnt
-				+ ", uniformSize=" + uniformSize + ", color=" + color + ", playerName=" + playerName + ", uniformImg="
-				+ uniformImg + ", uniformName=" + uniformName + "]";
+		return "UniformInfoVo [uniInfoNo=" + uniInfoNo + ", price=" + price + ", sCount=" + sCount + ", mCount="
+				+ mCount + ", lCount=" + lCount + ", xlCount=" + xlCount + ", uniformImg=" + uniformImg
+				+ ", uniformName=" + uniformName + ", color=" + color + "]";
 	}
 
 }

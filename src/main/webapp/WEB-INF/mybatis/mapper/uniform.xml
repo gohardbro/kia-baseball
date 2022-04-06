@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="uniform">
+	
+	<select id="selectUniformTop5"> <!-- 선수 유니폼 top 5 -->
+		SELECT *
+		FROM (SELECT UI.PLAYER_NAME, SUM(U.UNI_CNT) AS CNT
+				FROM UNIFORM U LEFT OUTER JOIN UNIFORM_INFO UI
+				ON (U.UNI_INFO_NO = UI.UNI_INFO_NO)
+				GROUP BY UI.PLAYER_NAME)
+		WHERE ROWNUM &lt;= 5
+		ORDER BY CNT DESC
+	</select>
+</mapper>

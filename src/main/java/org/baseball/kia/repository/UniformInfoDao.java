@@ -24,4 +24,8 @@ public class UniformInfoDao {
 	public int insertUniformInfo(UniformInfoVo vo) { // 유니폼 정보 등록
 		return sqlSession.insert("uniformInfo.insertUniformInfo", vo);
 	}
+
+	public int deleteUniformInfo(int uniInfoNo) { // 유니폼 정보 삭제
+		return sqlSession.delete("uniformInfo.deleteUniformInfo", uniInfoNo);
+	}
 }

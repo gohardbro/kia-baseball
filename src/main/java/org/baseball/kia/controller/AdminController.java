@@ -49,8 +49,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/admin/uniformInfo/search")
-	public String uniformInfoSearchHandle(@RequestParam(required = false) String type,
-			@RequestParam(required = false) String word, Model model) { // 유니폼 검색
+	public String uniformInfoSearchHandle(@RequestParam(required = false) String type, @RequestParam(required = false) String word, Model model) { // 유니폼 검색
 		UniformInfoVo vo = new UniformInfoVo();
 		if (type != null) {
 			if (type.equals("uniformName")) {
@@ -58,9 +57,7 @@ public class AdminController {
 
 			} else if (type.equals("color")) {
 				vo.setColor(word);
-
-			} else if (type.equals("playerName")) {
-				vo.setPlayerName(word);
+				
 			}
 			model.addAttribute("uniformInfoList", adminService.selectUniformInfo(vo));
 			return "/admin/uniformInfo-list";
@@ -82,9 +79,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/admin/uniformInfo/update", method = RequestMethod.POST)
-	public String uniformInfoUpdatePostHandle(@ModelAttribute UniformInfoVo vo, @RequestParam MultipartFile attach) { // 유니폼
-																														// 정보
-																														// 수정
+	public String uniformInfoUpdatePostHandle(@ModelAttribute UniformInfoVo vo, @RequestParam MultipartFile attach) { // 유니폼 정보 수정
 		if (adminService.updateUniformInfo(vo, attach)) {
 			return "redirect: /admin/uniformInfo";
 		} else {
@@ -94,18 +89,26 @@ public class AdminController {
 
 	@RequestMapping(value = "/admin/uniformInfo/insert", method = RequestMethod.GET)
 	public String uniformInfoInsertHandle(@ModelAttribute UniformInfoVo vo, Model model) { // 유니폼 정보 등록 페이지 요청
+		
 		model.addAttribute("menu", "uniform");
 		return "/admin/uniformInfo-insert";
 	}
 
 	@RequestMapping(value = "/admin/uniformInfo/insert", method = RequestMethod.POST)
-	public String uniformInfoInsertPostHandle(@ModelAttribute UniformInfoVo vo, @RequestParam MultipartFile attach) { // 유니폼
-																														// 정보
-																														// 등록
+	public String uniformInfoInsertPostHandle(@ModelAttribute UniformInfoVo vo, @RequestParam MultipartFile attach) { // 유니폼 정보 등록
 		if (adminService.insertUniformInfo(vo, attach)) {
 			return "redirect: /admin/uniformInfo";
 		} else {
 			return "redirect: /admin/uniformInfo/insert";
+		}
+	}
+
+	@RequestMapping(value = "/admin/uniformInfo/delete")
+	public String uniformInfoDeletePostHandle(@RequestParam int uniInfoNo) { // 유니폼 정보 삭제
+		if (adminService.deleteUniformInfo(uniInfoNo)) {
+			return "redirect: /admin/uniformInfo";
+		} else {
+			return "redirect: /admin/uniformInfo/update?uniInfoNo=" + uniInfoNo;
 		}
 	}
 
@@ -117,9 +120,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/admin/lineup/insert")
-	public String lineupInsertHandle(Model model, @ModelAttribute LineupVo vo, @RequestParam String service) { // 라인업
-																												// 입력,
-																												// 수정
+	public String lineupInsertHandle(Model model, @ModelAttribute LineupVo vo, @RequestParam String service) { // 라인업 입력, 수정
 
 		if (service.equals("insert")) { // 라인업 입력
 			adminService.insertLineup(vo);
