@@ -3,13 +3,13 @@
 <mapper namespace="ticket">
 
 	<!--ticketHome 예매가능한 경기 일정 5개 보여주기 -->
-	<select id="GamelistRevAble" resultType="TicketVo"> <!--별칭 config 만들기 -->
+	<select id="showGameList" resultType="TicketVo"> <!--별칭 config 만들기 -->
 
 		select *
 		from (
 		select *
 		from schedule
-		where (game_date between to_char(sysdate+1,'yyyy-mm-dd') and
+		where (game_date between to_char(sysdate,'yyyy-mm-dd') and
 		to_char(sysdate+6,'yyyy-mm-dd'))
 		UNION
 		select * from schedule
@@ -20,7 +20,7 @@
 		order by game_date asc
 	</select>
 	
-	<select id="selectScheduleNo" resultType="TicketVo">
+	<select id="selectGame" resultType="TicketVo" parameterType="int" >
 		select *
 		from schedule s inner join team t on (s.rival = t.sponsor) where s.schedule_no = #{no} 
 	</select>

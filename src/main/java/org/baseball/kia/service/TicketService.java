@@ -15,14 +15,14 @@ public class TicketService {
 	TicketDao ticketDao; 
 	
 	//ticketMain
-	public List<TicketVo> gamelistAbleRev(){
-		List<TicketVo> list = ticketDao.gamelistAbleRev();
+	public List<TicketVo> showGameList(){
+		List<TicketVo> list = ticketDao.showGameList();
 		return list; 
 	}
 	
 	//ticketDetail
-	public TicketVo getOneByScheduleNo(int scheduleNo){
-		TicketVo vo = ticketDao.selectScheduleNo(scheduleNo);
+	public TicketVo selectOne(int no){
+		TicketVo vo = ticketDao.selectOne(no);
 		return vo ;
 	}
  

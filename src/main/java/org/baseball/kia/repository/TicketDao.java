@@ -13,11 +13,11 @@ public class TicketDao {
 	@Autowired
 	SqlSession sqlSession;
 	
-	public List<TicketVo> gamelistAbleRev() {
-		return sqlSession.selectList("ticket.GamelistRevAble");
+	public List<TicketVo> showGameList() {
+		return sqlSession.selectList("ticket.showGameList");
 	}
 	
-	public TicketVo selectScheduleNo(int scheduleNo) {
-		return sqlSession.selectOne("ticket.selectScheduleNo",scheduleNo);
+	public TicketVo selectOne(int no) {
+		return sqlSession.selectOne("ticket.selectGame",no);
 	}
 }
