@@ -6,7 +6,6 @@
 
 <!-- Main -->
 <div class="wrapper style1">
-
 	<div class="container">
 		<article id="main" class="special">
 			<header>
@@ -14,49 +13,109 @@
 			</header>
 
 			<section>
-				<nav class="navbar navbar-expand-sm">
-					<form class="form-inline" action="/">
-						<select class="form-control" id="sel1" style="margin: 10px;">
-							<option>-- 선택 --</option>
-							<option>상품명</option>
-							<option>색상</option>
-							<option>선수명</option>
-						</select>
-						
-						<input class="form-control mr-sm-2" type="text"
-							placeholder="Search">
-						<button type="button" class="btn btn-info">검색</button>
-					</form>
-				</nav>
-				<table class="table">
+				<h3>유니폼별 집계</h3>
+				<canvas id="uniformChart"></canvas>
+				<span></span>
+				<table style="display: none" id="c1">
 					<thead>
 						<tr>
-							<th>#</th>
-							<th>상품번호</th>
-							<th>상품명</th>
-							<th>구매자</th>
-							<th>수량</th>
-							<th>구매일자</th>
+							<td>111</td>
+							<td>111</td>
+							<td>111</td>
 						</tr>
 					</thead>
-					<tbody>
+				</table>
+			</section>
+
+			<section>
+				<h3>선수별 집계</h3>
+				<canvas id="playerChart"></canvas>
+				<span>더보기</span>
+				<table style="display: none" id="c1">
+					<thead>
 						<tr>
-							<td>1</td>
-							<td>32</td>
-							<td>어센틱</td>
-							<td>홍길동</td>
-							<td>1</td>
-							<td>2022-03-29</td>
+							<td>111</td>
+							<td>111</td>
+							<td>111</td>
 						</tr>
-					</tbody>
+					</thead>
 				</table>
 			</section>
 		</article>
-
 	</div>
-
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+	// 유니폼별 집계
+	var ctx = document.getElementById('uniformChart').getContext('2d');
+	var uniformChart = new Chart(ctx, {
+		type : 'bar',
+		data : {
+			labels : ${ uniformTop5.uniform },
+			datasets : [ {
+				label : '수량',
+				backgroundColor : 'rgb(200,	153, 126)',
+				borderColor : 'rgb(200,	153, 126)',
+				data : ${ uniformTop5.uniformCnt }
+			}, ]
+		},
+		options : {
+			responsive : true,
+			plugins : {
+				legend : {
+					position : 'top',
+				},
+				title : {
+					display : true,
+					text : '유니폼 Top 5'
+				}
+			},
+			scales : {
+				yAxes : [ {
+					ticks : {
+						suggestedMin : 0,
+						suggestedMax : 100
+					}
+				} ]
+			}
+		}
+	});
+	
+	// 선수별 집계
+	var ctx = document.getElementById('playerChart').getContext('2d');
+	var playerChart = new Chart(ctx, {
+		type : 'bar',
+		data : {
+			labels : ${ playerTop5.player },
+			datasets : [ {
+				label : '수량',
+				backgroundColor : 'rgb(200,	153, 126)',
+				borderColor : 'rgb(200,	153, 126)',
+				data : ${ playerTop5.uniformCnt }
+			}, ]
+		},
+		options : {
+			responsive : true,
+			plugins : {
+				legend : {
+					position : 'top',
+				},
+				title : {
+					display : true,
+					text : '인기 선수 Top 5'
+				}
+			},
+			scales : {
+				yAxes : [ {
+					ticks : {
+						suggestedMin : 0,
+						suggestedMax : 100
+					}
+				} ]
+			}
+		}
+	});
+</script>
 
 <jsp:include page="/WEB-INF/views/admin/include/bottom.jsp" />
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />

@@ -18,10 +18,13 @@ import org.baseball.kia.repository.BaseballDao;
 import org.baseball.kia.repository.BoardDao;
 import org.baseball.kia.repository.LineupDao;
 import org.baseball.kia.repository.ScheduleDao;
+import org.baseball.kia.repository.UniformDao;
 import org.baseball.kia.repository.UniformInfoDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.google.gson.Gson;
 
 @Service
 public class AdminService {
@@ -46,6 +49,9 @@ public class AdminService {
 
 	@Autowired
 	BaseballDao baseballDao;
+	
+	@Autowired
+	UniformDao uniformDao;
 
 	public boolean insertLineup(LineupVo vo) { // 라인업 등록
 		return lineupDao.insertOne(vo) == 1;
@@ -135,6 +141,28 @@ public class AdminService {
 		data.put("cnt", cnt);
 		data.put("date", date);
 		return data;
+	}
+	
+	public Map<String, Object> selectUniformTop5(){ // 유니폼 top 5
+		List<String> uniform = uniformDao.selectUniformTop5();
+		List<Integer> uniformCnt = uniformDao.selectUniformCntTop5();
+		
+		Gson gson = new Gson();
+		Map<String, Object> uniformTop5 = new HashMap<String, Object>();
+		uniformTop5.put("uniform", gson.toJson(uniform));
+		uniformTop5.put("uniformCnt", gson.toJson(uniformCnt));
+		return uniformTop5;
+	}
+
+	public Map<String, Object> selectPlayerTop5ByUniform(){ // 선수 유니폼 top 5
+		List<String> player = uniformDao.selectPlayerTop5();
+		List<Integer> uniformCnt = uniformDao.selectPlayerCntTop5(); 
+
+		Gson gson = new Gson();
+		Map<String, Object> playerTop5 = new HashMap<String, Object>();
+		playerTop5.put("player", gson.toJson(player));
+		playerTop5.put("uniformCnt",  gson.toJson(uniformCnt));
+		return playerTop5;
 	}
 
 }

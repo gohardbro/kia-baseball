@@ -170,6 +170,8 @@ public class AdminController {
 	@RequestMapping(value = "/admin/uniformList")
 	public String uniformListHandle(Model model) { // 상품 구매내역 조회 페이지 호출
 		model.addAttribute("menu", "uniformList");
+		model.addAttribute("uniformTop5", adminService.selectUniformTop5());
+		model.addAttribute("playerTop5", adminService.selectPlayerTop5ByUniform());
 		return "/admin/uniformList";
 	}
 }
