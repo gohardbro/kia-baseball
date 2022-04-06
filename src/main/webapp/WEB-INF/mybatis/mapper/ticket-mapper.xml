@@ -7,7 +7,7 @@
 
 	<!-- zoneInfo 좌석요금표 table -->
 	<!-- 간단한 내용이지만, 혹시모를 가격변동이 자동 반영-->
-	<select id="seatTable" resultType="BaseballVo">
+	<select id="seatPriceTable" resultType="BaseballVo">
 	
 	select * from baseball_info;
 
