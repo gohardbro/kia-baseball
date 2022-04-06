@@ -8,8 +8,7 @@
 	</insert>
 	
 	<select id="selectAll" resultType="comment">
-		SELECT * FROM BOARD_COMMENT ORDER
-		BY
-		COMMENT_NO DESC
+		SELECT * FROM BOARD_COMMENT
+		ORDER BY COMMENT_NO DESC
 	</select>
 </mapper> 

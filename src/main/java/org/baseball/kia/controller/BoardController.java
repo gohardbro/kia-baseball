@@ -6,10 +6,11 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.baseball.kia.entity.AccountVo;
 import org.baseball.kia.entity.BoardVo;
+import org.baseball.kia.entity.CommentVo;
 import org.baseball.kia.entity.FileVo;
 import org.baseball.kia.service.BoardService;
+import org.baseball.kia.service.CommentService;
 import org.baseball.kia.service.FileService;
 import org.baseball.kia.util.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -31,6 +31,9 @@ public class BoardController {
 
 	@Autowired
 	FileService fileService;
+	
+	@Autowired
+	CommentService commentService;
 
 	@RequestMapping(value = "/announce", method = RequestMethod.GET)
 	public String no() {
@@ -65,8 +68,7 @@ public class BoardController {
 		if (!rst && CollectionUtils.isEmpty(fileList) == false) {
 			fileService.insertFile(fileList);
 		}
-
-		return "/yg/board";
+		return "redirect:/free";
 	}
 
 	@RequestMapping(value = "/boardview", method = RequestMethod.GET)
@@ -104,21 +106,23 @@ public class BoardController {
 		return "redirect:/boardview?no=" + vo.getBoardNo();
 	}
 
-	@RequestMapping(value = "/addComment")
-	@ResponseBody
-	public String _addComment(@ModelAttribute("boardVo") BoardVo boardVo, HttpServletRequest request) throws Exception{
-
-		HttpSession session = request.getSession();
-		AccountVo accountVo = (AccountVo) session.getAttribute("accountVo");
-		try{
-	        
-			boardVo.setWriter(accountVo.getId());
-			boardService.addComment(boardVo);
-            
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-		return "success";
+	@RequestMapping("listComment")
+	public String list(int no, Model model) {
+		List<CommentVo> list = commentService.list(no); // 댓글 목록
+		model.addAttribute("list", list); // 뷰에 전달할 데이터 저장
+		return "/yg/boardview";
 	}
 
+	@RequestMapping("list_json.do")
+	public List<CommentVo> list_json(int no) {
+		return commentService.list(no);
+	}
+
+	@RequestMapping("addComment") 
+	public void insert(CommentVo vo, HttpSession session) {
+
+		String writer = (String) session.getAttribute("writer");
+		vo.setWriter(writer);
+		commentService.create(vo);
+	}
 }

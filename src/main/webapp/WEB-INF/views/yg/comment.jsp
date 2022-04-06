@@ -8,7 +8,6 @@
 
 	<div class="container">
 		<form id="commentForm" name="commentForm" method="post">
-			<br> <br>
 			<div>
 				<div>
 					<span><strong>Comments</strong></span> <span id="cCnt"></span>
