@@ -16,25 +16,6 @@
 	crossorigin="anonymous"></script>
 
 
-<style>
-
-#zoneTable {
-  width : 80%;
-
-}
-
-#zoneTable, td {
-	padding: 15px; 
-	border-bottom : 2px solid ;
-	border-bottom-color : #E0E0E0;
-	border-collapse: collapse;
-	font-size: 16px;
-	font-weight: number 900;
-	color : #616161;
-	text-align: center;
-	}
-</style>
-
 
 </head>
 
@@ -48,57 +29,36 @@
 			</header>
 
 
-
+			<!-- 좌석img와 요금table 가로로 나란히 배치  -->
 			<!-- 구역별 좌석 img -->
-			<section>
-				<div class="seatImg">
-					<a class="image centered"><img src="images/zone.jpg"
-						alt="구역별 좌석 및 예매권 안내" /></a>
+			<div class="row">
+				<div class="col">
+					<div class="seatImg">
+						<a class="image centered"><img src="images/zone.jpg"
+							alt="구역별 좌석 및 예매권 안내" /></a>
+					</div>
 				</div>
-			</section>
 
-			<!-- 좌석별 요금 테이블 -->
-			<section>
-				<table id="zoneTable">
-					<tr>
-						<td></td>
-						<td>주중</td>
-						<td>주말</td>
-					</tr>
-					<tr>
-						<td>니로</td>
-						<td>10000</td>
-						<td>12000</td>
-					</tr>
-					<tr>
-						<td>K5</td>
-						<td>10000</td>
-						<td>12000</td>
-					</tr>
-					<tr>
-						<td>K8</td>
-						<td>12000</td>
-						<td>14000</td>
-					</tr>
-					<tr>
-						<td>K9</td>
-						<td>14000</td>
-						<td>16000</td>
-					</tr>
-					<tr>
-						<td>스포티지</td>
-						<td>16000</td>
-						<td>18000</td>
-					</tr>
-					<tr>
-						<td>K3</td>
-						<td>8000</td>
-						<td>10000</td>
-					</tr>
-				</table>
-			</section>
+				<!-- 좌석별 요금 테이블 -->
+				<div class="col">
+					<table>
+						<c:forEach var="gl" items="${gameList}">
+							<tr>
+								<td></td>
+								<td>주중</td>
+								<td>주말</td>
+							</tr>
+							<tr>
+								<%-- <td>${seat.color}</td> --%>
+								<td>${seat.baseballZone}</td>
+								<td>${seat.priceWeekday}</td>
+								<td>${seat.priceWeekend}</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
 
-
+			</div>
 		</article>
 	</div>
 </div>
