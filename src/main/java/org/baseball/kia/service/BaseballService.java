@@ -16,5 +16,5 @@ public class BaseballService {
 	public List<BaseballVo> getAllById(BaseballVo baseballVo) {
 		return baseballDao.selectListById(baseballVo);
 	}
-	
+
 }

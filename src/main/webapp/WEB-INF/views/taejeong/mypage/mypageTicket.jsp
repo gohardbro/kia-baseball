@@ -91,10 +91,18 @@ select, option {
 	font-size: 14px;
 	padding: 0 12px;
 }
+
+.titleZone {
+	border-bottom: 2px solid #999;
+}
+
+.main_wrapper {
+	padding: 38px 39px 100px;
+}
 </style>
 
-<div class="row">
-	<div class="col side" style="background-color: #f4f4f4;">빈컬럼</div>
+<div class="row" style="margin: 0px;">
+	<div class="column side" style="background-color: #f4f4f4;">빈컬럼</div>
 	<div class="column middle">
 		<div class="row">
 			<div class="side_wrapper col-2">
@@ -102,38 +110,41 @@ select, option {
 					page="/WEB-INF/views/taejeong/include/mypageSideNav.jsp" />
 			</div>
 			<div class="main_wrapper col-10">
-				<div>
-					<h4>예매확인/취소</h4>
+				<div class="titleZone">
+					<h3>예매확인/취소</h3>
 				</div>
 				<div class="main_content">
-					<p>
+					<p style="font-size: 13px; color: #999; margin: 36px 0 26px;">
 						<span>예매번호</span>를 클릭하면 예매 상세 내용을 확인할 수 있습니다.
 					</p>
 
 
 					<div class="selectZone">
-						<div class="btn-group" role="group" aria-label="First group">
-							<strong>기간별 조회</strong>
-							<button type="button" class="btn btn-outline-secondary" id="15dBtn">15일</button>
-							<button type="button" class="btn btn-outline-secondary" id="1monBtn">1개월</button>
-							<button type="button" class="btn btn-outline-secondary" id="2monBtn">2개월</button>
-							<button type="button" class="btn btn-outline-secondary" id="3monBtn">3개월</button>
-						</div>
-
+						<form action="/ticket/searchByPeriod" method="get">
+							<div class="btn-group" role="group" aria-label="First group">
+								<strong>기간별 조회</strong>
+								<button type="submit" class="btn btn-outline-secondary"
+									id="15dBtn" name="periodBtn" value="15d">15일</button>
+								<button type="submit" class="btn btn-outline-secondary"
+									id="1monBtn" name="periodBtn" value="1mon">1개월</button>
+								<button type="submit" class="btn btn-outline-secondary"
+									id="2monBtn" name="periodBtn" value="2mon">2개월</button>
+								<button type="submit" class="btn btn-outline-secondary"
+									id="4monBtn" name="periodBtn" value="4mon">4개월</button>
+							</div>
+						</form>
 						<form class="selectFrom" action="/ticket/search" method="get">
-							<strong>월 별 조회</strong> 
-							<select class="selectBtn" name="dateTypeSelect" style="width: 85px;">
+							<strong>월 별 조회</strong> <select class="selectBtn"
+								name="dateTypeSelect" style="width: 85px;">
 								<option value="예매일" class="">예매일</option>
-								<option value="관람일" class="">경기일</option>
-							</select> 
-							<select class="selectBtn" name="yearSelect" style="width: 90px;">
+								<option value="경기일" class="">경기일</option>
+							</select> <select class="selectBtn" name="yearSelect" style="width: 90px;">
 								<!-- 바꿔: 이번년도 부터 -3년도 까지 자동계산으로 바꾸기  -->
 								<option value="연도" class="">연도</option>
 								<option value="2022" class="">2022년</option>
 								<option value="2021" class="">2021년</option>
 								<option value="2020" class="">2020년</option>
-							</select> 
-							<select class="selectBtn" name="monSelect" style="width: 70px;">
+							</select> <select class="selectBtn" name="monSelect" style="width: 70px;">
 								<option value="" class="">월</option>
 								<option value="01" class="">1월</option>
 								<option value="02" class="">2월</option>
@@ -170,29 +181,21 @@ select, option {
 									<th>티켓명</th>
 									<th>경기일시</th>
 									<th>매수</th>
-									<th>구매일시</th>
+									<th>구매일</th>
 									<th>취소가능일</th>
 									<th>상태</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>2</td>
-									<td>KIA Tigers vs 한화</td>
-									<td>2022-04-02 18:00</td>
-									<td>3장</td>
-									<td>22/04/01</td>
-									<td>22/03/28 까지</td>
-									<td>결제완료</td>
-								</tr>
-								<c:forEach items="${ticketList }" var="ticketList">
+								<c:forEach items="${ticketList }" var="ticketList" varStatus="status">
 									<tr>
-										<td>${ticketList.baseballNo }</td>
+										<td><a href="/ticket/ticketDetail?baseballNo=${ticketList.baseballNo }">${ticketList.baseballNo }</a></td>
 										<td>KIA Tigers vs ${ticketList.rival }</td>
-										<td>${ticketList.gameDate } ${ticketList.gameTime }</td>
+										<td><span class="gameDate">${ticketList.gameDate }</span> ${ticketList.gameTime }</td>
 										<td>${ticketList.buyerCnt }장</td>
 										<td>${ticketList.buyDate }</td>
-										<td>22/03/28 까지</td>
+										<c:set var="cancelDate" value="cancelDate${status.index}"/>
+										<td class="cancelDate">${requestScope[cancelDate]}</td>
 										<td>결제완료</td>
 									</tr>
 								</c:forEach>
@@ -208,10 +211,6 @@ select, option {
 	<div class="column side" style="background-color: #f4f4f4;">빈컬럼</div>
 </div>
 <script>
-	/* $(".btn-outline-secondary").click(function() {
-		alert("hi");
-	}); */
-
 	$(".btn-outline-secondary").click(function() {
 		$(".btn-outline-secondary").removeClass("active");
 		$(this).addClass("active");

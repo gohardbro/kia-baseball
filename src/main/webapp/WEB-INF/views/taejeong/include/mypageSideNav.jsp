@@ -28,15 +28,6 @@ li {
 	border: none;
 }
 
-a:link {
-	text-decoration: none;
-	color: #111111;
-}
-
-a:hover {
-	color: #3d82f7;
-}
-
 .listContainer {
 	margin-top: 11px;
 }

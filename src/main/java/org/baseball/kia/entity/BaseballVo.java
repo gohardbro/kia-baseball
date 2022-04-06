@@ -17,7 +17,10 @@ public class BaseballVo {
 	int priceWeekday;
 	String baseballZone;
 	int priceWeekend;
-	String dateTypeSelect, yearSelect, monSelect;
+	String dateTypeSelect; 
+	String yearSelect;
+	String monSelect;
+	String periodBtn;
 	
 	
 	public int getBaseballNo() {
@@ -122,6 +125,14 @@ public class BaseballVo {
 	public void setMonSelect(String monSelect) {
 		this.monSelect = monSelect;
 	}
+	public String getPeriodBtn() {
+		return periodBtn;
+	}
+	public void setPeriodBtn(String periodBtn) {
+		this.periodBtn = periodBtn;
+	}
+	
+	
 	
 	
 	
