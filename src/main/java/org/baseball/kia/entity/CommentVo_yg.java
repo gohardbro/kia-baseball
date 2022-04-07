@@ -2,7 +2,7 @@ package org.baseball.kia.entity;
 
 import java.util.Date;
 
-public class CommentVo {
+public class CommentVo_yg {
 	int commentNo;
 	int boardNo;
 	String writer;

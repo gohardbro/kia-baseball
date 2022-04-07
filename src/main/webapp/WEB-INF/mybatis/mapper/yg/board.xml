@@ -34,5 +34,24 @@
 		UPDATE BOARD SET TITLE =
 		#{title}, CONTENT = #{content} WHERE BOARD_NO = #{boardNo}
 	</update>
+	<select id="listPage" resultType="board"
+		parameterType="org.baseball.kia.util.Criteria_yg">
+		SELECT * FROM
+		(SELECT BOARD_NO, TITLE, CONTENT,
+		WRITER,
+		WRITE_DATE, LIKES, VIEWS, ROW_NUMBER() OVER(ORDER BY BOARD_NO DESC)
+		AS
+		RNUM FROM BOARD)
+		MP
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY
+		BOARD_NO DESC
+	</select>
+	<select id="listCount" resultType="int">
+		SELECT COUNT(BOARD_NO)
+		FROM
+		BOARD
+		WHERE BOARD_NO > 0
+	</select>
 
 </mapper> 

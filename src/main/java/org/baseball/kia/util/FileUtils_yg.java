@@ -8,19 +8,19 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.baseball.kia.entity.FileVo;
+import org.baseball.kia.entity.FileVo_yg;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-public class FileUtils {
-	public List<FileVo> parseFileInfo(int seq, HttpServletRequest request, MultipartHttpServletRequest mhsr)
+public class FileUtils_yg {
+	public List<FileVo_yg> parseFileInfo(int seq, HttpServletRequest request, MultipartHttpServletRequest mhsr)
 			throws IOException {
 		if (ObjectUtils.isEmpty(mhsr)) {
 			return null;
 		}
 
-		List<FileVo> fileList = new ArrayList<FileVo>();
+		List<FileVo_yg> fileList = new ArrayList<FileVo_yg>();
 
 		// 서버의 절대 경로 얻기
 		String root_path = request.getSession().getServletContext().getRealPath("/");
@@ -42,7 +42,7 @@ public class FileUtils {
 			// 파일 리스트 개수 만큼 리턴할 파일 리스트에 담아주고 생성
 			for (MultipartFile mf : list) {
 				if (mf.getSize() > 0) {
-					FileVo boardFile = new FileVo();
+					FileVo_yg boardFile = new FileVo_yg();
 					boardFile.setBoardNo(seq);
 					boardFile.setFileSize(mf.getSize());
 					boardFile.setFileName(mf.getOriginalFilename());

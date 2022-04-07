@@ -4,30 +4,34 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
-import org.baseball.kia.entity.BoardVo;
-import org.baseball.kia.entity.Criteria;
+import org.baseball.kia.entity.BoardVo_yg;
+import org.baseball.kia.util.Criteria_yg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class BoardDao {
+public class BoardDao_yg {
 	
 	@Autowired
 	SqlSession sqlSession;
 	
-	public int insertOne(BoardVo vo) {
+	public int insertOne(BoardVo_yg vo) {
 		return sqlSession.insert("board.insertOne", vo);
 	}
 
-	public List<BoardVo> selectAll() {
-		return sqlSession.selectList("board.selectAll");
+	public List<BoardVo_yg> listPage(Criteria_yg cri) {
+		return sqlSession.selectList("board.listPage",cri);
+	}
+	
+	public int listCount() {
+		return sqlSession.selectOne("board.listCount");
 	}
 
-	public BoardVo selectOne(int no) {
+	public BoardVo_yg selectOne(int no) {
 		return sqlSession.selectOne("board.selectOne", no);
 	}
 
-	public List<BoardVo> selectListByNo(int no) {
+	public List<BoardVo_yg> selectListByNo(int no) {
 		return sqlSession.selectList("board.selectOne", no);
 	}
 	
@@ -39,7 +43,7 @@ public class BoardDao {
 		return sqlSession.delete("board.deleteBoardByReportId", id);
 	}
 
-	public List<Map<String, Object>> selectBoardList(Criteria cri) {
+	public List<Map<String, Object>> selectBoardList(Criteria_yg cri) {
 		return sqlSession.selectList("board.selectBoardList", cri);
 	}
 	
@@ -51,7 +55,7 @@ public class BoardDao {
 		sqlSession.delete("board.boardDelete",no);
 	}
 	
-	public void update(BoardVo vo) {
+	public void update(BoardVo_yg vo) {
 		sqlSession.update("board.boardUpdate",vo);
 	}
 

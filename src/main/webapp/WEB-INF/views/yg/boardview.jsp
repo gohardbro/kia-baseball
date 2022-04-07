@@ -48,59 +48,43 @@
 			</tr>
 		</table>
 	</form>
-	<hr>
 	<a href="/update?no=${one.boardNo }">글 수정</a>&nbsp;&nbsp;&nbsp; <a
 		href="/delete?no=${one.boardNo }">글 삭제</a>&nbsp;&nbsp;&nbsp;
-	<div>
-<%-- 		<c:if test="${sessionScope.id != null }"> --%>
-			<div class="comment-txt">
-				<textarea id="cmtCnt" name="cmtCmt"
-					placeholder="여러분의 소중한 댓글을 입력해주세요."></textarea>
-			</div>
-			<div class="comment-button">
-				<button id="cmt_btn">댓글달기</button>
-			</div>
-<%-- 		</c:if> --%>
-		<div id="listComment"></div>
+
+	<div id="comment">
+		<ol class="commentLsit">
+			<c:forEach items="${cmtList }" var="cmtList">
+				<li>
+					<p>
+						작성자 : ${cmtList.writer }<br /> 작성날짜 :
+						<fmt:formatDate value="${cmtList.writeDate }" pattern="yyyy-MM-dd" />
+					</p>
+					<p>${cmtList.content }</p>
+				</li>
+			</c:forEach>
+		</ol>
 	</div>
+
+	<form name="cmtForm" method="post">
+		<input type="hidden" id="boardNo" name="boardNo"
+			value="${one.boardNo }">
+		<div>
+			<label for="writer">댓글 작성자</label><input type="text" id="writer"
+				name="writer" /> <br> <label for="content">댓글 내용</label><input
+				type="text" id="content" name="content" />
+		</div>
+		<div>
+			<button type="button" class="cmt-btn">작성</button>
+		</div>
+	</form>
+
 </div>
 <script>
-	$("#cmt_btn").click(function(){
-		var content=$("#content").val();
-		var boardNo="${one.boardNo}";
-		var param={"content":content,"boardNo":boardNo};
-		$.ajax({
-			type:"POST",
-			url:"/addComment",
-			data:param,
-			
-			success: function(){ 
-                alert("댓글이 등록되었습니다.");
-                listComment();
-            }
-		});
+	$(".cmt-btn").on("click", function(){
+		var formObj = $("form[name='cmtForm']");
+		formObj.attr("action","/addComment");
+		formObj.submit();
 	});
-	
-	function listComment() {
-		$.ajax({
-			type:"GET",
-			url:"/listComment?boardNo${one.boardNo}"
-			success: function(result){ 
-		    	$("#selectAll").html(result);
-			}
-		});
-	}
-	
-	function listComment(num){
-	    $.ajax({
-	        type: "POST", 
-	        url: "/listComment?boardNo${one.boardNo}&curPage", 
-	        success: function(result){ 
-	            $("#selectAll").html(result);
-	        }
-	    });
-	}
-
 </script>
 <style>
 ._small img table tr td {

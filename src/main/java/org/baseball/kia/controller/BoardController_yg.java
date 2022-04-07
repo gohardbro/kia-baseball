@@ -4,15 +4,16 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
-import org.baseball.kia.entity.BoardVo;
-import org.baseball.kia.entity.CommentVo;
-import org.baseball.kia.entity.FileVo;
-import org.baseball.kia.service.BoardService;
-import org.baseball.kia.service.CommentService;
-import org.baseball.kia.service.FileService;
-import org.baseball.kia.util.FileUtils;
+import org.baseball.kia.entity.BoardVo_yg;
+import org.baseball.kia.entity.CommentVo_yg;
+import org.baseball.kia.entity.FileVo_yg;
+import org.baseball.kia.entity.PagingVo_yg;
+import org.baseball.kia.service.BoardService_yg;
+import org.baseball.kia.service.CommentService_yg;
+import org.baseball.kia.service.FileService_yg;
+import org.baseball.kia.util.Criteria_yg;
+import org.baseball.kia.util.FileUtils_yg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,17 +24,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-public class BoardController {
+public class BoardController_yg {
 	@Autowired
-	BoardService boardService;
+	BoardService_yg boardService;
 
 	@Autowired
-	FileService fileService;
+	FileService_yg fileService;
 	
 	@Autowired
-	CommentService commentService;
+	CommentService_yg commentService;
 
 	@RequestMapping(value = "/announce", method = RequestMethod.GET)
 	public String no() {
@@ -46,9 +48,14 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/free", method = RequestMethod.GET)
-	public String defaultHandle(Model model) {
-		model.addAttribute("all", boardService.getAll());
-
+	public String defaultHandle(Model model, Criteria_yg cri) {
+		model.addAttribute("all", boardService.getAll(cri));
+		
+		PagingVo_yg pvo = new PagingVo_yg();
+		pvo.setCri(cri);
+		pvo.setTotalCount(boardService.listCount());
+		
+		model.addAttribute("pvo", pvo);
 		return "/yg/board";
 	}
 
@@ -58,13 +65,13 @@ public class BoardController {
 	}
 
 	@RequestMapping(path = "/write", method = RequestMethod.POST)
-	public String insertPostHandle(@ModelAttribute("vo") BoardVo vo, Model model, HttpServletRequest request,
+	public String insertPostHandle(@ModelAttribute("vo") BoardVo_yg vo, Model model, HttpServletRequest request,
 			MultipartHttpServletRequest mhsr) throws IOException {
 		boolean rst = boardService.addNewOne(vo);
 
 		int seq = vo.getBoardNo();
-		FileUtils fileUtils = new FileUtils();
-		List<FileVo> fileList = fileUtils.parseFileInfo(seq, request, mhsr);
+		FileUtils_yg fileUtils = new FileUtils_yg();
+		List<FileVo_yg> fileList = fileUtils.parseFileInfo(seq, request, mhsr);
 		if (!rst && CollectionUtils.isEmpty(fileList) == false) {
 			fileService.insertFile(fileList);
 		}
@@ -76,13 +83,16 @@ public class BoardController {
 			@SessionAttribute(required = false) Boolean auth) {
 
 		boardService.updateCnt(no);
-		BoardVo vo = boardService.getOneByNo(no);
+		BoardVo_yg vo = boardService.getOneByNo(no);
 		if (vo == null) {
 			return "redirect:/free";
 		}
 		model.addAttribute("one", vo);
 
 		model.addAttribute("file", fileService.getFile(no));
+		
+		List<CommentVo_yg> cmtList = commentService.readCmt(vo.getBoardNo());
+		model.addAttribute("cmtList",cmtList);
 
 		return "/yg/boardview";
 	}
@@ -95,34 +105,25 @@ public class BoardController {
 
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String getUpdate(@RequestParam("no") int no, Model model) {
-		BoardVo vo = boardService.getOneByNo(no);
+		BoardVo_yg vo = boardService.getOneByNo(no);
 		model.addAttribute("one", vo);
 		return "/yg/boardupdate";
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String postUpdate(BoardVo vo) {
+	public String postUpdate(BoardVo_yg vo) {
 		boardService.update(vo);
 		return "redirect:/boardview?no=" + vo.getBoardNo();
 	}
-
-	@RequestMapping("listComment")
-	public String list(int no, Model model) {
-		List<CommentVo> list = commentService.list(no); // 댓글 목록
-		model.addAttribute("list", list); // 뷰에 전달할 데이터 저장
-		return "/yg/boardview";
+	
+	@RequestMapping(value="/addComment", method = RequestMethod.POST)
+	public String _addComment(CommentVo_yg vo, Criteria_yg cri, RedirectAttributes rttr) {
+		commentService.addCmt(vo);
+		rttr.addAttribute("boardNo", vo.getBoardNo());
+		
+		
+		return "redirect:/boardview?no=" + vo.getBoardNo();
 	}
+	
 
-	@RequestMapping("list_json.do")
-	public List<CommentVo> list_json(int no) {
-		return commentService.list(no);
-	}
-
-	@RequestMapping("addComment") 
-	public void insert(CommentVo vo, HttpSession session) {
-
-		String writer = (String) session.getAttribute("writer");
-		vo.setWriter(writer);
-		commentService.create(vo);
-	}
 }

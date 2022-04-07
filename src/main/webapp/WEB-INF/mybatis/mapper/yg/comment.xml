@@ -9,6 +9,11 @@
 	
 	<select id="selectAll" resultType="comment">
 		SELECT * FROM BOARD_COMMENT
-		ORDER BY COMMENT_NO DESC
+		WHERE BOARD_NO = #{boardNo}
 	</select>
+	
+	<delete id="deleteCmt" parameterType="int">
+		DELETE FROM BOARD_COMMENT WHERE
+		BOARD_NO = #{boardNo}
+	</delete>
 </mapper> 

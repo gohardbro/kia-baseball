@@ -15,7 +15,7 @@ import org.baseball.kia.entity.ScheduleVo;
 import org.baseball.kia.entity.UniformInfoVo;
 import org.baseball.kia.repository.AccountDao;
 import org.baseball.kia.repository.BaseballDao;
-import org.baseball.kia.repository.BoardDao;
+import org.baseball.kia.repository.BoardDao_yg;
 import org.baseball.kia.repository.LineupDao;
 import org.baseball.kia.repository.ScheduleDao;
 import org.baseball.kia.repository.UniformInfoDao;
@@ -36,7 +36,7 @@ public class AdminService {
 	AccountDao accountDao;
 
 	@Autowired
-	BoardDao boardDao;
+	BoardDao_yg boardDao;
 
 	@Autowired
 	UniformInfoDao uniformInfoDao;
