@@ -16,8 +16,8 @@
 </noscript>
 </head>
 <body class="homepage is-preload">
-	
-	 <!-- Scripts -->
+
+	<!-- Scripts -->
 	<script src="/assets/js/jquery.min.js"></script>
 	<script src="/assets/js/jquery.dropotron.min.js"></script>
 	<script src="/assets/js/jquery.scrolly.min.js"></script>
@@ -47,10 +47,23 @@
 
 			<!-- Nav -->
 			<nav id="nav">
-						<ul style="float: right; border-left:0; border-right: 0;">
+				<c:choose>
+					<c:when test="${empty sessionScope.loginUser }">
+						<ul style="float: right; border-left: 0; border-right: 0;">
 							<li><a href="/login">로그인</a></li>
 							<li><a href="/signup">회원가입</a></li>
 						</ul>
+					</c:when>
+					<c:otherwise>
+						<ul style="float: right; border-left: 0; border-right: 0;">
+							<li><a href="/mypage">${loginUser.nickname } (${loginUser.id }) 님</a></li>
+							<li><a href="/logout">로그아웃</a></li>
+							<c:if test="${loginUser.admin eq 'Y' }">
+								<li><a href="/admin">Admin</a></li>
+							</c:if>
+						</ul>
+					</c:otherwise>
+				</c:choose>
 				<br>
 				<ul class="kia_nav">
 					<li><a href="#">KIA tigers</a></li>
