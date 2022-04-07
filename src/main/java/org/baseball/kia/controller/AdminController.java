@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
+import org.baseball.kia.entity.AccountPage;
 import org.baseball.kia.entity.BaseballChartVo;
 import org.baseball.kia.entity.LineupVo;
 import org.baseball.kia.entity.PlayerVo;
@@ -27,14 +28,19 @@ public class AdminController {
 
 	@RequestMapping(value = "/admin")
 	public String adminHandle(Model model) { // 계정 관리 페이지 호출
-		model.addAttribute("accountList", adminService.selectAccountByType("all"));
 		model.addAttribute("menu", "account");
 		return "/admin/account";
 	}
 
 	@RequestMapping(value = "/admin/account")
 	public String adminAccountHandle(Model model, @RequestParam String type) { // 타입별 계정 정보 조회
-		model.addAttribute("accountList", adminService.selectAccountByType(type));
+		AccountPage page = new AccountPage();
+		page.setType(type); // 검색할 계정 타입 설정
+		page.setPageList(10); // 페이지당 보여질 목록 수
+		page.setCurPage(1); // 요청 페이지 번호
+		page.setTotalList(adminService.selectAccountCnt()); // 전체 회원수
+		page.setAccountList(adminService.selectAccountByType(page)); // 검색된 회원 정보 리스트
+		model.addAttribute("accountInfo", page);
 		return "/admin/account-list";
 	}
 

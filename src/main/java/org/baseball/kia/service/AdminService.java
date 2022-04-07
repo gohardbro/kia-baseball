@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import javax.servlet.ServletContext;
 
+import org.baseball.kia.entity.AccountPage;
 import org.baseball.kia.entity.AccountVo;
 import org.baseball.kia.entity.BaseballChartVo;
 import org.baseball.kia.entity.LineupVo;
@@ -78,8 +79,12 @@ public class AdminService {
 		return playerDao.selectNameAutoComplete(name);
 	}
 
-	public List<AccountVo> selectAccountByType(String type) { // 타입별 회원계정 조회
-		return accountDao.selectByType(type);
+	public List<AccountVo> selectAccountByType(AccountPage page) { // 타입별 회원계정 조회
+		return accountDao.selectByType(page);
+	}
+	
+	public int selectAccountCnt() { // 회원수 조회
+		return accountDao.selectAccountCnt();
 	}
 
 	public boolean reportAccount(String id) { // 신고계정 차단 설정 + 기존 게시물 삭제

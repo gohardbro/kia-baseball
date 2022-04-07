@@ -2,14 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="account">
 
-	<select id="selectByType" resultType="accountVo"> <!-- 회원계정 조회 (관리자 페이지) -->
-		SELECT * FROM ACCOUNT
-		<where>
-			<if test="mode == 'normal'.toString()">REPORT_CNT &lt; 3 AND REPORT = 'N'</if><!-- 정상계정 -->
-			<if test="mode == 'reportCnt'.toString()">REPORT_CNT &gt;= 3</if><!-- 신고계정 -->
-			<if test="mode == 'report'.toString()">REPORT = 'Y'</if> <!-- 차단계정 -->
-		</where> 
-		ORDER BY JOIN_DATE DESC
+	<select id="selectByType" resultType="accountVo"> <!-- 회원계정 조회 (관리자 페이지) + 페이징 처리 -->
+		SELECT A.*
+		FROM (SELECT ROWNUM, A.* FROM ACCOUNT A
+			<where>
+				<if test="type == 'normal'.toString()">REPORT_CNT &lt; 3 AND REPORT = 'N'</if><!-- 정상계정 -->
+				<if test="type == 'reportCnt'.toString()">REPORT_CNT &gt;= 3</if><!-- 신고계정 -->
+				<if test="type == 'report'.toString()">REPORT = 'Y'</if> <!-- 차단계정 -->
+			</where> 
+			ORDER BY JOIN_DATE DESC) A
+		WHERE ROWNUM BETWEEN #{beginList} AND #{endList}
+	</select>
+	
+	<select id="selectAccountCnt" resultType="int"> <!-- 회원 수 조회 -->
+		SELECT COUNT(ID) AS CNT FROM ACCOUNT
 	</select>
 
 	<update id="updateReportById"> <!-- 신고계정 차단 설정 --> 
