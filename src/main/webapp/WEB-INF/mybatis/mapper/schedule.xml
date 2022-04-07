@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="schedule">
-	<select id="selectDateAndTime" resultType="scheduleVo"> <!-- 경기 날짜/시간 조회 -->
-		SELECT GAME_DATE, GAME_TIME FROM SCHEDULE 
-		WHERE GAME_DATE <![CDATA[<=]]> SYSDATE
-		ORDER BY GAME_DATE DESC 
-	</select>
-</mapper>

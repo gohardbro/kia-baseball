@@ -38,17 +38,20 @@ public class BoardController_yg {
 	CommentService_yg commentService;
 
 	@RequestMapping(value = "/announce", method = RequestMethod.GET)
-	public String no() {
+	public String no(Model model) {
+		model.addAttribute("menu","announce");
 		return "/yg/announcement";
 	}
 
 	@RequestMapping(value = "/intro", method = RequestMethod.GET)
-	public String introduction() {
-		return "/yg/intro";
+	public String introduction(Model model) {
+		model.addAttribute("menu","intro");
+		return "/yg/introteam";
 	}
 
 	@RequestMapping(value = "/free", method = RequestMethod.GET)
 	public String defaultHandle(Model model, Criteria_yg cri) {
+		model.addAttribute("menu","free");
 		model.addAttribute("all", boardService.getAll(cri));
 		
 		PagingVo_yg pvo = new PagingVo_yg();

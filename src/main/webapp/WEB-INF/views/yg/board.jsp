@@ -11,20 +11,12 @@
 
 	<div class="container">
 		<h2>자유게시판</h2>
-		<nav id="subnav">
-			<ul>
-				<li><a href="/announce">공지사항</a></li>
-				<li><a href="#">자유게시판</a></li>
-				<li><a href="#">선수소개</a></li>
-				<li><a href="/intro">팀소개</a></li>
-			</ul>
-		</nav>
 		<table class="table">
 			<c:forEach var="one" items="${all }">
 				<tr>
 					<td>${one.boardNo }</td>
-					<td><a href="/boardview?no=${one.boardNo }">${one.title }</a></td>
-					<td>${one.writer }|<fmt:formatDate value="${one.writeDate }"
+					<td class="col-9"><a href="/boardview?no=${one.boardNo }">${one.title }</a></td>
+					<td><fmt:formatDate value="${one.writeDate }"
 							pattern="yyyy.MM.dd" /> | <img src="/images/eye.png">
 						${one.views } | <img src="/images/like.png"> 43
 					</td>
@@ -32,7 +24,7 @@
 			</c:forEach>
 		</table>
 		<div style="margin-top: 10px;">
-			<button type="button" onclick="location.href='/write'">글쓰기</button>
+			<button class="_btn" type="button" onclick="location.href='/write'">글쓰기</button>
 		</div>
 		<div class="paging">
 			<ul>
@@ -48,6 +40,7 @@
 			</ul>
 		</div>
 	</div>
+</div>
 
 <jsp:include page="/WEB-INF/views/yg/include/bottom.jsp" />
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
