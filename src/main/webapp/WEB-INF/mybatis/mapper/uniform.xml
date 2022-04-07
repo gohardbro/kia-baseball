@@ -2,42 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="uniform">
 	
-	<select id="selectUniformTop5" resultType="String"> <!-- 유니폼이름: 인기 유니폼 top 5 -->
+	<select id="selectUniformByPopularity" resultType="String"> <!-- 유니폼이름: 인기 유니폼 top 5 -->
 		SELECT UNIFORM_NAME
 		FROM (SELECT UI.UNIFORM_NAME, SUM(U.UNI_CNT) AS CNT
 		      FROM UNIFORM U LEFT OUTER JOIN UNIFORM_INFO UI USING (UNI_INFO_NO)
 		      GROUP BY UI.UNIFORM_NAME
 		      ORDER BY CNT DESC)
-		WHERE ROWNUM &lt;= 5
 	</select>
 
-	<select id="selectUniformCntTop5" resultType="Integer"> <!-- 수량: 인기 유니폼 top 5 -->
+	<select id="selectUniformCntByPopularity" resultType="Integer"> <!-- 수량: 인기 유니폼 top 5 -->
 		SELECT CNT
 		FROM (SELECT UI.UNIFORM_NAME, SUM(U.UNI_CNT) AS CNT
 		      FROM UNIFORM U LEFT OUTER JOIN UNIFORM_INFO UI USING (UNI_INFO_NO)
 		      GROUP BY UI.UNIFORM_NAME
 		      ORDER BY CNT DESC)
-		WHERE ROWNUM &lt;= 5
 	</select>
 	
-	<select id="selectPlayerTop5" resultType="String"> <!-- 선수이름: 선수 유니폼 top 5 -->
+	<select id="selectPlayerByPopularity" resultType="String"> <!-- 선수이름: 선수 유니폼 top 5 -->
 		SELECT NAME
 		FROM (SELECT P.NAME, SUM(U.UNI_CNT) AS CNT
 		      FROM UNIFORM U LEFT OUTER JOIN UNIFORM_INFO UI USING (UNI_INFO_NO)
 		                     LEFT OUTER JOIN PLAYER P ON (U.PLAYER_NO = P.NO)
 		      GROUP BY P.NAME
 		      ORDER BY CNT DESC)
-		WHERE ROWNUM &lt;= 5
 	</select>
 
-	<select id="selectPlayerCntTop5" resultType="Integer"> <!-- 수량: 선수 유니폼 top 5 -->
+	<select id="selectPlayerCntByPopularity" resultType="Integer"> <!-- 수량: 선수 유니폼 top 5 -->
 		SELECT CNT
 		FROM (SELECT P.NAME, SUM(U.UNI_CNT) AS CNT
 		      FROM UNIFORM U LEFT OUTER JOIN UNIFORM_INFO UI USING (UNI_INFO_NO)
 		                     LEFT OUTER JOIN PLAYER P ON (U.PLAYER_NO = P.NO)
 		      GROUP BY P.NAME
 		      ORDER BY CNT DESC)
-		WHERE ROWNUM &lt;= 5
 	</select>
 	
 </mapper>

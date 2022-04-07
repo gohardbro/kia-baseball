@@ -12,20 +12,20 @@ public class UniformDao {
 	@Autowired
 	SqlSession sqlSession;
 
-	public List<String> selectUniformTop5() { // 유니폼이름: 유니폼 top 5
-		return sqlSession.selectList("uniform.selectUniformTop5");
+	public List<String> selectUniformByPopularity() { // 유니폼이름: 유니폼 top 5
+		return sqlSession.selectList("uniform.selectUniformByPopularity");
 	}
 
-	public List<Integer> selectUniformCntTop5() { // 수량: 유니폼 top 5
-		return sqlSession.selectList("uniform.selectUniformCntTop5");
+	public List<Integer> selectUniformCntByPopularity() { // 수량: 유니폼 top 5
+		return sqlSession.selectList("uniform.selectUniformCntByPopularity");
 	}
 
-	public List<String> selectPlayerTop5() { // 선수이름: 선수 유니폼 top 5
-		return sqlSession.selectList("uniform.selectPlayerTop5");
+	public List<String> selectPlayerByPopularity() { // 선수이름: 선수 유니폼 top 5
+		return sqlSession.selectList("uniform.selectPlayerByPopularity");
 	}
 
-	public List<Integer> selectPlayerCntTop5() { // 수량: 선수 유니폼 top 5
-		return sqlSession.selectList("uniform.selectPlayerCntTop5");
+	public List<Integer> selectPlayerCntByPopularity() { // 수량: 선수 유니폼 top 5
+		return sqlSession.selectList("uniform.selectPlayerCntByPopularity");
 	}
 
 }

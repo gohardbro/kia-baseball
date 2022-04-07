@@ -11,12 +11,14 @@ import javax.servlet.ServletContext;
 import org.baseball.kia.entity.AccountVo;
 import org.baseball.kia.entity.BaseballChartVo;
 import org.baseball.kia.entity.LineupVo;
+import org.baseball.kia.entity.PlayerVo;
 import org.baseball.kia.entity.ScheduleVo;
 import org.baseball.kia.entity.UniformInfoVo;
 import org.baseball.kia.repository.AccountDao;
 import org.baseball.kia.repository.BaseballDao;
 import org.baseball.kia.repository.BoardDao;
 import org.baseball.kia.repository.LineupDao;
+import org.baseball.kia.repository.PlayerDAO;
 import org.baseball.kia.repository.ScheduleDao;
 import org.baseball.kia.repository.UniformDao;
 import org.baseball.kia.repository.UniformInfoDao;
@@ -52,6 +54,9 @@ public class AdminService {
 	
 	@Autowired
 	UniformDao uniformDao;
+	
+	@Autowired
+	PlayerDAO playerDao;
 
 	public boolean insertLineup(LineupVo vo) { // 라인업 등록
 		return lineupDao.insertOne(vo) == 1;
@@ -67,6 +72,10 @@ public class AdminService {
 
 	public List<ScheduleVo> selectSchedule() { // 라인업을 등록할 경기일자 조회
 		return scheduleDao.selectDateAndTime();
+	}
+	
+	public List<PlayerVo> selectNameAutoComplete(String name){ // 라인업 작성 시 선수이름 자동완성
+		return playerDao.selectNameAutoComplete(name);
 	}
 
 	public List<AccountVo> selectAccountByType(String type) { // 타입별 회원계정 조회
@@ -143,26 +152,30 @@ public class AdminService {
 		return data;
 	}
 	
-	public Map<String, Object> selectUniformTop5(){ // 유니폼 top 5
-		List<String> uniform = uniformDao.selectUniformTop5();
-		List<Integer> uniformCnt = uniformDao.selectUniformCntTop5();
+	public Map<String, Object> selectUniformByPopularity(){ // 유니폼 top 5
+		List<String> uniform = uniformDao.selectUniformByPopularity();
+		List<Integer> uniformCnt = uniformDao.selectUniformCntByPopularity();
 		
 		Gson gson = new Gson();
-		Map<String, Object> uniformTop5 = new HashMap<String, Object>();
-		uniformTop5.put("uniform", gson.toJson(uniform));
-		uniformTop5.put("uniformCnt", gson.toJson(uniformCnt));
-		return uniformTop5;
+		Map<String, Object> uniformList = new HashMap<String, Object>();
+		uniformList.put("uniformJson", gson.toJson(uniform));
+		uniformList.put("uniformCntJson", gson.toJson(uniformCnt));
+		uniformList.put("uniform", uniform);
+		uniformList.put("uniformCnt", uniformCnt);
+		return uniformList;
 	}
 
-	public Map<String, Object> selectPlayerTop5ByUniform(){ // 선수 유니폼 top 5
-		List<String> player = uniformDao.selectPlayerTop5();
-		List<Integer> uniformCnt = uniformDao.selectPlayerCntTop5(); 
+	public Map<String, Object> selectPlayerByPopularity(){ // 선수 유니폼 top 5
+		List<String> player = uniformDao.selectPlayerByPopularity();
+		List<Integer> uniformCnt = uniformDao.selectPlayerCntByPopularity(); 
 
 		Gson gson = new Gson();
-		Map<String, Object> playerTop5 = new HashMap<String, Object>();
-		playerTop5.put("player", gson.toJson(player));
-		playerTop5.put("uniformCnt",  gson.toJson(uniformCnt));
-		return playerTop5;
+		Map<String, Object> playerList = new HashMap<String, Object>();
+		playerList.put("playerJson", gson.toJson(player));
+		playerList.put("uniformCntJson",  gson.toJson(uniformCnt));
+		playerList.put("player", player);
+		playerList.put("uniformCnt",  uniformCnt);
+		return playerList;
 	}
 
 }

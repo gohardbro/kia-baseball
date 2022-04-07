@@ -1,10 +1,12 @@
 package org.baseball.kia.controller;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.Map;
 
 import org.baseball.kia.entity.BaseballChartVo;
 import org.baseball.kia.entity.LineupVo;
+import org.baseball.kia.entity.PlayerVo;
 import org.baseball.kia.entity.UniformInfoVo;
 import org.baseball.kia.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -141,6 +143,12 @@ public class AdminController {
 		vo.setGameTime(gameTime);
 		return adminService.selectLineup(vo);
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/admin/lineup/findPlayer")
+	public List<PlayerVo> lineupFindPlayerHandle(@RequestParam String name) { // 라인업 선수이름 자동완성
+		return adminService.selectNameAutoComplete(name);
+	}
 
 	@RequestMapping(value = "/admin/ticket")
 	public String ticketHandle(Model model) { // 티켓 예매내역 페이지 호출
@@ -170,8 +178,8 @@ public class AdminController {
 	@RequestMapping(value = "/admin/uniformList")
 	public String uniformListHandle(Model model) { // 상품 구매내역 조회 페이지 호출
 		model.addAttribute("menu", "uniformList");
-		model.addAttribute("uniformTop5", adminService.selectUniformTop5());
-		model.addAttribute("playerTop5", adminService.selectPlayerTop5ByUniform());
+		model.addAttribute("uniformList", adminService.selectUniformByPopularity());
+		model.addAttribute("playerList", adminService.selectPlayerByPopularity());
 		return "/admin/uniformList";
 	}
 }

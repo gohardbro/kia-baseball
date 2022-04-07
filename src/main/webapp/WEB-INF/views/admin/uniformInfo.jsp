@@ -20,8 +20,8 @@
 							<select class="form-control" id="search" style="margin: 10px;">
 								<option selected value="uniformName">상품명</option>
 								<option value="color">색상</option>
-							</select> <input class="form-control mr-sm-2" type="text" id="word"
-								placeholder="Search">
+							</select>
+							<input class="form-control mr-sm-2" type="text" id="word" placeholder="Search">
 							<button type="button" class="btn btn-info">검색</button>
 						</form>
 					<button type="button" class="btn btn-primary" onclick="location.href='/admin/uniformInfo/insert'">등록</button>
@@ -44,6 +44,18 @@
 	});
 
 	$(".btn-info").click(function(e) { // 검색 버튼 클릭
+		searchUniformInfo();
+	});
+		
+	$("#word").on("keydown", function(e){ // 입력창에서 엔터 누른 경우
+		var code = e.keyCode || e.which;
+		if (code == 13) { // 엔터 입력 시 
+			searchUniformInfo();
+			return false;
+		}
+	}); 
+	
+	function searchUniformInfo(){ // 키워드 검색
 		var type = $("#search").val();
 		var word = $("#word").val();
 
@@ -53,10 +65,11 @@
 				"type" : type,
 				"word" : word,
 			}
+		
 		}).done(function(data) {
 			$(".table").html(data);
 		});
-	});
+	}
 </script>
 
 <jsp:include page="/WEB-INF/views/admin/include/bottom.jsp" />
