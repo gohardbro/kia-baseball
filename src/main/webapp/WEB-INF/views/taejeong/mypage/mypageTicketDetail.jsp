@@ -63,14 +63,16 @@ th {
 	background-color: #f8f8f8;
 	text-align: center;
 	padding: 14px 0px;
-	border-top: 1px solid #c7c7c7;
-	border-bottom: 1px solid #c7c7c7;
+	border-top: 1px solid #e1e4e6;
+	border-bottom: 1px solid #e1e4e6;
 }
 
 td {
 	font-size: 13px;
 	text-align: center;
 	padding: 10px 0px;
+	border-top: 1px solid #e1e4e6;
+	border-bottom: 1px solid #e1e4e6;
 }
 
 .divider {
@@ -99,6 +101,10 @@ select, option {
 .main_wrapper {
 	padding: 38px 39px 100px;
 }
+
+.cancelBtn {
+	text-align: center;
+}
 </style>
 
 <div class="row" style="margin: 0px;">
@@ -117,53 +123,60 @@ select, option {
 					<p style="font-size: 13px; color: #999; margin: 36px 0 26px;">
 						취소하기를 눌러서 예매를 취소하세요.</p>
 
-
 					<div class="selectZone"></div>
 					<div class="divider"></div>
+					<h5>예매한 티켓정보</h5>
 					<div>
 						<table>
 							<colgroup>
-								<col style="width: 90px;">
-								<col>
-								<col style="width: 135px;">
-								<col style="width: 50px;">
-								<col style="width: 135px;">
 								<col style="width: 100px;">
-								<col style="width: 155px;">
+								<col style="width: 150px;">
+								<col style="width: 100px;">
+								<col style="width: 150px;">
 							</colgroup>
-							<thead>
-								<tr>
-									<th>티켓명</th>
-									<td>d</td>
-									<th>예매자</th>
-									<td></td>
-								</tr>
-								<tr>
-									<th>경기일시</th>
-									<td></td>
-									<th>장소</th>
-									<td></td>
-								</tr>
-								<tr>
-									<th>좌석</th>
-									<td></td>
-									<th>티켓수령 방법</th>
-									<td></td>
-								</tr>
-								<tr>
-									<th>예매일</th>
-									<td></td>
-									<th>현재상태</th>
-									<td></td>
-								</tr>
-								<tr>
-									<th>결제수단</th>
-									<td></td>
-									<th></th>
-									<td colspan="2"></td>
-								</tr>
-							</thead>
+							<tbody>
+								<c:forEach items="${ticketList }" var="ticketList"
+									varStatus="status">
+									<tr>
+										<th>티켓명</th>
+										<td>KIA Tigers vs ${ticketList.rival }</td>
+										<th>예매자</th>
+										<td>${ticketList.buyer }</td>
+									</tr>
+									<tr>
+										<th>경기일시</th>
+										<td>${ticketList.gameDate }${ticketList.gameTime }</td>
+										<th>장소</th>
+										<td>${ticketList.gameDate }</td>
+									</tr>
+									<tr>
+										<th>좌석</th>
+										<td>${ticketList.baseballZone }</td>
+										<th>티켓수령 방법</th>
+										<td>몰라</td>
+									</tr>
+									<tr>
+										<th>예매일</th>
+										<td>${ticketList.buyDate }</td>
+										<th>현재상태</th>
+										<td>결제완료했겠지</td>
+									</tr>
+									<tr>
+										<th>결제수단</th>
+										<td>신용카드했겠지</td>
+										<th></th>
+										<td colspan="2"></td>
+									</tr>
+								</c:forEach>
+							</tbody>
 						</table>
+						<div class="cancelBtn">
+							<c:forEach items="${ticketList }" var="ticketList"
+								varStatus="status">
+								<a type="button" class="btn btn-secondary" id="cancelBtnA"
+									href="/ticket/ticketCancel?baseballNo=${ticketList.baseballNo}">취소하기</a>
+							</c:forEach>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -173,6 +186,16 @@ select, option {
 	<div class="column side" style="background-color: #f4f4f4;">빈컬럼</div>
 </div>
 <script>
+	/* 취소하기 버튼클릭시 성공여부 alert */
+	$("#cancelBtnA").click(function(){
+		var ticketCancelMsg = ${ticketCancelMsg};
+		if(ticketCancelMsg != null)
+			alert(ticketCancelMsg);
+		else
+			alert("티켓취소를 실패했습니다.");
+			
+	});
+
 	/* 예매취소 가능일 계산 */
 	function calCancelDate() {
 		var strDate = $("gameDate").val();

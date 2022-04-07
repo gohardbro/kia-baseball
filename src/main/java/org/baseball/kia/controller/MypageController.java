@@ -66,10 +66,46 @@ public class MypageController {
 	
 	
 
-	@RequestMapping("/mypage/ticketDetail")
-	public String ticketDetailHandle(@RequestParam int baseballNo, Model model) {
+	@RequestMapping("/ticket/ticketDetail")
+	public String ticketDetailHandle(@ModelAttribute BaseballVo baseballVo, HttpSession httpSession, Model model) {
+		AccountVo loginUserVo = (AccountVo) httpSession.getAttribute("loginUser");
+		baseballVo.setBuyer(loginUserVo.getId());
 		
+		List<BaseballVo> list = baseballService.getAllById(baseballVo);
+		model.addAttribute("ticketList", list);
 		return "taejeong/mypage/mypageTicketDetail";
 	}
+	
+	@RequestMapping("/ticket/ticketCancel")
+	public String ticketCancelHandle(@RequestParam int baseballNo, HttpSession httpSession, Model model) {
+		boolean r = baseballService.cancelOneTicket(baseballNo);
+		if(r)
+			model.addAttribute("ticketCancelMsg", "티켓이 취소 되었습니다.");
+		return "taejeong/mypage/mypageTicket";
+	}
+
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

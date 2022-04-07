@@ -115,7 +115,7 @@ select, option {
 				</div>
 				<div class="main_content">
 					<p style="font-size: 13px; color: #999; margin: 36px 0 26px;">
-						<span>예매번호</span>를 클릭하면 예매 상세 내용을 확인할 수 있습니다.
+						<span style="color: #007BFF">예매번호</span>를 클릭하면 예매 상세 내용을 확인할 수 있습니다.
 					</p>
 
 
@@ -181,20 +181,23 @@ select, option {
 									<th>티켓명</th>
 									<th>경기일시</th>
 									<th>매수</th>
-									<th>구매일</th>
+									<th>예매일</th>
 									<th>취소가능일</th>
 									<th>상태</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${ticketList }" var="ticketList" varStatus="status">
+								<c:forEach items="${ticketList }" var="ticketList"
+									varStatus="status">
 									<tr>
-										<td><a href="/ticket/ticketDetail?baseballNo=${ticketList.baseballNo }">${ticketList.baseballNo }</a></td>
+										<td><a
+											href="/ticket/ticketDetail?baseballNo=${ticketList.baseballNo }">${ticketList.baseballNo }</a></td>
 										<td>KIA Tigers vs ${ticketList.rival }</td>
-										<td><span class="gameDate">${ticketList.gameDate }</span> ${ticketList.gameTime }</td>
+										<td><span class="gameDate">${ticketList.gameDate }</span>
+											${ticketList.gameTime }</td>
 										<td>${ticketList.buyerCnt }장</td>
 										<td>${ticketList.buyDate }</td>
-										<c:set var="cancelDate" value="cancelDate${status.index}"/>
+										<c:set var="cancelDate" value="cancelDate${status.index}" />
 										<td class="cancelDate">${requestScope[cancelDate]}</td>
 										<td>결제완료</td>
 									</tr>

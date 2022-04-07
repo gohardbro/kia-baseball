@@ -9,9 +9,7 @@
 		JOIN BASEBALL_INFO
 		USING(BASE_INFO_NO)
 		WHERE BUYER = #{buyer}
-		<!-- <if test="baseballNo != null">
-			AND BASEBALL_NO = #{baseballNo}
-		</if> -->
+		
 		<choose>
 			<when test="periodBtn == '15d'">
 				AND BUY_DATE BETWEEN SYSDATE-15 AND SYSDATE
@@ -34,6 +32,32 @@
 		<if test="dateTypeSelect == '경기일' and yearSelect != null and monSelect != null">
 			AND SUBSTR(GAME_DATE, 0, INSTR(GAME_DATE, '-', 1, 2)-1 ) = #{yearSelect}||'-'||#{monSelect}
 		</if>
-
+		<if test="baseballNo != 0">
+			AND BASEBALL_NO = #{baseballNo}
+		</if>
 	</select>
+	
+	<delete id="deleteOneByBaseballNo">
+		DELETE FROM BASEBALL
+		WHERE BASEBALL_NO = #{baseballNo}
+	</delete>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

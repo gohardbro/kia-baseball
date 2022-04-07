@@ -30,4 +30,8 @@ public class BaseballDao {
 	public List<String> selectBaseballDateChart(BaseballChartVo vo){ // 야구장 티켓 차트데이터 날짜 불러오기
 		return sqlSession.selectList("baseball.selectChartDateData", vo);
 	}
+	
+	public int deleteOneByBaseballNo(int baseballNo){ 
+		return sqlSession.delete("baseball.deleteOneByBaseballNo", baseballNo);
+	}
 }

@@ -16,5 +16,14 @@ public class BaseballService {
 	public List<BaseballVo> getAllById(BaseballVo baseballVo) {
 		return baseballDao.selectListById(baseballVo);
 	}
+	
+	public boolean cancelOneTicket(int baseballNo) {
+		
+		int r = baseballDao.deleteOneByBaseballNo(baseballNo);
+		if(r==1)
+			return true;
+		else
+			return false;
+	}
 
 }
