@@ -3,60 +3,75 @@
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
 <jsp:include page="/WEB-INF/views/ticket/include/top.jsp" />
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <head>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 <script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-	crossorigin="anonymous"></script>
-
+	src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
 
 <style>
-#glTable, th, td {
-	border: 1px solid#;
+.seatImg img {
+	width: 120%;
+	padding-right: 30px;
 }
 
-.gl-logo {
-	width: 70px;
-	height: 70px;
-	object-fit: scale-down;
-}
+#h2 {margin-bottom: 100px;}
+
 </style>
-
-
 </head>
 
 <!-- Main -->
 <div class="wrapper style1">
 
 	<div class="container">
-		<article id="ticketMain" >
-			<header>
-				<h2>
-					<a>경기장 구역별 좌석 및 예매권 안내</a>
-				</h2>
+		<article id="main" class="special">
+			<header id="h2">
+				<h2>경기장 구역별 좌석 및 예매권 안내</h2>
 			</header>
 
 
+			<!-- 좌석img와 요금table 가로로 나란히 배치  -->
 			<!-- 구역별 좌석 img -->
-			<section>
-				<div class="seatImg">
-					<a id="seatInfo"><img src="images/pic06.jpg"
-						alt="구역별 좌석 및 예매권 안내" /></a>
+			<div class="row">
+				<div class="col">
+					<div class="seatImg">
+						<a class="seatImg"><img src="images/zone.jpg"
+							alt="구역별 좌석 및 예매권 안내" /></a>
+					</div>
 				</div>
-			</section>
-			
-			<!-- 좌석별 요금 테이블 -->
-			<section>
-			
-			</section>
-			
-		
+
+				<!-- 좌석별 요금 테이블 -->
+				<div class="col">
+					<div class="container">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th></th>
+									<th>주중</th>
+									<th>주말</th>
+								</tr>
+							</thead>
+							<tbody>
+							<c:forEach var="st" items="${seat}">
+								<tr>
+									<td>${st.baseballZone }</td>
+									<td>${st.priceWeekday }</td>
+									<td>${st.priceWeekend }</td>
+								</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+			</div>
 		</article>
 	</div>
 </div>

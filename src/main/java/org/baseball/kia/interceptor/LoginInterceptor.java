@@ -20,7 +20,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		if (session == null || session.getAttribute("loginUser") == null) {
 			System.out.println("미 로그인 사용자 요청");
 			/* AccountVo vo = (AccountVo)session.getAttribute("loginUser"); */
-			
+			response.sendRedirect("/login");
 			
 			return false;
 

@@ -2,6 +2,7 @@ package org.baseball.kia.controller;
 
 import java.util.List;
 
+import org.baseball.kia.entity.BaseballVo;
 import org.baseball.kia.entity.TicketVo;
 import org.baseball.kia.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,14 @@ public class TicketContoller {
 	//예매 첫 화면 : zoneInfo
 	@GetMapping("/ticket")
 	public String ticketHome(Model model) {
+		List<BaseballVo> list = ticketService.seatPriceTable();
+		model.addAttribute("seat",list);
 		model.addAttribute("menu","zoneInfo" );
 		return "ticket/zoneInfo";
 	}
 	
 	
-	//ticketBuy에 경기 리스트 뿌려주기 
+	//ticketBuy에 경기목록 뿌려주기 
 	@RequestMapping(value = "/ticketBuy", method = RequestMethod.GET)
 	public String showGameList(Model model) {
 		List<TicketVo> list = ticketService.showGameList();
@@ -36,11 +39,12 @@ public class TicketContoller {
 		return "/ticket/ticketBuy";
 	}
 	
-	//ticketDetail (선택한 경기 정보 + 구역 + 매수 결정)
+	
+	//ticketDetail (선택한 경기 정보 1건)
 	@RequestMapping("/ticketDetail")
-	public String selectGame(@RequestParam int no, Model model) {
-		
-		model.addAttribute("oneGame",ticketService.selectOne(no));
+	public String selectGame(@RequestParam int scheduleNo, Model model) {
+		System.out.println("controller");
+		model.addAttribute("oneGame",ticketService.selectGame(scheduleNo));
 		model.addAttribute("menu","ticketDetail" );
 		
 		return "/ticket/ticketDetail";
