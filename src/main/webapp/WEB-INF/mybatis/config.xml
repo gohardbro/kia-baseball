@@ -13,6 +13,13 @@
 		<typeAlias type="org.baseball.kia.yg.entity.PagingVo" alias="paging" />
 		<typeAlias type="org.baseball.kia.yg.entity.FileVo" alias="file" />
 		<typeAlias type="org.baseball.kia.yg.entity.CommentVo" alias="comment" />
+		<!-- 수빈 -->
+		<typeAlias type="org.baseball.kia.subin.entity.AccountVo" alias="accountVo"/>
+		<typeAlias type="org.baseball.kia.subin.entity.BaseballVo" alias="baseballVo"/>
+		<typeAlias type="org.baseball.kia.subin.entity.LineupVo" alias="lineupVo"/>
+		<typeAlias type="org.baseball.kia.subin.entity.PlayerVo" alias="playerVo"/>
+		<typeAlias type="org.baseball.kia.subin.entity.ScheduleVo" alias="scheduleVo"/>
+		<typeAlias type="org.baseball.kia.subin.entity.UniformInfoVo" alias="uniformInfoVo"/>
 	</typeAliases>
 </configuration> 
 
