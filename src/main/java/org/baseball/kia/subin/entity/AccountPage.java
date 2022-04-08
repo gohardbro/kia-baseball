@@ -2,7 +2,7 @@ package org.baseball.kia.subin.entity;
 
 import java.util.List;
 
-public class AccountPage extends PageVo{
+public class AccountPage extends PageVo {
 	String type;
 	List<AccountVo> accountList;
 
@@ -28,6 +28,4 @@ public class AccountPage extends PageVo{
 		return str + "\n AccountPage [type=" + type + ", accountList=" + accountList + "]";
 	}
 
-	
-	
 }
