@@ -2,7 +2,7 @@ package org.baseball.kia.eunji.service;
 
 import java.util.List;
 
-import org.baseball.kia.entity.BaseballVo;
+/*import org.baseball.kia.entity.BaseballVo;*/
 import org.baseball.kia.eunji.entity.TicketVo;
 import org.baseball.kia.eunji.repository.TicketDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +17,10 @@ public class TicketService {
 	
 	 
 	
-	
-	//zoneInfo
-	public List<BaseballVo> seatPriceTable() {
-		List<BaseballVo> list = ticketDao.seatPriceTable();
-		return list;
-	}
-	
+	/*
+	 * //zoneInfo public List<BaseballVo> seatPriceTable() { List<BaseballVo> list =
+	 * ticketDao.seatPriceTable(); return list; }
+	 */
 	//ticketBuy
 	public List<TicketVo> showGameList(){
 		List<TicketVo> list = ticketDao.showGameList();
