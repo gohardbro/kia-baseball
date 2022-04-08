@@ -45,4 +45,16 @@
 		</set>
 		WHERE ID = #{id}
 	</update>
+	
+	<update id="updateSessionIdById">
+		UPDATE ACCOUNT
+		SET SESSION_ID = #{sessionId},
+			LIMIT_TIME = #{limitTime}
+		WHERE ID = #{id}
+	</update>
+	
+	<select id="selectOneBySessionId" resultType="accountVo">
+		SELECT * FROM ACCOUNT
+		WHERE SESSION_ID = #{sessionId}
+	</select>
 </mapper>

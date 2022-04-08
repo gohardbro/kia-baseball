@@ -1,13 +1,13 @@
-package org.baseball.kia.controller;
+package org.baseball.kia.taejeong.controller;
 
 import java.util.Map;
 
 import javax.validation.Valid;
 
-import org.baseball.kia.entity.AccountVo;
-import org.baseball.kia.service.AccountService;
 import org.baseball.kia.service.MailService;
-import org.baseball.kia.service.SignUpService;
+import org.baseball.kia.taejeong.entity.AccountVo;
+import org.baseball.kia.taejeong.service.AccountService;
+import org.baseball.kia.taejeong.service.SignUpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,18 +1,26 @@
 
-package org.baseball.kia.entity;
+package org.baseball.kia.taejeong.entity;
 
 import java.sql.Date;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-
 public class AccountVo {
+	
 
 	int point, reportCnt;
 	String id, pw, profile, name, nickname, admin, phone, report; 
 	Date joinDate;
+	private String sessionId;
+	private Date limitTime;
+	String autoLogin;
 	
+	
+	
+	public String getAutoLogin() {
+		return autoLogin;
+	}
+	public void setAutoLogin(String autoLogin) {
+		this.autoLogin = autoLogin;
+	}
 	public String getId() {
 		return id;
 	}
@@ -79,11 +87,28 @@ public class AccountVo {
 	public void setJoinDate(Date joinDate) {
 		this.joinDate = joinDate;
 	}
+	public String getSessionId() {
+		return sessionId;
+	}
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
+	}
+	public Date getLimitTime() {
+		return limitTime;
+	}
+	public void setLimitTime(Date limitTime) {
+		this.limitTime = limitTime;
+	}
 	@Override
 	public String toString() {
-		return "AccountVo [id=" + id + ", point=" + point + ", reportCnt=" + reportCnt + ", pw=" + pw + ", profile="
+		return "AccountVo [point=" + point + ", reportCnt=" + reportCnt + ", id=" + id + ", pw=" + pw + ", profile="
 				+ profile + ", name=" + name + ", nickname=" + nickname + ", admin=" + admin + ", phone=" + phone
-				+ ", report=" + report + ", joinDate=" + joinDate + "]";
+				+ ", report=" + report + ", joinDate=" + joinDate + ", sessionId=" + sessionId + ", limitTime="
+				+ limitTime + "]";
 	}
+	
+	
+	
+	
 
 }

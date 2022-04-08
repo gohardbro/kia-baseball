@@ -8,17 +8,17 @@ import java.util.UUID;
 
 import javax.servlet.ServletContext;
 
-import org.baseball.kia.entity.AccountVo;
 import org.baseball.kia.entity.BaseballChartVo;
 import org.baseball.kia.entity.LineupVo;
 import org.baseball.kia.entity.ScheduleVo;
 import org.baseball.kia.entity.UniformInfoVo;
-import org.baseball.kia.repository.AccountDao;
 import org.baseball.kia.repository.BaseballDao;
 import org.baseball.kia.repository.BoardDao;
 import org.baseball.kia.repository.LineupDao;
 import org.baseball.kia.repository.ScheduleDao;
 import org.baseball.kia.repository.UniformInfoDao;
+import org.baseball.kia.taejeong.entity.AccountVo;
+import org.baseball.kia.taejeong.repository.AccountDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

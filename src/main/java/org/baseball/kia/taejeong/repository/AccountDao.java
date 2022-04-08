@@ -1,9 +1,9 @@
-package org.baseball.kia.repository;
+package org.baseball.kia.taejeong.repository;
 
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
-import org.baseball.kia.entity.AccountVo;
+import org.baseball.kia.taejeong.entity.AccountVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -40,6 +40,16 @@ public class AccountDao {
 	public int updateReportById(String id) { // 신고계정 차단 설정
 		return sqlSession.update("account.updateReportById", id);
 	}
+	
+	public int updateSessionIdById(AccountVo vo) {
+		return sqlSession.update("account.updateSessionIdById", vo);
+	}
+	
+	public AccountVo selectOneBySessionId(String sessionId) {
+		return sqlSession.selectOne("account.selectOneBySessionId", sessionId);
+	}
+	
+
 	
 	
 }

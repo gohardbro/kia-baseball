@@ -1,7 +1,7 @@
-package org.baseball.kia.service;
+package org.baseball.kia.taejeong.service;
 
-import org.baseball.kia.entity.AccountVo;
-import org.baseball.kia.repository.AccountDao;
+import org.baseball.kia.taejeong.entity.AccountVo;
+import org.baseball.kia.taejeong.repository.AccountDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,6 +14,7 @@ public class AccountService {
 	
 	@Autowired
 	PasswordEncoder passwordEncoder;
+	
 	
 	public boolean isValidAccount(String id, String pass) {
 		String dbPass = accountDao.selectPassById(id);
@@ -43,10 +44,17 @@ public class AccountService {
 		return r == 1 ? true : false;
 	}
 	
-	
 	public String phone_format(String phone) {
 		String reg = "(\\d{3})(\\d{3,4})(\\d{4})";
 		return phone.replaceAll(reg, "$1-$2-$3");
+	}
+	
+	public int updateSessionIdAndLimitTime(AccountVo vo) {
+		return accountDao.updateSessionIdById(vo);
+	}
+	
+	public AccountVo getAccountBySessionId(String sessionId) {
+		return accountDao.selectOneBySessionId(sessionId);
 	}
 	
 }

@@ -1,4 +1,4 @@
-package org.baseball.kia.entity;
+package org.baseball.kia.taejeong.entity;
 
 import java.sql.Date;
 

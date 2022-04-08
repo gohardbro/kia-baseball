@@ -1,7 +1,7 @@
-package org.baseball.kia.service;
+package org.baseball.kia.taejeong.service;
 
-import org.baseball.kia.entity.AccountVo;
-import org.baseball.kia.repository.AccountDao;
+import org.baseball.kia.taejeong.entity.AccountVo;
+import org.baseball.kia.taejeong.repository.AccountDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

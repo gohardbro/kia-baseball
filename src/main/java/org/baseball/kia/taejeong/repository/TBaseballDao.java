@@ -1,4 +1,4 @@
-package org.baseball.kia.repository;
+package org.baseball.kia.taejeong.repository;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class BaseballDao {
+public class TBaseballDao {
 	
 	@Autowired
 	SqlSession sqlSession;

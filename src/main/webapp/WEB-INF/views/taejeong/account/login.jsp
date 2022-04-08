@@ -69,7 +69,6 @@
 .alert, .w-100 {
 	margin-top: 10px;
 }
-
 </style>
 
 
@@ -112,15 +111,16 @@
 					</div>
 
 					<div class="checkbox mb-3">
-						<label> <input type="checkbox" value="remember-me"
-							name="remember-me"> 자동로그인
-						</label><a class="accountFind" href="/login/accountFind">아이디/비밀번호 찾기</a>
+						<label><input type="checkbox" name="autoLogin" value="true">
+							로그인 유지 </label><a class="accountFind" href="/login/accountFind">아이디/비밀번호찾기</a>
 
 					</div>
 					<button class="w-100 btn btn-lg btn-primary" type="submit"
 						id="confirmBtn">로그인</button>
-					<a class="w-100 btn btn-lg" type="button" 
-						id="signupBtn" style="border:1px solid black;" href="/signup">회원가입</a>
+						
+					<a class="w-100 btn btn-lg"
+						type="button" id="signupBtn" style="border: 1px solid black;"
+						href="/signup">회원가입</a>
 					<hr class="my-4">
 					<small class="text-muted">@KiaTigers Corp. All rights
 						reserved.</small>
@@ -135,6 +135,7 @@
 	<div class="b-example-divider mb-0"></div>
 
 	<script>
+		
 		
 	</script>
 
