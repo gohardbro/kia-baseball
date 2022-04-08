@@ -35,7 +35,7 @@ public class TicketContoller {
 		List<TicketVo> list = ticketService.showGameList();
 		model.addAttribute("gameList" , list); 
 		model.addAttribute("menu","ticketBuy" );
-		return "/ticket/ticketBuy";
+		return "/eunji.ticket/ticketBuy";
 	}
 	
 	
@@ -46,7 +46,7 @@ public class TicketContoller {
 		model.addAttribute("oneGame",ticketService.selectGame(scheduleNo));
 		model.addAttribute("menu","ticketDetail" );
 		
-		return "/ticket/ticketDetail";
+		return "/eunji.ticket/ticketDetail";
 	}
 
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
-<jsp:include page="/WEB-INF/views/ticket/include/top.jsp" />
+<jsp:include page="/WEB-INF/views/eunji.ticket/include/top.jsp" />
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
 <meta charset="utf-8">
@@ -76,5 +76,5 @@
 	</div>
 </div>
 
-<jsp:include page="/WEB-INF/views/ticket/include/bottom.jsp" />
+<jsp:include page="/WEB-INF/views/eunji.ticket/include/bottom.jsp" />
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />

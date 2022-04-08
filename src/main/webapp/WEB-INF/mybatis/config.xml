@@ -9,19 +9,8 @@
 	</settings>
 	
 	<typeAliases>
-		<typeAlias type="org.baseball.kia.entity.TicketVo" alias="TicketVo"/>
-		 <typeAlias type="org.baseball.kia.entity.AccountVo" alias="accountVo"/>
-		<typeAlias type="org.baseball.kia.entity.BaseballVo" alias="baseballVo"/>
-		<typeAlias type="org.baseball.kia.entity.BoardVo"
-			alias="board" />
-		<typeAlias type="org.baseball.kia.entity.PagingVo"
-			alias="paging" />
-		<typeAlias type="org.baseball.kia.entity.FileVo"
-			alias="file" />
-			<typeAlias type="org.baseball.kia.entity.LineupVo" alias="lineupVo"/>
-		<typeAlias type="org.baseball.kia.entity.ScheduleVo" alias="scheduleVo"/>
-		<typeAlias type="org.baseball.kia.entity.BoardVo" alias="boardVo"/>
-		<typeAlias type="org.baseball.kia.entity.UniformInfoVo" alias="uniformInfoVo"/>
+		<typeAlias type="org.baseball.kia.eunji.entity.TicketVo" alias="TicketVo"/>
+	
 		
 	</typeAliases>
 </configuration> 

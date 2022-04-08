@@ -5,13 +5,13 @@
 	<!--별칭 config 만들기 -->
 
 
-	<!-- zoneInfo 좌석요금표 table -->
+<!-- 	  zoneInfo 좌석요금표 table  
 	<select id="seatPriceTable" resultType="BaseballVo">
 
 		SELECT * FROM BASEBALL_INFO
 
 	</select>
-
+ -->
 
 
 	<!--ticketBuy 예매가능한 경기 목록 -->
