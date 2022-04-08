@@ -5,10 +5,12 @@
 <div class='page-list'>
 	<!-- 첫번째 블럭 -->
 	<c:if test='${page.curBlock gt 1 }'> 
-		<a title='처음' onclick='go_page(1)'><i
-			class="fas fa-angle-double-left"></i></a>
-		<a title='이전' onclick='go_page(${page.beginPage-page.blockPage})'><i
-			class="fas fa-angle-left"></i></a>
+		<a title='처음' onclick='go_page(1)'>
+			처음<!-- <i class="fas fa-angle-double-left"></i> -->
+		</a>
+		<a title='이전' onclick='go_page(${page.beginPage-page.blockPage})'>
+			이전<!-- <i class="fas fa-angle-left"></i> -->
+		</a>
 	</c:if>
 
 	<c:forEach var="no" begin="${page.beginPage}" end="${page.endPage}">
@@ -22,20 +24,16 @@
 
 	<!-- 다음블럭/마지막블럭: 마지막블럭이 아닌 경우만 -->
 	<c:if test='${page.curBlock ne page.totalBlock}'>
-		<a title='다음' onclick='go_page(${page.endPage+1})'><i
-			class="fas fa-angle-right"></i></a>
-		<a title='마지막' onclick='go_page(${page.totalPage})'><i
-			class="fas fa-angle-double-right"></i></a>
+		<a title='다음' onclick='go_page(${page.endPage+1})'>
+			다음<!-- <i class="fas fa-angle-right"></i> -->
+		</a>
+		<a title='마지막' onclick='go_page(${page.totalPage})'>
+			끝<!-- <i class="fas fa-angle-double-right"></i> -->
+		</a>
 	</c:if>
 
-</div>
 
-<script>
-function go_page(no){
-	$('[name=curPage]').val(no);
-	$('form').submit();
-}
-</script>
+</div>
 
 <style>
 .page-list { 

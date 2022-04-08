@@ -25,9 +25,6 @@
 
 				</select>
 				<table class="table" style="margin: 10px;"></table>
-				<div class='btnSet'>
-					<jsp:include page="/WEB-INF/views/admin/include/page.jsp" />
-				</div>
 			</section>
 		</article>
 	</div>
@@ -35,26 +32,26 @@
 
 <script>
 $(function() { // 페이지 로딩시 자동 실행
-	$.ajax({
-		url: "/admin/account",
-		data: {
-			"type": $("#accountType").val()
-		}
-	}).done(function(data){
-		$(".table").html(data);
-	});
+	go_page(1);
 });
 
 $("#accountType").change(function (e){ // 회원 목록박스 값이 바뀌면
+	go_page(1);
+});
+
+function go_page(no){ // 페이지 이동
 	$.ajax({
 		url: "/admin/account",
 		data: {
-			"type": $("#accountType").val()
+			"type": $("#accountType").val(), // 계정 검색
+			"pageList": 10,// 페이지당 보여질 목록 수
+			"curPage": no, // 요청 페이지 번호
+			"blockPage": 3 //블럭당 보여질 페이지 수
 		}
 	}).done(function(data){
 		$(".table").html(data);
 	});
-});
+}
 </script>
 <jsp:include page="/WEB-INF/views/admin/include/bottom.jsp" />
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />

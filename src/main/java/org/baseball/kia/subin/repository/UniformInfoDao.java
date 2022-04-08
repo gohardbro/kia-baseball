@@ -3,6 +3,7 @@ package org.baseball.kia.subin.repository;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.baseball.kia.subin.entity.UniformInfoPage;
 import org.baseball.kia.subin.entity.UniformInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,8 +14,16 @@ public class UniformInfoDao {
 	@Autowired
 	SqlSession sqlSession;
 	
-	public List<UniformInfoVo> selectUniformInfo(UniformInfoVo vo){ // 유니폼 정보 조회
-		return sqlSession.selectList("uniformInfo.selectUniformInfo", vo);
+	public List<UniformInfoVo> selectUniformInfo(UniformInfoPage page){ // 유니폼 정보 조회
+		return sqlSession.selectList("uniformInfo.selectUniformInfo", page);
+	}
+	
+	public int selectUniformInfoCnt() { // 유니폼 검색 결과 개수
+		return sqlSession.selectOne("uniformInfo.selectUniformInfoCnt");
+	}
+	
+	public UniformInfoVo selectUniformInfoOne(int uniInfoNo) { // 유니폼 상세정보 조회
+		return sqlSession.selectOne("uniformInfo.selectUniformInfoOne", uniInfoNo);
 	}
 	
 	public int updateUniformInfo(UniformInfoVo vo) { // 유니폼 정보 수정

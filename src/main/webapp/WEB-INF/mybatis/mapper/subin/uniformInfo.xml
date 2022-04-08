@@ -3,13 +3,30 @@
 <mapper namespace="uniformInfo">
 
 	<select id="selectUniformInfo" resultType="uniformInfoVo"> <!-- 유니폼 조회 -->
-		SELECT * FROM UNIFORM_INFO
+		SELECT *
+		FROM (SELECT ROWNUM AS IDX, UI.*
+		      FROM (SELECT * 
+		      		FROM UNIFORM_INFO
+					<where>
+						<if test="uniformName != null and uniformName != ''.toString()">UNIFORM_NAME LIKE '%'||#{uniformName}||'%'</if>
+						<if test="color != null and color != ''.toString()">COLOR LIKE '%'||#{color}||'%'</if>
+					</where>
+		           ORDER BY UNI_INFO_NO) UI
+		     ) UI
+		WHERE IDX BETWEEN #{beginList} AND #{endList}
+	</select>
+	
+	<select id="selectUniformInfoCnt" resultType="int"> <!-- 검색 결과 데이터 개수 조회 -->
+		SELECT COUNT(*) FROM UNIFORM_INFO
 		<where>
-			<if test="uniInfoNo != null and uniInfoNo != 0">UNI_INFO_NO = #{uniInfoNo}</if>
 			<if test="uniformName != null">UNIFORM_NAME LIKE '%'||#{uniformName}||'%'</if>
 			<if test="color != null">COLOR = #{color}</if>
 		</where>
-		ORDER BY UNI_INFO_NO
+	</select>
+	
+	<select id="selectUniformInfoOne" resultType="uniformInfoVo"> <!-- 유니폼 상세 조회 -->
+		SELECT * FROM UNIFORM_INFO
+		WHERE UNI_INFO_NO = #{uniInfoNo}
 	</select>
 	
 	<update id="updateUniformInfo"> <!--유니폼 정보 수정 -->

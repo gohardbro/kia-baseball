@@ -15,7 +15,7 @@
 	<div class="container">
 		<article id="main" class="special">
 			<header>
-				<h2>티켓 예매내역</h2>
+				<h2>티켓 예매 현황</h2>
 			</header>
 
 			<section>

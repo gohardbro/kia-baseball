@@ -42,6 +42,11 @@
 			<mvc:mapping path="/**"/>
 			<bean class="org.baseball.kia.taejeong.interceptor.AutoLoginInterceptor"/>
 		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/**"/>
+			<bean class="org.baseball.kia.subin.interceptor.AdminInterceptor"/>
+		</mvc:interceptor>
 	</mvc:interceptors>
 
 </beans>

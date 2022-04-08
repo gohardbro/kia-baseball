@@ -3,7 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<table class="table table-responsive d-flex">
+<table class="table">
 	<thead>
 		<tr>
 			<th>상품번호</th>
@@ -18,7 +18,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach items="${ uniformInfoList }" var="uniformInfo">
+		<c:forEach items="${ page.uniformInfoList }" var="uniformInfo">
 			<tr>
 				<td>${ uniformInfo.uniInfoNo }</td>
 				<td style="width: 30%">${ uniformInfo.uniformName }</td>
@@ -34,3 +34,8 @@
 		</c:forEach>
 	</tbody>
 </table>
+
+<!-- 페이지 버튼 -->
+<div class='btnSet'>
+	<jsp:include page="/WEB-INF/views/admin/include/page.jsp" />
+</div>

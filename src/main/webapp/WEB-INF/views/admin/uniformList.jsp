@@ -11,7 +11,7 @@
 	<div class="container">
 		<article id="main" class="special">
 			<header>
-				<h2>상품 구매내역</h2>
+				<h2>상품 구매 현황</h2>
 			</header>
 
 			<section>
@@ -46,7 +46,7 @@
 					<table class="table" id="playerTable" style="margin: 2px;">
 						<thead>
 							<tr>
-								<th>상품명</th>
+								<th>선수명</th>
 								<th>수량</th>
 							</tr>
 						</thead>

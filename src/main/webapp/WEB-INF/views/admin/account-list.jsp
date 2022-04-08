@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -17,7 +16,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach items="${ accountInfo.accountList }" var="account">
+		<c:forEach items="${ page.accountList }" var="account">
 			<tr class="${ account.reportCnt >= 3 && account.report eq 'N'? 'table-danger': ''}">
 				<td>${ account.id }</td>
 				<td>${ account.name }</td>
@@ -36,3 +35,8 @@
 		</c:forEach>
 	</tbody>
 </table>
+
+<!-- 페이지 버튼 -->
+<div class='btnSet'>
+	<jsp:include page="/WEB-INF/views/admin/include/page.jsp" />
+</div>

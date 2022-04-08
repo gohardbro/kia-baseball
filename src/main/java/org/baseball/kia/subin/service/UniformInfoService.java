@@ -7,13 +7,14 @@ import java.util.UUID;
 import javax.servlet.ServletContext;
 
 import org.baseball.kia.subin.entity.UniformInfoVo;
+import org.baseball.kia.subin.entity.UniformInfoPage;
 import org.baseball.kia.subin.repository.UniformInfoDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-@Service("uniformService_subin")
-public class UniformService {
+@Service("uniformInfoService_subin")
+public class UniformInfoService {
 	
 	@Autowired
 	UniformInfoDao uniformInfoDao;
@@ -21,8 +22,16 @@ public class UniformService {
 	@Autowired
 	ServletContext ctx;
 	
-	public List<UniformInfoVo> selectUniformInfo(UniformInfoVo vo) { // 유니폼 정보 조회
-		return uniformInfoDao.selectUniformInfo(vo);
+	public List<UniformInfoVo> selectUniformInfo(UniformInfoPage page) { // 유니폼 정보 조회
+		return uniformInfoDao.selectUniformInfo(page);
+	}
+	
+	public int selectUniformInfoCnt() { // 유니폼 검색 결과 개수
+		return uniformInfoDao.selectUniformInfoCnt();
+	}
+	
+	public UniformInfoVo selectUniformInfoOne(int uniInfoNo) { // 유니폼 상세정보 조회
+		return uniformInfoDao.selectUniformInfoOne(uniInfoNo);
 	}
 
 	public boolean updateUniformInfo(UniformInfoVo vo, MultipartFile attach) { // 유니폼 정보 수정

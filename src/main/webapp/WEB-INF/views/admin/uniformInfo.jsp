@@ -16,7 +16,7 @@
 			</header>
 
 			<section>
-					<nav class="navbar navbar-expand-sm d-flex justify-content-between" style = "max-width : 1175px">
+					<nav class="navbar navbar-expand-sm d-flex justify-content-between">
 						<form class="form-inline" action="/">
 							<select class="form-control" id="search" style="margin: 10px;">
 								<option selected value="uniformName">상품명</option>
@@ -28,7 +28,7 @@
 					<button type="button" class="btn btn-primary" onclick="location.href='/admin/uniformInfo/insert'">등록</button>
 					</nav>
 
-				<table class="table table-responsive"></table>
+				<table class="table"></table>
 			</section>
 		</article>
 	</div>
@@ -36,12 +36,7 @@
 
 <script>
 	$(function() { // 페이지 로딩시 자동 실행
-		$.ajax({
-			url : "/admin/uniformInfo/search",
-
-		}).done(function(data) {
-			$(".table").html(data);
-		});
+		go_page(1);
 	});
 
 	$(".btn-info").click(function(e) { // 검색 버튼 클릭
@@ -57,14 +52,22 @@
 	}); 
 	
 	function searchUniformInfo(){ // 키워드 검색
+		go_page(1);
+	}
+	
+	function go_page(no){ // 페이지 이동
 		var type = $("#search").val();
-		var word = $("#word").val();
-
+		var uniformName = type=='uniformName'? $("#word").val(): '';
+		var color = type=='color'? $("#word").val(): '';
+		
 		$.ajax({
 			url : "/admin/uniformInfo/search",
 			data : {
-				"type" : type,
-				"word" : word,
+				"uniformName" : uniformName,
+				"color" : color,
+				"pageList": 10,// 페이지당 보여질 목록 수
+				"curPage": no, // 요청 페이지 번호
+				"blockPage": 3 //블럭당 보여질 페이지 수
 			}
 		
 		}).done(function(data) {
