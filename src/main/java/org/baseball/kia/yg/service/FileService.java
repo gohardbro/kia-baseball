@@ -1,27 +1,27 @@
-package org.baseball.kia.service;
+package org.baseball.kia.yg.service;
 
 import java.util.List;
 
-import org.baseball.kia.entity.FileVo_yg;
-import org.baseball.kia.repository.FileDao_yg;
+import org.baseball.kia.yg.entity.FileVo;
+import org.baseball.kia.yg.repository.FileDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FileService_yg {
+public class FileService {
 
 	@Autowired
-	FileDao_yg fileDao;
+	FileDao fileDao;
 	
-	public void insertFile(List<FileVo_yg> fileList) {
+	public void insertFile(List<FileVo> fileList) {
 		fileDao.insertFile(fileList);
 	}
 	
-	public List<FileVo_yg> getFile(int no) {
+	public List<FileVo> getFile(int no) {
 		return fileDao.getFile(no);
 	}
 	
-	public void deleteFile(FileVo_yg vo) {
+	public void deleteFile(FileVo vo) {
 		fileDao.deleteFile(vo);
 	}
 	

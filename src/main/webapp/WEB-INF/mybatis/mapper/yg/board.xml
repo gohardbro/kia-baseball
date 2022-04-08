@@ -29,7 +29,7 @@
 		#{title}, CONTENT = #{content} WHERE BOARD_NO = #{boardNo}
 	</update>
 	<select id="listPage" resultType="board"
-		parameterType="org.baseball.kia.util.Criteria_yg">
+		parameterType="org.baseball.kia.yg.util.Criteria">
 		SELECT * FROM
 		(SELECT BOARD_NO, TITLE, CONTENT,
 		WRITER,

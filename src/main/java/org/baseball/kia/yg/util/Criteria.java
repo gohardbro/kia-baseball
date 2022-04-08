@@ -1,15 +1,15 @@
-package org.baseball.kia.util;
+package org.baseball.kia.yg.util;
 
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class Criteria_yg {
+public class Criteria {
 	int page;
 	int perPageNum;
 	int rowStart;
 	int rowEnd;
 	
-	public Criteria_yg() {
+	public Criteria() {
 		this.page = 1;
 		this.perPageNum = 10;
 	}

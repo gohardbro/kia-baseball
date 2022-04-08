@@ -1,8 +1,8 @@
-package org.baseball.kia.entity;
+package org.baseball.kia.yg.entity;
 
 import java.util.Date;
 
-public class CommentVo_yg {
+public class CommentVo {
 	int commentNo;
 	int boardNo;
 	String writer;

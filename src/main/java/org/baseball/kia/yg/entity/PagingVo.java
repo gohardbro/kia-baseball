@@ -1,10 +1,10 @@
-package org.baseball.kia.entity;
+package org.baseball.kia.yg.entity;
 
-import org.baseball.kia.util.Criteria_yg;
+import org.baseball.kia.yg.util.Criteria;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-public class PagingVo_yg {
+public class PagingVo {
 
 	int totalCount;
 	int startPage;
@@ -12,9 +12,9 @@ public class PagingVo_yg {
 	boolean prev;
 	boolean next;
 	int displayPageNum = 10;
-	Criteria_yg cri;
+	Criteria cri;
 
-	public void setCri(Criteria_yg cri) {
+	public void setCri(Criteria cri) {
 		this.cri = cri;
 	}
 
@@ -47,7 +47,7 @@ public class PagingVo_yg {
 		return displayPageNum;
 	}
 
-	public Criteria_yg getCri() {
+	public Criteria getCri() {
 		return cri;
 	}
 

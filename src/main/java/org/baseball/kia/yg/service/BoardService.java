@@ -1,26 +1,26 @@
-package org.baseball.kia.service;
+package org.baseball.kia.yg.service;
 
 import java.util.List;
 import java.util.Map;
 
-import org.baseball.kia.entity.BoardVo_yg;
-import org.baseball.kia.repository.BoardDao_yg;
-import org.baseball.kia.util.Criteria_yg;
+import org.baseball.kia.yg.entity.BoardVo;
+import org.baseball.kia.yg.repository.BoardDao;
+import org.baseball.kia.yg.util.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BoardService_yg {
+public class BoardService {
 	@Autowired
-	BoardDao_yg boardDao;
+	BoardDao boardDao;
 
-	public boolean addNewOne(BoardVo_yg vo) {
+	public boolean addNewOne(BoardVo vo) {
 		int r = boardDao.insertOne(vo);
 		return r == 1;
 	}
 
-	public List<BoardVo_yg> getAll(Criteria_yg cri) {
-		List<BoardVo_yg> list = boardDao.listPage(cri);
+	public List<BoardVo> getAll(Criteria cri) {
+		List<BoardVo> list = boardDao.listPage(cri);
 		return list;
 	}
 	
@@ -28,17 +28,17 @@ public class BoardService_yg {
 		return boardDao.listCount();
 	}
 
-	public BoardVo_yg getOneByNo(int no) {
-		BoardVo_yg vo = boardDao.selectOne(no);
+	public BoardVo getOneByNo(int no) {
+		BoardVo vo = boardDao.selectOne(no);
 		return vo;
 	}
 
-	public BoardVo_yg updateCnt(int no) {
+	public BoardVo updateCnt(int no) {
 		boardDao.updateCntview(no);
 		return boardDao.selectOne(no);
 	}
 	
-	public List<Map<String,Object>> selectBoardList(Criteria_yg cri) {
+	public List<Map<String,Object>> selectBoardList(Criteria cri) {
 		return boardDao.selectBoardList(cri);
 	}
 	
@@ -50,11 +50,11 @@ public class BoardService_yg {
 		boardDao.boardDelete(no);
 	}
 	
-	public void update(BoardVo_yg vo) {
+	public void update(BoardVo vo) {
 		boardDao.update(vo);
 	}
 
-	public void addComment(BoardVo_yg boardVo) {
+	public void addComment(BoardVo boardVo) {
 		
 	}
 

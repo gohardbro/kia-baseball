@@ -9,10 +9,10 @@
 	</settings>
 
 	<typeAliases>
-		<typeAlias type="org.baseball.kia.entity.BoardVo_yg" alias="board" />
-		<typeAlias type="org.baseball.kia.entity.PagingVo_yg" alias="paging" />
-		<typeAlias type="org.baseball.kia.entity.FileVo_yg" alias="file" />
-		<typeAlias type="org.baseball.kia.entity.CommentVo_yg" alias="comment" />
+		<typeAlias type="org.baseball.kia.yg.entity.BoardVo" alias="board" />
+		<typeAlias type="org.baseball.kia.yg.entity.PagingVo" alias="paging" />
+		<typeAlias type="org.baseball.kia.yg.entity.FileVo" alias="file" />
+		<typeAlias type="org.baseball.kia.yg.entity.CommentVo" alias="comment" />
 	</typeAliases>
 </configuration> 
 

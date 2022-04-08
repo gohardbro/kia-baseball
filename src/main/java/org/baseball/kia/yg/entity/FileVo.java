@@ -1,6 +1,6 @@
-package org.baseball.kia.entity;
+package org.baseball.kia.yg.entity;
 
-public class FileVo_yg {
+public class FileVo {
 	int fileNo;
 	int boardNo;
 	int noticeNo;

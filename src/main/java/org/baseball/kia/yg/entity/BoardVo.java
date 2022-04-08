@@ -1,10 +1,10 @@
-package org.baseball.kia.entity;
+package org.baseball.kia.yg.entity;
 
 import java.util.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class BoardVo_yg {
+public class BoardVo {
 	int boardNo;
 	String title;
 	String content;
