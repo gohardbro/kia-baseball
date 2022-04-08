@@ -11,7 +11,7 @@ import org.baseball.kia.subin.repository.ScheduleDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("lineupService_subin")
 public class LineupService {
 	
 	@Autowired

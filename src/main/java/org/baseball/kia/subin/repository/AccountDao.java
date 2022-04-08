@@ -8,7 +8,7 @@ import org.baseball.kia.subin.entity.AccountVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Repository("accountDao_subin")
 public class AccountDao {
 	
 	@Autowired

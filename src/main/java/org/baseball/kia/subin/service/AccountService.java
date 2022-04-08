@@ -9,7 +9,7 @@ import org.baseball.kia.subin.repository.BoardDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("accountService_subin")
 public class AccountService {
 	
 	@Autowired

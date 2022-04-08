@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
 
-@Service
+@Service("uniformChartService_subin")
 public class UniformChartService {
 
 	@Autowired

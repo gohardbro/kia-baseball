@@ -7,7 +7,7 @@ import org.baseball.kia.subin.entity.ScheduleVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Repository("scheduleDao_subin")
 public class ScheduleDao {
 
 	@Autowired

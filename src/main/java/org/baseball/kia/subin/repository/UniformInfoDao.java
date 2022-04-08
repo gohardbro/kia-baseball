@@ -7,7 +7,7 @@ import org.baseball.kia.subin.entity.UniformInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Repository("unidoemInfoDao_subin")
 public class UniformInfoDao {
 	
 	@Autowired

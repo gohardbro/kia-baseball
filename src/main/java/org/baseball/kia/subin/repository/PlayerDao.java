@@ -7,7 +7,7 @@ import org.baseball.kia.subin.entity.PlayerVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Repository("playerDao_subin")
 public class PlayerDao {
 	
 	@Autowired

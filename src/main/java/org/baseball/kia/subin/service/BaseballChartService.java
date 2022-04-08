@@ -9,7 +9,7 @@ import org.baseball.kia.subin.repository.BaseballDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("baseballChartService_subin")
 public class BaseballChartService {
 	
 	@Autowired

@@ -5,7 +5,7 @@ import org.baseball.kia.subin.entity.LineupVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Repository("lineupDao_subin")
 public class LineupDao {
 	
 	@Autowired
