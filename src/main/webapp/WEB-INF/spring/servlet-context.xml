@@ -35,7 +35,7 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/ticketDetail" />
-			<bean class="org.baseball.kia.interceptor.LoginInterceptor" />
+			<bean class="org.baseball.kia.eunji.interceptor.LoginInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 
