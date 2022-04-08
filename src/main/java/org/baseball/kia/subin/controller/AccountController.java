@@ -26,6 +26,7 @@ public class AccountController {
 		page.setType(type); // 검색할 계정 타입 설정
 		page.setPageList(10); // 페이지당 보여질 목록 수
 		page.setCurPage(1); // 요청 페이지 번호
+		page.setBlockPage(3); // 블럭당 보여질 페이지의 수
 		page.setTotalList(accountService.selectAccountCnt()); // 전체 회원수
 		page.setAccountList(accountService.selectAccountByType(page)); // 검색된 회원 정보 리스트
 		model.addAttribute("accountInfo", page);
