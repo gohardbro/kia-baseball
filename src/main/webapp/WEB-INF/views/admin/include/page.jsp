@@ -3,7 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <div class='page-list'>
-	<c:if test='${page.curBlock gt 1 }'>
+	<!-- 첫번째 블럭 -->
+	<c:if test='${page.curBlock gt 1 }'> 
 		<a title='처음' onclick='go_page(1)'><i
 			class="fas fa-angle-double-left"></i></a>
 		<a title='이전' onclick='go_page(${page.beginPage-page.blockPage})'><i

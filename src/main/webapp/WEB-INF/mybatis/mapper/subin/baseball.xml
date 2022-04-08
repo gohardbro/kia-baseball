@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="baseball">
+	
+	<select id="selectBaseball" resultType="baseballVo">
+		SELECT B.*, BI.BASEBALL_ZONE ZONE 
+		FROM BASEBALL B LEFT OUTER JOIN BASEBALL_INFO BI
+		ON (B.BASE_INFO_NO = BI.BASE_INFO_NO)
+		<if test="gameDate != null and gameTime != null">
+			WHERE GAME_DATE = #{gameDate}
+			AND GAME_TIME = #{gameTime}
+		</if>
+		ORDER BY B.GAME_DATE DESC
+	</select>
+
+	<select id="selectChartCntData" resultType="Integer"> <!-- 주차, 구역별 야구장 예매 현황 -->
+		SELECT SUM(B.BUYER_CNT) AS SUM 
+		FROM BASEBALL B LEFT OUTER JOIN BASEBALL_INFO BI ON (B.BASE_INFO_NO = BI.BASE_INFO_NO)
+		                INNER JOIN SCHEDULE S ON (B.SCHEDULE_NO = S.SCHEDULE_NO)
+		WHERE S.GAME_DATE LIKE #{month}||'%' 
+		AND TO_CHAR(TO_DATE(S.GAME_DATE), 'W') = #{week}
+		GROUP BY S.GAME_DATE, BI.BASEBALL_ZONE
+		<if test="zone != 'all'.toString()">
+			HAVING BI.BASEBALL_ZONE = #{zone} 
+		</if>
+		ORDER BY S.GAME_DATE
+	</select>
+	
+
+	<select id="selectChartDateData" resultType="String"> <!-- 주차, 구역별 야구장 예매 현황 -->
+		SELECT S.GAME_DATE
+		FROM BASEBALL B LEFT OUTER JOIN BASEBALL_INFO BI ON (B.BASE_INFO_NO = BI.BASE_INFO_NO)
+		                INNER JOIN SCHEDULE S ON (B.SCHEDULE_NO = S.SCHEDULE_NO)
+		WHERE S.GAME_DATE LIKE #{month}||'%' 
+		AND TO_CHAR(TO_DATE(S.GAME_DATE), 'W') = #{week}
+		GROUP BY S.GAME_DATE, BI.BASEBALL_ZONE
+		<if test="zone != 'all'.toString()">
+			HAVING BI.BASEBALL_ZONE = #{zone} 
+		</if>
+		ORDER BY S.GAME_DATE
+	</select>
+</mapper>
