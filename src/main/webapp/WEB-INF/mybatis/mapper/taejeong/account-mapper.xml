@@ -8,7 +8,7 @@
 			(#{id}, #{pw}, #{profile}, #{name}, #{nickname}, SYSDATE, #{phone})
 	</insert>
 	
-	<select id="selectOneById" resultType="accountVo">
+	<select id="selectOneById" resultType="accountVo2">
 		SELECT * FROM ACCOUNT WHERE ID=#{id}
 	</select>
 	<select id="selectPassById" resultType="string">
@@ -53,7 +53,7 @@
 		WHERE ID = #{id}
 	</update>
 	
-	<select id="selectOneBySessionId" resultType="accountVo">
+	<select id="selectOneBySessionId" resultType="accountVo2">
 		SELECT * FROM ACCOUNT
 		WHERE SESSION_ID = #{sessionId}
 	</select>

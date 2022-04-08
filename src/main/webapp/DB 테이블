@@ -135,6 +135,24 @@ create table uniform(
     constraint uni_fk foreign key(uni_info_no) references uniform_info(uni_info_no)
 );
 
+-- 유니폼별 수량 정보
+create table uniform_cnt (
+    no number primary key,
+    uni_info_no number,
+    s_count number,
+    m_count number,
+    l_count number,
+    xl_count number,
+    constraint uni_cnt_fk foreign key(uni_info_no) references uniform_info(uni_info_no)
+);
+
+-- 선수 정보
+create table player (
+    no number primary key,
+    name varchar2(50),
+    position varchar2(50)
+);
+
 -- 야구장 정보
 create table Baseball_info (
     base_info_no number primary key,

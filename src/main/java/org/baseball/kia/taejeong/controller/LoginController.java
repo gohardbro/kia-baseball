@@ -44,7 +44,7 @@ public class LoginController {
 				Cookie loginCookie = new Cookie("autoLoginCookie", session.getId());
 				loginCookie.setPath("/");
 				long limitTime = 60 * 60 * 24 * 90; // 90일시간
-				
+
 				loginCookie.setMaxAge((int) limitTime);
 				response.addCookie(loginCookie);
 				// 추가 4월8일 3:35
@@ -73,18 +73,19 @@ public class LoginController {
 	@RequestMapping("/logout")
 	public String logoutHandle(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		AccountVo accountVo = (AccountVo) session.getAttribute("loginUser");
-		
 		Cookie loginCookie = WebUtils.getCookie(request, "autoLoginCookie");
-		loginCookie.setMaxAge(0);
-		response.addCookie(loginCookie);
 		
-		accountVo.setSessionId("none");
-		accountVo.setLimitTime(null);
-		accountService.updateSessionIdAndLimitTime(accountVo);
+		if (loginCookie != null) {
+			loginCookie.setMaxAge(0);
+			response.addCookie(loginCookie);
+
+			accountVo.setSessionId("none");
+			accountVo.setLimitTime(null);
+			accountService.updateSessionIdAndLimitTime(accountVo);
+		}
 		
 		session.removeAttribute("loginUser");
 		session.invalidate();
-
 		return "redirect:/";
 	}
 

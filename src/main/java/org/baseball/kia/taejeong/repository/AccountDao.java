@@ -1,7 +1,5 @@
 package org.baseball.kia.taejeong.repository;
 
-import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 import org.baseball.kia.taejeong.entity.AccountVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,13 +31,6 @@ public class AccountDao {
 		return sqlSession.update("account.updateOne", vo);
 	}
 	
-	public List<AccountVo> selectByType(String type){ // 타입별 회원계정 조회
-		return sqlSession.selectList("account.selectByType", type);
-	}
-	
-	public int updateReportById(String id) { // 신고계정 차단 설정
-		return sqlSession.update("account.updateReportById", id);
-	}
 	
 	public int updateSessionIdById(AccountVo vo) {
 		return sqlSession.update("account.updateSessionIdById", vo);

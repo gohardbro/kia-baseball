@@ -16,7 +16,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach items="${ accountList }" var="account">
+		<c:forEach items="${ accountInfo.accountList }" var="account">
 			<tr class="${ account.reportCnt >= 3 && account.report eq 'N'? 'table-danger': ''}">
 				<td>${ account.id }</td>
 				<td>${ account.name }</td>

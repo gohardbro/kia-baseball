@@ -15,9 +15,8 @@
 
 			<section>
 				<select id="dateAndTime" class="custom-select" style="width: 180px;">
-					<option selected>== 경기 날짜 ==</option>
-					<c:forEach items="${ scheduleList }" var="schedule">
-						<option value="${ schedule.gameDate } ${ schedule.gameTime }">${ schedule.gameDate } ${ schedule.gameTime }</option>
+					<c:forEach items="${ scheduleList }" var="schedule" varStatus="status">
+						<option  ${ status.count == 1? 'selected': '' } value="${ schedule.gameDate } ${ schedule.gameTime }">${ schedule.gameDate } ${ schedule.gameTime }</option>
 					</c:forEach>
 				</select>
 				<form action="/admin/lineup/insert">
@@ -27,43 +26,73 @@
 					<table class="table">
 						<tr>
 							<th>선발 투수</th>
-							<td><input type="text" name="pitcher" class="form-control form-control-sm"></td>
+							<td>
+								<input type="text" name="pitcher" class="form-control form-control-sm" list="pitcherList">
+								<datalist id="pitcherList"></datalist>
+							</td>
 						</tr>
 						<tr>
 							<th>1번 타자</th>
-							<td><input type="text" name="hitter1" class="form-control form-control-sm"></td>
+							<td>
+								<input type="text" name="hitter1" class="form-control form-control-sm" autocomplete="off" list="hitter1List">
+								<datalist id="hitter1List"></datalist>
+							</td>
 						</tr>
 						<tr>
 							<th>2번 타자</th>
-							<td><input type="text" name="hitter2" class="form-control form-control-sm"></td>
+							<td>
+								<input type="text" name="hitter2" class="form-control form-control-sm" autocomplete="off" list="hitter2List">
+								<datalist id="hitter2List"></datalist>
+							</td>
 						</tr>
 						<tr>
 							<th>3번 타자</th>
-							<td><input type="text" name="hitter3" class="form-control form-control-sm"></td>
+							<td>
+								<input type="text" name="hitter3" class="form-control form-control-sm" autocomplete="off" list="hitter3List">
+								<datalist id="hitter3List"></datalist>
+							</td>
 						</tr>
 						<tr>
 							<th>4번 타자</th>
-							<td><input type="text" name="hitter4" class="form-control form-control-sm"></td>
+							<td>
+								<input type="text" name="hitter4" class="form-control form-control-sm" autocomplete="off" list="hitter4List">
+								<datalist id="hitter4List"></datalist>
+							</td>
 						</tr>
 						<tr>
 							<th>5번 타자</th>
-							<td><input type="text" name="hitter5" class="form-control form-control-sm"></td>
+							<td>
+								<input type="text" name="hitter5" class="form-control form-control-sm" autocomplete="off" list="hitter5List">
+								<datalist id="hitter5List"></datalist>
+							</td>
 						</tr>
 						<tr>
 							<th>6번 타자</th>
-							<td><input type="text" name="hitter6" class="form-control form-control-sm"></td>
+							<td>
+								<input type="text" name="hitter6" class="form-control form-control-sm" autocomplete="off" list="hitter6List">
+								<datalist id="hitter6List"></datalist>
+							</td>
 						</tr>
 						<tr>
 							<th>7번 타자</th>
-							<td><input type="text" name="hitter7" class="form-control form-control-sm"></td>
+							<td>
+								<input type="text" name="hitter7" class="form-control form-control-sm" autocomplete="off" list="hitter7List">
+								<datalist id="hitter7List"></datalist>
+							</td>
 						</tr>
 						<tr>
 							<th>8번 타자</th>
-							<td><input type="text" name="hitter8" class="form-control form-control-sm"></td>
+							<td>
+								<input type="text" name="hitter8" class="form-control form-control-sm" autocomplete="off" list="hitter8List">
+								<datalist id="hitter8List"></datalist>
+							</td>
 						</tr>
 						<tr>
 							<th>9번 타자</th>
-							<td><input type="text" name="hitter9" class="form-control form-control-sm"></td>
+							<td>
+								<input type="text" name="hitter9" class="form-control form-control-sm" autocomplete="off" list="hitter9List">
+								<datalist id="hitter9List"></datalist>
+							</td>
 						</tr>
 						<tr>
 							<td colspan="2" style="text-align: center;"><button
@@ -123,7 +152,54 @@
 		});		
  		
  	}); 
+ 	
+	function findPlayerName(list, name){ // 선수이름 조회
+		$.ajax({
+			url: "/admin/lineup/findPlayer",
+			data: {
+				"name": name
+			}
+		}).done(function(data){
+			var _html = "";
+			for(var i=0; i<data.length; i++){
+				_html += "<option>"+data[i].name+"</option>"
+			}
+			
+			$(list).html(_html);
+		});
+	}
+	
+	$("[name=pitcher]").on("keyup", function(){ // 투수 이름 입력시
+ 		findPlayerName("#pitcherList", $("[name=pitcher]").val());
+ 	});
 
+	$("[name=hitter1]").on("keyup", function(){ // 1번 타자 이름 입력시
+ 		findPlayerName("#hitter1List", $("[name=hitter1]").val());
+ 	});
+ 	$("[name=hitter2]").on("keyup", function(){ // 2번 타자 이름 입력시
+ 		findPlayerName("#hitter2List", $("[name=hitter2]").val());
+ 	});
+ 	$("[name=hitter3]").on("keyup", function(){ // 3번 타자 이름 입력시
+ 		findPlayerName("#hitter3List", $("[name=hitter4]").val());
+ 	});
+ 	$("[name=hitter4]").on("keyup", function(){ // 4번 타자 이름 입력시
+ 		findPlayerName("#hitter4List", $("[name=hitter4]").val());
+ 	});
+ 	$("[name=hitter5]").on("keyup", function(){ // 5번 타자 이름 입력시
+ 		findPlayerName("#hitter5List", $("[name=hitter5]").val());
+ 	});
+ 	$("[name=hitter6]").on("keyup", function(){ // 6번 타자 이름 입력시
+ 		findPlayerName("#hitter6List", $("[name=hitter6]").val());
+ 	});
+ 	$("[name=hitter7]").on("keyup", function(){ // 7번 타자 이름 입력시
+ 		findPlayerName("#hitter7List", $("[name=hitter7]").val());
+ 	});
+ 	$("[name=hitter8]").on("keyup", function(){ // 8번 타자 이름 입력시
+ 		findPlayerName("#hitter8List", $("[name=hitter8]").val());
+ 	});
+ 	$("[name=hitter9]").on("keyup", function(){ // 9번 타자 이름 입력시
+ 		findPlayerName("#hitter9List", $("[name=hitter9]").val());
+ 	});
 </script>
 
 <style>

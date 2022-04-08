@@ -60,25 +60,25 @@
 	});
 	
 	$("#gameMonth").change(function(e) { // Month 목록값이 바뀌면
-		var target = new Date($("#gameMonth").val()+"-01");
-		var dayOne = target.getDay();	// 1일이 요일 (0~6 : 일~토)
-		var limit = dayOne<=5 && dayOne != 0;
-		target.setMonth(target.getMonth()+1);
-		target.setDate(0);
+		$.ajax({
+			url: "/admin/ticket/calendar",
+			data: {
+				"gameMonth": $("#gameMonth").val()
+			}
+		}).done(function(data){
+			console.log('!!');
+			var _html = '';
+			var arr = ["","첫째 주", "둘째 주", "셋째 주", "넷째 주", "다섯째 주", "여섯째 주"];
+			for(var idx=1; idx<=data; idx++){
+				if(idx == 1){
+					_html += '<option selected value='+idx+'>'+arr[idx]+'</option>';
+				} else {
+					_html += '<option value='+idx+'>'+arr[idx]+'</option>';
+				}
+				$("#week").html(_html);
+			}
 		
-		var dayLast = target.getDate();	// 해당달의 마지막 날
-		target = new Date($("#gameMonth").val()+"-"+dayLast);
-		dayLast = target.getDay();
-		var limitLast = dayLast>=5||dayLast ==0;
-		console.log(dayOne);
-		console.log(dayLast);
-		console.log(limit);
-		console.log(limitLast);
-		
-		//
-		console.log('!!!!!');
-		console.log(parseInt(((dayOne+dayLast)/7) +1));
-		
+		});		
 		 
 		var chartData= getChartData($("#gameMonth").val(), $("#week").val(), $("#zone").val());
 		showChart(chartData);
