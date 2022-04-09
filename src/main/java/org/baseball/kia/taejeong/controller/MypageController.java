@@ -38,8 +38,7 @@ public class MypageController {
 	@RequestMapping({"/ticket/search", "/ticket/searchByPeriod"})
 	public String ticketHandle(@ModelAttribute BaseballVo baseballVo, HttpSession httpSession, Model model) {
 		AccountVo loginUserVo = (AccountVo) httpSession.getAttribute("loginUser");
-		baseballVo.setBuyer(loginUserVo.getId());
-		
+		baseballVo.setBuyer(loginUserVo.getId());		
 		List<BaseballVo> list = baseballService.getAllById(baseballVo);
 		
 		int i = 0;

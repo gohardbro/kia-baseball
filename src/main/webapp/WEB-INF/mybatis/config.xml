@@ -9,6 +9,8 @@
 	</settings>
 	
 	<typeAliases>
+	
+	
 		<!-- 태정 -->
 		<typeAlias type="org.baseball.kia.taejeong.entity.AccountVo" alias="accountVo2"/>
 		<typeAlias type="org.baseball.kia.taejeong.entity.BaseballVo" alias="baseballVo2"/>
@@ -25,6 +27,7 @@
 		<typeAlias type="org.baseball.kia.subin.entity.ScheduleVo" alias="scheduleVo"/>
 		<typeAlias type="org.baseball.kia.subin.entity.UniformInfoVo" alias="uniformInfoVo"/>
 		<!-- 은지 -->
+			<typeAlias type="org.baseball.kia.eunji.entity.TicketVo" alias="TicketVo"/>
 		
 	</typeAliases>
 </configuration> 
