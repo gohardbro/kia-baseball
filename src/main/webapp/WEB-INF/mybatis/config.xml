@@ -27,7 +27,8 @@
 		<typeAlias type="org.baseball.kia.subin.entity.ScheduleVo" alias="scheduleVo"/>
 		<typeAlias type="org.baseball.kia.subin.entity.UniformInfoVo" alias="uniformInfoVo"/>
 		<!-- 은지 -->
-			<typeAlias type="org.baseball.kia.eunji.entity.TicketVo" alias="TicketVo"/>
+		<typeAlias type="org.baseball.kia.eunji.entity.TicketVo" alias="ticketVo"/>
+		<typeAlias type="org.baseball.kia.eunji.entity.SeatChoiceVo" alias="seatChoiceVo"/>
 		
 	</typeAliases>
 </configuration> 

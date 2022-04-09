@@ -6,7 +6,7 @@
 
 
 	  <!-- zoneInfo 좌석요금표 table  --> 
-	<select id="seatPriceTable" resultType="BaseballVo2">
+	<select id="seatPriceTable" resultType="baseballVo2">
 
 		SELECT * FROM BASEBALL_INFO
 
@@ -15,7 +15,7 @@
 
 
 	<!--ticketBuy 예매가능한 경기 목록 -->
-	<select id="showGameList" resultType="TicketVo">
+	<select id="showGameList" resultType="ticketVo">
 
 		select *
 		from (
@@ -39,12 +39,14 @@
 	</select>
 
 	<!-- ticketDetail 선택한 경기 1개 -->
-	<select id="selectGame" resultType="TicketVo"
-		parameterType="int">
+	<select id="selectGame" resultType="ticketVo" parameterType="int">
 		select *
 		from schedule s inner join team t on
 		(s.rival =
 		t.sponsor) where s.schedule_no = #{no}
 	</select>
+	
+	
+	
 
 </mapper>

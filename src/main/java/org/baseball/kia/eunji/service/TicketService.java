@@ -16,8 +16,10 @@ public class TicketService {
 
 	//zoneInfo
 
-	public List<BaseballVo> seatPriceTable() { List<BaseballVo> list =
-	  ticketDao.seatPriceTable(); return list; }
+	public List<BaseballVo> seatPriceTable() { 
+		List<BaseballVo> list = ticketDao.seatPriceTable(); 
+		return list; 
+	}
 
 	// ticketBuy
 	public List<TicketVo> showGameList() {
