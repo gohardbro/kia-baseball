@@ -9,28 +9,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TicketService {
+public class TicketServiceImpl implements TicketService{
 
+	
 	@Autowired
 	TicketDao ticketDao;
 
-	//zoneInfo
-
-	public List<BaseballVo> seatPriceTable() { 
+	
+	
+	@Override
+	public List<BaseballVo> seatPriceTable() {
 		List<BaseballVo> list = ticketDao.seatPriceTable(); 
 		return list; 
 	}
 
-	// ticketBuy
+	@Override
 	public List<TicketVo> showGameList() {
 		List<TicketVo> list = ticketDao.showGameList();
 		return list;
 	}
 
-	// ticketDetail
+	@Override
 	public TicketVo selectGame(int no) {
 		TicketVo vo = ticketDao.selectGame(no);
 		return vo;
 	}
+	 
 
 }
