@@ -75,7 +75,9 @@ img.gl-logo {
 					<script type="text/javascript">
 						$(".disp_week").each(function(){
 							var v = $(this).data("value");
+						
 							$(this).text(getInputDayLabel(v));
+						
 						})	
 					</script>
 				</div>
