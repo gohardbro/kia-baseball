@@ -8,6 +8,7 @@
 		<setting name="jdbcTypeForNull" value="VARCHAR" />
 	</settings>
 	
+	
 	<typeAliases>
 	
 	

@@ -95,7 +95,7 @@ img.gl-logo {
 								좌석선택 매수선택 총액 결제버튼 // 구역 선택 라디오 반복문
 								<div class="areaChoice">
 
-									<c:forEach var="sc" items="seatChoice" >
+									<c:forEach var="sc" items="${seatChoice}" >
 										<div class="form-check">
 											<input class="form-check-input" type="radio"
 												name="flexRadioDefault" id="flexRadioDefault1"> 
