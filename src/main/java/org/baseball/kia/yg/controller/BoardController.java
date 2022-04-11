@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class BoardController {
@@ -33,31 +32,31 @@ public class BoardController {
 
 	@Autowired
 	FileService fileService;
-	
+
 	@Autowired
 	CommentService commentService;
 
 	@RequestMapping(value = "/announce", method = RequestMethod.GET)
 	public String no(Model model) {
-		model.addAttribute("menu","announce");
+		model.addAttribute("menu", "announce");
 		return "/yg/announcement";
 	}
 
 	@RequestMapping(value = "/intro", method = RequestMethod.GET)
 	public String introduction(Model model) {
-		model.addAttribute("menu","intro");
+		model.addAttribute("menu", "intro");
 		return "/yg/introteam";
 	}
 
 	@RequestMapping(value = "/free", method = RequestMethod.GET)
 	public String defaultHandle(Model model, Criteria cri) {
-		model.addAttribute("menu","free");
+		model.addAttribute("menu", "free");
 		model.addAttribute("all", boardService.getAll(cri));
-		
+
 		PagingVo pvo = new PagingVo();
 		pvo.setCri(cri);
 		pvo.setTotalCount(boardService.listCount());
-		
+
 		model.addAttribute("pvo", pvo);
 		return "/yg/board";
 	}
@@ -68,16 +67,22 @@ public class BoardController {
 	}
 
 	@RequestMapping(path = "/write", method = RequestMethod.POST)
-	public String insertPostHandle(@ModelAttribute("vo") BoardVo vo, Model model, HttpServletRequest request,
+	public String insertPostHandle(@ModelAttribute("vo") BoardVo vo, HttpServletRequest request,
 			MultipartHttpServletRequest mhsr) throws IOException {
-		boolean rst = boardService.addNewOne(vo);
 
-		int seq = vo.getBoardNo();
+		int bno = fileService.getBoardNo();
+
 		FileUtils fileUtils = new FileUtils();
-		List<FileVo> fileList = fileUtils.parseFileInfo(seq, request, mhsr);
-		if (!rst && CollectionUtils.isEmpty(fileList) == false) {
-			fileService.insertFile(fileList);
+		List<FileVo> fileList = fileUtils.parseFileInfo(bno, request, mhsr);
+		if (CollectionUtils.isEmpty(fileList) == false) {
+			fileService.insertFileList(fileList);
 		}
+		
+		boolean rst = boardService.addNewOne(vo);
+		if (!rst) {
+			return "/yg/boardwrite";
+		}
+		
 		return "redirect:/free";
 	}
 
@@ -92,17 +97,17 @@ public class BoardController {
 		}
 		model.addAttribute("one", vo);
 
-		model.addAttribute("file", fileService.getFile(no));
-		
 		List<CommentVo> cmtList = commentService.readCmt(vo.getBoardNo());
-		model.addAttribute("cmtList",cmtList);
+		model.addAttribute("cmtList", cmtList);
 
 		return "/yg/boardview";
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String boardDelete(@RequestParam("no") int no) {
-		boardService.boardDelete(no);
+		if (no > 0) {
+			boardService.boardCmtDelete(no);
+		}
 		return "redirect:/free";
 	}
 
@@ -118,15 +123,5 @@ public class BoardController {
 		boardService.update(vo);
 		return "redirect:/boardview?no=" + vo.getBoardNo();
 	}
-	
-	@RequestMapping(value="/addComment", method = RequestMethod.POST)
-	public String _addComment(CommentVo vo, Criteria cri, RedirectAttributes rttr) {
-		commentService.addCmt(vo);
-		rttr.addAttribute("boardNo", vo.getBoardNo());
-		
-		
-		return "redirect:/boardview?no=" + vo.getBoardNo();
-	}
-	
 
 }

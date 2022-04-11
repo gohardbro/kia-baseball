@@ -50,12 +50,12 @@ public class BoardService {
 		boardDao.boardDelete(no);
 	}
 	
+	public Map<String,Integer> boardCmtDelete(int no) {
+		return boardDao.boardCmtDelete(no);
+	}
+	
 	public void update(BoardVo vo) {
 		boardDao.update(vo);
 	}
-
-	public void addComment(BoardVo boardVo) {
-		
-	}
-
+	
 }

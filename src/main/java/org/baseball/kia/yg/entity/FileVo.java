@@ -8,6 +8,7 @@ public class FileVo {
 	String fileType;
 	long fileSize;
 	String fileLocation;
+	
 
 	public int getFileNo() {
 		return fileNo;

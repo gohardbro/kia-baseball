@@ -20,7 +20,7 @@ public class AutoLoginInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		System.out.println("AutoLogin prehandle...");
+		//System.out.println("AutoLogin prehandle...");
 		Cookie loginCookie = WebUtils.getCookie(request, "autoLoginCookie"); //request로부터 특정이름쿠키만 가져오기
 		
 		if(loginCookie != null) {

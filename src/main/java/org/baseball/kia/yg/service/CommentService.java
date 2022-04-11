@@ -19,6 +19,17 @@ public class CommentService {
 	public void addCmt(CommentVo vo) {
 		commentDao.addCmt(vo);
 	}
-
+	
+	public void updateCmt(CommentVo vo) {
+		commentDao.updateCmt(vo);
+	}
+	
+	public void deleteCmt(CommentVo vo) {
+		commentDao.deleteCmt(vo);
+	}
+	
+	public CommentVo selectCmt(int no) {
+		return commentDao.selectCmt(no);
+	}
 	
 }

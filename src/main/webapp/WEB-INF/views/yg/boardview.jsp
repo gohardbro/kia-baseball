@@ -47,9 +47,9 @@
 					multiple="multiple"></td>
 			</tr>
 		</table>
+		<a href="/update?no=${one.boardNo }">글 수정</a>&nbsp;&nbsp;&nbsp; <a
+			href="/delete?no=${one.boardNo }">글 삭제</a>&nbsp;&nbsp;&nbsp;
 	</form>
-	<a href="/update?no=${one.boardNo }">글 수정</a>&nbsp;&nbsp;&nbsp; <a
-		href="/delete?no=${one.boardNo }">글 삭제</a>&nbsp;&nbsp;&nbsp;
 
 	<div id="comment">
 		<ol class="commentLsit">
@@ -61,29 +61,49 @@
 					</p>
 					<p>${cmtList.content }</p>
 				</li>
+				<div>
+					<button type="button" class="updateCmt"
+						data-rno="${cmtList.commentNo}">수정</button>
+					<button type="button" class="deleteCmt"
+						data-rno="${cmtList.commentNo}">삭제</button>
+				</div>
 			</c:forEach>
 		</ol>
 	</div>
-
-	<form name="cmtForm" method="post">
-		<input type="hidden" id="boardNo" name="boardNo"
-			value="${one.boardNo }">
-		<div>
-			<label for="writer">댓글 작성자</label><input type="text" id="writer"
-				name="writer" /> <br> <label for="content">댓글 내용</label><input
-				type="text" id="content" name="content" />
-		</div>
-		<div>
-			<button type="button" class="cmt-btn">작성</button>
-		</div>
-	</form>
-
+	<c:choose>
+		<c:when test="${empty sessionScope.loginUser }">
+		</c:when>
+		<c:otherwise>
+			<form name="cmtForm" method="post">
+				<input type="hidden" id="boardNo" name="boardNo"
+					value="${one.boardNo }">
+				<div>
+					<label for="writer">댓글 작성자</label><input type="text" id="writer"
+						name="writer" /> <br> <label for="content">댓글 내용</label><input
+						type="text" id="content" name="content" />
+				</div>
+				<div>
+					<button type="button" class="cmt-btn">작성</button>
+				</div>
+			</form>
+		</c:otherwise>
+	</c:choose>
 </div>
 <script>
-	$(".cmt-btn").on("click", function(){
+	$(".cmt-btn").on("click", function() {
 		var formObj = $("form[name='cmtForm']");
-		formObj.attr("action","/addComment");
+		formObj.attr("action", "/addComment");
 		formObj.submit();
+	});
+	
+	$(".updateCmt").on("click", function(){
+		location.href = "/yg/boardview?no=${one.boardNo}"
+						+ "&commentNo="+$(this).attr("data-commentNo");
+	});
+	
+	$(".deleteCmt").on("click", function(){
+		location.href = "/yg/boardview?no=${one.boardNo}"
+			+ "&commentNo="+$(this).attr("data-commentNo");
 	});
 </script>
 <style>

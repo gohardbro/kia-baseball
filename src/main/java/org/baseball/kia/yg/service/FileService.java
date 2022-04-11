@@ -13,12 +13,20 @@ public class FileService {
 	@Autowired
 	FileDao fileDao;
 	
-	public void insertFile(List<FileVo> fileList) {
-		fileDao.insertFile(fileList);
+	public int getBoardNo() {
+		return fileDao.getBoardNo();
 	}
 	
-	public List<FileVo> getFile(int no) {
-		return fileDao.getFile(no);
+	public int getNoticeNo() {
+		return fileDao.getNoticeNo();
+	}
+
+	public void insertFileList(List<FileVo> fileList) {
+		fileDao.insertFileList(fileList);
+	}
+	
+	public List<FileVo> getFileList(int no) {
+		return fileDao.getFileList(no);
 	}
 	
 	public void deleteFile(FileVo vo) {
@@ -28,5 +36,6 @@ public class FileService {
 	public void deleteFileList(int no) {
 		fileDao.deleteFileList(no);
 	}
+	
 	
 }

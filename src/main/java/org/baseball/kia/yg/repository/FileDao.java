@@ -12,23 +12,36 @@ public class FileDao {
 	@Autowired
 	SqlSession sqlSession;
 	
-	public void insertFile(List<FileVo> file) {
-		for(FileVo fileList : file) {
-			sqlSession.insert("file.insertOne", fileList);
+	public int getBoardNo() {
+		return sqlSession.selectOne("file.getBoardNo");
+	}
+	
+	public int getNoticeNo() {
+		return sqlSession.selectOne("file.getNoticeNo");
+	}
+	
+	public void insertFileList(List<FileVo> fileList) {
+		for(FileVo boardFile : fileList) {
+			sqlSession.insert("file.insertFileList", boardFile);
 		}
 	}
 	
-	public List<FileVo> getFile(int no) {
-		return sqlSession.selectList("file.selectOne", no);
+	public List<FileVo> getFileList(int seq) {
+		return sqlSession.selectList("file.getBoardFileList", seq);
 	}
 	
 	public void deleteFile(FileVo vo) {
-		sqlSession.delete("file.deleteFile",vo);
+		sqlSession.delete("file.deleteFile", vo);
+	}
+	
+	public void updateFile(FileVo vo) {
+		sqlSession.update("file.updateFile", vo);
 	}
 	
 	public void deleteFileList(int no) {
 		sqlSession.delete("file.deleteFileList", no);
 	}
+	
 	
 	
 }
