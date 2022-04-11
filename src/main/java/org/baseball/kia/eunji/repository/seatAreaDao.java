@@ -6,14 +6,14 @@ import org.apache.ibatis.session.SqlSession;
 import org.baseball.kia.eunji.entity.SeatChoiceVo;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class PaymentDao {
+public class seatAreaDao {
 	
 	@Autowired
 	SqlSession sqlSession;
 
 	//seatChoice
 	public List<SeatChoiceVo> seatChoice() {
-		return sqlSession.selectList("payment.seatInfo");
+		return sqlSession.selectList("seatArea.seatInfo");
 	}  
 
 }

@@ -49,8 +49,9 @@ img.gl-logo {
 					<div class="col-sm-12">
 						<div class="container">
 							<div class="shadow-none p-4 mb-4 bg-light">
-								<a>※안내사항</a><br> <a> -결제는 1인당 4매까지 가능합니다.</a><br> <a>
-									-제휴카드를 포함한 각종 할인 문의, 단체 관람 문의는 기아타이거즈 공식
+								<a>※안내사항</a><br> 
+								<a> -결제는 1인당 4매까지 가능합니다.</a><br> 
+								<a>-제휴카드를 포함한 각종 할인 문의, 단체 관람 문의는 기아타이거즈 공식
 									홈페이지(https://tigers.co.kr/)를 이용해 주세요.</a>
 							</div>
 						</div>
@@ -59,7 +60,27 @@ img.gl-logo {
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="container">
-							<div class="shadow p-4 mb-4 bg-white"></div>
+							<div class="shadow p-4 mb-4 bg-white">
+							<!--선택된 경기 정보  -->
+							<div>${oneGame.gameDate}</div>
+							
+							<div class="disp_week">
+							<input type="hidden" class="gamedate" value="${oneGame.gameDate }"> 
+							<script type="text/javascript">
+								var data = $('.gamedate').val();
+								console.log(data); /* 날짜는 잘 가져왔음 */
+								document.write(getInputDayLabel(data));
+							</script>
+							</div>
+							<div>${oneGame.gameTime}</div>
+							<div><img src="/images/Logo_Mini/KIA.jpg" class="gl-logo" /></div>
+							<div>기아타이거즈</div>
+							<div>VS</div>
+							<div><img src="/images/Logo_Mini/${oneGame.teamImg}"
+							class="gl-logo" /></div>
+							<div>${oneGame.sponsor}${oneGame.teamName}</div>
+							<div>챔피언스필드(홈경기)</div>
+							</div>
 						</div>
 					</div>
 					<div class="col-sm-8">
@@ -73,65 +94,21 @@ img.gl-logo {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-			<table class="table">
-				<tbody>
-					<tr>
-						<td>${oneGame.gameDate}</td>
-						<td class="disp_week"><input type="hidden" class="gamedate"
-							value="${oneGame.gameDate }"> <script
-								type="text/javascript">
-								var data = $('.gamedate').val();
-								console.log(data); /* 날짜는 잘 가져왔음 */
-								document.write(getInputDayLabel(data));
-							</script></td>
-
-						<td>${oneGame.gameTime}</td>
-						<td>기아타이거즈</td>
-						<td><img src="/images/Logo_Mini/KIA.jpg" class="gl-logo" />
-						</td>
-						<td>VS</td>
-
-						<td><img src="/images/Logo_Mini/${oneGame.teamImg}"
-							class="gl-logo" /></td>
-						<td id="rival">${oneGame.sponsor}${oneGame.teamName}</td>
-						<td>챔피언스필드</td>
-
-
-					</tr>
-
-
-				</tbody>
-			</table>
-
 		</article>
 	</div>
 
 
-
-	<%-- <div class="areaChoice">
+<%-- 
+// 구역 선택 라디오 반복문 
+ 			<div class="areaChoice">
 
 		 	<c:forEach>
 			<div class="form-check">
 				<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"> 
 				<label class="form-check-label" for="flexRadioDefault1"> ${baseballZone} </label>
 			</div>
-			</c:forEach> --%>
-
-	<%-- 
+			</c:forEach>  
+ 
 
 		매수선택 + 수량 업다운 버튼
 		<td id="quantity<%=i%>" class="quantity">
@@ -173,7 +150,7 @@ img.gl-logo {
 		 
 		
 		</script>
-		 --%>
+  --%>
 
 </body>
 </html>

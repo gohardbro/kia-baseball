@@ -2,8 +2,10 @@ package org.baseball.kia.eunji.entity;
 
 public class SeatChoiceVo {
 	
+	//주중주말 요금, 구역, 구역별 제한 
 	int baseInfoNo, priceWeekday, baseballZone, limit;
 	String priceWeekend;
+	
 	
 	
 	public int getBaseInfoNo() {
