@@ -2,7 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ticket">
 
-	<!--별칭 config 만들기 -->
+
+	<!-- ticketBuy.jsp 페이지 기준 mapper  -->
+
 
 
 	  <!-- zoneInfo 좌석요금표 table  --> 
@@ -38,13 +40,6 @@
 		order by game_date asc
 	</select>
 
-	<!-- ticketDetail 선택한 경기 1개 -->
-	<select id="selectGame" resultType="ticketVo" parameterType="int">
-		select *
-		from schedule s inner join team t on
-		(s.rival =
-		t.sponsor) where s.schedule_no = #{no}
-	</select>
 	
 	
 	

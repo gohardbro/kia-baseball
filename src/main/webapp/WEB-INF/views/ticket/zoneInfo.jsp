@@ -59,7 +59,7 @@
 								</tr>
 							</thead>
 							<tbody>
-							<c:forEach var="st" items="${seat}">
+							<c:forEach var="st" items="${priceTable}">
 								<tr>
 									<td>${st.baseballZone }</td>
 									<td>${st.priceWeekday }</td>
