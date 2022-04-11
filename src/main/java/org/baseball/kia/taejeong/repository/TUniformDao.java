@@ -1,0 +1,20 @@
+package org.baseball.kia.taejeong.repository;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.baseball.kia.taejeong.entity.TUniformVo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class TUniformDao {
+	
+	@Autowired
+	SqlSession sqlSession;
+	
+	public List<TUniformVo> selectAllByBuyer(TUniformVo tUniformVo) {
+		return sqlSession.selectList("tUniform.selectAllByBuyer", tUniformVo);
+	}
+	
+}

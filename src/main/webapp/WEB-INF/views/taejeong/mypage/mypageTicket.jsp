@@ -69,6 +69,7 @@ th {
 }
 
 td {
+	border-bottom: 1px solid #e3e6e5;
 	font-size: 13px;
 	text-align: center;
 	padding: 10px 0px;
@@ -103,7 +104,7 @@ select, option {
 </style>
 
 <div class="row" style="margin: 0px;">
-	<div class="column side" style="background-color: #f4f4f4;">빈컬럼</div>
+	<div class="column side" style="background-color: #f4f4f4;"></div>
 	<div class="column middle">
 		<div class="row">
 			<div class="side_wrapper col-2">
@@ -170,11 +171,11 @@ select, option {
 							<colgroup>
 								<col style="width: 90px;">
 								<col>
-								<col style="width: 135px;">
+								<col style="width: 130px;">
 								<col style="width: 50px;">
 								<col style="width: 135px;">
 								<col style="width: 100px;">
-								<col style="width: 155px;">
+								<col style="width: 140px;">
 							</colgroup>
 							<thead>
 								<tr>
@@ -195,7 +196,7 @@ select, option {
 											href="/ticket/ticketDetail?baseballNo=${ticketList.baseballNo }">${ticketList.baseballNo }</a></td>
 										<td>KIA Tigers vs ${ticketList.rival }</td>
 										<td><span class="gameDate">${ticketList.gameDate }</span>
-											${ticketList.gameTime }</td>
+											<br>${ticketList.gameTime }</td>
 										<td>${ticketList.buyerCnt }장</td>
 										<td>${ticketList.buyDate }</td>
 										<c:set var="cancelDate" value="cancelDate${status.index}" />
@@ -212,7 +213,7 @@ select, option {
 		</div>
 	</div>
 
-	<div class="column side" style="background-color: #f4f4f4;">빈컬럼</div>
+	<div class="column side" style="background-color: #f4f4f4;"></div>
 </div>
 <script>
 	$(".btn-outline-secondary").click(function() {

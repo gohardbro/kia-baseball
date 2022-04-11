@@ -19,7 +19,7 @@ public class BaseballService {
 	
 	public boolean cancelOneTicket(int baseballNo) {
 		
-		int r = baseballDao.deleteOneByBaseballNo(baseballNo);
+		int r = baseballDao.updateCancelByBaseballNo(baseballNo);
 		if(r==1)
 			return true;
 		else

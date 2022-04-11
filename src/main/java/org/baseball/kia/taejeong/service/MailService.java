@@ -24,7 +24,6 @@ public class MailService {
 		message.setSubject("[테스트] 테스트메일입니다.");
 		message.setText("테스트 메일입니다.\n하하하하..");
 		message.setTo(target);
-		// message.setFrom("edupoll");
 		try {
 			mailSender.send(message);
 		} catch (Exception e) {

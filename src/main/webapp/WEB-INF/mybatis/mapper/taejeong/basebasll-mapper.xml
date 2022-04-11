@@ -9,7 +9,7 @@
 		JOIN BASEBALL_INFO
 		USING(BASE_INFO_NO)
 		WHERE BUYER = #{buyer}
-		
+		AND CANCEL = 'N'
 		<choose>
 			<when test="periodBtn == '15d'">
 				AND BUY_DATE BETWEEN SYSDATE-15 AND SYSDATE
@@ -37,10 +37,11 @@
 		</if>
 	</select>
 	
-	<delete id="deleteOneByBaseballNo">
-		DELETE FROM BASEBALL
+	<update id="updateCancelByBaseballNo">
+		UPDATE BASEBALL
+		SET CANCEL = 'Y'
 		WHERE BASEBALL_NO = #{baseballNo}
-	</delete>
+	</update>
 </mapper>
 
 

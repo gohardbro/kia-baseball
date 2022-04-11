@@ -73,12 +73,10 @@ li {
 			<div class="listTitle">MY 굿즈</div>
 			<div class="listContainer">
 				<ul class="">
-					<li id="" class=""><a href="/#" title="" target="_self"
-						class="">굿즈예약내역</a></li>
-					<li id="" class=""><a href="/#" title="" target="_self"
-						class="">찜리스트</a></li>
-					<li id="" class="\"><a href="/#" title="" target="_self"
+					<li id="" class=""><a href="/cart" title="" target="_self"
 						class="">장바구니</a></li>
+					<li id="" class=""><a href="/purchaseHistory" title="" target="_self"
+						class="">구매내역</a></li>
 				</ul>
 			</div>
 		</div>
@@ -86,14 +84,10 @@ li {
 			<div class="listTitle">MY 활동</div>
 			<div class="listContainer">
 				<ul class="">
-					<li id="" class=""><a href="/#" title="문의하기" target="_self"
-						class=" ">문의하기</a></li>
-					<li id="" class=""><a href="/#" title="문의내역 확인" target="_self"
+					<li id="" class=""><a href="/inquiry" title="문의하기" target="_self"
+						class="">문의하기</a></li>
+					<li id="" class=""><a href="/inquiry/history" title="문의내역 확인" target="_self"
 						class="">문의내역 확인</a></li>
-					<li id="" class=""><a href="/#" title="리뷰관리" target="_self"
-						class=" ">리뷰관리<span id="" class=""></span></a></li>
-					<li id="" class=""><a href="/#" title="찜 리스트" target="_self"
-						class=" ">찜 리스트</a></li>
 					<li id="" class=""><a href="/#" title="찜 리스트" target="_self"
 						class=" ">포인트조회</a></li>
 					<li id="" class=""><a href="/#" title="문의하기" target="_self"

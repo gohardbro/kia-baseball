@@ -42,10 +42,7 @@ public class AccountController {
 		AccountVo loginUser = (AccountVo) httpSession.getAttribute("loginUser");
 		String id = loginUser.getId();
 		String pw = vo.getPw();
-		System.out.println("id : " + id);
-		System.out.println("입력한 현재 비밀번호 : " + pw);
 		boolean valid = accountService.isValidAccount(id, pw);
-		System.out.println("비밀번호일치 " + valid);
 		if(valid) {
 			vo.setId(id);
 			vo.setPw(new_pw_again);

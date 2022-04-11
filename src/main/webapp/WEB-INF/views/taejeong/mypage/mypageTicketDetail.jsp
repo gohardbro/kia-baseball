@@ -108,7 +108,7 @@ select, option {
 </style>
 
 <div class="row" style="margin: 0px;">
-	<div class="column side" style="background-color: #f4f4f4;">빈컬럼</div>
+	<div class="column side" style="background-color: #f4f4f4;"></div>
 	<div class="column middle">
 		<div class="row">
 			<div class="side_wrapper col-2">
@@ -167,34 +167,57 @@ select, option {
 										<th></th>
 										<td colspan="2"></td>
 									</tr>
+									<input type="hidden" id="baseballNo" value="${ticketList.baseballNo}">
 								</c:forEach>
 							</tbody>
 						</table>
 						<div class="cancelBtn">
-							<c:forEach items="${ticketList }" var="ticketList"
-								varStatus="status">
-								<a type="button" class="btn btn-secondary" id="cancelBtnA"
-									href="/ticket/ticketCancel?baseballNo=${ticketList.baseballNo}">취소하기</a>
-							</c:forEach>
+							<button type="button" class="btn btn-secondary" id="cancelBtnA" onclick="confirmCheck()">취소하기</button>
 						</div>
+						
+						<!-- Button trigger modal -->
+						<!-- <button type="button" class="btn btn-primary"
+							data-bs-toggle="modal" data-bs-target="#exampleModal">
+							Launch demo modal</button> -->
+
+						<!-- Modal -->
+						<!-- <div class="modal fade" id="exampleModal" tabindex="-1"
+							aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">Modal
+											title</h5>
+										<button type="button" class="btn-close"
+											data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body">정말 예매를 취소합니까?</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary"
+											data-bs-dismiss="modal">취소합니다</button>
+										<button type="button" class="btn btn-primary">아니요</button>
+									</div>
+								</div>
+							</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div class="column side" style="background-color: #f4f4f4;">빈컬럼</div>
+	<div class="column side" style="background-color: #f4f4f4;"></div>
 </div>
 <script>
-	/* 취소하기 버튼클릭시 성공여부 alert */
-	$("#cancelBtnA").click(function(){
-		var ticketCancelMsg = ${ticketCancelMsg};
-		if(ticketCancelMsg != null)
-			alert(ticketCancelMsg);
-		else
-			alert("티켓취소를 실패했습니다.");
-			
-	});
+	/* 예매취소 alert */
+	function confirmCheck(){
+		var baseballNo = $("#baseballNo").val();
+		var con = confirm("예매를 취소 하시겠습니까?");
+		if(con){
+			alert("예매가 취소되었습니다.");
+			location.href = "/ticket/ticketCancel?baseballNo=" + baseballNo;
+		}
+	}
 
 	/* 예매취소 가능일 계산 */
 	function calCancelDate() {
@@ -213,6 +236,8 @@ select, option {
 		$(".btn-outline-secondary").removeClass("active");
 		$(this).addClass("active");
 	});
+	
+	
 </script>
 
 

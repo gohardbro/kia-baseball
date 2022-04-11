@@ -9,11 +9,11 @@
 	</settings>
 	
 	<typeAliases>
-	
-	
 		<!-- 태정 -->
 		<typeAlias type="org.baseball.kia.taejeong.entity.AccountVo" alias="accountVo2"/>
 		<typeAlias type="org.baseball.kia.taejeong.entity.BaseballVo" alias="baseballVo2"/>
+		<typeAlias type="org.baseball.kia.taejeong.entity.TUniformVo" alias="tUniformVo"/>
+		<typeAlias type="org.baseball.kia.taejeong.entity.InquiryVo" alias="inquiryVo"/>
 		<!-- 영균 -->
 		<typeAlias type="org.baseball.kia.yg.entity.BoardVo" alias="board" />
 		<typeAlias type="org.baseball.kia.yg.entity.PagingVo" alias="paging" />

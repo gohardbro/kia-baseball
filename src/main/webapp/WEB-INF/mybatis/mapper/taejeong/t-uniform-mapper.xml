@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tUniform">
+	<select id="selectAllByBuyer" resultType="tUniformVo">
+		SELECT *
+		FROM UNIFORM U INNER JOIN UNIFORM_INFO I
+		USING(UNI_INFO_NO)
+		INNER JOIN PLAYER P
+		ON U.PLAYER_NO = P.NO
+		WHERE BUYER = #{buyer}
+		
+		<if test="periodBtn == null">
+			AND BUY_DATE IS NULL
+		</if>
+		<choose>
+			<when test="periodBtn == '15d'">
+				AND BUY_DATE BETWEEN SYSDATE-15 AND SYSDATE
+			</when>
+			<when test="periodBtn == '1mon'">
+				AND BUY_DATE BETWEEN ADD_MONTHS(SYSDATE, -1) AND SYSDATE
+			</when>
+			<when test="periodBtn == '2mon'">
+				AND BUY_DATE BETWEEN ADD_MONTHS(SYSDATE, -2) AND SYSDATE
+			</when>
+			<when test="periodBtn == '4mon'">
+				AND BUY_DATE BETWEEN ADD_MONTHS(SYSDATE, -4) AND SYSDATE
+			</when>
+		</choose>
+		
+		<if test="yearSelect != null and monSelect != null">
+			AND TO_CHAR(BUY_DATE, 'YYYY') = #{yearSelect}
+			AND TO_CHAR(BUY_DATE, 'MM') = #{monSelect}		
+		</if>
+	</select>
+</mapper>

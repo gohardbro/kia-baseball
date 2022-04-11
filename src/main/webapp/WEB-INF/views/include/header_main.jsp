@@ -57,6 +57,7 @@
 					<c:otherwise>
 						<ul style="float: right; border-left: 0; border-right: 0;">
 							<li><a href="/mypage">${loginUser.nickname } (${loginUser.id }) 님</a></li>
+							<li><a href="/mypage">마이페이지</a></li>
 							<li><a href="/logout">로그아웃</a></li>
 							<c:if test="${loginUser.admin eq 'Y' }">
 								<li><a href="/admin">Admin</a></li>
