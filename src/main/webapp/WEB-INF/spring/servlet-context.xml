@@ -48,5 +48,13 @@
 			<bean class="org.baseball.kia.subin.interceptor.AdminInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
+	
+	<!-- scheduler -->
+	<bean id="gameScoreTask" class="org.baseball.kia.subin.task.GameScoreTask"/>
+	<task:scheduler id="gameScheduler" pool-size="10"/>
+	<task:scheduled-tasks scheduler="gameScheduler">
+		<task:scheduled ref="gameScoreTask" method="playGame" cron="0 0 0 * * *"/> <!-- 매일 자정 -->
+	</task:scheduled-tasks>
+	<task:annotation-driven/>
 
 </beans>

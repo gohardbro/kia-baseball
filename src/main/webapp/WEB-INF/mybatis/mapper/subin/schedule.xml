@@ -6,4 +6,9 @@
 		WHERE GAME_DATE <![CDATA[<=]]> SYSDATE
 		ORDER BY GAME_DATE DESC 
 	</select>
+	
+	<select id="selectGameDate" resultType="int"> <!-- 경기일자 별 경기일정코드 조회 -->
+		SELECT SCHEDULE_NO FROM SCHEDULE
+		WHERE GAME_DATE = #{gameDate}
+	</select>
 </mapper>

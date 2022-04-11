@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="score">
+
+	<insert id="insertScore"> <!-- 경기 스코어 입력 -->
+		<selectKey order="BEFORE" keyColumn="scheduleNo">
+			SELECT SCHEDULE_NO FROM SCHEDULE
+			WHERE GAME_DATE = #{gameDate}
+		</selectKey>
+		INSERT INTO SCORE
+		VALUES (#{scheduleNo}, #{kiaRuns},
+		#{kia1}, #{kia2}, #{kia3}, #{kia4},
+		#{kia5}, #{kia6}, #{kia7}, #{kia8},
+		#{kia9}, #{kia10}, #{kia11},
+		#{kia12}, #{rivalRuns}, #{rival1},
+		#{rival2}, #{rival3}, #{rival4}, #{rival5}, #{rival6}, #{rival7},
+		#{rival8}, #{rival9}, #{rival10}, #{rival11}, #{rival12})
+	</insert>
+</mapper>

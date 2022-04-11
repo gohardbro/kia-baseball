@@ -16,4 +16,8 @@ public class ScheduleDao {
 	public List<ScheduleVo> selectDateAndTime() { // 라인업 등록에서 조회할 경기 일정
 		return sqlSession.selectList("schedule.selectDateAndTime");
 	}
+	
+	public List<Integer> selectGameDate(String gameDate){ // 경기일자별 경기일정코드 조회
+		return sqlSession.selectList("schedule.selectGameDate", gameDate);
+	}
 }

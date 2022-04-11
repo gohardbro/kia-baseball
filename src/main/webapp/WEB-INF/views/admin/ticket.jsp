@@ -67,7 +67,6 @@
 				"gameMonth": $("#gameMonth").val()
 			}
 		}).done(function(data){
-			console.log('!!');
 			var _html = '';
 			var arr = ["","첫째 주", "둘째 주", "셋째 주", "넷째 주", "다섯째 주", "여섯째 주"];
 			for(var idx=1; idx<=data; idx++){
@@ -104,7 +103,7 @@
 					label : $("#zone").val(),
 					backgroundColor : 'rgb(200,	153, 126)',
 					borderColor : 'rgb(200,	153, 126)',
-					data : data.cnt
+					data : data.percent
 				}, ]
 			},
 			options : {
@@ -141,6 +140,7 @@
 			},
 			async : false
 		}).done(function(data){
+			console.log(data);
 			result = data;
 		});	
 		return result;
