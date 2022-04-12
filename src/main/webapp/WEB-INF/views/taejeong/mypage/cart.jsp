@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
 
 <style>
@@ -144,37 +145,37 @@ select, option {
 							<tbody>
 								<c:forEach items="${uniformCartList }" var="uniformCartList" varStatus="status">
 									<tr>
-										<td><input type="checkbox" class="checkbox" value="${uniformCartList.uniformNo }"></td>
+										<td><input type="checkbox" class="checkbox checkbox${uniformCartList.uniformNo }" name="chkList" value="${uniformCartList.price * uniformCartList.uniCnt }"></td>
 										<td><img src="${uniformCartList.uniformImg }"></td>
 										<td class="productBox">
 											<div class="namePart">
 												${uniformCartList.uniformName }
 												, ${uniformCartList.no }번 ${uniformCartList.name }
 												, ${uniformCartList.color }
-												, ${uniformCartList.uniCnt }개 
 											</div>
 											<div class="totalPriceOption">
-											
-												<span id="price">${uniformCartList.price }원 </span>
-												<input type="hidden" value="${uniformCartList.price }" class="priceInput">
-												<select>
-													<option value="1">1
-													<option value="2">2
-													<option value="3">3
-													<option value="4">4
-													<option value="5">5
-													<option value="6">6
-													<option value="7">7
-													<option value="8">8
-													<option value="9">9
-													<option value="10">10+
+												<span id="price"><fmt:formatNumber value="${uniformCartList.price }" pattern="#,###"></fmt:formatNumber>원 </span> 
+												<select class="selectbox" data-price="${uniformCartList.price }" data-no="${uniformCartList.uniformNo }" data-cnt="${uniformCartList.uniCnt }">
+													<option value="1" ${uniformCartList.uniCnt == 1 ? "selected" : "" }>1
+													<option value="2" ${uniformCartList.uniCnt == 2 ? "selected" : "" }>2
+													<option value="3" ${uniformCartList.uniCnt == 3 ? "selected" : "" }>3
+													<option value="4" ${uniformCartList.uniCnt == 4 ? "selected" : "" }>4
+													<option value="5" ${uniformCartList.uniCnt == 5 ? "selected" : "" }>5
+													<option value="6" ${uniformCartList.uniCnt == 6 ? "selected" : "" }>6
+													<option value="7" ${uniformCartList.uniCnt == 7 ? "selected" : "" }>7
+													<option value="8" ${uniformCartList.uniCnt == 8 ? "selected" : "" }>8
+													<option value="9" ${uniformCartList.uniCnt == 9 ? "selected" : "" }>9
+													<option value="10" ${uniformCartList.uniCnt == 10 ? "selected" : "" }>10+ 
 												</select>
-												<span id="cnt">* ${uniformCartList.uniCnt }</span>
+												개
 											</div>
 										</td>
-										<td id="totalPrice">${uniformCartList.price * uniformCartList.uniCnt }</td>
+										<td class="totalPrice${uniformCartList.uniformNo }"><fmt:formatNumber value="${uniformCartList.price * uniformCartList.uniCnt }" pattern="#,###"></fmt:formatNumber>원</td>
 									</tr>
 								</c:forEach>
+								<tr>
+									<td colspan="4">총 상품가격 = <strong id="selectedTotalPrice" style="font-size: 17px;"></strong>원</td>
+								</tr>
 							</tbody>
 						</table>
 					</div>
@@ -186,27 +187,65 @@ select, option {
 
 	<div class="column side" style="background-color: #f4f4f4;"></div>
 </div>
+
 <script>
-	$("option").click(function(){
-		var params = {
-				price : $(".priceInput").val()
-				,cnt = this.val()
-		}
 	
-	    $.ajax({
-	    	type : "POST",
-	    	url : "/cart/calTotalPrice",
-	    	data : params,
-	    	success : function(res){
-	    		
-	    	},
-	    	error : function(){
-	    		
-	    	}
-	    });
-		
+	
+	$('input[type="checkbox"]').click(function() {
+		calTotal();
 	});
 	
+ 	
+	/* 체크박스 선택된 상품들 가격 더하기 */
+	function calTotal() {
+		var price = "";
+		var output = 0;
+		$('input[name=chkList]:checked').each(function() {
+			price = $(this).val();
+			output += Number(price);
+		});
+
+		$("#selectedTotalPrice").text(addComma(output));
+	}
+
+	/* 3자리 숫자마다 , 찍어준다 */
+	function addComma(num) {
+		var regexp = /\B(?=(\d{3})+(?!\d))/g;
+		return num.toString().replace(regexp, ',');
+	}
+
+	$(".selectbox").change(
+			function() {
+				var params = {
+					price : $(this).data("price"),
+					uniCnt : $(this).val(),
+					uniformNo : $(this).data("no")
+				}
+
+				console.log($(this).data("price") + "/" + $(this).val() + "/"
+						+ $(this).data("no"));
+
+				var uniformNo = $(this).data("no");
+				$.ajax({
+					type : "POST",
+					url : "/cart/calTotalPrice",
+					data : params,
+					success : function(total) {
+						var totalAddedComma = addComma(total);
+						$(".totalPrice" + uniformNo)
+								.html(totalAddedComma + "원");
+						$(".checkbox" + uniformNo).val(total);
+
+						calTotal();
+
+					},
+					error : function() {
+
+					}
+				});
+
+			});
+
 	$(".btn-outline-secondary").click(function() {
 		$(".btn-outline-secondary").removeClass("active");
 		$(this).addClass("active");
@@ -215,7 +254,6 @@ select, option {
 	/* 체크박스 전체선택 */
 	function checkAll() {
 		var chkList = $(".checkbox");
-		console.log($(".checkAllbox").is(":checked"));
 		if ($(".checkAllbox").is(":checked"))
 			chkList.prop("checked", true);
 		else

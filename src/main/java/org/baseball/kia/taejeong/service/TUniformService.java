@@ -17,5 +17,8 @@ public class TUniformService {
 		return tUniformDao.selectAllByBuyer(tUniformVo);
 	}
 	
+	public int updateTotalNUniCnt(TUniformVo tUniformVo) {
+		return tUniformDao.updateTotalNUniCntByUniformNo(tUniformVo);
+	}
 
 }

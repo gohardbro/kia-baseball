@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -146,9 +147,21 @@ public class MypageController {
 		AccountVo loginUserVo = (AccountVo) httpSession.getAttribute("loginUser");
 		tUniformVo.setBuyer(loginUserVo.getId());
 		List<TUniformVo> list = tUniformService.getAllByBuyer(tUniformVo);
-		System.out.println(tUniformVo.toString());
 		model.addAttribute("uniformCartList", list);
 		return "taejeong/mypage/cart";
+	}
+	
+	@RequestMapping("/cart/calTotalPrice")
+	@ResponseBody
+	public int cartCalTotalPriceHandle(@ModelAttribute TUniformVo tUniformVo) {
+		int price = tUniformVo.getPrice();
+		int uniCnt = tUniformVo.getUniCnt();
+		int total = price * uniCnt;
+		tUniformVo.setTotal(total);
+		
+		tUniformService.updateTotalNUniCnt(tUniformVo);
+		
+		return total;
 	}
 
 }

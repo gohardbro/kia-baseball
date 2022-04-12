@@ -32,4 +32,11 @@
 			AND TO_CHAR(BUY_DATE, 'MM') = #{monSelect}		
 		</if>
 	</select>
+	
+	<update id="updateTotalNUniCntByUniformNo">
+		UPDATE UNIFORM
+		SET UNI_CNT = #{uniCnt},
+    		TOTAL = #{total}
+		WHERE UNIFORM_NO = #{uniformNo}
+	</update>
 </mapper>

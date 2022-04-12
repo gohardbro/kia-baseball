@@ -75,7 +75,6 @@ public class AccountController {
 	public String modifyPhoneHandle(@ModelAttribute AccountVo vo, HttpSession httpSession, Model model) {
 		AccountVo loginUser = (AccountVo) httpSession.getAttribute("loginUser");
 		String id = loginUser.getId();
-		System.out.println(vo.getPhone());
 		String convertedPhone = accountService.phone_format(vo.getPhone());
 		vo.setPhone(convertedPhone);
 		vo.setId(id);

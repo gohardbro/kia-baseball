@@ -17,4 +17,7 @@ public class TUniformDao {
 		return sqlSession.selectList("tUniform.selectAllByBuyer", tUniformVo);
 	}
 	
+	public int updateTotalNUniCntByUniformNo(TUniformVo tUniformVo) {
+		return sqlSession.update("tUniform.updateTotalNUniCntByUniformNo", tUniformVo);
+	}
 }

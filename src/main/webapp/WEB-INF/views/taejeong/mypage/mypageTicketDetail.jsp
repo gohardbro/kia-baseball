@@ -145,7 +145,7 @@ select, option {
 									</tr>
 									<tr>
 										<th>경기일시</th>
-										<td>${ticketList.gameDate }${ticketList.gameTime }</td>
+										<td>${ticketList.gameDate } ${ticketList.gameTime }</td>
 										<th>장소</th>
 										<td>${ticketList.gameDate }</td>
 									</tr>
