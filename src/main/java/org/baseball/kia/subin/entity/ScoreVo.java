@@ -2,16 +2,16 @@ package org.baseball.kia.subin.entity;
 
 public class ScoreVo {
 
-	int schduleNo;
+	int scheduleNo;
 	int kiaRuns, kia1, kia2, kia3, kia4, kia5, kia6, kia7, kia8, kia9, kia10, kia11, kia12;
 	int rivalRuns, rival1, rival2, rival3, rival4, rival5, rival6, rival7, rival8, rival9, rival10, rival11, rival12;
 
-	public int getSchduleNo() {
-		return schduleNo;
+	public int getScheduleNo() {
+		return scheduleNo;
 	}
 
-	public void setSchduleNo(int schduleNo) {
-		this.schduleNo = schduleNo;
+	public void setScheduleNo(int scheduleNo) {
+		this.scheduleNo = scheduleNo;
 	}
 
 	public int getKiaRuns() {
@@ -224,7 +224,7 @@ public class ScoreVo {
 
 	@Override
 	public String toString() {
-		return "ScoreVo [schduleNo=" + schduleNo + ", kiaRuns=" + kiaRuns + ", kia1=" + kia1 + ", kia2=" + kia2
+		return "ScoreVo [scheduleNo=" + scheduleNo + ", kiaRuns=" + kiaRuns + ", kia1=" + kia1 + ", kia2=" + kia2
 				+ ", kia3=" + kia3 + ", kia4=" + kia4 + ", kia5=" + kia5 + ", kia6=" + kia6 + ", kia7=" + kia7
 				+ ", kia8=" + kia8 + ", kia9=" + kia9 + ", kia10=" + kia10 + ", kia11=" + kia11 + ", kia12=" + kia12
 				+ ", rivalRuns=" + rivalRuns + ", rival1=" + rival1 + ", rival2=" + rival2 + ", rival3=" + rival3

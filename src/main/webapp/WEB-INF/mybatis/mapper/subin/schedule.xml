@@ -11,4 +11,9 @@
 		SELECT SCHEDULE_NO FROM SCHEDULE
 		WHERE GAME_DATE = #{gameDate}
 	</select>
+	
+	<select id="selectScheduleByMonth" resultType="calendarVo"> <!-- 월별 경기 일정 조회 -->
+		SELECT * FROM SCHEDULE S LEFT OUTER JOIN TEAM T ON(S.RIVAL = T.SPONSOR)
+		WHERE TO_CHAR(TO_DATE(GAME_DATE), 'yyyy-MM') = #{gameMonth}
+	</select>
 </mapper>

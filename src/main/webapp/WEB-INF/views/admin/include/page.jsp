@@ -9,7 +9,7 @@
 			처음<!-- <i class="fas fa-angle-double-left"></i> -->
 		</a>
 		<a title='이전' onclick='go_page(${page.beginPage-page.blockPage})'>
-			이전<!-- <i class="fas fa-angle-left"></i> -->
+			&lt;<!-- <i class="fas fa-angle-left"></i> -->
 		</a>
 	</c:if>
 
@@ -25,7 +25,7 @@
 	<!-- 다음블럭/마지막블럭: 마지막블럭이 아닌 경우만 -->
 	<c:if test='${page.curBlock ne page.totalBlock}'>
 		<a title='다음' onclick='go_page(${page.endPage+1})'>
-			다음<!-- <i class="fas fa-angle-right"></i> -->
+			&gt;<!-- <i class="fas fa-angle-right"></i> -->
 		</a>
 		<a title='마지막' onclick='go_page(${page.totalPage})'>
 			끝<!-- <i class="fas fa-angle-double-right"></i> -->

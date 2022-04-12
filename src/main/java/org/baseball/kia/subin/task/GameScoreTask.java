@@ -11,7 +11,6 @@ import org.baseball.kia.subin.repository.ScoreDao;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class GameScoreTask {
-
 	@Autowired
 	ScoreDao scoreDao;
 
@@ -35,16 +34,19 @@ public class GameScoreTask {
 			for (int inning = 1; inning <= 9; inning++) { // 1~9회 점수
 				kia.add(inning, inningScore());
 				rival.add(inning, inningScore());
+				System.out.println(inning + " kia >>"+kia.get(inning)+" rival >>"+rival.get(inning));
 			}
 
 			// 최종 득점 저장
-			kia.add(0, getRuns(kia));
-			rival.add(0, getRuns(rival));
+			kia.set(0, getRuns(kia));
+			rival.set(0, getRuns(rival));
+			System.out.println("kia >> "+kia.get(0)+" rival >> "+rival.get(0)+"\n");
 
 			if (kia.get(0) == rival.get(0)) { // 9회까지 동점인 경우
 				for (int inning = 10; inning <= 12; inning++) { // 연장 10~12회
 					kia.add(inning, inningScore());
 					rival.add(inning, inningScore());
+					System.out.println(inning + " kia >>"+kia.get(inning)+" rival >>"+rival.get(inning));
 
 					if (kia.get(inning) != rival.get(inning)) { // 승패 결정 시 게임 종료
 						break;
@@ -52,8 +54,10 @@ public class GameScoreTask {
 				}
 
 				// 최종 득점 저장
-				kia.add(0, getRuns(kia));
-				rival.add(0, getRuns(rival));
+				kia.set(0, getRuns(kia));
+				rival.set(0, getRuns(rival));
+				System.out.println("kia >> "+kia.get(0)+" rival >> "+rival.get(0)+"\n");
+				
 			}
 			insertGameScore(scheduleNo, kia, rival); // DB 저장
 		} 
@@ -82,8 +86,14 @@ public class GameScoreTask {
 	}
 
 	public int insertGameScore(int scheduleNo, List<Integer> kia, List<Integer> rival) { // Score값 DB 저장
+		System.out.println("size > "+kia.size() +" "+rival.size());
+		for (int i = 0; i < kia.size(); i++) {
+			System.out.println(i+"kia >> "+kia.get(i)+"rival >> "+rival.get(i));
+		}
+		
+		
 		ScoreVo vo = new ScoreVo();
-		vo.setSchduleNo(scheduleNo);
+		vo.setScheduleNo(scheduleNo);
 		vo.setKiaRuns(kia.get(0));
 		vo.setKia1(kia.get(1));
 		vo.setKia2(kia.get(2));
@@ -94,9 +104,11 @@ public class GameScoreTask {
 		vo.setKia7(kia.get(7));
 		vo.setKia8(kia.get(8));
 		vo.setKia9(kia.get(9));
-		vo.setKia10(kia.get(10));
-		vo.setKia11(kia.get(11));
-		vo.setKia12(kia.get(12));
+		if (kia.size() > 10) {
+			vo.setKia10(kia.get(10));
+			vo.setKia11(kia.get(11));
+			vo.setKia12(kia.get(12));
+		}
 		vo.setRivalRuns(rival.get(0));
 		vo.setRival1(rival.get(1));
 		vo.setRival2(rival.get(2));
@@ -107,9 +119,11 @@ public class GameScoreTask {
 		vo.setRival7(rival.get(7));
 		vo.setRival8(rival.get(8));
 		vo.setRival9(rival.get(9));
-		vo.setRival10(rival.get(10));
-		vo.setRival11(rival.get(11));
-		vo.setRival12(rival.get(12));
+		if (rival.size() > 10) {
+			vo.setRival10(rival.get(10));
+			vo.setRival11(rival.get(11));
+			vo.setRival12(rival.get(12));
+		}
 
 		return scoreDao.insertScore(vo);
 	}
