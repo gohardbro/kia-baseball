@@ -61,13 +61,14 @@
 	var db;
 	$(function() { // 페이지 로딩시 자동 실행
 		db = printCalendar($("#gameMonth").val());
-		console.log(db);
-		_html = printDate(db);
+		_html = printDate($("#gameMonth").val(), db);
 		$(".date").html(_html);
 	});
 	
 	$("#gameMonth").change(function(e) { // Month 목록값이 바뀌면
 		db = printCalendar($("#gameMonth").val());
+		_html = printDate($("#gameMonth").val(), db);
+		$(".date").html(_html);
 	});
 
 	function printCalendar(gameMonth) { 

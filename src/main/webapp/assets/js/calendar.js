@@ -1,8 +1,7 @@
-function printDate(db){
-	var dt = new Date();
-	
-	var prevLast = new Date(Year, dt.getMonth(), 0); // 지난 달 마지막 날짜
-	var thisLast = new Date(Year, dt.getMonth() + 1, 0); // 이번 달 마지막 날짜
+function printDate(inputMonth, db){
+	inputDate = inputMonth.split("-");
+	var prevLast = new Date(inputDate[0], inputDate[1]-1, 0); // 지난 달 마지막 날짜
+	var thisLast = new Date(inputDate[0], inputDate[1], 0); // 이번 달 마지막 날짜
 	
 	var PLDate = prevLast.getDate(); // 지난 달 마지막 날짜
 	var PLDay = prevLast.getDay(); // 지난 달 마지막 날의 요일
@@ -22,9 +21,8 @@ function printDate(db){
 	}
 	
 	for (var i = 1; i <= TLDate; i++) { // 현재 달
-		var gameDate = Year + "-" + Month + "-" + (i <= 9 ? '0' + i : i); // 경기일자 (yyyy-MM-dd)
+		var gameDate = inputDate[0] + "-" + inputDate[1] + "-" + (i <= 9 ? '0' + i : i); // 경기일자 (yyyy-MM-dd)
 		var text = "<span>" + i + "</span>"; // 날짜
-	
 		for (var j = 0; j < db.length; j++) {
 			if (db[j].gameDate == gameDate) {
 				text += "<p><img src='/images/Logo_Mini/" + db[j].teamImg + "' style='width:50px'><p>"
@@ -51,6 +49,5 @@ function printDate(db){
 			_html += "</tr>";
 		}
 	}
-	console.log(_html);
 	return _html;
 }
