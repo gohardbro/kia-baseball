@@ -38,14 +38,5 @@ public class TicketContoller {
 		return "/ticket/ticketBuy";
 	}
 
-	// ticketDetail (선택한 경기 정보 1건)
-	@RequestMapping("/ticketDetail")
-	public String selectGame(@RequestParam int scheduleNo, Model model) {
-		System.out.println("controller");
-		model.addAttribute("oneGame", ticketService.selectGame(scheduleNo));
-		model.addAttribute("menu", "ticketDetail");
-
-		return "/ticket/ticketDetail";
-	}
-
+	
 }

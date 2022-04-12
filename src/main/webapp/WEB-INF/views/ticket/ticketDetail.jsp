@@ -20,6 +20,36 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="/assets/js/todayLabel.js"></script>
+
+<!-- 아임포트 라이브러리 -->
+ <!-- jQuery -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+  <!-- iamport.payment.js -->
+  <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-{SDK-최신버전}.js"></script>
+  
+<!-- 아임포트 설정-->
+<script>
+var IMP = window.IMP;  
+IMP.init('imp89839657');  
+
+
+
+</script>
+
+<script>
+	if ($(this).hasId("upBtn")) {
+		count++;
+
+	} else {
+		count--;
+		if (count < 1)
+			return;
+	}
+
+	countInput.val(count);
+	totalInput.val(count * price);
+</script>
+
 <style>
 img.gl-logo {
 	width: 60px;
@@ -32,6 +62,10 @@ img.gl-logo {
 
 #h2 {
 	margin-bottom: 100px;
+}
+
+.downBtn.upBtn {
+	
 }
 </style>
 </head>
@@ -89,27 +123,50 @@ img.gl-logo {
 							</div>
 						</div>
 					</div>
+
+					<!-- 오른쪽 col -->
 					<div class="col-sm-8">
 						<div class="container">
 							<div class="shadow p-4 mb-4 bg-white">
-								좌석선택 매수선택 총액 결제버튼 // 구역 선택 라디오 반복문
+								<!-- seatArea고르기 k3,k5... -->
 								<div class="areaChoice">
-
-									<c:forEach var="sc" items="${seatChoice}" >
+									<c:forEach var="sc" items="${seatChoice}">
 										<div class="form-check">
 											<input class="form-check-input" type="radio"
-												name="flexRadioDefault" id="flexRadioDefault1"> 
-												<label class="form-check-label" for="flexRadioDefault1">
-												${sc.baseballZone} 
-												</label>
+												name="flexRadioDefault" id="flexRadioDefault1"> <label
+												class="form-check-label" for="flexRadioDefault1">
+												${sc.baseballZone} </label>
 										</div>
 									</c:forEach>
 								</div>
+								
+								<!-- 수량 업다운 버튼 -->
+								<div class="quantity">
+								
+									<span class="count count-box">
+										 <button type="button" class="btn btn-outline-danger" id="upBtn">△</button>
+										
+										<!-- 수량숫자--> <!-- quantity = i --> 
+										<input type="text" class="countInput" id="quantity" name="countInput"
+										value="list.get(i)" readonly="readonly"
+										style="width: 70px; border: none;" />
 
+									 <button type="button" class="btn btn-outline-danger" id="upBtn">▽</button>
+									</span>
+								</div>
+								<!-- 수량 업다운 버튼 끝-->
+								
+								<div><a>총 결제금액</a></div>
+								<div><a>(여기 돈 계산해서 들어오기)</a><a>원</a></div>
+							
+								<button type="button" style="margin-top : 20px">결제하기</button>
 							</div>
 						</div>
-					</div>
-				</div>
+						</div>
+
+					<!-- 오른쪽 col 끝-->
+
+				 </div>
 			</section>
 
 
@@ -143,30 +200,13 @@ img.gl-logo {
 		총 결제해야하는 금액 보여주는 곳 
 		</div>
 		
-		<button type="button">결제하기버튼</button> 
-		
-		
-		
-		<script>
-		
-		
-		 버튼누르면 
-		 if($(this).hasClass("upBtn")){
-    		 count++;
-    		
-    	 } else {
-    		 count--;
-    		 if(count < 1) return;
-    	 }
-		 
-		 countInput.val(count);
-    	 totalInput.val(count * price); 
-		 
-		
-		</script>
+	
+
+
   --%>
 
 </body>
 </html>
+
 <jsp:include page="/WEB-INF/views/ticket/include/bottom.jsp" />
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />

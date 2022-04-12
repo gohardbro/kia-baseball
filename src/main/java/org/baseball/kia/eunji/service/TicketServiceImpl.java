@@ -29,11 +29,4 @@ public class TicketServiceImpl implements TicketService{
 		return list;
 	}
 
-	@Override
-	public TicketVo selectGame(int no) {
-		TicketVo vo = ticketDao.selectGame(no);
-		return vo;
-	}
-	 
-
 }

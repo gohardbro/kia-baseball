@@ -2,20 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="seatArea">
 
-	
-<!-- 	ticketDetail.jsp 기준의 mapper --> 
+
+	<!-- ticketDetail.jsp -->
 
 	<!-- ticketDetail 선택한 경기 1개 -->
-	<select id="selectGame" resultType="ticketVo" parameterType="int">
+	<select id="selectGame" resultType="ticketVo"
+		parameterType="int">
 		select *
 		from schedule s inner join team t on
 		(s.rival =
 		t.sponsor) where s.schedule_no = #{no}
 	</select>
-	
 
-	<!-- seatArea 6개(k3,k5,..)중 택 1하는 radio에 뿌려줄 list  -->
-	<select id="seatInfo" resultType="seatChoiceVo">
+
+	<!-- seatArea 6개(k3,k5,..)중 택 1하는 radio에 뿌려줄 list -->
+	<select id="seatList" resultType="seatChoiceVo">
 		select * from baseball_info
 	</select>
 

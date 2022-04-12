@@ -59,6 +59,12 @@ public class TicketVo {
 	public void setRival(String rival) {
 		this.rival = rival;
 	}
+	@Override
+	public String toString() {
+		return "TicketVo [gameDate=" + gameDate + ", gameTime=" + gameTime + ", rival=" + rival + ", teamName="
+				+ teamName + ", teamImg=" + teamImg + ", field=" + field + ", sponsor=" + sponsor + ", scheduleNo="
+				+ scheduleNo + "]";
+	}
 
 	
 }

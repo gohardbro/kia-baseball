@@ -16,7 +16,5 @@ public interface TicketService {
 		// ticketBuy
 		public List<TicketVo> showGameList();  
 		
-		// ticketDetail
-		public TicketVo selectGame(int no);  
-
+		
 }

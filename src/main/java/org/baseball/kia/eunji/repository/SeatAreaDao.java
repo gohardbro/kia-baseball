@@ -10,15 +10,18 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class SeatAreaDao {
-	
+
 	@Autowired
 	SqlSession sqlSession;
-	
-	
 
-	//seatChoice
+	// 선택된 1경기
+	public TicketVo selectGame(int no) {
+		return sqlSession.selectOne("seatArea.selectGame", no);
+	}
+
+	// seat radio
 	public List<SeatChoiceVo> seatChoice() {
-		return sqlSession.selectList("seatArea.seatInfo");
-	}  
+		return sqlSession.selectList("seatArea.seatList");
+	}
 
 }
