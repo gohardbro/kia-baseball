@@ -16,4 +16,9 @@
 		#{rival2}, #{rival3}, #{rival4}, #{rival5}, #{rival6}, #{rival7},
 		#{rival8}, #{rival9}, #{rival10}, #{rival11}, #{rival12})
 	</insert>
+	
+	<select id="selectScore" resultType="ScoreVo"> <!-- 경기 스코어 조회 -->
+		SELECT * FROM SCORE
+		WHERE SCHEDULE_NO = #{scheduleNo}
+	</select>
 </mapper>

@@ -2,10 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
 <jsp:include page="/WEB-INF/views/kiaTigers/include/top.jsp" />
 
+ <script src="/assets/js/bootstrap.bundle.min.js"></script>
 <!-- Main -->
 <div class="wrapper style1">
 
@@ -44,6 +44,7 @@
 					</thead>
 					<tbody class="date"></tbody>
 				</table>
+
 			</section>
 		</article>
 	</div>
@@ -64,21 +65,21 @@
 		_html = printDate($("#gameMonth").val(), db);
 		$(".date").html(_html);
 	});
-	
+
 	$("#gameMonth").change(function(e) { // Month 목록값이 바뀌면
 		db = printCalendar($("#gameMonth").val());
 		_html = printDate($("#gameMonth").val(), db);
 		$(".date").html(_html);
 	});
 
-	function printCalendar(gameMonth) { 
+	function printCalendar(gameMonth) {
 		var ajaxData;
 		$.ajax({
 			url : "/kiaTigers/calendar/search",
 			data : {
 				"gameMonth" : gameMonth
 			},
-			async: false, 
+			async : false,
 		}).done(function(data) {
 			ajaxData = data;
 		});
@@ -113,7 +114,35 @@
 	text-align: center;
 }
 
-</style>
+.lineup ul {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
 
+.lineup ul li p {
+	text-align: center;
+}
+
+.score-table {
+	border: 1px solid #e4e5e6;
+	border-collapse: collapse;
+	margin-bottom: 40px;
+}
+
+.score-table th, .score-table td {
+	text-align: center;
+}
+
+.score-table th {
+	background-color: #f6f6f6;
+}
+
+.modal-body h3 {
+	text-align: center;
+}
+</style>
+				
+<jsp:include page="/WEB-INF/views/kiaTigers/calendar-popup.jsp" /><!-- 팝업 -->
 <jsp:include page="/WEB-INF/views/kiaTigers/include/bottom.jsp" />
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />

@@ -1,10 +1,16 @@
 package org.baseball.kia.subin.entity;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class ScoreVo {
 
 	int scheduleNo;
 	int kiaRuns, kia1, kia2, kia3, kia4, kia5, kia6, kia7, kia8, kia9, kia10, kia11, kia12;
 	int rivalRuns, rival1, rival2, rival3, rival4, rival5, rival6, rival7, rival8, rival9, rival10, rival11, rival12;
+	int[] kiaArray;
+	int[] rivalArray;
 
 	public int getScheduleNo() {
 		return scheduleNo;
@@ -222,6 +228,23 @@ public class ScoreVo {
 		this.rival12 = rival12;
 	}
 
+	public int[] getKiaArray() {
+		return kiaArray;
+	}
+
+	public int[] getRivalArray() {
+		return rivalArray;
+	}
+
+	public ScoreVo setArray() {
+
+		kiaArray = new int[] { kiaRuns, kia1, kia2, kia3, kia4, kia5, kia6, kia7, kia8, kia9, kia10, kia11, kia12 };
+		rivalArray = new int[] { rivalRuns, rival1, rival2, rival3, rival4, rival5, rival6, rival7, rival8, rival9,
+				rival10, rival11, rival12 };
+
+		return this;
+	}
+
 	@Override
 	public String toString() {
 		return "ScoreVo [scheduleNo=" + scheduleNo + ", kiaRuns=" + kiaRuns + ", kia1=" + kia1 + ", kia2=" + kia2
@@ -230,7 +253,8 @@ public class ScoreVo {
 				+ ", rivalRuns=" + rivalRuns + ", rival1=" + rival1 + ", rival2=" + rival2 + ", rival3=" + rival3
 				+ ", rival4=" + rival4 + ", rival5=" + rival5 + ", rival6=" + rival6 + ", rival7=" + rival7
 				+ ", rival8=" + rival8 + ", rival9=" + rival9 + ", rival10=" + rival10 + ", rival11=" + rival11
-				+ ", rival12=" + rival12 + "]";
+				+ ", rival12=" + rival12 + ", kiaArray=" + Arrays.toString(kiaArray) + ", rivalArray="
+				+ Arrays.toString(rivalArray) + "]";
 	}
 
 }

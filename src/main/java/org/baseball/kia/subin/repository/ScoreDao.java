@@ -14,4 +14,8 @@ public class ScoreDao {
 	public int insertScore(ScoreVo vo) { // 경기 결과 입력
 		return sqlSession.insert("score.insertScore", vo);
 	}
+	
+	public ScoreVo selectScore(int scheduleNo) { // 경기 결과 조회
+		return sqlSession.selectOne("score.selectScore", scheduleNo);
+	}
 }

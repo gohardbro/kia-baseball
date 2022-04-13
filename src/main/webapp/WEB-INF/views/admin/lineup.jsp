@@ -13,16 +13,15 @@
 			<header>
 				<h2>라인업</h2>
 			</header>
-
+			
 			<section>
 				<select id="dateAndTime" class="custom-select" style="width: 180px;">
 					<c:forEach items="${ scheduleList }" var="schedule" varStatus="status">
-						<option  ${ status.count == 1? 'selected': '' } value="${ schedule.gameDate } ${ schedule.gameTime }">${ schedule.gameDate } ${ schedule.gameTime }</option>
+						<option  ${ status.count == 1? 'selected': '' } value="${ schedule.scheduleNo }">${ schedule.gameDate } ${ schedule.gameTime }</option>
 					</c:forEach>
 				</select>
 				<form action="/admin/lineup/insert">
-					<input type="hidden" id="gameDate" name="gameDate" value=""/>
-					<input type="hidden" id="gameTime" name="gameTime" value=""/>
+					<input type="hidden" id="scheduleNo" name="scheduleNo" value=""/>
 					<input type="hidden" id="service" name="service" value=""/>
 					<table class="table">
 						<tr>
@@ -119,20 +118,14 @@
 		$("[name=hitter8]").attr("value", "");
 		$("[name=hitter9]").attr("value", "");
 		$(".btn-info").html("등록");
- 		var sp = $("#dateAndTime").val().split(" ");
-
-		$("#gameDate").val(sp[0]);
-		$("#gameTime").val(sp[1]);
+ 		var scheduleNo = $("#dateAndTime").val()
+		$("#scheduleNo").val(scheduleNo);
 		$("#service").val("insert");
 		
-		var gameDate = sp[0];
- 		var gameTime = sp[1];
- 		
 		$.ajax({
 			url: "/admin/lineup/select",
 			data: {
-				"gameDate": gameDate,
-				"gameTime": gameTime
+				"scheduleNo": scheduleNo
 			}
 		}).done(function(data){
 			$("[name=pitcher]").attr("value", data.pitcher);

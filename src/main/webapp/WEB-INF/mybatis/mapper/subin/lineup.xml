@@ -4,17 +4,16 @@
 	<insert id="insertOne"> <!-- 라인업 등록 -->
 		INSERT INTO LINEUP (LINEUP_NO, PITCHER, HITTER1,
 		HITTER2, HITTER3, HITTER4, HITTER5, HITTER6, HITTER7, HITTER8,
-		HITTER9, GAME_DATE, GAME_TIME)
+		HITTER9, SCHEDULE_NO)
 
 		VALUES (SEQ_LINEUP.NEXTVAL, #{pitcher}, #{hitter1},
 		#{hitter2}, #{hitter3}, #{hitter4}, #{hitter5}, #{hitter6}, #{hitter7}, #{hitter8},
-		#{hitter9}, #{gameDate}, #{gameTime})
+		#{hitter9}, #{scheduleNo})
 	</insert>
 
 	<select id="selectOne" resultType="lineupVo"> <!-- 라인업 조회  -->
 		SELECT * FROM LINEUP
-		WHERE
-		GAME_DATE = #{gameDate} AND GAME_TIME = #{gameTime}
+		WHERE SCHEDULE_NO =  #{scheduleNo}
 	</select>
 
 	<update id="updateOne"> <!-- 라인업 수정 -->
@@ -24,7 +23,6 @@
 		HITTER6 = #{hitter6}, HITTER7 = #{hitter7}, HITTER8 = #{hitter8}, 
 		HITTER9 = #{hitter9}
 		
-		WHERE GAME_DATE = #{gameDate}
-		AND GAME_TIME = #{gameTime}
+		WHERE SCHEDULE_NO =  #{scheduleNo}
 	</update>
 </mapper>

@@ -25,4 +25,8 @@ public class ScheduleDao {
 	public List<CalendarVo> selectScheduleByMonth(String gameMonth) { // 월별 경기일정 조회
 		return sqlSession.selectList("schedule.selectScheduleByMonth", gameMonth);
 	}
+
+	public ScheduleVo selectScheduleByNo(int scheduleNo) { // 경기번호로 경기 일정 조회
+		return sqlSession.selectOne("schedule.selectScheduleByNo", scheduleNo);
+	}
 }
