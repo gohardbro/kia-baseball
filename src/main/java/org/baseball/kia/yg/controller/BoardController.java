@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Controller
@@ -35,12 +34,6 @@ public class BoardController {
 
 	@Autowired
 	CommentService commentService;
-
-	@RequestMapping(value = "/announce", method = RequestMethod.GET)
-	public String no(Model model) {
-		model.addAttribute("menu", "announce");
-		return "/yg/announcement";
-	}
 
 	@RequestMapping(value = "/intro", method = RequestMethod.GET)
 	public String introduction(Model model) {
@@ -87,18 +80,15 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/boardview", method = RequestMethod.GET)
-	public String insertPostHandle(@RequestParam int no, Model model,
-			@SessionAttribute(required = false) Boolean auth) {
+	public String insertPostHandle(@RequestParam("boardNo") int no, Model model) {
 
 		boardService.updateCnt(no);
 		BoardVo vo = boardService.getOneByNo(no);
 		if (vo == null) {
 			return "redirect:/free";
 		}
-		model.addAttribute("one", vo);
-
-		List<CommentVo> cmtList = commentService.readCmt(vo.getBoardNo());
-		model.addAttribute("cmtList", cmtList);
+		model.addAttribute("board", vo);
+		model.addAttribute("cmt", new CommentVo());
 
 		return "/yg/boardview";
 	}

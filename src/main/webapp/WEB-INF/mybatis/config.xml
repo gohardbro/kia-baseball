@@ -16,6 +16,7 @@
 		<typeAlias type="org.baseball.kia.taejeong.entity.BaseballVo" alias="baseballVo2"/>
 		<!-- 영균 -->
 		<typeAlias type="org.baseball.kia.yg.entity.BoardVo" alias="board" />
+		<typeAlias type="org.baseball.kia.yg.entity.NoticeVo" alias="notice" />
 		<typeAlias type="org.baseball.kia.yg.entity.PagingVo" alias="paging" />
 		<typeAlias type="org.baseball.kia.yg.entity.FileVo" alias="file" />
 		<typeAlias type="org.baseball.kia.yg.entity.CommentVo" alias="comment" />

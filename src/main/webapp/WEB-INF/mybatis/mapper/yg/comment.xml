@@ -7,9 +7,10 @@
 		VALUES (COMMENT_SEQ.NEXTVAL, #{writer}, #{boardNo}, SYSDATE, #{content} )
 	</insert>
 	
-	<select id="selectAll" resultType="comment">
+	<select id="selectAllList" resultType="comment">
 		SELECT * FROM BOARD_COMMENT
 		WHERE BOARD_NO = #{boardNo}
+		ORDER BY WRITE_DATE DESC
 	</select>
 	
 	<update id="updateCmt" parameterType="comment">
@@ -17,14 +18,9 @@
 		WHERE COMMENT_NO = #{commentNo}
 	</update>
 
-	<delete id="deleteCmt" parameterType="comment">
+	<delete id="deleteCmt" parameterType="int">
 		DELETE FROM BOARD_COMMENT
 		WHERE COMMENT_NO = #{commentNo}
 	</delete>
-	
-	<select id="selectCmt" resultType="comment">
-		SELECT * FROM BOARD_COMMENT
-		WHERE COMMENT_NO = #{commentNo}
-	</select>
 
 </mapper> 

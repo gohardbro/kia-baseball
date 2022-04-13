@@ -10,7 +10,7 @@
 <div class="wrapper style1">
 
 	<div class="container">
-		<h2>자유게시판</h2>
+		<h2>공지사항</h2>
 		<table class="table">
 			<c:forEach var="one" items="${all }">
 				<tr>
@@ -18,7 +18,7 @@
 					<td class="col-9"><a href="/boardview?boardNo=${one.boardNo }">${one.title }</a></td>
 					<td><fmt:formatDate value="${one.writeDate }"
 							pattern="yyyy.MM.dd" /> | <img src="/images/eye.png">
-						${one.views } | <img src="/images/like.png"> ${one.likes }
+						${one.views }
 					</td>
 				</tr>
 			</c:forEach>

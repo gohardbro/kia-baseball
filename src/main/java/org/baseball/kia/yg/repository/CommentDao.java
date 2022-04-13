@@ -13,25 +13,21 @@ public class CommentDao {
 	@Autowired
 	SqlSession sqlSession;
 
-	public List<CommentVo> readCmt(int boardNo) {
-		return sqlSession.selectList("comment.selectAll", boardNo);
+	public List<CommentVo> getCmtList(int bno) {
+		return sqlSession.selectList("comment.selectAllList", bno);
 	}
 
-	public void addCmt(CommentVo vo) {
-		sqlSession.insert("comment.insertOne", vo);
+	public int insertCmt(CommentVo vo) {
+		return sqlSession.insert("comment.insertOne", vo);
+
 	}
 
-	public void updateCmt(CommentVo vo) {
-		sqlSession.update("comment.updateCmt", vo);
+	public int updateCmt(CommentVo vo) {
+		return sqlSession.update("comment.updateCmt", vo);
 	}
-	
-	public void deleteCmt(CommentVo vo) {
-		sqlSession.delete("comment.deleteCmt", vo);
+
+	public int deleteCmt(int cno) {
+		return sqlSession.delete("comment.deleteCmt", cno);
 	}
-	
-	public CommentVo selectCmt(int no) {
-		return sqlSession.selectOne("comment.selectCmt", no);
-	}
-	
 
 }
