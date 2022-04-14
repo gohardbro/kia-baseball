@@ -3,8 +3,8 @@ package org.baseball.kia.eunji.entity;
 public class SeatChoiceVo {
 	
 	//주중주말 요금, 구역, 구역별 제한 
-	int baseInfoNo, priceWeekday, limit;
-	String priceWeekend, baseballZone;
+	int baseInfoNo, priceWeekday, limit, priceWeekend;
+	String  baseballZone;
 	
 	
 	
@@ -27,10 +27,11 @@ public class SeatChoiceVo {
 	public void setLimit(int limit) {
 		this.limit = limit;
 	}
-	public String getPriceWeekend() {
+	 
+	public int getPriceWeekend() {
 		return priceWeekend;
 	}
-	public void setPriceWeekend(String priceWeekend) {
+	public void setPriceWeekend(int priceWeekend) {
 		this.priceWeekend = priceWeekend;
 	}
 	public String getBaseballZone() {

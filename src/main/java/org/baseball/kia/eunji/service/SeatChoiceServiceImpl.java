@@ -25,5 +25,11 @@ public class SeatChoiceServiceImpl implements SeatChoiceService{
 		List<SeatChoiceVo> list = seatAreaDao.seatChoice();
 		return list;
 	}
-
+	
+	@Override
+	public SeatChoiceVo weekPrice(String baseballZone) {
+		return seatAreaDao.weekPrice(baseballZone);
+	}
+	
+ 
 }

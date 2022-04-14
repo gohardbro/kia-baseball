@@ -19,9 +19,16 @@ public class SeatAreaDao {
 		return sqlSession.selectOne("seatArea.selectGame", no);
 	}
 
-	// seat radio
+	// radio seat list 뿌려주기 
 	public List<SeatChoiceVo> seatChoice() {
 		return sqlSession.selectList("seatArea.seatList");
 	}
+	
+	//weekend + 선택한 area
+	public SeatChoiceVo weekPrice(String baseballZone) {
+		return sqlSession.selectOne("seatArea.weekPrice", baseballZone );
+	}
+	
+	 
 
 }

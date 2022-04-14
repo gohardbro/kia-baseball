@@ -15,6 +15,8 @@ public interface SeatChoiceService {
 	//zone 6개중 선택하는 radio 
 	public List<SeatChoiceVo> seatChoice();
 
+	//weekend + 선택한 area
+	public SeatChoiceVo weekPrice(String baseballZone);
 	
-	
+	 
 }

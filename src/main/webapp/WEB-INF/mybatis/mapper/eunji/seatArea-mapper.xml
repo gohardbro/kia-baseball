@@ -15,13 +15,13 @@
 	</select>
 
 
-	<!-- seatArea 6개(k3,k5,..)중 택 1하는 radio에 뿌려줄 list -->
-	<select id="seatList" resultType="seatChoiceVo">
-		select * from baseball_info
+	<!--  좌석을 파라미터로 받아서 행 가져오기 -->
+	<select id="seatList" resultType="seatChoiceVo"> 
+		select *
+		from baseball_info 
+		where baseball_zone= #{baseballZone}
 	</select>
-
-
-
+ 
 
 
 </mapper>
