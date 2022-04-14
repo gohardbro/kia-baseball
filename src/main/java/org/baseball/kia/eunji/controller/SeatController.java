@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.baseball.kia.eunji.entity.SeatChoiceVo;
 import org.baseball.kia.eunji.service.SeatChoiceService;
+import org.baseball.kia.eunji.service.SeatChoiceServiceImpl;
 import org.baseball.kia.eunji.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,7 @@ public class SeatController {
 	@Autowired
 	TicketService ticketService;
 	@Autowired
-	SeatChoiceService seatChoiceService;
+	SeatChoiceServiceImpl seatChoiceService;
 
 	// ticketDetail
 	@RequestMapping("/ticketDetail")
@@ -31,6 +32,7 @@ public class SeatController {
 		// seat radio(k3,k5..) 반복문
 		List<SeatChoiceVo> list = seatChoiceService.seatChoice();
 		model.addAttribute("seatChoice", list);
+		System.out.println(list.size());
 		
 
 		return "/ticket/ticketDetail";
@@ -46,6 +48,7 @@ public class SeatController {
 		
 		SeatChoiceVo weekPrice = seatChoiceService.weekPrice(baseballZone);
 		
+	 
 		
 		switch(yoil){
 			case "월요일": 
@@ -53,12 +56,13 @@ public class SeatController {
 			case "수요일":
 			case "목요일":
 			case "금요일":
-				return  weekPrice.getPriceWeekday();
+				return weekPrice.getPriceWeekday();
 
 			default:
-			return  weekPrice.getPriceWeekend();
+			return weekPrice.getPriceWeekend();
 		 
 		}
+		
 		
 	}
 

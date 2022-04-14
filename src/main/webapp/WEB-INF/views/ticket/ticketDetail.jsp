@@ -22,19 +22,6 @@
 <script type="text/javascript" src="/assets/js/todayLabel.js"></script>
 
 
-<script>
-	if ($(this).hasId("upBtn")) {
-		count++;
-
-	} else {
-		count--;
-		if (count < 1)
-			return;
-	}
-
-	countInput.val(count);
-	totalInput.val(count * price);
-</script>
 
 <!-- 아임포트 라이브러리 -->
 <!-- jQuery -->
@@ -55,32 +42,18 @@
 			pg : 'inicis', // version 1.1.0부터 지원.
 			pay_method : 'card',
 			merchant_uid : 'merchant_' + new Date().getTime(),
-			name : 'Kia Tigers 경기 예매권(팬페이지 구매)' //상품명
-			amount : //가격 //이것만 있어도 결제는 넘어감 
-			buyer_email : 'iamport@siot.do', <- id로 
+			name : 'Kia Tigers 경기 예매권(팬페이지 구매)', //상품명
+			amount : 1000, //가격 이것만 있어도 결제는 넘어감 
+			buyer_email : 'iamport@siot.do', //<- id로 
 			buyer_name : '구매자이름',
-			buyer_tel : '010-1234-5678',
-			 
-			
-		/* 	얘네 요소를 테이블 만들어서 넣기? 
-			누가 결제했는지 내역이 DB에 들어가야 하니까 
-			현재 로그인 한 사람의 정보를 파라미터로 가지고 와서 넣어주고  
-			선택한 좌석/티켓장수에 따른 amount를 넣어준다 
-			결제가 되면 결제된 내역을 (사람정보, 경기정보, 금액, 결제시간) 넘겨준다  */
-			경기정보
-			
-			
-		/*
-		 모바일 결제시,
-		 결제가 끝나고 랜딩되는 URL을 지정
-		 (카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
-		 */
+			buyer_tel: '010-1234-5678',
+
 		}, function(rsp) {
 			console.log(rsp);
 			if (rsp.success) {
 				var msg = '결제가 완료되었습니다.';
 				msg += '결제 금액은 : ' + rsp.paid_amount + '원 입니다.';
-				
+
 			} else {
 				var msg = '결제에 실패하였습니다.';
 				msg += '에러내용 : ' + rsp.error_msg;
@@ -180,46 +153,80 @@ img.gl-logo {
 
 
 								<script>
-								$("input[name=zoneCheck]").click(function(){
+									$("input[name=zoneCheck]")
+											.click(
+													function() {
+														var data = $(
+																'.gamedate')
+																.val();
+														console.log(data); /* 날짜는 잘 가져왔음 */
+														document
+																.write(getInputDayLabel(data));
+														var yoil = getInputDayLabel(data);
 
-									
-									
-									var data = $('.gamedate').val();
-									console.log(data); /* 날짜는 잘 가져왔음 */
-									document.write(getInputDayLabel(data));
-									var yoil = getInputDayLabel(data);
-									
-									var basballZone = $(this).val();
-									
-									
-									$.ajax({
-										url:"/ticketPrice",
-										data : {"yoil": yoil, "baseballZone": basballZone},
-										success : function(weekend){
-											alert("성공");
-										},
-										error : function(){
-											alert("실패");
-										}
-									});
-								});
+														var basballZone = $(
+																this).val();
+
+														$
+																.ajax({
+																	url : "/ticketPrice",
+																	data : {
+																		"yoil" : yoil,
+																		"baseballZone" : basballZone
+																	},
+																	success : function(
+																			response) {
+																		alert("성공");
+																	},
+																	error : function() {
+																		alert("실패");
+																	}
+																});
+													});
 								</script>
 
 								<!-- 수량 업다운 버튼 -->
 								<div class="quantity">
 
 									<span class="count count-box">
+
 										<button type="button" class="btn btn-outline-danger"
-											id="upBtn">△</button> <!-- 수량숫자--> <!-- quantity = i --> <input
-										type="text" class="countInput" id="quantity" name="countInput"
-										value="list.get(i)" readonly="readonly"
+											id="upBtn">△</button> <input type="text" class="countInput"
+										id="quantity" name="countInput" value="0" readonly="readonly"
 										style="width: 70px; border: none;" />
 
 										<button type="button" class="btn btn-outline-danger"
-											id="upBtn">▽</button>
+											id="downBtn">▽</button>
 									</span>
+
 								</div>
 								<!-- 수량 업다운 버튼 끝-->
+
+								<script>
+									$("#upBtn").click(function() {
+										var count = $("#quantity").val();
+										$("#quantity").val(++count);
+
+									});
+
+									$("#downBtn").click(function() {
+										var count = $("#quantity").val();
+										$("#quantity").val(--count);
+
+									});
+
+									/* 	if ($(this).hasId("upBtn")) {
+											count++;
+									
+										} else {
+											count--;
+											if (count < 1)
+												return;
+										}
+									
+										countInput.val(count);
+										totalInput.val(count * price); */
+								</script>
 
 								<div>
 									<a>총 결제금액</a>

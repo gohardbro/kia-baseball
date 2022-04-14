@@ -13,7 +13,10 @@
 		(s.rival =
 		t.sponsor) where s.schedule_no = #{no}
 	</select>
-
+	
+	<select id="">
+	
+	</select>	
 
 	<!--  좌석을 파라미터로 받아서 행 가져오기 -->
 	<select id="seatList" resultType="seatChoiceVo"> 
@@ -21,6 +24,7 @@
 		from baseball_info 
 		where baseball_zone= #{baseballZone}
 	</select>
+ 
  
 
 
