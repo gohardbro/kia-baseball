@@ -12,7 +12,7 @@ public interface SeatChoiceService {
 	public TicketVo selectGame(int no);  
 
 	
-	//zone 6개중 선택하는 radio 
+	//zone radio 6개 
 	public List<SeatChoiceVo> seatChoice();
 
 	//weekend + 선택한 area

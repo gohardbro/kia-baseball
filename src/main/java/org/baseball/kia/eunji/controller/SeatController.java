@@ -29,7 +29,7 @@ public class SeatController {
 		model.addAttribute("oneGame", seatChoiceService.selectGame(scheduleNo));
 		model.addAttribute("menu", "ticketDetail");
 
-		// seat radio(k3,k5..) 반복문
+		// seat radio 6개
 		List<SeatChoiceVo> list = seatChoiceService.seatChoice();
 		model.addAttribute("seatChoice", list);
 		System.out.println(list.size());
