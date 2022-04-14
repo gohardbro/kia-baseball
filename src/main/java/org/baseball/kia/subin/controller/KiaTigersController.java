@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class CalendarController {
+public class KiaTigersController {
 
 	@Autowired
 	CalendarService calendarService;
-
+	
 	@RequestMapping({ "/kiaTigers/calendar", "/kiaTigers" })
 	public String ScheduleHandle(Model model) { // 경기일정 페이지
 		model.addAttribute("menu", "schedule");
@@ -52,5 +52,11 @@ public class CalendarController {
 			map.put("score", score.setArray());
 		}
 		return map;
+	}
+	
+	@RequestMapping("/kiaTigers/map")
+	public String mapHandle(Model model) { // 지도 페이지 호출
+		model.addAttribute("menu", "map");
+		return "/kiaTigers/map";
 	}
 }

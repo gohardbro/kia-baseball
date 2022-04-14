@@ -1,112 +1,116 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <jsp:include page="/WEB-INF/views/include/header_main.jsp" />
-<!-- Main -->
-<div class="wrapper style1">
+<div class="container">
+	<!-- 인기 유니폼 10개 -->
+	<section class="carousel">
+		<div class="reel">
 
-	<div class="container">
-		<div class="row">
-			<div class="col-7" id="content" style="pading: 0">
-				<!-- 유니폼 카드 10개 작성 -->
-				<section class="carousel">
-					<div class="reel">
-					
-						<article>
-							<a href="#" class="image featured"><img
-								src="images/pic01.jpg" alt="" /></a>
-							<header>
-								<h3>
-									<a href="#">유니폼1 이름</a>
-								</h3>
-							</header>
-							<p>유니폼1 설명</p>
-						</article>
-						<article>
-							<a href="#" class="image featured"><img
-								src="images/pic01.jpg" alt="" /></a>
-							<header>
-								<h3>
-									<a href="#">유니폼2 이름</a>
-								</h3>
-							</header>
-							<p>유니폼2 설명</p>
-						</article>
-					</div>
-				</section>
-				<!-- 인기 게시물 top 5 -->
-				<section id="content" style="padding: 10; width: 100%; padding: 24px;">
-					<h2>인기게시물 Top 5</h2>
-					<table class="table">
-						<thead>
-							<tr>
-								<th>#</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>조회수</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>1</td>
-								<td><a href="#" style="color: inherit;">Anna</a></td>
-								<td>Pitt</td>
-								<td>35</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td><a href="#" style="color: inherit;">Anna</a></td>
-								<td>Pitt</td>
-								<td>35</td>
-							</tr>
-						</tbody>
-					</table>
-				</section>
-			</div>
-
-
-			<!-- 채팅 -->
-			<div class="col-5" id="sidebar">
-				<h2>실시간 채팅</h2>
-				<form>
-					<div class="custom-control custom-switch">
-						<input type="checkbox" class="custom-control-input" id="switch1">
-						<label class="custom-control-label" for="switch1">자동 업데이트</label>
-					</div>
-					<div style="display: flex; margin: 5px;">
-						<input type="text" class="form-control form-control"
-							style="width: 80%; margin: 5px;">
-						<button type="button" class="btn btn-light"
-							style="width: 20%; margin: 5px;">작성</button>
-					</div>
-				</form>
-				<ul style="list-style: none;">
-					<li>[user1] 안녕하세요</li>
-				</ul>
-			</div>
+			<c:forEach items="${ uniformTop10 }" var="uniform" varStatus="status">
+				<article>
+					<a href="#" class="image featured"><img src="/images/uniform/${ uniform.uniformImg }"
+						alt="" /></a>
+					<header>
+						<h3>
+							<a href="#">Top ${status.count }</a>
+						</h3>
+					</header>
+					<p>${ uniform.uniformName }</p>
+				</article>
+			</c:forEach>
 			
-		</div>
-
-		<!-- 티켓 정보 -->
-		<a href="#" class="image featured"><img
-			src="images/home_ticket.jpg" alt="티켓정보" /></a>
-
-		<div class="row">
-			<!-- 유튜브 -->
-			<article class="col-6 col-12-mobile special">
-				<iframe width="560" height="315"
-					src="https://www.youtube.com/embed/uj7usIs5JdU"
-					title="YouTube video player" frameborder="0"
-					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-					allowfullscreen></iframe>
+			<article>
+					<a href="#" class="image featured"><img src="/images/uniform/${ uniform.uniformImg }"
+						alt="" /></a>
+					<header>
+						<h3>
+							<a href="#">Top ${status.count }</a>
+						</h3>
+					</header>
+					<p>${ uniform.uniformName }</p>
 			</article>
-
-			<!-- 지도 api -->
-			<article class="col-6 col-12-mobile special"></article>
-			
 		</div>
+	</section>
 
-
+	<!-- 인기 게시물 top 5 -->
+	<section id="content" style="padding: 10; width: 100%; padding: 24px;">
+		<h2>인기게시물 Hot 5</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>좋아요</th>
+					<th>조회수</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${ boardHot5 }" var="board" varStatus="status">
+					<tr>
+						<td>${ status.count }</td>
+						<td><a href="#" style="color: inherit;">${ board.title }</a></td>
+						<td>${ board.writer }</td>
+						<td>${ board.likes }</td>
+						<td>${ board.views }</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</section>
+	<div class="row align-content-center">
+		<div class="col-lg-4" onclick="location.href='#'">
+			<img src="/images/main_img/player.png" class=" img-fluid"/>
+		</div>
+		<div class="col-lg-4" onclick="location.href='/kiaTigers/calendar'">
+			<img src="/images/main_img/calendar.png" class=" img-fluid"/>
+		</div>
+		<div class="col-lg-4" onclick="location.href='/kiaTigers/map'">
+			<img src="/images/main_img/map.png" class=" img-fluid"/>
+		</div>
 	</div>
+	<div class="row mt-1">
+		<div class="col-lg-4" onclick="location.href='/goods'">
+			<img src="/images/main_img/goods.png" style="border-radius: 15px" class=" img-fluid"/>
+		</div>
+		<div class="col-lg-4" onclick="location.href='https://www.instagram.com/always_kia_tigers'">
+			<img src="/images/main_img/instagram.png" class="img-fluid"/>
+		</div>
+		<div class="col-lg-4">
+			<iframe  style="border-radius: 15px; height: 100%; max-width: 392px; width: 100%;"
+				src="https://www.youtube.com/embed/uj7usIs5JdU"
+				title="YouTube video player" frameborder="0"
+				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+				allowfullscreen class=""></iframe>
+		</div>
+	</div>
+	<table>
+		<tr>
+			<td onclick="location.href='#'"></td>
+			<td onclick="location.href='/kiaTigers/calendar'"></td>
+			<td onclick="location.href='/kiaTigers/map'"></td>
+		</tr>
+		<tr>
+			<td onclick="location.href='/goods'"></td>
+			<td
+				onclick="location.href='https://www.instagram.com/always_kia_tigers'"></td>
+			<td></td>
+		</tr>
+	</table>
+
 </div>
+
+
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.dropotron.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />

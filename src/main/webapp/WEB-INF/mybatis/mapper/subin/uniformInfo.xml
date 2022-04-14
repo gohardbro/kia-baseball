@@ -53,4 +53,14 @@
 		DELETE FROM UNIFORM_INFO
 		WHERE UNI_INFO_NO = #{uniInfoNo}
 	</delete>
+	
+	<select id="selectUniformTop10" resultType="uniformInfoVo"> <!-- 인기 유니폼 10개 조회 -->
+		SELECT * FROM UNIFORM_INFO
+		WHERE UNIFORM_NAME IN (SELECT *
+							   FROM (SELECT UI.UNIFORM_NAME
+								     FROM UNIFORM U LEFT OUTER JOIN UNIFORM_INFO UI USING (UNI_INFO_NO)
+								     GROUP BY UI.UNIFORM_NAME
+								     ORDER BY SUM(U.UNI_CNT) DESC)
+						       )
+	</select>
 </mapper>

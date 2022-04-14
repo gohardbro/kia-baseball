@@ -34,19 +34,16 @@ public class GameScoreTask {
 			for (int inning = 1; inning <= 9; inning++) { // 1~9회 점수
 				kia.add(inning, inningScore());
 				rival.add(inning, inningScore());
-				System.out.println(inning + " kia >>"+kia.get(inning)+" rival >>"+rival.get(inning));
 			}
 
 			// 최종 득점 저장
 			kia.set(0, getRuns(kia));
 			rival.set(0, getRuns(rival));
-			System.out.println("kia >> "+kia.get(0)+" rival >> "+rival.get(0)+"\n");
 
 			if (kia.get(0) == rival.get(0)) { // 9회까지 동점인 경우
 				for (int inning = 10; inning <= 12; inning++) { // 연장 10~12회
 					kia.add(inning, inningScore());
 					rival.add(inning, inningScore());
-					System.out.println(inning + " kia >>"+kia.get(inning)+" rival >>"+rival.get(inning));
 
 					if (kia.get(inning) != rival.get(inning)) { // 승패 결정 시 게임 종료
 						break;
@@ -56,13 +53,13 @@ public class GameScoreTask {
 				// 최종 득점 저장
 				kia.set(0, getRuns(kia));
 				rival.set(0, getRuns(rival));
-				System.out.println("kia >> "+kia.get(0)+" rival >> "+rival.get(0)+"\n");
 				
 			}
 			insertGameScore(scheduleNo, kia, rival); // DB 저장
 		} 
 	}
-
+	
+	
 	public int inningScore() { // 이닝 점수 구하기
 		int score = 0;
 		int out = 0;
@@ -86,12 +83,6 @@ public class GameScoreTask {
 	}
 
 	public int insertGameScore(int scheduleNo, List<Integer> kia, List<Integer> rival) { // Score값 DB 저장
-		System.out.println("size > "+kia.size() +" "+rival.size());
-		for (int i = 0; i < kia.size(); i++) {
-			System.out.println(i+"kia >> "+kia.get(i)+"rival >> "+rival.get(i));
-		}
-		
-		
 		ScoreVo vo = new ScoreVo();
 		vo.setScheduleNo(scheduleNo);
 		vo.setKiaRuns(kia.get(0));

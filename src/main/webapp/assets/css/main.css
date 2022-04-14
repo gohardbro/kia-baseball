@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,400italic,600");
 @import url("fontawesome-all.min.css");
 
@@ -2303,7 +2303,7 @@ input, select, textarea {
 			border-right: solid 1px rgba(192, 192, 192, 0.35); 
 		}
 
-			#nav > ul.kia_nav:before, #nav > ul.kia_nav:after {
+			#nav > ul.nav:before, #nav > ul.nav:after {
 				content: '';
 				display: block;
 				width: 300%;
@@ -2503,7 +2503,7 @@ input, select, textarea {
 					color: rgba(212, 212, 212, 0.85);
 				}
 
-/* Carousel */
+/* carousel */
 
 	.carousel {
 		position: relative;
@@ -2631,7 +2631,7 @@ input, select, textarea {
 				line-height: 1.75em;
 			}
 
-		/* Carousel */
+		/* carousel */
 
 			.carousel {
 				padding: 1.5em 0 1.5em 0;
@@ -2721,7 +2721,7 @@ input, select, textarea {
 				padding: 4em 2em 4em 2em;
 			}
 
-		/* Carousel */
+		/* carousel */
 
 			.carousel {
 				padding: 1.25em 0 1.25em 0;
@@ -3116,7 +3116,7 @@ input, select, textarea {
 				padding-right: 1em;
 			}
 
-		/* Carousel */
+		/* carousel */
 
 			.carousel {
 				padding: 0.5em 0 0.5em 0;
@@ -5441,7 +5441,7 @@ input, select, textarea {
 			border-right: solid 1px rgba(192, 192, 192, 0.35); 
 		}
 
-			#nav > ul.kia_nav:before, #nav > ul.kia_nav:after {
+			#nav > ul.nav:before, #nav > ul.nav:after {
 				content: '';
 				display: block;
 				width: 300%;
@@ -5641,7 +5641,7 @@ input, select, textarea {
 					color: rgba(212, 212, 212, 0.85);
 				}
 
-/* Carousel */
+/* carousel */
 
 	.carousel {
 		position: relative;
@@ -5769,7 +5769,7 @@ input, select, textarea {
 				line-height: 1.75em;
 			}
 
-		/* Carousel */
+		/* carousel */
 
 			.carousel {
 				padding: 1.5em 0 1.5em 0;
@@ -5859,7 +5859,7 @@ input, select, textarea {
 				padding: 4em 2em 4em 2em;
 			}
 
-		/* Carousel */
+		/* carousel */
 
 			.carousel {
 				padding: 1.25em 0 1.25em 0;
@@ -6254,7 +6254,7 @@ input, select, textarea {
 				padding-right: 1em;
 			}
 
-		/* Carousel */
+		/* carousel */
 
 			.carousel {
 				padding: 0.5em 0 0.5em 0;
@@ -6274,5 +6274,5 @@ input, select, textarea {
 						margin-bottom: 2em;
 					}
 
->>>>>>> refs/remotes/origin/master
+
 	}

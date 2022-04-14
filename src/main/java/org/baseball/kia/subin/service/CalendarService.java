@@ -8,9 +8,11 @@ import org.baseball.kia.subin.entity.CalendarVo;
 import org.baseball.kia.subin.entity.LineupVo;
 import org.baseball.kia.subin.entity.ScheduleVo;
 import org.baseball.kia.subin.entity.ScoreVo;
+import org.baseball.kia.subin.entity.UniformInfoVo;
 import org.baseball.kia.subin.repository.LineupDao;
 import org.baseball.kia.subin.repository.ScheduleDao;
 import org.baseball.kia.subin.repository.ScoreDao;
+import org.baseball.kia.subin.repository.UniformInfoDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,7 @@ public class CalendarService {
 	
 	@Autowired
 	ScoreDao scoreDao;
+	
 	
 	public Map<String, CalendarVo> selectScheduleByMonth(String gameMonth) { // 월별 경기일정 조회
 		List<CalendarVo> li = scheduleDao.selectScheduleByMonth(gameMonth);
@@ -45,4 +48,6 @@ public class CalendarService {
 	public ScheduleVo selectScheduleByNo(int scheduleNo) { // 경기번호로 경기일정 조회
 		return scheduleDao.selectScheduleByNo(scheduleNo);
 	}
+	
+	
 }

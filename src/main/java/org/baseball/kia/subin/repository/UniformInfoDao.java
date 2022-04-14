@@ -37,4 +37,8 @@ public class UniformInfoDao {
 	public int deleteUniformInfo(int uniInfoNo) { // 유니폼 정보 삭제
 		return sqlSession.delete("uniformInfo.deleteUniformInfo", uniInfoNo);
 	}
+
+	public List<UniformInfoVo> selectUniformNameTop10() { // 인기 유니폼 top10 조회
+		return sqlSession.selectList("uniformInfo.selectUniformTop10");
+	}
 }
