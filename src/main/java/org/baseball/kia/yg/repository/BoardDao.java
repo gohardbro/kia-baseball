@@ -67,9 +67,10 @@ public class BoardDao {
 		deleteMap.put("cdel", cdel);
 		return deleteMap;
 	}
-
+	
 	public void update(BoardVo vo) {
 		sqlSession.update("board.boardUpdate", vo);
 	}
+
 	
 }

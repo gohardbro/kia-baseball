@@ -12,22 +12,23 @@
 <div class="wrapper style1 container">
 
 	<form method="post" enctype="multipart/form-data">
-		<table border="1">
-			<div class="_h6Bar">
-				<strong>${board.title }</strong>
-				<p class="icoWrap">
-					<span class="date"><fmt:formatDate
-							value="${board.writeDate }" pattern="yyyy-MM-dd" /> | </span> <span
-						class="view"><img src="/images/eye.png">
-						${board.views } | </span> <span class="like"><img
-						src="/images/like.png"> ${board.likes }</span>
-				</p>
+		<div class="_h6Bar">
+			<strong>${board.title }</strong>
+			<p class="icoWrap">
+				<span class="date"><fmt:formatDate
+					value="${board.writeDate }" pattern="yyyy-MM-dd" /> | </span> <span
+					class="view"><img src="/images/eye.png">
+					${board.views } | </span> <span class="like"><img
+					src="/images/like.png"> ${board.likes }</span>
+			</p>
 			</div>
 			<div class="viewCont">
 				<p>
 				<div>
 					${board.content }
 				</div>
+			</div>
+		<table border="1">
 			<tr>
 				<td bgcolor="orange">첨부파일 목록</td>
 				<td><c:forEach var="file" items="${file }">
@@ -41,9 +42,38 @@
 				<td align="left"><input type="file" name="uploadFiles"
 					multiple="multiple"></td>
 			</tr>
+			<tr>
+				<td align="center" colspan="2">
+				<button type="button"><a href="/update?no=${board.boardNo }">글 수정</a></button>
+				<button type="button"><a href="/delete?no=${board.boardNo }">글 삭제</a></button>
+				<button type="button" onclick="goodCheck()">글 추천</button></td>
+			</tr>
 		</table>
-		<a href="/update?no=${board.boardNo }">글 수정</a>&nbsp;&nbsp;&nbsp; <a
-			href="/delete?no=${board.boardNo }">글 삭제</a>&nbsp;&nbsp;&nbsp;
+		<div>
+			<div class="w3-border w3-center w3-padding">
+				<%-- <c:choose>
+					<c:when test="${empty sessionScope.loginUser }">
+					추천 기능은 <button type="button" id="newLogin">
+								<b class="w3-text-blue">로그인</b>
+							</button> 후 사용 가능합니다.<br />
+							<i class="fa fa-heart" style="font-size: 16px; color: red"></i>
+							<span class="rec_count"></span>
+					</c:when> 
+					<c:otherwise>--%>
+						<c:choose>
+						<c:when test="${ltlike ==0}">
+							<button type="button" class="btn btn-light" id="likebtn">좋아요</button>
+							<input type="hidden" id="likecheck" value="${ltlike }">
+						</c:when>					
+						<c:when test="${ltlike ==1}">
+							<button type="button" class="btn btn-danger" id="likebtn">좋아요</button>
+							<input type="hidden" id="likecheck" value="${ltlike }">
+						</c:when>
+					</c:choose>
+					<%-- </c:otherwise>
+				</c:choose> --%>
+			</div>
+		</div>
 	</form>
 	<div class="my-3 p-3 bg-white rounded shadow-sm"
 		style="padding-top: 10px">
@@ -70,11 +100,8 @@
 		<h6 class="border-bottom pb-2 mb-0">Reply list</h6>
 		<div id="commentList"></div>
 	</div>
-
 </div>
-<div>
-<div>
-<div>
+
 <script>
 
 	$(document).ready(function(){
@@ -239,7 +266,7 @@
 		var paramData = {"commentNo": commentNo};
 
 		$.ajax({
-			url: "${pageContext.request.contextPath}/boardviewCtr/deleteCmt"
+			url: '${pageContext.request.contextPath}/boardviewCtr/deleteCmt'
 			, data : paramData
 			, type : 'POST'
 			, dataType : 'text'
@@ -251,12 +278,43 @@
 			}
 		});
 	}
-
+	
+	$('#likebtn').click(function(){
+		likeupdate();
+	});
+	
+	function likeupdate(){
+		var paramData = JSON.stringify({
+			"wirter" : $('#writer').val(),
+			"boardNo" : $('#boardNo').val(),
+			"count" : $('#likecheck').val()
+		});
+		
+	$.ajax({
+		url : '${pageContext.request.contextPath}/boardviewCtr/likeupdate'
+		type : 'POST',
+		contentType: 'application/json',
+		data : paramData,
+		success : function(result){
+			console.log("수정" + result.result);
+			if(count == 1){
+				console.log("좋아요 취소");
+				 $('#likecheck').val(0);
+				 $('#likebtn').attr('class','btn btn-light');
+			}else if(count == 0){
+				console.log("좋아요!");
+				$('#likecheck').val(1);
+				$('#likebtn').attr('class','btn btn-danger');
+			}
+		}, error : function(result){
+			console.log("에러" + result.result)
+		}
+		
+		});
+	};
 </script>
-<style>
-
-
-</style>
-
+<div>
+<div>
+<div>
 <jsp:include page="/WEB-INF/views/yg/include/bottom.jsp" />
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />

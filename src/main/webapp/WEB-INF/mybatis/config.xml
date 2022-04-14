@@ -20,6 +20,7 @@
 		<typeAlias type="org.baseball.kia.yg.entity.PagingVo" alias="paging" />
 		<typeAlias type="org.baseball.kia.yg.entity.FileVo" alias="file" />
 		<typeAlias type="org.baseball.kia.yg.entity.CommentVo" alias="comment" />
+		<typeAlias type="org.baseball.kia.yg.entity.LikeVo" alias="likes" />
 		<!-- 수빈 -->
 		<typeAlias type="org.baseball.kia.subin.entity.AccountVo" alias="accountVo"/>
 		<typeAlias type="org.baseball.kia.subin.entity.BaseballVo" alias="baseballVo"/>

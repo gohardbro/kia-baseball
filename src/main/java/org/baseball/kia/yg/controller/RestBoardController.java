@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.baseball.kia.yg.entity.CommentVo;
+import org.baseball.kia.yg.entity.LikeVo;
 import org.baseball.kia.yg.service.CommentService;
+import org.baseball.kia.yg.service.LikeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,9 @@ public class RestBoardController {
 
 	@Autowired
 	CommentService commentService;
+	
+	@Autowired
+	LikeService likeService;
 
 	@RequestMapping(value = "/getCmtList", method = RequestMethod.POST)
 	public List<CommentVo> getReplyList(@RequestParam("boardNo") int no) {
@@ -64,5 +69,17 @@ public class RestBoardController {
 		}
 		return result;
 	}
-
+	
+	@RequestMapping(value = "/likeupdate", method = RequestMethod.POST)
+	public Map<String,String> likeupdate(@RequestBody LikeVo vo){
+		Map<String,String> result = new HashMap<String, String>();
+		try {
+			likeService.updateLike(vo);
+			result.put("result", "success");
+		}catch(Exception e) {
+			e.printStackTrace();
+			result.put("result", "fail");
+		}
+		return result;
+	}
 }

@@ -8,12 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 import org.baseball.kia.yg.entity.BoardVo;
 import org.baseball.kia.yg.entity.CommentVo;
 import org.baseball.kia.yg.entity.FileVo;
+import org.baseball.kia.yg.entity.LikeVo;
 import org.baseball.kia.yg.entity.PagingVo;
 import org.baseball.kia.yg.service.BoardService;
 import org.baseball.kia.yg.service.CommentService;
 import org.baseball.kia.yg.service.FileService;
+import org.baseball.kia.yg.service.LikeService;
 import org.baseball.kia.yg.util.Criteria;
 import org.baseball.kia.yg.util.FileUtils;
+import org.baseball.kia.yg.util.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +37,9 @@ public class BoardController {
 
 	@Autowired
 	CommentService commentService;
+	
+	@Autowired
+	LikeService likeService;
 
 	@RequestMapping(value = "/intro", method = RequestMethod.GET)
 	public String introduction(Model model) {
@@ -80,8 +86,7 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/boardview", method = RequestMethod.GET)
-	public String insertPostHandle(@RequestParam("boardNo") int no, Model model) {
-
+	public String boardView(@RequestParam("boardNo") int no, Model model, SecurityUtils aa) {
 		boardService.updateCnt(no);
 		BoardVo vo = boardService.getOneByNo(no);
 		if (vo == null) {
@@ -89,9 +94,25 @@ public class BoardController {
 		}
 		model.addAttribute("board", vo);
 		model.addAttribute("cmt", new CommentVo());
-
+		
+		LikeVo lvo = new LikeVo();
+		lvo.setBoardNoLike(no);
+		lvo.setIdLike(SecurityUtils.currentUserName());
+		
+		int ltlike = 0;
+		int check = likeService.likeBoardCount(lvo);
+		
+		if(check ==0) {
+			likeService.likeinsert(lvo);
+		}else if(check==1) {
+			ltlike = likeService.likeViewCount(lvo);
+		}
+		
+		model.addAttribute("ltlike",ltlike);
+		
 		return "/yg/boardview";
 	}
+
 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String boardDelete(@RequestParam("no") int no) {

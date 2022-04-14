@@ -55,5 +55,29 @@
 		BOARD
 		WHERE BOARD_NO > 0
 	</select>
+	
+	<select id="likeBoardCount" resultType="Integer" parameterType="board">
+		SELECT COUNT(LIKES) FROM BOARD 
+		WHERE WRITER = #{writer} AND BOARD_NO = #{boardNo}
+	</select>
+	
+	<select id="likeViewCount" resultType="Integer" parameterType="board">
+		SELECT LIKES FROM BOARD 
+		WHERE WRITER = #{writer} AND BOARD_NO = #{boardNo}
+	</select>
 
+	<update id="updateLike" parameterType="board">
+		UPDATE BOARD SET
+		<include refid="cal"></include>
+		WHERE WRITER = #{writer} AND BOARD_NO = #{boardNo}
+	</update>
+
+	<sql id="cal">
+		<if test="count == 1">
+			LIKES = 0
+		</if>
+		<if test="count == 0">
+			LIKES = LIKES + 1
+		</if>
+	</sql>
 </mapper> 
