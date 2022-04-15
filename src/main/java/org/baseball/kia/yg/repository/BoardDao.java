@@ -47,10 +47,6 @@ public class BoardDao {
 		return sqlSession.selectList("board.selectBoardList", cri);
 	}
 
-	public int countBoardList() {
-		return sqlSession.selectOne("board.countBoardList");
-	}
-
 	public void boardDelete(int no) {
 		sqlSession.delete("board.boardDelete", no);
 	}

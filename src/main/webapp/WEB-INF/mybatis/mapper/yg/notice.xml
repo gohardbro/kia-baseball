@@ -3,57 +3,57 @@
 <mapper namespace="notice">
 
 	<insert id="insertOne" parameterType="notice">
-		INSERT INTO BOARD
+		INSERT INTO NOTICE
 		VALUES
-		(BOARD_SEQ.NEXTVAL, #{title},#{content}, SYSDATE, #{writer},#{views},#{likes})
+		(NOTICE_SEQ.NEXTVAL, #{title},#{content}, #{writer}, SYSDATE, #{views})
 	</insert>
 	
 	<select id="selectAll" resultType="notice">
-		SELECT * FROM BOARD ORDER
+		SELECT * FROM NOTICE ORDER
 		BY
-		BOARD_NO DESC
+		NOTICE_NO DESC
 	</select>
 	
 	<select id="selectOne" resultType="notice">
 		SELECT
-		* FROM BOARD WHERE
-		BOARD_NO = #{boardNo}
+		* FROM NOTICE WHERE
+		NOTICE_NO = #{noticeNo}
 	</select>
 	
 	<update id="updateCnt" parameterType="int">
-		UPDATE BOARD SET VIEWS =
-		VIEWS + 1 WHERE BOARD_NO = #{boardNo}
+		UPDATE NOTICE SET VIEWS =
+		VIEWS + 1 WHERE NOTICE_NO = #{noticeNo}
 	</update>
 	
-	<delete id="boardDelete" parameterType="int">
-		DELETE FROM BOARD WHERE
-		BOARD_NO = #{boardNo}
+	<delete id="noticeDelete" parameterType="int">
+		DELETE FROM NOTICE WHERE
+		NOTICE_NO = #{noticeNo}
 	</delete>
 	
-	<update id="boardUpdate" parameterType="notice">
-		UPDATE BOARD SET TITLE =
-		#{title}, CONTENT = #{content} WHERE BOARD_NO = #{boardNo}
+	<update id="noticeUpdate" parameterType="notice">
+		UPDATE NOTICE SET TITLE =
+		#{title}, CONTENT = #{content} WHERE NOTICE_NO = #{noticeNo}
 	</update>
 	
 	<select id="listPage" resultType="notice"
 		parameterType="org.baseball.kia.yg.util.Criteria">
 		SELECT * FROM
-		(SELECT BOARD_NO, TITLE, CONTENT,
-		WRITER,
-		WRITE_DATE, LIKES, VIEWS, ROW_NUMBER() OVER(ORDER BY BOARD_NO DESC)
+		(SELECT NOTICE_NO, TITLE, CONTENT,
+		WRITE_DATE, WRITER,
+		VIEWS, ROW_NUMBER() OVER(ORDER BY NOTICE_NO DESC)
 		AS
-		RNUM FROM BOARD)
+		RNUM FROM NOTICE)
 		MP
 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
 		ORDER BY
-		BOARD_NO DESC
+		NOTICE_NO DESC
 	</select>
 	
 	<select id="listCount" resultType="int">
-		SELECT COUNT(BOARD_NO)
+		SELECT COUNT(NOTICE_NO)
 		FROM
-		BOARD
-		WHERE BOARD_NO > 0
+		NOTICE
+		WHERE NOTICE_NO > 0
 	</select>
 
 </mapper> 

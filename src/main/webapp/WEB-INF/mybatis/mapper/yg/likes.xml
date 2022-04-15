@@ -19,16 +19,13 @@
 
 	<update id="updateLike" parameterType="likes">
 		UPDATE BOARD_LIKE SET
-		<include refid="cal"></include>
-		WHERE ID_LIKE = #{idLike} AND BOARD_NO_LIKE = #{boardNoLike}
-	</update>
-
-	<sql id="cal">
 		<if test="count == 1">
 			LIKES = 0
 		</if>
 		<if test="count == 0">
 			LIKES = LIKES + 1
 		</if>
-	</sql>
+		WHERE ID_LIKE = #{idLike} AND BOARD_NO_LIKE = #{boardNoLike}
+	</update>
+
 </mapper> 

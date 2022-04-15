@@ -41,10 +41,6 @@ public class BoardService {
 	public List<Map<String,Object>> selectBoardList(Criteria cri) {
 		return boardDao.selectBoardList(cri);
 	}
-	
-	public int countBoardListTotal() {
-	    return boardDao.countBoardList();
-	}
 
 	public void boardDelete(int no) {
 		boardDao.boardDelete(no);

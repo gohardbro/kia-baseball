@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.baseball.kia.taejeong.entity.AccountVo;
 import org.baseball.kia.yg.entity.BoardVo;
 import org.baseball.kia.yg.entity.CommentVo;
 import org.baseball.kia.yg.entity.FileVo;
@@ -16,8 +17,9 @@ import org.baseball.kia.yg.service.FileService;
 import org.baseball.kia.yg.service.LikeService;
 import org.baseball.kia.yg.util.Criteria;
 import org.baseball.kia.yg.util.FileUtils;
-import org.baseball.kia.yg.util.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
@@ -86,7 +88,7 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/boardview", method = RequestMethod.GET)
-	public String boardView(@RequestParam("boardNo") int no, Model model, SecurityUtils aa) {
+	public String boardView(@RequestParam("boardNo") int no, Model model) {
 		boardService.updateCnt(no);
 		BoardVo vo = boardService.getOneByNo(no);
 		if (vo == null) {
@@ -97,7 +99,7 @@ public class BoardController {
 		
 		LikeVo lvo = new LikeVo();
 		lvo.setBoardNoLike(no);
-		lvo.setIdLike(SecurityUtils.currentUserName());
+		lvo.setIdLike(currentUserName());
 		
 		int ltlike = 0;
 		int check = likeService.likeBoardCount(lvo);
@@ -113,6 +115,11 @@ public class BoardController {
 		return "/yg/boardview";
 	}
 
+	private String currentUserName() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        AccountVo user = (AccountVo) authentication.getPrincipal();
+        return user.getId();
+	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String boardDelete(@RequestParam("no") int no) {

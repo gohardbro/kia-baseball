@@ -14,8 +14,8 @@
 		<table class="table">
 			<c:forEach var="one" items="${all }">
 				<tr>
-					<td>${one.boardNo }</td>
-					<td class="col-9"><a href="/boardview?boardNo=${one.boardNo }">${one.title }</a></td>
+					<td>${one.noticeNo }</td>
+					<td class="col-9"><a href="/boardview?boardNo=${one.noticeNo }">${one.title }</a></td>
 					<td><fmt:formatDate value="${one.writeDate }"
 							pattern="yyyy.MM.dd" /> | <img src="/images/eye.png">
 						${one.views }
@@ -23,9 +23,9 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<div style="margin-top: 10px;">
+		<!-- <div style="margin-top: 10px;">
 			<button class="_btn" type="button" onclick="location.href='/write'">글쓰기</button>
-		</div>
+		</div> -->
 		<div class="paging">
 			<ul>
 				<c:if test="${pvo.prev }">
