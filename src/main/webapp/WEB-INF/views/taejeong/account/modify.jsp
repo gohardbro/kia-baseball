@@ -275,6 +275,40 @@ body {
 									</form>
 								</div></td>
 						</tr>
+						<tr>
+							<th>프로필</th>
+							<td><div class="usermodify_nickName">
+									<strong class="usermodify_email_current_nickName">${loginUser.nickname }</strong>
+									<button type="button" class="usermodify_nickName_change_btn"
+										id="usermodify_nickName_change_btn"
+										onclick="changeButtonToCanelNickName()">닉네임 변경</button>
+									<button type="button" class="usermodify_nickName_change_cancel"
+										id="usermodify_nickName_change_cancel" style="display: none;"
+										onclick="changeButtonToDefaultNickName()">닉네임 변경 취소</button>
+									<form class="usermodify_nickName_form row g-3" method="post"
+										action="/modify/nickname" id="usermodify_nickName_form"
+										style="display: none;">
+										<div class="col-md-4">
+											<input type="text"
+												class="usermodify_nickName_form_input form-control"
+												id="validationServer02" name="nickname"
+												aria-describedby="validationServer02Feedback"
+												onkeyup="nicknameCheck()" required>
+											<div id="validationServer02Feedback" class="invalid-feedback already_nickname">
+												해당 닉네임이 이미 있습니다.</div>
+											<div id="validationServer02Feedback" class="invalid-feedback empty_nickname" style="display: none;">
+												닉네임을 입력하세요.</div>
+											<div id="validationServer02Feedback" class="valid-feedback">
+												사용가능한 닉네임 입니다.</div>
+										</div>
+										<div class="col-6" style="display: inline-block;">
+											<button
+												class="usermodify_nickName_form_submit btn btn-primary"
+												type="button">닉네임 변경</button>
+										</div>
+									</form>
+								</div></td>
+						</tr>
 
 					</tbody>
 				</table>

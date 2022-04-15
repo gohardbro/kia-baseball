@@ -20,5 +20,13 @@ public class TUniformService {
 	public int updateTotalNUniCnt(TUniformVo tUniformVo) {
 		return tUniformDao.updateTotalNUniCntByUniformNo(tUniformVo);
 	}
+	
+	public TUniformVo getInfoByUniformNo(TUniformVo tUniformVo) {
+		return tUniformDao.selectInfoByUniformNo(tUniformVo);
+	}
+	
+	public int updateBuyDateNState(int uniformNo) {
+		return tUniformDao.updateBuyDateByUniformNo(uniformNo);
+	}
 
 }

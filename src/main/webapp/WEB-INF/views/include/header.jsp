@@ -16,6 +16,8 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 
+
+
 <noscript>
 	<link rel="stylesheet" href="/assets/css/noscript.css" />
 </noscript>
@@ -31,6 +33,8 @@
 <script src="/assets/js/util.js"></script>
 <script src="/assets/js/main.js"></script>
 
+<!-- iamport.payment.js -->
+  <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
 
 </head>
 

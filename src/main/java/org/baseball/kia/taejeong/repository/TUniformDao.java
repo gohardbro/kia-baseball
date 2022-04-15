@@ -20,4 +20,12 @@ public class TUniformDao {
 	public int updateTotalNUniCntByUniformNo(TUniformVo tUniformVo) {
 		return sqlSession.update("tUniform.updateTotalNUniCntByUniformNo", tUniformVo);
 	}
+	
+	public TUniformVo selectInfoByUniformNo(TUniformVo tUniformVo) {
+		return sqlSession.selectOne("tUniform.selectInfoByUniformNo", tUniformVo);
+	}
+	
+	public int updateBuyDateByUniformNo(int uniformNo) {
+		return sqlSession.update("tUniform.updateBuyDateByUniformNo", uniformNo);
+	}
 }

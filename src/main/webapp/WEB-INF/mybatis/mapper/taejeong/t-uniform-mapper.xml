@@ -9,6 +9,7 @@
 		ON U.PLAYER_NO = P.NO
 		WHERE BUYER = #{buyer}
 		
+		
 		<if test="periodBtn == null">
 			AND BUY_DATE IS NULL
 		</if>
@@ -33,10 +34,44 @@
 		</if>
 	</select>
 	
+	<select id="selectInfoByUniformNo" resultType="tUniformVo">
+		SELECT *
+		FROM UNIFORM U INNER JOIN UNIFORM_INFO I
+		USING(UNI_INFO_NO)
+		INNER JOIN PLAYER P
+		ON U.PLAYER_NO = P.NO
+        INNER JOIN (SELECT NAME USERNAME, NICKNAME, POINT, PHONE, ID 
+                    FROM ACCOUNT 
+                    WHERE ID = #{buyer}) A
+        ON A.ID = U.BUYER
+		WHERE UNIFORM_NO = #{uniformNo}
+	</select>
+	
+	
 	<update id="updateTotalNUniCntByUniformNo">
 		UPDATE UNIFORM
 		SET UNI_CNT = #{uniCnt},
     		TOTAL = #{total}
 		WHERE UNIFORM_NO = #{uniformNo}
 	</update>
+	
+	<update id="updateBuyDateByUniformNo">
+		UPDATE UNIFORM
+		SET BUY_DATE = SYSDATE,
+			STATE = '결제완료'
+		WHERE UNIFORM_NO = #{uniformNo}
+	</update>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

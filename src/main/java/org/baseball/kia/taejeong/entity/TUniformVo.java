@@ -26,6 +26,39 @@ public class TUniformVo {
 	String yearSelect;
 	String monSelect;
 	String periodBtn;
+	
+	String username;
+	String nickname;
+	int point;
+	String phone;
+	
+	
+	
+	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public int getPoint() {
+		return point;
+	}
+	public void setPoint(int point) {
+		this.point = point;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	public int getUniInfoNo() {
 		return uniInfoNo;
 	}

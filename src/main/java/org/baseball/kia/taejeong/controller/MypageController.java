@@ -5,7 +5,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,6 +24,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -153,7 +156,7 @@ public class MypageController {
 	
 	@RequestMapping("/cart/calTotalPrice")
 	@ResponseBody
-	public int cartCalTotalPriceHandle(@ModelAttribute TUniformVo tUniformVo) {
+	public int cartCalTotalPriceHandle(@ModelAttribute TUniformVo tUniformVo, HttpSession httpSession) {
 		int price = tUniformVo.getPrice();
 		int uniCnt = tUniformVo.getUniCnt();
 		int total = price * uniCnt;
@@ -162,6 +165,28 @@ public class MypageController {
 		tUniformService.updateTotalNUniCnt(tUniformVo);
 		
 		return total;
+	}
+	
+	@RequestMapping("/cart/getInfo")
+	@ResponseBody
+	public Map<String, TUniformVo> cartGetInfoHandle(@RequestBody int[] info, HttpSession httpSession, HttpServletResponse response, TUniformVo tUniformVo) {
+		AccountVo loginUserVo = (AccountVo) httpSession.getAttribute("loginUser");
+		tUniformVo.setBuyer(loginUserVo.getId());
+		Map<String, TUniformVo> map= new HashMap<>();
+		for (int i : info) {
+			tUniformVo.setUniformNo(i);
+			TUniformVo productInfo = tUniformService.getInfoByUniformNo(tUniformVo);
+			map.put("cartInfo"+i, productInfo);
+			
+		}
+		
+		return map;
+	}
+	
+	@RequestMapping("/cart/updateBuyDate")
+	public String cartUpdateBuyDateHandle(@RequestParam int uniformNo) {
+		tUniformService.updateBuyDateNState(uniformNo);
+		return "redirect:/mypage";
 	}
 
 }

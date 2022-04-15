@@ -146,20 +146,20 @@ select, option {
 									<tr>
 										<th>경기일시</th>
 										<td>${ticketList.gameDate } ${ticketList.gameTime }</td>
-										<th>장소</th>
-										<td>${ticketList.gameDate }</td>
-									</tr>
-									<tr>
-										<th>좌석</th>
-										<td>${ticketList.baseballZone }</td>
 										<th>티켓수령 방법</th>
 										<td>몰라</td>
 									</tr>
 									<tr>
-										<th>예매일</th>
-										<td>${ticketList.buyDate }</td>
+										<th>좌석</th>
+										<td>${ticketList.baseballZone }</td>
 										<th>현재상태</th>
 										<td>결제완료했겠지</td>
+									</tr>
+									<tr>
+										<th>예매일</th>
+										<td>${ticketList.buyDate }</td>
+										<th></th>
+										<td></td>
 									</tr>
 									<tr>
 										<th>결제수단</th>
@@ -174,32 +174,6 @@ select, option {
 						<div class="cancelBtn">
 							<button type="button" class="btn btn-secondary" id="cancelBtnA" onclick="confirmCheck()">취소하기</button>
 						</div>
-						
-						<!-- Button trigger modal -->
-						<!-- <button type="button" class="btn btn-primary"
-							data-bs-toggle="modal" data-bs-target="#exampleModal">
-							Launch demo modal</button> -->
-
-						<!-- Modal -->
-						<!-- <div class="modal fade" id="exampleModal" tabindex="-1"
-							aria-labelledby="exampleModalLabel" aria-hidden="true">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title" id="exampleModalLabel">Modal
-											title</h5>
-										<button type="button" class="btn-close"
-											data-bs-dismiss="modal" aria-label="Close"></button>
-									</div>
-									<div class="modal-body">정말 예매를 취소합니까?</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary"
-											data-bs-dismiss="modal">취소합니다</button>
-										<button type="button" class="btn btn-primary">아니요</button>
-									</div>
-								</div>
-							</div>
-						</div> -->
 					</div>
 				</div>
 			</div>

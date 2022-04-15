@@ -168,13 +168,14 @@ select, option {
 					<div>
 						<table>
 							<colgroup>
-								<col style="width: 150px;">
+								<col style="width: 120px;">
 								<col>
 								<col>
 								<col style="width: 100px;">
 							</colgroup>
 							<thead>
 								<tr>
+									<th>구매일자</th>
 									<th>이미지</th>
 									<th>상품정보</th>
 									<th>상품금액</th>
@@ -183,9 +184,10 @@ select, option {
 							<tbody>
 								<c:forEach items="${uniformList }" var="uniformList">
 									<tr>
+										<td>${uniformList.buyDate }</td>
 										<td><img src="${uniformList.uniformImg }"></td>
 										<td>${uniformList.uniformName } ${uniformList.color }
-											${uniformList.no } ${uniformList.name } ${uniformList.buyDate }</td>
+											${uniformList.no } ${uniformList.name }</td>
 										<td><fmt:formatNumber value="${uniformList.total }" pattern="#,###"/></td>
 									</tr>
 								</c:forEach>
