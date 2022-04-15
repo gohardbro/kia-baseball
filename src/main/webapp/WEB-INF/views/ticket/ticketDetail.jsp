@@ -46,7 +46,7 @@
 			amount : 1000, //가격 이것만 있어도 결제는 넘어감 
 			buyer_email : 'iamport@siot.do', //<- id로 
 			buyer_name : '구매자이름',
-			buyer_tel: '010-1234-5678',
+			buyer_tel : '010-1234-5678',
 
 		}, function(rsp) {
 			console.log(rsp);
@@ -112,14 +112,41 @@ img.gl-logo {
 					<div class="col-sm-4">
 						<div class="container">
 							<div class="shadow p-4 mb-4 bg-white">
-								<!--선택된 경기 정보  -->
+
+
+								<!--선택된 경기 1건의 정보  -->
 								<div>${oneGame.gameDate}</div>
 
 								<div class="disp_week">
-									<input type="hidden" class="gamedate"
-										value="${oneGame.gameDate }">
+									<input type="hidden" class="gameDate" value="${oneGame.gameDate }">
+									
 									<script type="text/javascript">
+										var ajaxData;
+										var data = $('.gameDate').val();
+										document.write(getInputDayLabel(data));
 										
+										 $("input[name=zoneCheck]").click(function() { 
+											var data = $('.gameDate').val();
+											document.write(getInputDayLabel(data));
+
+											var yoil = getInputDayLabel(data);
+											var basballZone = $(this).val();
+
+											$.ajax({
+												url : "/ticketPrice",
+												data : {"yoil" : yoil,
+														"baseballZone" : basballZone},
+												success : function(response) {
+													alert("성공");
+													ajaxData = response;
+												},
+												error : function() {
+													alert("실패");
+												}
+											});
+											console.log(ajaxData);
+											/*  -> 이 response를 변수로 받아서 quentity의 value랑 곱해서 총 수량을 내주고 싶음  */
+										});
 									</script>
 								</div>
 								<div>${oneGame.gameTime}</div>
@@ -141,49 +168,19 @@ img.gl-logo {
 					<div class="col-sm-8">
 						<div class="container">
 							<div class="shadow p-4 mb-4 bg-white">
-								<!-- seatArea고르기 k3,k5... -->
-								<div class="areaChoice">
+
+								<!-- seatArea고르기 radio 6개 -->
+								<div class="seatChoice" style="height: 100px;">
 									<c:forEach var="sc" items="${seatChoice}">
-										<div>
+								
 											<input type="radio" name="zoneCheck"
-												value="${sc.baseballZone}">${sc.baseballZone}
-										</div>
+											value="${sc.baseballZone}">${sc.baseballZone}
+									
 									</c:forEach>
 								</div>
 
 
-								<script>
-									$("input[name=zoneCheck]")
-											.click(
-													function() {
-														var data = $(
-																'.gamedate')
-																.val();
-														console.log(data); /* 날짜는 잘 가져왔음 */
-														document
-																.write(getInputDayLabel(data));
-														var yoil = getInputDayLabel(data);
 
-														var basballZone = $(
-																this).val();
-
-														$
-																.ajax({
-																	url : "/ticketPrice",
-																	data : {
-																		"yoil" : yoil,
-																		"baseballZone" : basballZone
-																	},
-																	success : function(
-																			response) {
-																		alert("성공");
-																	},
-																	error : function() {
-																		alert("실패");
-																	}
-																});
-													});
-								</script>
 
 								<!-- 수량 업다운 버튼 -->
 								<div class="quantity">
@@ -200,39 +197,14 @@ img.gl-logo {
 									</span>
 
 								</div>
-								<!-- 수량 업다운 버튼 끝-->
 
-								<script>
-									$("#upBtn").click(function() {
-										var count = $("#quantity").val();
-										$("#quantity").val(++count);
 
-									});
 
-									$("#downBtn").click(function() {
-										var count = $("#quantity").val();
-										$("#quantity").val(--count);
-
-									});
-
-									/* 	if ($(this).hasId("upBtn")) {
-											count++;
-									
-										} else {
-											count--;
-											if (count < 1)
-												return;
-										}
-									
-										countInput.val(count);
-										totalInput.val(count * price); */
-								</script>
-
+							 
 								<div>
-									<a>총 결제금액</a>
-								</div>
-								<div>
-									<a>(여기 돈 계산해서 들어오기)</a><a>원</a>
+								<a>총 결제금액</a>
+									<input type="text" class="totalAmount" value="0" />
+								 	원
 								</div>
 
 								<button type="button" onclick="temp()">결제하기</button>
@@ -254,6 +226,31 @@ img.gl-logo {
 
 
 </body>
+
+
+
+<!-- 수량 업다운버튼  -->
+<script>
+	$("#upBtn").click(function() {
+		var count = $("#quantity").val();
+		if (count <= 3) {
+			$("#quantity").val(++count);
+		} else {
+			count = 4;
+		}
+	});
+
+	$("#downBtn").click(function() {
+		var count = $("#quantity").val();
+
+		if (count > 0) {
+			$("#quantity").val(--count);
+		} else {
+			count = 0;
+		}
+
+	});
+</script>
 </html>
 
 <jsp:include page="/WEB-INF/views/ticket/include/bottom.jsp" />

@@ -23,7 +23,7 @@ public class SeatController {
 
 	// ticketDetail
 	@RequestMapping("/ticketDetail")
-	public String ticketDetail(@RequestParam int scheduleNo,  Model model) {
+	public String ticketDetail(@RequestParam int scheduleNo, Model model) {
 
 		// 선택한 1경기
 		model.addAttribute("oneGame", seatChoiceService.selectGame(scheduleNo));
@@ -33,40 +33,29 @@ public class SeatController {
 		List<SeatChoiceVo> list = seatChoiceService.seatChoice();
 		model.addAttribute("seatChoice", list);
 		System.out.println(list.size());
-		
 
 		return "/ticket/ticketDetail";
-		
-	}
 
-	
+	}
 
 	@RequestMapping("/ticketPrice")
 	@ResponseBody
 	public int weekPrice(@RequestParam String yoil, @RequestParam String baseballZone, Model model) {
-		
-		
+
 		SeatChoiceVo weekPrice = seatChoiceService.weekPrice(baseballZone);
-		
-	 
-		
-		switch(yoil){
-			case "월요일": 
-			case "화요일":
-			case "수요일":
-			case "목요일":
-			case "금요일":
-				return weekPrice.getPriceWeekday();
 
-			default:
+		switch (yoil) {
+		case "월요일":
+		case "화요일":
+		case "수요일":
+		case "목요일":
+		case "금요일":
+			return weekPrice.getPriceWeekday();
+
+		default:
 			return weekPrice.getPriceWeekend();
-		 
 		}
-		
-		
-	}
 
-	
-	
+	}
 
 }
