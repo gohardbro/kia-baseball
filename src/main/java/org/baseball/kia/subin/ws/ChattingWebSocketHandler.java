@@ -33,7 +33,7 @@ public class ChattingWebSocketHandler extends TextWebSocketHandler{
 		Map<String, Object> map = new LinkedHashMap<String, Object>();
 		map.put("command", "join");
 		map.put("data", session.getRemoteAddress().getAddress());
-		map.put("total", sessionList.size());
+		map.put("total", sessionList.size()); // 접속자 인원 수
 		
 		String json = gson.toJson(map);
 		
