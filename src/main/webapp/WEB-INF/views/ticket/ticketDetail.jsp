@@ -31,37 +31,6 @@
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
 
-<script>
-	function temp() {
-		console.log("TEMP CALLED");
-		var IMP = window.IMP;
-		IMP.init('imp89839657');
-		// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-		// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
-		IMP.request_pay({
-			pg : 'inicis', // version 1.1.0부터 지원.
-			pay_method : 'card',
-			merchant_uid : 'merchant_' + new Date().getTime(),
-			name : 'Kia Tigers 경기 예매권(팬페이지 구매)', //상품명
-			amount : 1000, //가격 이것만 있어도 결제는 넘어감 
-			buyer_email : 'iamport@siot.do', //<- id로 
-			buyer_name : '구매자이름',
-			buyer_tel : '010-1234-5678',
-
-		}, function(rsp) {
-			console.log(rsp);
-			if (rsp.success) {
-				var msg = '결제가 완료되었습니다.';
-				msg += '결제 금액은 : ' + rsp.paid_amount + '원 입니다.';
-
-			} else {
-				var msg = '결제에 실패하였습니다.';
-				msg += '에러내용 : ' + rsp.error_msg;
-			}
-			alert(msg);
-		});
-	};
-</script>
 
 
 
@@ -184,8 +153,39 @@ img.gl-logo {
 </body>
 
 
-
 <script>
+	function temp() {
+		console.log("TEMP CALLED");
+		var IMP = window.IMP;
+		IMP.init('imp89839657');
+		// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+		// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
+		IMP.request_pay({
+			pg : 'inicis', // version 1.1.0부터 지원.
+			pay_method : 'card',
+			merchant_uid : 'merchant_' + new Date().getTime(),
+			name : 'Kia Tigers 경기 예매권(팬페이지 구매)', //상품명
+			amount : 1000, //가격 이것만 있어도 결제는 넘어감 
+			buyer_email : 'iamport@siot.do', //<- id로 
+			buyer_name : '구매자이름',
+			buyer_tel : '010-1234-5678',
+
+		}, function(rsp) {
+			console.log(rsp);
+			if (rsp.success) {
+				var msg = '결제가 완료되었습니다.';
+				msg += '결제 금액은 : ' + rsp.paid_amount + '원 입니다.';
+
+			} else {
+				var msg = '결제에 실패하였습니다.';
+				msg += '에러내용 : ' + rsp.error_msg;
+			}
+			alert(msg);
+		});
+	};
+
+	
+	/*  ajax를 통해 요일 x 좌석 = 가격을 responsebody를 통해 response로 받았다  */
 	var ajaxData;
 	var data = $('.gameDate').val();
 	$(".disp_week").html(getInputDayLabel(data));
@@ -209,9 +209,9 @@ img.gl-logo {
 		});
 		
 		updatePrice();
-		/*  -> 이 response를 변수로 받아서 quentity의 value랑 곱해서 총 수량을 내주고 싶음  */
 	});
-
+	
+	/* 업다운 버튼으로  티켓 매수 조절 */
 	
 	$("#upBtn").click(function() {
 		var count = $("#quantity").val();
@@ -237,6 +237,8 @@ img.gl-logo {
 	function updatePrice() {
 		var amount = ajaxData * $("#quantity").val();
 		console.log(amount);
+		
+		/* 이 amount를 DB에 넣어서 결제창 amount로 적용하고 싶음  */
 	}
 </script>
 </html>
