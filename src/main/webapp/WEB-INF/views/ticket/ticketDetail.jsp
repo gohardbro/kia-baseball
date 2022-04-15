@@ -112,43 +112,11 @@ img.gl-logo {
 					<div class="col-sm-4">
 						<div class="container">
 							<div class="shadow p-4 mb-4 bg-white">
-
-
+								<input type="hidden" class="gameDate"
+									value="${oneGame.gameDate }">
 								<!--선택된 경기 1건의 정보  -->
 								<div>${oneGame.gameDate}</div>
-
-								<div class="disp_week">
-									<input type="hidden" class="gameDate" value="${oneGame.gameDate }">
-									
-									<script type="text/javascript">
-										var ajaxData;
-										var data = $('.gameDate').val();
-										document.write(getInputDayLabel(data));
-										
-										 $("input[name=zoneCheck]").click(function() { 
-											var data = $('.gameDate').val();
-											document.write(getInputDayLabel(data));
-
-											var yoil = getInputDayLabel(data);
-											var basballZone = $(this).val();
-
-											$.ajax({
-												url : "/ticketPrice",
-												data : {"yoil" : yoil,
-														"baseballZone" : basballZone},
-												success : function(response) {
-													alert("성공");
-													ajaxData = response;
-												},
-												error : function() {
-													alert("실패");
-												}
-											});
-											console.log(ajaxData);
-											/*  -> 이 response를 변수로 받아서 quentity의 value랑 곱해서 총 수량을 내주고 싶음  */
-										});
-									</script>
-								</div>
+								<div class="disp_week"></div>
 								<div>${oneGame.gameTime}</div>
 								<div>
 									<img src="/images/Logo_Mini/KIA.jpg" class="gl-logo" />
@@ -168,19 +136,13 @@ img.gl-logo {
 					<div class="col-sm-8">
 						<div class="container">
 							<div class="shadow p-4 mb-4 bg-white">
-
 								<!-- seatArea고르기 radio 6개 -->
 								<div class="seatChoice" style="height: 100px;">
 									<c:forEach var="sc" items="${seatChoice}">
-								
-											<input type="radio" name="zoneCheck"
+										<input type="radio" name="zoneCheck"
 											value="${sc.baseballZone}">${sc.baseballZone}
-									
 									</c:forEach>
 								</div>
-
-
-
 
 								<!-- 수량 업다운 버튼 -->
 								<div class="quantity">
@@ -195,16 +157,10 @@ img.gl-logo {
 										<button type="button" class="btn btn-outline-danger"
 											id="downBtn">▽</button>
 									</span>
-
 								</div>
 
-
-
-							 
 								<div>
-								<a>총 결제금액</a>
-									<input type="text" class="totalAmount" value="0" />
-								 	원
+									토탈금액을 DB에서 불러와서 여기 띄워줌 
 								</div>
 
 								<button type="button" onclick="temp()">결제하기</button>
@@ -229,8 +185,34 @@ img.gl-logo {
 
 
 
-<!-- 수량 업다운버튼  -->
 <script>
+	var ajaxData;
+	var data = $('.gameDate').val();
+	$(".disp_week").html(getInputDayLabel(data));
+
+	$("input[name=zoneCheck]").click(function() {
+		var data = $('.gameDate').val();
+
+		var yoil = getInputDayLabel(data);
+		var basballZone = $(this).val();
+		console.log(yoil+"/"+basballZone);
+		$.ajax({
+			url : "/ticketPrice",
+			data : {"yoil" : yoil,
+					"baseballZone" : basballZone},
+			async : false,
+			success : function(response) {
+				ajaxData = response;
+			},
+			error : function() {
+			}
+		});
+		
+		updatePrice();
+		/*  -> 이 response를 변수로 받아서 quentity의 value랑 곱해서 총 수량을 내주고 싶음  */
+	});
+
+	
 	$("#upBtn").click(function() {
 		var count = $("#quantity").val();
 		if (count <= 3) {
@@ -238,18 +220,24 @@ img.gl-logo {
 		} else {
 			count = 4;
 		}
+		updatePrice();
 	});
 
+	
 	$("#downBtn").click(function() {
 		var count = $("#quantity").val();
-
 		if (count > 0) {
 			$("#quantity").val(--count);
 		} else {
 			count = 0;
 		}
-
+		updatePrice();
 	});
+	
+	function updatePrice() {
+		var amount = ajaxData * $("#quantity").val();
+		console.log(amount);
+	}
 </script>
 </html>
 
