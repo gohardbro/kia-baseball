@@ -21,7 +21,7 @@ public class BaseballChartController {
 	@RequestMapping(value = "/admin/ticket")
 	public String ticketHandle(Model model) { // 티켓 예매내역 페이지 호출
 		model.addAttribute("menu", "ticket");
-		return "/admin/ticket";
+		return "/subin/admin/ticket";
 	}
 
 	@ResponseBody

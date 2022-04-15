@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
-<jsp:include page="/WEB-INF/views/kiaTigers/include/top.jsp" />
+<jsp:include page="/WEB-INF/views/subin/kiaTigers/include/top.jsp" />
 
  <script src="/assets/js/bootstrap.bundle.min.js"></script>
 <!-- Main -->
@@ -143,6 +143,6 @@
 }
 </style>
 				
-<jsp:include page="/WEB-INF/views/kiaTigers/calendar-popup.jsp" /><!-- 팝업 -->
-<jsp:include page="/WEB-INF/views/kiaTigers/include/bottom.jsp" />
+<jsp:include page="/WEB-INF/views/subin/kiaTigers/calendar-popup.jsp" /><!-- 팝업 -->
+<jsp:include page="/WEB-INF/views/subin/kiaTigers/include/bottom.jsp" />
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />

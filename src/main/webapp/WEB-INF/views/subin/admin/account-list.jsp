@@ -38,5 +38,5 @@
 
 <!-- 페이지 버튼 -->
 <div class='btnSet'>
-	<jsp:include page="/WEB-INF/views/admin/include/page.jsp" />
+	<jsp:include page="/WEB-INF/views/subin/admin/include/page.jsp" />
 </div>

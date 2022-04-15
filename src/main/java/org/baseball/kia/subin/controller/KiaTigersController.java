@@ -23,7 +23,7 @@ public class KiaTigersController {
 	@RequestMapping({ "/kiaTigers/calendar", "/kiaTigers" })
 	public String ScheduleHandle(Model model) { // 경기일정 페이지
 		model.addAttribute("menu", "schedule");
-		return "/kiaTigers/calendar";
+		return "/subin/kiaTigers/calendar";
 	}
 
 	@ResponseBody
@@ -57,6 +57,6 @@ public class KiaTigersController {
 	@RequestMapping("/kiaTigers/map")
 	public String mapHandle(Model model) { // 지도 페이지 호출
 		model.addAttribute("menu", "map");
-		return "/kiaTigers/map";
+		return "/subin/kiaTigers/map";
 	}
 }

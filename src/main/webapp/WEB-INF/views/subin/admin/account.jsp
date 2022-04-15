@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
-<jsp:include page="/WEB-INF/views/admin/include/top.jsp" />
+<jsp:include page="/WEB-INF/views/subin/admin/include/top.jsp" />
 
 <!-- Main -->
 <div class="wrapper style1">
@@ -52,5 +52,5 @@ function go_page(no){ // 페이지 이동
 	});
 }
 </script>
-<jsp:include page="/WEB-INF/views/admin/include/bottom.jsp" />
+<jsp:include page="/WEB-INF/views/subin/admin/include/bottom.jsp" />
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />

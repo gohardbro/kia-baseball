@@ -57,4 +57,10 @@
 	</task:scheduled-tasks>
 	<task:annotation-driven/>
 
+	<!-- WebSocket -->
+	<bean id="WsHandler" 
+		class="org.baseball.kia.subin.ws.ChattingWebSocketHandler"/> <!-- Handler 파일 위치-->
+	<websocket:handlers>
+		<websocket:mapping handler="WsHandler" path="/ws/alert"/> <!-- 요청경로 -->
+	</websocket:handlers>
 </beans>

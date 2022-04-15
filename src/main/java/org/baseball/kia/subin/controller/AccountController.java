@@ -18,7 +18,7 @@ public class AccountController {
 	@RequestMapping(value = "/admin")
 	public String adminHandle(Model model) { // 계정 관리 페이지 호출
 		model.addAttribute("menu", "account");
-		return "/admin/account";
+		return "/subin/admin/account";
 	}
 
 	@RequestMapping(value = "/admin/account")
@@ -27,18 +27,18 @@ public class AccountController {
 		page.setAccountList(accountService.selectAccountByType(page)); // 검색된 회원 정보 리스트
 		System.out.println(page); //
 		model.addAttribute("page", page);
-		return "/admin/account-list";
+		return "/subin/admin/account-list";
 	}
 
 	@RequestMapping(value = "/admin/account/report")
 	public String adminAccountReportHandle(@RequestParam String id) { // 신고 계정 차단 설정
 		accountService.reportAccount(id);
-		return "redirect: /admin";
+		return "redirect: /subin/admin";
 	}
 	
 	@RequestMapping(value = "/admin/account/page")
 	public String pageHandle(@RequestParam AccountPage page, Model model) { // 페이지 정보
 		model.addAttribute("page", page);
-		return "/admin/include/page";
+		return "/subin/admin/include/page";
 	}
 }

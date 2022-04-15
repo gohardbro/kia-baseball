@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
-<jsp:include page="/WEB-INF/views/admin/include/top.jsp" />
+<jsp:include page="/WEB-INF/views/subin/admin/include/top.jsp" />
 
 <!-- Main -->
 <div class="wrapper style1">
@@ -209,5 +209,5 @@ table {
 </style>
 
 
-<jsp:include page="/WEB-INF/views/admin/include/bottom.jsp" />
+<jsp:include page="/WEB-INF/views/subin/admin/include/bottom.jsp" />
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />

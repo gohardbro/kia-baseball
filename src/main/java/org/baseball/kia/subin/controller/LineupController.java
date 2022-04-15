@@ -23,7 +23,7 @@ public class LineupController {
 	public String lineupHandle(Model model) { // 라인업 페이지 호출
 		model.addAttribute("scheduleList", lineupService.selectSchedule());// 경기일정 조회
 		model.addAttribute("menu", "lineup");
-		return "/admin/lineup";
+		return "/subin/admin/lineup";
 	}
 
 	@RequestMapping(value = "/admin/lineup/insert")
@@ -36,7 +36,7 @@ public class LineupController {
 		}
 
 		model.addAttribute("menu", "lineup");
-		return "redirect: /admin/lineup";
+		return "redirect: /subin/admin/lineup";
 	}
 
 	@ResponseBody

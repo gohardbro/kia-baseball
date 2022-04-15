@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
-<jsp:include page="/WEB-INF/views/admin/include/top.jsp" />
+<jsp:include page="/WEB-INF/views/subin/admin/include/top.jsp" />
 
 <script
 	src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
@@ -148,5 +148,5 @@
 	
 </script>
 
-<jsp:include page="/WEB-INF/views/admin/include/bottom.jsp" />
+<jsp:include page="/WEB-INF/views/subin/admin/include/bottom.jsp" />
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />

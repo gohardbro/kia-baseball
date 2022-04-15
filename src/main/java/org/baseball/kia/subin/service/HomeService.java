@@ -19,8 +19,6 @@ public class HomeService {
 	BoardDao boardDao;
 	
 	public List<UniformInfoVo> selectUniformInfoTop10(){ // 유니폼 top 10 조회
-		List<UniformInfoVo> list = uniformInfoDao.selectUniformNameTop10();
-		System.out.println(list.size());
 		return uniformInfoDao.selectUniformNameTop10();
 	}
 	
