@@ -70,7 +70,7 @@ public class RestBoardController {
 		return result;
 	}
 	
-	@RequestMapping(value = "/likeupdate", method = RequestMethod.POST)
+	@RequestMapping(value = "/likeupdate", method = { RequestMethod.GET, RequestMethod.POST })
 	public Map<String,String> likeupdate(@RequestBody LikeVo vo){
 		Map<String,String> result = new HashMap<String, String>();
 		try {

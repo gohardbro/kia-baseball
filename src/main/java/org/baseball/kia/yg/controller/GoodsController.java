@@ -4,7 +4,6 @@ import javax.servlet.http.HttpSession;
 
 import org.baseball.kia.taejeong.entity.AccountVo;
 import org.baseball.kia.yg.entity.UniformInfoVo;
-import org.baseball.kia.yg.entity.UniformVo;
 import org.baseball.kia.yg.service.UniformInfoService;
 import org.baseball.kia.yg.service.UniformService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +31,6 @@ public class GoodsController {
 	@RequestMapping(value = "/info", method = RequestMethod.GET)
 	public String goodsInfo(Model model, @RequestParam("uniInfoNo") int no) {
 		UniformInfoVo vo = uniInfoService.goodsInfo(no);
-		System.out.println(vo.getUniInfoNo());
 		model.addAttribute("uniInfo",vo);
 		return "yg/goods/info";
 	}

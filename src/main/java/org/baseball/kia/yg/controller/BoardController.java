@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.baseball.kia.taejeong.entity.AccountVo;
 import org.baseball.kia.yg.entity.BoardVo;
@@ -18,8 +19,6 @@ import org.baseball.kia.yg.service.LikeService;
 import org.baseball.kia.yg.util.Criteria;
 import org.baseball.kia.yg.util.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
@@ -88,7 +87,7 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/boardview", method = RequestMethod.GET)
-	public String boardView(@RequestParam("boardNo") int no, Model model) {
+	public String boardView(@RequestParam("boardNo") int no, Model model, HttpSession httpSession) {
 		boardService.updateCnt(no);
 		BoardVo vo = boardService.getOneByNo(no);
 		if (vo == null) {
@@ -97,28 +96,25 @@ public class BoardController {
 		model.addAttribute("board", vo);
 		model.addAttribute("cmt", new CommentVo());
 		
+		AccountVo loginUserVo = (AccountVo) httpSession.getAttribute("loginUser");
 		LikeVo lvo = new LikeVo();
 		lvo.setBoardNoLike(no);
-		lvo.setIdLike(currentUserName());
+		lvo.setIdLike(loginUserVo.getId());
 		
-		int ltlike = 0;
+		int likes = 0;
 		int check = likeService.likeBoardCount(lvo);
 		
 		if(check ==0) {
 			likeService.likeinsert(lvo);
 		}else if(check==1) {
-			ltlike = likeService.likeViewCount(lvo);
+			likes = likeService.likeViewCount(lvo);
 		}
+		System.out.println(lvo.getIdLike());
+		System.out.println(lvo.getBoardNoLike());
 		
-		model.addAttribute("ltlike",ltlike);
+		model.addAttribute("ltlike",likes);
 		
 		return "/yg/boardview";
-	}
-
-	private String currentUserName() {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        AccountVo user = (AccountVo) authentication.getPrincipal();
-        return user.getId();
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)

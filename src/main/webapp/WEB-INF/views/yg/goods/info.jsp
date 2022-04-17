@@ -5,43 +5,72 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
 
-
 <div class="container mb-5">
-	<div>
-		<h2 class="mt-3">KIA UNIFORMS</h2>
-		<div>
-			<ul class="list-group list-group-horizontal my-1">
-				<li class="list-group-item">추천순</li>
-				<li class="list-group-item">판매인기순</li>
-				<li class="list-group-item">낮은가격순</li>
-				<li class="list-group-item">높은가격순</li>
-				<li class="list-group-item">상품평순</li>
-				<li class="list-group-item">등록일순</li>
-			</ul>
-			<div class="row mt-1">
-				<c:forEach var="uniInfo" items="${uniInfo }">
-					<div class="col-sm-3">
-						<div class="card" style="width: 100%; height: 100%">
-							<img class="card-img-top" src="/images/uniform/${uniInfo.uniformImg }" alt="Card image cap">
-							<div class="card-body">
-								<h5 class="card-title">
-								<a href="/info?uniInfoNo=${uniInfo.uniInfoNo }">${uniInfo.uniformName }</a></h5>
-								<p class="card-text">
-									<strong>${uniInfo.price}</strong>원
-								</p>
-							</div>
-						</div>
-					</div>
-				</c:forEach>
-			</div>
+	<form method="post">
+		<div class="mt-3">
+			<h2>${uniInfo.uniformName }</h2>
 		</div>
-		<ul class="pagination mt-4">
-			<li class="page-item"><a class="page-link" href="#">1</a></li>
-			<li class="page-item"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
-		</ul>
+		<div>
+			<img src="/images/uniform/${uniInfo.uniformImg }" class="float-right">
+		</div>
+		<div>
+			<table class="goodsInfo">
+				<tr>
+					<th>정가</th>
+					<td>${uniInfo.price }</td>
+				</tr>
+				<tr>
+					<th>판매가</th>
+					<td>${uniInfo.price }</td>
+				</tr>
+				<tr>
+					<th>구매제한</th>
+					<td>최소 1개</td>
+				</tr>
+				<tr>
+					<th>원산지</th>
+					<td>대한민국</td>
+				</tr>
+				<tr>
+					<th>사이즈</th>
+					<td><select>
+							<option>S</option>
+							<option>M</option>
+							<option>L</option>
+							<option>XL</option>
+					</select></td>
+				</tr>
+				<tr>
+					<th>등번호</th>
+					<td>11</td>
+				</tr>
+			</table>
+
+		</div>
+		<div>
+			<table>
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</table>
+		</div>
+	</form>
+	<div>
+		<button>
+			<a href="#">구매하기</a>
+		</button>
+		<button>
+			<a href="/basket">장바구니</a>
+		</button>
+		<button>
+			<a href="/goods">목록</a>
+		</button>
 	</div>
 </div>
-
-<jsp:include page="/WEB-INF/views/yg/goods/include/bottom.jsp" />
-<jsp:include page="/WEB-INF/views/include/footer.jsp" />
+<div>
+	<div>
+		<div>
+			<jsp:include page="/WEB-INF/views/yg/goods/include/bottom.jsp" />
+			<jsp:include page="/WEB-INF/views/include/footer.jsp" />

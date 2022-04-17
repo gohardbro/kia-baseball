@@ -16,18 +16,16 @@
 			<strong>${board.title }</strong>
 			<p class="icoWrap">
 				<span class="date"><fmt:formatDate
-					value="${board.writeDate }" pattern="yyyy-MM-dd" /> | </span> <span
-					class="view"><img src="/images/eye.png">
-					${board.views } | </span> <span class="like"><img
+						value="${board.writeDate }" pattern="yyyy-MM-dd" /> | </span><span
+					class="writer"> ${board.writer } | </span><span class="view"><img
+					src="/images/eye.png"> ${board.views } | </span><span class="like"><img
 					src="/images/like.png"> ${board.likes }</span>
 			</p>
-			</div>
-			<div class="viewCont">
-				<p>
-				<div>
-					${board.content }
-				</div>
-			</div>
+		</div>
+		<div class="viewCont">
+			<p>
+			<div class="pb-5">${board.content }</div>
+		</div>
 		<table border="1">
 			<tr>
 				<td bgcolor="orange">첨부파일 목록</td>
@@ -44,34 +42,39 @@
 			</tr>
 			<tr>
 				<td align="center" colspan="2">
-				<button type="button"><a href="/update?no=${board.boardNo }">글 수정</a></button>
-				<button type="button"><a href="/delete?no=${board.boardNo }">글 삭제</a></button>
-				<button type="button" onclick="goodCheck()">글 추천</button></td>
+					<button type="button"
+						onClick="location.href='/update?no=${board.boardNo }'">글
+						수정</button>
+					<button type="button"
+						onClick="location.href='/delete?no=${board.boardNo }'">글
+						삭제</button>
+					<button type="button" onclick="goodCheck()">글 추천</button>
+				</td>
 			</tr>
 		</table>
 		<div>
 			<div class="w3-border w3-center w3-padding">
-				<%-- <c:choose>
+				<c:choose>
 					<c:when test="${empty sessionScope.loginUser }">
 					추천 기능은 <button type="button" id="newLogin">
-								<b class="w3-text-blue">로그인</b>
-							</button> 후 사용 가능합니다.<br />
-							<i class="fa fa-heart" style="font-size: 16px; color: red"></i>
-							<span class="rec_count"></span>
-					</c:when> 
-					<c:otherwise>--%>
+							<b class="w3-text-blue">로그인</b>
+						</button> 후 사용 가능합니다.<br />
+						<i class="fa fa-heart" style="font-size: 16px; color: red"></i>
+						<span class="rec_count"></span>
+					</c:when>
+					<c:otherwise>
 						<c:choose>
-						<c:when test="${ltlike ==0}">
-							<button type="button" class="btn btn-light" id="likebtn">좋아요</button>
-							<input type="hidden" id="likecheck" value="${ltlike }">
-						</c:when>					
-						<c:when test="${ltlike ==1}">
-							<button type="button" class="btn btn-danger" id="likebtn">좋아요</button>
-							<input type="hidden" id="likecheck" value="${ltlike }">
-						</c:when>
-					</c:choose>
-					<%-- </c:otherwise>
-				</c:choose> --%>
+							<c:when test="${ltlike ==0}">
+								<button type="button" class="btn btn-light" id="likebtn">좋아요</button>
+								<input type="hidden" id="likecheck" value="${ltlike }">
+							</c:when>
+							<c:when test="${ltlike ==1}">
+								<button type="button" class="btn btn-danger" id="likebtn">좋아요</button>
+								<input type="hidden" id="likecheck" value="${ltlike }">
+							</c:when>
+						</c:choose>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</form>
@@ -285,9 +288,9 @@
 	
 	function likeupdate(){
 		var paramData = JSON.stringify({
-			"wirter" : $('#writer').val(),
-			"boardNo" : $('#boardNo').val(),
-			"count" : $('#likecheck').val()
+			idLike : $('#idLike').val(),
+			boardNoLike : $('#boardNoLike').val(),
+			count : $('#likecheck').val()
 		});
 		
 	$.ajax({
@@ -297,11 +300,11 @@
 		data : paramData,
 		success : function(result){
 			console.log("수정" + result.result);
-			if(count == 1){
+			if(count == 0){
 				console.log("좋아요 취소");
 				 $('#likecheck').val(0);
 				 $('#likebtn').attr('class','btn btn-light');
-			}else if(count == 0){
+			}else if(count == 1){
 				console.log("좋아요!");
 				$('#likecheck').val(1);
 				$('#likebtn').attr('class','btn btn-danger');
@@ -314,7 +317,7 @@
 	};
 </script>
 <div>
-<div>
-<div>
-<jsp:include page="/WEB-INF/views/yg/include/bottom.jsp" />
-<jsp:include page="/WEB-INF/views/include/footer.jsp" />
+	<div>
+		<div>
+			<jsp:include page="/WEB-INF/views/yg/include/bottom.jsp" />
+			<jsp:include page="/WEB-INF/views/include/footer.jsp" />

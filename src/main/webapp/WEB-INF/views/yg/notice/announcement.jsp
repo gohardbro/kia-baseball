@@ -18,7 +18,7 @@
 					<td class="col-9"><a href="/boardview?boardNo=${one.noticeNo }">${one.title }</a></td>
 					<td><fmt:formatDate value="${one.writeDate }"
 							pattern="yyyy.MM.dd" /> | <img src="/images/eye.png">
-						${one.views }
+						${one.views }`		
 					</td>
 				</tr>
 			</c:forEach>

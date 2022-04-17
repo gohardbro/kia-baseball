@@ -8,7 +8,7 @@
 	</select>
 	
 	<select id="likeViewCount" resultType="Integer" parameterType="likes">
-		SELECT LIKES FROM BOARD_LIKE 
+		SELECT LIKES FROM BOARD_LIKE
 		WHERE ID_LIKE = #{idLike} AND BOARD_NO_LIKE = #{boardNoLike}
 	</select>
 	
@@ -19,10 +19,10 @@
 
 	<update id="updateLike" parameterType="likes">
 		UPDATE BOARD_LIKE SET
-		<if test="count == 1">
+		<if test="count == 0">
 			LIKES = 0
 		</if>
-		<if test="count == 0">
+		<if test="count == 1">
 			LIKES = LIKES + 1
 		</if>
 		WHERE ID_LIKE = #{idLike} AND BOARD_NO_LIKE = #{boardNoLike}
