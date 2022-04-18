@@ -34,15 +34,19 @@
 				<tr>
 					<th>사이즈</th>
 					<td><select>
-							<option>S</option>
-							<option>M</option>
-							<option>L</option>
-							<option>XL</option>
-					</select></td>
+							<option id="ssize">S</option>
+							<option id="msize">M</option>
+							<option id="lsize">L</option>
+							<option id="xlsize">XL</option>
+					</select><input type="hidden" id="sizeCheck" value="${size }"></td>
 				</tr>
 				<tr>
 					<th>등번호</th>
-					<td>11</td>
+					<td><select>
+							<c:forEach var="plyer" items="${plyer }">
+								<option>${plyer.no }</option>
+							</c:forEach>
+					</select></td>
 				</tr>
 			</table>
 
@@ -58,19 +62,20 @@
 		</div>
 	</form>
 	<div>
-		<button>
-			<a href="#">구매하기</a>
+		<button type="button" onclick="location.href='/#'">구매하기</button>
+		<button type="button"
+			onclick="location.href='/basket?uniInfoNo=${uniInfo.uniInfoNo}'">장바구니
 		</button>
-		<button>
-			<a href="/basket">장바구니</a>
-		</button>
-		<button>
-			<a href="/goods">목록</a>
-		</button>
+		<button type="button" onclick="location.href='/goods'">목록</button>
 	</div>
 </div>
 <div>
 	<div>
 		<div>
+
+			<script>
+				
+			</script>
+
 			<jsp:include page="/WEB-INF/views/yg/goods/include/bottom.jsp" />
 			<jsp:include page="/WEB-INF/views/include/footer.jsp" />

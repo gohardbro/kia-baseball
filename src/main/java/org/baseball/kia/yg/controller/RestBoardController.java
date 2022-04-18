@@ -72,6 +72,7 @@ public class RestBoardController {
 	
 	@RequestMapping(value = "/likeupdate", method = { RequestMethod.GET, RequestMethod.POST })
 	public Map<String,String> likeupdate(@RequestBody LikeVo vo){
+		System.out.println("likeupdate.."+vo);
 		Map<String,String> result = new HashMap<String, String>();
 		try {
 			likeService.updateLike(vo);

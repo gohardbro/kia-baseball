@@ -21,11 +21,11 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td>${uniform }<br>사이즈 : 100</td>
+						<td>${uniInfo.uniformName }<br>사이즈 : 100</td>
 						<td>2개</td>
-						<td>70,000원</td>
+						<td>${uniInfo.price }원</td>
 						<td>-</td>
-						<td>70,000원</td>
+						<td>${uniInfo.price }원</td>
 					</tr>
 				</tbody>
 			</table>
@@ -34,7 +34,7 @@
 	<dl>
 		<dt>합계</dt>
 		<dd>
-			<strong>109,000</strong>원
+			<strong>${uniInfo.price }</strong>원
 		</dd>
 	</dl>
 </div>

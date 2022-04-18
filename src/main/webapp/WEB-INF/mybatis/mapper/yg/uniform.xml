@@ -2,9 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="uniform">
 	
-	<select id="selectOne" resultType="uniform">
-		SELECT * FROM UNIFORM BUYER INNER JOIN ACCOUNT ID
-		ON #{buyer} = #{id}
+	<select id="selectId" resultType="uniform" parameterType="org.baseball.kia.taejeong.entity.AccountVo">
+		SELECT *
+		FROM UNIFORM A 
+		LEFT OUTER JOIN ACCOUNT B
+		ON A.BUYER = B.ID;
 	</select>
+	
+	<select id="selectPlayerNo" resultType="uniform">
+		SELECT * FROM UNIFORM A
+		LEFT OUTER JOIN PLAYER B
+		ON A.PLAYER_NO = B.NO  
+	</select>
+	
+	<insert id="insetBasket" parameterType="uniform">
+		INSERT INTO
+	</insert>
+	
+	
+	<!-- 장바구니
+	<select id="selectAllByBuyer" resultType="tUniformVo">
+		SELECT *
+		FROM UNIFORM U INNER JOIN UNIFORM_INFO I
+		USING(UNI_INFO_NO)
+		INNER JOIN PLAYER P
+		ON U.PLAYER_NO = P.NO
+		WHERE BUYER = #{buyer}
+	</select> -->
 	
 </mapper> 

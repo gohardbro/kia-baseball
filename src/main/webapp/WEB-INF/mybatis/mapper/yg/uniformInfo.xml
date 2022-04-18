@@ -14,4 +14,10 @@
 		UNI_INFO_NO = #{uniInfoNo}
 	</select>
 	
+	<insert id="insertOne" parameterType="uniformInfo">
+		INSERT INTO UNIFORM_INFO VALUES
+		(#{uniInfoNo},#{price},#{uniformName},
+		#{color},#{sCount},#{mCount},#{lCount},#{xlCount})
+	</insert>
+	
 </mapper> 

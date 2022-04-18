@@ -2,10 +2,27 @@ package org.baseball.kia.yg.entity;
 
 import java.util.Date;
 
+
 public class UniformVo {
 	int uniformNo, uniInfoNo, uniCnt, total;
-	String buyer, refund, state;
+	String buyer, refund, state, uniSize, playerNo;
 	Date buyDate;
+
+	public String getPlayerNo() {
+		return playerNo;
+	}
+
+	public void setPlayerNo(String playerNo) {
+		this.playerNo = playerNo;
+	}
+	
+	public String getUniSize() {
+		return uniSize;
+	}
+
+	public void setUniSize(String uniSize) {
+		this.uniSize = uniSize;
+	}
 
 	public int getUniformNo() {
 		return uniformNo;

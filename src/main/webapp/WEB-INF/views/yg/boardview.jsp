@@ -63,16 +63,8 @@
 						<span class="rec_count"></span>
 					</c:when>
 					<c:otherwise>
-						<c:choose>
-							<c:when test="${ltlike ==0}">
-								<button type="button" class="btn btn-light" id="likebtn">좋아요</button>
+								<button type="button" class="btn ${ltlike ==0 ? 'btn-light' : 'btn-danger'}" id="likebtn">좋아요</button>
 								<input type="hidden" id="likecheck" value="${ltlike }">
-							</c:when>
-							<c:when test="${ltlike ==1}">
-								<button type="button" class="btn btn-danger" id="likebtn">좋아요</button>
-								<input type="hidden" id="likecheck" value="${ltlike }">
-							</c:when>
-						</c:choose>
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -125,7 +117,7 @@
             success: function(result) {
                	var htmls = "";
 				if(result.length < 1){
-					htmls.push("등록된 댓글이 없습니다.");
+					htmls="등록된 댓글이 없습니다.";
 				} else {
 					$(result).each(function() {
 							htmls += '<div class="media text-muted pt-3" id="commentNo' + this.commentNo + '">';
@@ -288,30 +280,30 @@
 	
 	function likeupdate(){
 		var paramData = JSON.stringify({
-			idLike : $('#idLike').val(),
-			boardNoLike : $('#boardNoLike').val(),
+			idLike : $('#id').val(),
+			boardNoLike : $('#boardNo').val(),
 			count : $('#likecheck').val()
 		});
-		
-	$.ajax({
-		url : '${pageContext.request.contextPath}/boardviewCtr/likeupdate'
-		type : 'POST',
-		contentType: 'application/json',
-		data : paramData,
-		success : function(result){
-			console.log("수정" + result.result);
-			if(count == 0){
-				console.log("좋아요 취소");
-				 $('#likecheck').val(0);
-				 $('#likebtn').attr('class','btn btn-light');
-			}else if(count == 1){
-				console.log("좋아요!");
-				$('#likecheck').val(1);
-				$('#likebtn').attr('class','btn btn-danger');
+		console.log(paramData);
+		$.ajax({
+			url : '/boardviewCtr/likeupdate',
+			type : 'POST',
+			contentType: 'application/json',
+			data : paramData,
+			success : function(result){
+				console.log("수정" + result.result);
+				if($('#likecheck').val() == 0){
+					console.log("좋아요 취소");
+					 $('#likecheck').val(0);
+					 $('#likebtn').attr('class','btn btn-light');
+				}else if($('#likecheck').val() == 1){
+					console.log("좋아요!");
+					$('#likecheck').val(1);
+					$('#likebtn').attr('class','btn btn-danger');
+				}
+			}, error : function(result){
+				console.log("에러" + result.result)
 			}
-		}, error : function(result){
-			console.log("에러" + result.result)
-		}
 		
 		});
 	};

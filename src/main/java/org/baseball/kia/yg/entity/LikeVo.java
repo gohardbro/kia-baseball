@@ -29,4 +29,11 @@ public class LikeVo {
 	public void setCount(int count) {
 		this.count = count;
 	}
+	
+	@Override
+	public String toString() {
+		return "LikeVo [idLike=" + idLike + ", boardNoLike=" + boardNoLike + ", likes=" + likes + ", count=" + count
+				+ "]";
+	}
+	
 }

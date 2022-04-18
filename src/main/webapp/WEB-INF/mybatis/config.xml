@@ -23,6 +23,7 @@
 		<typeAlias type="org.baseball.kia.yg.entity.LikeVo" alias="likes" />
 		<typeAlias type="org.baseball.kia.yg.entity.UniformVo" alias="uniform" />
 		<typeAlias type="org.baseball.kia.yg.entity.UniformInfoVo" alias="uniformInfo" />
+		<typeAlias type="org.baseball.kia.yg.entity.PlayerVo" alias="player" />
 		<!-- 수빈 -->
 		<typeAlias type="org.baseball.kia.subin.entity.AccountVo" alias="accountVo"/>
 		<typeAlias type="org.baseball.kia.subin.entity.BaseballVo" alias="baseballVo"/>
@@ -31,7 +32,7 @@
 		<typeAlias type="org.baseball.kia.subin.entity.ScheduleVo" alias="scheduleVo"/>
 		<typeAlias type="org.baseball.kia.subin.entity.UniformInfoVo" alias="uniformInfoVo"/>
 		<!-- 은지 -->
-			<typeAlias type="org.baseball.kia.eunji.entity.TicketVo" alias="TicketVo"/>
+		<typeAlias type="org.baseball.kia.eunji.entity.TicketVo" alias="TicketVo"/>
 		
 	</typeAliases>
 </configuration> 
