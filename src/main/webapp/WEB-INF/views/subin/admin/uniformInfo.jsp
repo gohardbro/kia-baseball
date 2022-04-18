@@ -65,7 +65,7 @@
 			data : {
 				"uniformName" : uniformName,
 				"color" : color,
-				"pageList": 10,// 페이지당 보여질 목록 수
+				"pageList": 5,// 페이지당 보여질 목록 수
 				"curPage": no, // 요청 페이지 번호
 				"blockPage": 3 //블럭당 보여질 페이지 수
 			}

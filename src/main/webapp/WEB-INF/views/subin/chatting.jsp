@@ -4,11 +4,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
-<jsp:include page="/WEB-INF/views/subin/admin/include/top.jsp" />
 
-<!-- Main -->
-<div class="wrapper">
-
+<div class="container">
+	<div class="wrapper">
+		<div id="total"></div>
+		<div id="result"></div>
+		<input type="text" id="msg"/>
+	</div>
 </div>
 
 <script>
@@ -22,20 +24,18 @@
 		var recv = JSON.parse(rst.data);
 		switch (recv.command) {
 		case "join": // 입장
-			if ($('#alarm').is(':checked')) {
-				$("#result").append("<div>[SERVER] "+recv.data+" 에서 참가하였습니다.</div>");
-			}
+			$("#result").append("<div>[SERVER] "+recv.nickname+" 님이 참가하였습니다.</div>");
 			$("#total").html(recv.total);
 			break;
 			
-		case "chat": 
-			$("#result").append("<div>[" + recv.talker + "]" + recv.data + "</div>");
+		case "chat": // 채팅
+			$("#result").append("<div>[" + recv.nickname + "]" + recv.msg + "</div>");
 			$("#result").scrollTop($("#result")[0].scrollHeight);
 			break;
 			
 		case "out": // 퇴장
 			if ($('#alarm').is(':checked')) {
-				$("#result").append("<div>[SERVER] "+recv.data+" 에서 나가셨습니다.</div>");
+				$("#result").append("<div>[SERVER] "+recv.nickname+" 님이 나가셨습니다.</div>");
 			}
 			$("#total").html(recv.total);
 			break;

@@ -62,5 +62,8 @@
 		class="org.baseball.kia.subin.ws.ChattingWebSocketHandler"/> <!-- Handler 파일 위치-->
 	<websocket:handlers>
 		<websocket:mapping handler="WsHandler" path="/ws/alert"/> <!-- 요청경로 -->
+		<websocket:handshake-interceptors>
+			<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
+		</websocket:handshake-interceptors>
 	</websocket:handlers>
 </beans>
