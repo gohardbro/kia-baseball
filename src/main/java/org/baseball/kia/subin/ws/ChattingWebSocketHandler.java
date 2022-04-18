@@ -65,9 +65,11 @@ public class ChattingWebSocketHandler extends TextWebSocketHandler{
 			map.put("nickname", "익명");
 		}
 		
-		String json = gson.toJson(map);
 		
 		for (WebSocketSession each : sessionList) {
+			map.put("sender", each==session);
+			
+			String json = gson.toJson(map);
 			TextMessage txt = new TextMessage(json);
 			each.sendMessage(txt);
 		}

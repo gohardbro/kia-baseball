@@ -25,10 +25,4 @@ public class HomeController {
 		return "index";
 	}
 	
-	
-	@RequestMapping("/ws")
-	public String ws() {
-		return "/subin/chatting";
-	}
-
 }

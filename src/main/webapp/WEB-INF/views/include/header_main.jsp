@@ -33,6 +33,7 @@
 					<p>환영합니다. 기아타이거즈 팬 페이지 입니다</p>
 				</header>
 				<footer>
+						<a href="/chatting" class="button circled scrolly">채팅</a>
 				</footer>
 			</div>
 

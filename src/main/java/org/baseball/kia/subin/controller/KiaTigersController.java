@@ -59,4 +59,10 @@ public class KiaTigersController {
 		model.addAttribute("menu", "map");
 		return "/subin/kiaTigers/map";
 	}
+	
+	@RequestMapping("/chatting")
+	public String chatHandle() { // 실시간 채팅 페이지 호출
+		return "/subin/chatting";
+	}
+
 }
