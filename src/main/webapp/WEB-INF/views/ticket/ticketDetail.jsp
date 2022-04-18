@@ -80,23 +80,36 @@ img.gl-logo {
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="container">
-							<div class="shadow p-4 mb-4 bg-white">
-								<input type="hidden" class="gameDate"
-									value="${oneGame.gameDate }">
-								<!--선택된 경기 1건의 정보  -->
-								<div>${oneGame.gameDate}</div>
-								<div class="disp_week"></div>
-								<div>${oneGame.gameTime}</div>
-								<div>
+							<div class="shadow p-4 mb-4 bg-white" style ="height: 350px;">
+							
+							<!-- 예매하실 경기 정보 -->
+							<input type="hidden" class="gameDate" value="${oneGame.gameDate }">
+							<table>
+							
+							<tr>
+								<td>${oneGame.gameDate}</td> 
+							</tr>
+							<tr>
+								<td class="disp_week"></td>
+								<td>${oneGame.gameTime}</td>
+							</tr>
+							<tr>
+								<td>
 									<img src="/images/Logo_Mini/KIA.jpg" class="gl-logo" />
-								</div>
-								<div>기아타이거즈</div>
-								<div>VS</div>
-								<div>
+								</td>
+								<td>
+									VS
+								</td>
+								<td>
 									<img src="/images/Logo_Mini/${oneGame.teamImg}" class="gl-logo" />
-								</div>
-								<div>${oneGame.sponsor}${oneGame.teamName}</div>
-								<div>챔피언스필드(홈경기)</div>
+								</td>
+							</tr>
+							<tr>
+								<td>챔피언스필드(홈경기)</td>
+							</tr>
+							</table>
+								 
+								 
 							</div>
 						</div>
 					</div>
@@ -104,20 +117,29 @@ img.gl-logo {
 					<!-- 오른쪽 col -->
 					<div class="col-sm-8">
 						<div class="container">
-							<div class="shadow p-4 mb-4 bg-white">
+							<div class="shadow p-4 mb-4 bg-white" style ="height: 350px;">
 								<!-- seatArea고르기 radio 6개 -->
-								<div class="seatChoice" style="height: 100px;">
-									<c:forEach var="sc" items="${seatChoice}">
-										<input type="radio" name="zoneCheck"
-											value="${sc.baseballZone}">${sc.baseballZone}
-									</c:forEach>
+								<div class="seatChoice"  >
+									<table>
+										<c:forEach var="sc" items="${seatChoice}">
+											<tr>
+												<td>
+													<input type="radio" name="zoneCheck" value="${sc.baseballZone}"> ${sc.baseballZone}
+												</td>
+												<td>
+													잔여석:(122/200)
+												</td>
+											</tr>
+										</c:forEach>
+									</table>
+									
 								</div>
 
 								<!-- 수량 업다운 버튼 -->
 								<div class="quantity">
 
 									<span class="count count-box">
-
+										
 										<button type="button" class="btn btn-outline-danger"
 											id="upBtn">△</button> <input type="text" class="countInput"
 										id="quantity" name="countInput" value="0" readonly="readonly"
@@ -125,19 +147,19 @@ img.gl-logo {
 
 										<button type="button" class="btn btn-outline-danger"
 											id="downBtn">▽</button>
+										
 									</span>
 								</div>
 
-								<div>
-									토탈금액을 DB에서 불러와서 여기 띄워줌 
+								<!-- 결제할 금액  -->
+								<div id="totalAmount">
+									결제할금액__원 
 								</div>
 
 								<button type="button" onclick="temp()">결제하기</button>
 							</div>
 						</div>
 					</div>
-
-					<!-- 오른쪽 col 끝-->
 
 				</div>
 			</section>
@@ -154,6 +176,68 @@ img.gl-logo {
 
 
 <script>
+
+	
+	
+	// 주말여부에 따른 티켓금액 * 좌석(zone) = 가격(response) 
+	var ajaxData;
+	var data = $('.gameDate').val();
+	$(".disp_week").html(getInputDayLabel(data));
+
+	$("input[name=zoneCheck]").click(function() {
+		var data = $('.gameDate').val();
+
+		var yoil = getInputDayLabel(data);
+		var basballZone = $(this).val();
+		console.log(yoil+"/"+basballZone);
+		$.ajax({
+			url : "/ticketPrice",
+			data : {"yoil" : yoil,
+					"baseballZone" : basballZone},
+			async : false,
+			success : function(response) {
+				ajaxData = response;
+			},
+			error : function() {
+			}
+		});
+		
+		updatePrice();
+	});
+	
+	
+	// 티켓 매수 : 업버튼 
+	$("#upBtn").click(function() {
+		var count = $("#quantity").val();
+		if (count <= 3) {
+			$("#quantity").val(++count);
+		} else {
+			count = 4;
+		}
+		updatePrice();
+	});
+
+	// 티켓 매수 : 다운버튼 
+	$("#downBtn").click(function() {
+		var count = $("#quantity").val();
+		if (count > 0) {
+			$("#quantity").val(--count);
+		} else {
+			count = 0;
+		}
+		updatePrice();
+	});
+	
+	
+	// 결제할 총 액 amount(주중,주말여부 적용된 zone요금 * 티켓매수)
+	function updatePrice() {
+		var amount = ajaxData * $("#quantity").val();
+		console.log(amount);
+	}	
+	
+	
+	
+	// 결제 function (아임포트)
 	function temp() {
 		console.log("TEMP CALLED");
 		var IMP = window.IMP;
@@ -184,62 +268,6 @@ img.gl-logo {
 		});
 	};
 
-	
-	/*  ajax를 통해 요일 x 좌석 = 가격을 responsebody를 통해 response로 받았다  */
-	var ajaxData;
-	var data = $('.gameDate').val();
-	$(".disp_week").html(getInputDayLabel(data));
-
-	$("input[name=zoneCheck]").click(function() {
-		var data = $('.gameDate').val();
-
-		var yoil = getInputDayLabel(data);
-		var basballZone = $(this).val();
-		console.log(yoil+"/"+basballZone);
-		$.ajax({
-			url : "/ticketPrice",
-			data : {"yoil" : yoil,
-					"baseballZone" : basballZone},
-			async : false,
-			success : function(response) {
-				ajaxData = response;
-			},
-			error : function() {
-			}
-		});
-		
-		updatePrice();
-	});
-	
-	/* 업다운 버튼으로  티켓 매수 조절 */
-	
-	$("#upBtn").click(function() {
-		var count = $("#quantity").val();
-		if (count <= 3) {
-			$("#quantity").val(++count);
-		} else {
-			count = 4;
-		}
-		updatePrice();
-	});
-
-	
-	$("#downBtn").click(function() {
-		var count = $("#quantity").val();
-		if (count > 0) {
-			$("#quantity").val(--count);
-		} else {
-			count = 0;
-		}
-		updatePrice();
-	});
-	
-	function updatePrice() {
-		var amount = ajaxData * $("#quantity").val();
-		console.log(amount);
-		
-		/* 이 amount를 DB에 넣어서 결제창 amount로 적용하고 싶음  */
-	}
 </script>
 </html>
 
