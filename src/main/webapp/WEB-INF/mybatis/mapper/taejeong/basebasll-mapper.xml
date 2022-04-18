@@ -35,6 +35,7 @@
 		<if test="baseballNo != 0">
 			AND BASEBALL_NO = #{baseballNo}
 		</if>
+		ORDER BY BUY_DATE DESC
 	</select>
 	
 	<update id="updateCancelByBaseballNo">

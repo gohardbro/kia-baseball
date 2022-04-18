@@ -135,9 +135,9 @@
 							placeholder="name@example.com" path="nickname"
 							onkeyup="nicknameCheck()" />
 						<label for="floatingInput">닉네임</label>
-						<div id="validationServer03Feedback" class="invalid-feedback">
+						<div id="validationServer03Feedback" class="invalid-feedback nickname_feedback_invalid">
 							해당 닉네임이 이미 있습니다.</div>
-						<div id="validationServer03Feedback" class="valid-feedback">
+						<div id="validationServer03Feedback" class="valid-feedback nickname_feedback_valid">
 							사용가능한 닉네임 입니다.</div>
 						<form:errors path="nickname" />
 					</div>
@@ -153,11 +153,7 @@
 							validationServer04Feedback valid</div>
 						<form:errors path="phone" />
 					</div>
-					<div class="checkbox mb-3">
-						<label> <input type="checkbox" value="remember-me">
-							모두 동의합니다.
-						</label>
-					</div>
+					
 					<button class="w-100 btn btn-lg btn-primary" type="button"
 						id="confirmBtn">가입하기</button>
 					<hr class="my-4">
@@ -171,63 +167,94 @@
 	<div class="b-example-divider"></div>
 
 
-	<!-- <div class="bg-dark text-secondary px-4 py-5 text-center">
-		<div class="py-5">
-			<h1 class="display-5 fw-bold text-white">Dark mode hero</h1>
-			<div class="col-lg-6 mx-auto">
-				<p class="fs-5 mb-4">Quickly design and customize responsive
-					mobile-first sites with Bootstrap, the world’s most popular
-					front-end open source toolkit, featuring Sass variables and mixins,
-					responsive grid system, extensive prebuilt components, and powerful
-					JavaScript plugins.</p>
-				<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-					<button type="button"
-						class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">Custom
-						button</button>
-					<button type="button" class="btn btn-outline-light btn-lg px-4">Secondary</button>
-				</div>
-			</div>
-		</div>
-	</div>
- -->
+	
 	<div class="b-example-divider mb-0"></div>
 
 	<script>
-		$("#req").click(function() {
+		
+		
+		/* 이메일 양식 유효성검사 */
+		function verifyEmail() {
 			var id = $(".email_input").val();
-			console.log(id);
 
-			$.ajax({
-				type : "POST",
-				url : "/signup/auth",
-				data : {
-					email : id,
-				},
-				success : function(res) {
-					alert("인증키 메일전송완료");
-					console.log(res);
-					$("#reqOk").click(function() {
-						var written_authKey = $(".authKey_input").val()
-						console.log(written_authKey);
+			var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+
+			if (id.match(regExp) != null) {
+				return true;
+			} else {
+				return false;
+			}
+		};
+		
+		/* 닉네임 양식 유효성검사 */
+		function verifyNickname(){
+			var nickname = $(".nickname").val();
+			
+			var regExp = /^[\wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/; /* 특문 제외 2자 ~ 20자 */
+			
+			if (nickname.match(regExp) != null) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		/* 폰번호 양식 유효성검사 */
+		function verifyPhone(){
+			var phone = $(".phone").val();
+			
+			var regExp = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/; 
+			
+			if (phone.match(regExp) != null) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+
+		/* 이메일 인증키 발송 */
+		$("#req").click(function() {
+			if (verifyEmail() == true) { /* 이메일유효성검사 통과시 true */
+
+				var id = $(".email_input").val();
+				console.log(id);
+
+				$.ajax({
+					type : "POST",
+					url : "/signup/auth",
+					data : {
+						email : id,
+					},
+					success : function(res) {
+						alert("인증키 메일전송완료");
 						console.log(res);
-						if (written_authKey == res) {
-							$(".email_input").addClass("is-valid");
-							$(".authKey_input").addClass("is-valid");
-							$(".email_input").attr("readonly","true");
-							$(".authKey_input").attr("readonly","true");
-						} else {
-							$(".email_input").addClass("is-invalid");
-							$(".authKey_input").addClass("is-invalid");
-						}
-					});
+						$("#reqOk").click(function() {
+							var written_authKey = $(".authKey_input").val()
+							console.log(written_authKey);
+							console.log(res);
+							if (written_authKey == res) {
+								$(".email_input").addClass("is-valid");
+								$(".authKey_input").addClass("is-valid");
+								$(".email_input").attr("readonly", "true");
+								$(".authKey_input").attr("readonly", "true");
+							} else {
+								$(".email_input").addClass("is-invalid");
+								$(".authKey_input").addClass("is-invalid");
+							}
+						});
 
-				},
-				error : function(XMLHttpRequest, textStatus, errorThrown) {
-					alert("인증키 통신 실패.")
-				}
-			});
+					},
+					error : function(XMLHttpRequest, textStatus, errorThrown) {
+						alert("인증키 통신 실패.")
+					}
+				});
+			} else {
+				alert("아이디는 이메일만 가능합니다.");
+			}
 		});
-
+		
+		/* 비밀번호재확인 */
 		$(".passwordAgain").keyup(function() {
 			var password = $(".password").val();
 			var passwordAgain = $(".passwordAgain").val();
@@ -253,9 +280,16 @@
 				success : function(cnt) {
 					console.log(cnt);
 					if (cnt == 0) { /* cnt = DB에 해당닉네임 개수 */
+						$(".nickname_feedback_valid").text("사용가능한 닉네임 입니다.");
 						$(".nickname").removeClass("is-invalid");
 						$(".nickname").addClass("is-valid");
+						if(verifyNickname() == false){   /* 닉네임 유효성검사 성공시 true반환 */
+							$(".nickname_feedback_invalid").text("닉네임은 특수문자 제외 2자 ~ 20자"); 
+							$(".nickname").removeClass("is-valid");
+							$(".nickname").addClass("is-invalid");
+						}
 					} else {
+						$(".nickname_feedback_invalid").text("해당 닉네임이 이미 있습니다."); 
 						$(".nickname").removeClass("is-valid");
 						$(".nickname").addClass("is-invalid");
 					}
@@ -267,7 +301,6 @@
 			});
 		};
 
-		
 		$("#confirmBtn")
 				.on(
 						"click",
@@ -280,19 +313,24 @@
 							var classSearch = [];
 
 							for (var i = 0; i < elements.length; i++) {
-								classSearch[i] = elements[i]
-										.indexOf("is-valid");
+								classSearch[i] = elements[i].indexOf("is-valid"); /* indexof값을 못찾으면 -1을 반환함 */
 
-								if (classSearch[0] != -1
-										&& classSearch[1] != -1
-										&& classSearch[2] != -1
-										&& classSearch[3] != -1) {
-									$("#signup_Form").submit();
-									console.log("서브밋까진 성공");
+								
+							}
+							if (classSearch[0] != -1
+									&& classSearch[1] != -1
+									&& classSearch[2] != -1
+									&& classSearch[3] != -1) {
+								$("#signup_Form").submit();
+								console.log("서브밋까진 성공");
 
-								} else {
-									console.log("회원가입실패");
-								}
+							} else {
+								console.log(classSearch[0]);
+								console.log(classSearch[1]);
+								console.log(classSearch[2]);
+								console.log(classSearch[3]);
+								alert("회원가입실패");
+								
 							}
 
 						});

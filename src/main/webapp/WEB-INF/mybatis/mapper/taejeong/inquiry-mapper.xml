@@ -24,5 +24,6 @@
 				AND WRITE_DATE BETWEEN ADD_MONTHS(SYSDATE, -4) AND SYSDATE
 			</when>
 		</choose>
+		ORDER BY WRITE_DATE DESC
 	</select>
 </mapper>

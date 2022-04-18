@@ -148,12 +148,12 @@ select, option {
 								<c:forEach items="${uniformCartList }" var="uniformCartList" varStatus="status">
 									<tr>
 										<td><input type="checkbox" class="checkbox checkbox${uniformCartList.uniformNo }" name="chkList" value="${uniformCartList.price * uniformCartList.uniCnt }" data-unino="${uniformCartList.uniformNo }"></td>
-										<td><img src="${uniformCartList.uniformImg }"></td>
+										<td><a href="/#"><img src="images/uniform/${uniformCartList.uniformImg }" style="width:100px; height:100px;"></a></td>
 										<td class="productBox">
 											<div class="namePart">
 												${uniformCartList.uniformName }
 												, ${uniformCartList.no }번 ${uniformCartList.name }
-												, ${uniformCartList.color }
+												, ${uniformCartList.color }, ${uniformCartList.uniSize }
 											</div>
 											<div class="totalPriceOption">
 												<span id="price"><fmt:formatNumber value="${uniformCartList.price }" pattern="#,###"></fmt:formatNumber>원 </span> 
@@ -198,7 +198,6 @@ select, option {
 	// 체크박스 체크된 상품의 정보 불러온다. 그리고 iamport결제창에 정보넘김.
 	function getCheckedProductInfo(){
 		var uniNo = "";
-		var output = "";
 		var info = [];
 		var cartInfo = [];
 		var total = 0;
@@ -221,7 +220,8 @@ select, option {
 					uniformName += response[cartInfo[i]].uniformName + ", ";
 					uniformName += response[cartInfo[i]].no + "번, ";
 					uniformName += response[cartInfo[i]].name + ", ";
-					uniformName += response[cartInfo[i]].color + "/ ";
+					uniformName += response[cartInfo[i]].color + ", ";
+					uniformName += response[cartInfo[i]].uniSize + "/ "; /* 추가 */
 				}
 				var buyer = response[cartInfo[0]].buyer;
 				var username = response[cartInfo[0]].username;
@@ -304,11 +304,11 @@ select, option {
 				msg += '카드 승인번호 : ' + rsp.apply_num;
 				var info = rsp.custom_data;
 				for(var i=0; i<info.length; i++){
-					console.log(info[i]);
+					console.log("결제완료된 UNIFORM_NO : " + info[i]);
 					
 					$.ajax({
 						type : "POST",
-						url : "/cart/updateBuyDate",
+						url : "/cart/updateBuyDateNSizeCount",
 						data : {"uniformNo" : info[i]},
 						success : function(){
 							console.log("buyDate 업데이트 성공!");

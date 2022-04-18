@@ -107,6 +107,7 @@ public class MypageController {
 		AccountVo loginUserVo = (AccountVo) httpSession.getAttribute("loginUser");
 		tUniformVo.setBuyer(loginUserVo.getId());
 		List<TUniformVo> list = tUniformService.getAllByBuyer(tUniformVo);
+
 		model.addAttribute("uniformList", list);
 
 		return "taejeong/mypage/purchaseHistory";
@@ -143,6 +144,12 @@ public class MypageController {
 		model.addAttribute("historyList", list);
 
 		return "taejeong/mypage/inquiryHistory";
+	}
+	
+	/* 문의내역 상세 */
+	@RequestMapping("/inquiry/historyDetail")
+	public String inquiryHistoryDetailHandle(@ModelAttribute InquiryVo inquiryVo, HttpSession httpSession, Model model) {
+		return "taejeong/mypage/inquiryHistoryDetail";
 	}
 	
 	@RequestMapping("/cart")
@@ -183,9 +190,21 @@ public class MypageController {
 		return map;
 	}
 	
-	@RequestMapping("/cart/updateBuyDate")
-	public String cartUpdateBuyDateHandle(@RequestParam int uniformNo) {
-		tUniformService.updateBuyDateNState(uniformNo);
+	@RequestMapping("/cart/updateBuyDateNSizeCount")
+	public String cartUpdateBuyDateNSizeCountHandle(@RequestParam int uniformNo, TUniformVo tUniformVo, HttpSession httpSession) {
+		/* 결제완료한 상품 STATE랑 BUY_DATE 업데이트*/
+		tUniformService.updateBuyDateNState(uniformNo); 
+		
+		AccountVo loginUserVo = (AccountVo) httpSession.getAttribute("loginUser");
+		tUniformVo.setBuyer(loginUserVo.getId());
+		
+		/* 결제완료한 상품 정보 불러오기*/
+		tUniformVo.setUniformNo(uniformNo);
+		TUniformVo productInfo = tUniformService.getInfoByUniformNo(tUniformVo);
+		System.out.println(productInfo.toString()); /*지우기*/
+		
+		/* 결제완료한 상품 불러온 정보를 이용해서 재고 업데이트*/
+		tUniformService.updateSizeCount(productInfo);
 		return "redirect:/mypage";
 	}
 

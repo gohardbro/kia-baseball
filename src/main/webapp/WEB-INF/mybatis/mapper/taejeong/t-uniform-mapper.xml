@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="tUniform">
+	<!-- 장바구니 -->
 	<select id="selectAllByBuyer" resultType="tUniformVo">
 		SELECT *
 		FROM UNIFORM U INNER JOIN UNIFORM_INFO I
@@ -8,7 +9,6 @@
 		INNER JOIN PLAYER P
 		ON U.PLAYER_NO = P.NO
 		WHERE BUYER = #{buyer}
-		
 		
 		<if test="periodBtn == null">
 			AND BUY_DATE IS NULL
@@ -34,6 +34,7 @@
 		</if>
 	</select>
 	
+	<!-- 장바구니 구매하기 버튼 눌렀을때 가져오는정보 -->
 	<select id="selectInfoByUniformNo" resultType="tUniformVo">
 		SELECT *
 		FROM UNIFORM U INNER JOIN UNIFORM_INFO I
@@ -45,6 +46,7 @@
                     WHERE ID = #{buyer}) A
         ON A.ID = U.BUYER
 		WHERE UNIFORM_NO = #{uniformNo}
+		ORDER BY BUY_DATE DESC
 	</select>
 	
 	
@@ -61,6 +63,47 @@
 			STATE = '결제완료'
 		WHERE UNIFORM_NO = #{uniformNo}
 	</update>
+	
+	<!-- 유니폼결제시 재고카운트 업데이트 -->
+	<!-- 결제완료한 유니폼의 사이즈 현재재고 - 결제한유니폼개수 를 업데이트 -->
+	<update id="updateSizeCount"> 
+		UPDATE UNIFORM_INFO
+		
+		<choose>
+			<when test="uniSize == 'XL'">
+				SET XL_COUNT = (SELECT XL_COUNT - #{uniCnt} 
+		 						  FROM UNIFORM_INFO
+		 						  WHERE UNI_INFO_NO = #{uniInfoNo})
+			</when>
+			<when test="uniSize == 'L'">
+				SET L_COUNT = (SELECT XL_COUNT - #{uniCnt} 
+		 						 FROM UNIFORM_INFO
+		  						 WHERE UNI_INFO_NO = #{uniInfoNo})
+			</when>
+			<when test="uniSize == 'M'">
+				SET M_COUNT = (SELECT XL_COUNT - #{uniCnt} 
+		   						FROM UNIFORM_INFO
+		   						WHERE UNI_INFO_NO = #{uniInfoNo})
+			</when>
+			<when test="uniSize == 'S'">
+				SET S_COUNT = (SELECT XL_COUNT - #{uniCnt} 
+		   						FROM UNIFORM_INFO
+		   						WHERE UNI_INFO_NO = #{uniInfoNo})
+			</when>
+		</choose>
+		WHERE UNI_INFO_NO = #{uniInfoNo}
+		
+	</update>
+	
+	<!-- <update id="updateSizeCount">  !!Bad Grammer
+		UPDATE UNIFORM_INFO
+		컬럼에 변수를 하는건 안된다!!
+		SET #{uniSize}_COUNT = (SELECT #{uniSize}_COUNT - #{uniCnt} 
+								FROM UNIFORM_INFO
+								WHERE UNI_INFO_NO = #{uniInfoNo})
+		WHERE UNI_INFO_NO = #{uniInfoNo}
+	</update> -->
+	
 </mapper>
 
 

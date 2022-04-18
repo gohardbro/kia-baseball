@@ -13,8 +13,7 @@
 
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler />
-	<mvc:resources location="/**" mapping="/"
-		cache-period="60" />
+	<mvc:resources mapping="/" location="/**" cache-period="60" />
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

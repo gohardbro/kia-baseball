@@ -187,10 +187,12 @@ body {
 												id="validationServer02" name="nickname"
 												aria-describedby="validationServer02Feedback"
 												onkeyup="nicknameCheck()" required>
-											<div id="validationServer02Feedback" class="invalid-feedback already_nickname">
-												해당 닉네임이 이미 있습니다.</div>
-											<div id="validationServer02Feedback" class="invalid-feedback empty_nickname" style="display: none;">
-												닉네임을 입력하세요.</div>
+											<div id="validationServer02Feedback"
+												class="invalid-feedback already_nickname">해당 닉네임이 이미
+												있습니다.</div>
+											<div id="validationServer02Feedback"
+												class="invalid-feedback empty_nickname"
+												style="display: none;">닉네임을 입력하세요.</div>
 											<div id="validationServer02Feedback" class="valid-feedback">
 												사용가능한 닉네임 입니다.</div>
 										</div>
@@ -267,8 +269,7 @@ body {
 												</tr>
 												<tr>
 													<td>${updatePwMsg }</td>
-													<td><button type="submit"
-															class="usermodify_password_submit">비밀번호 변경</button></td>
+													<td><button type="submit" class="usermodify_password_submit">비밀번호 변경</button></td>
 												</tr>
 											</tbody>
 										</table>
@@ -278,36 +279,41 @@ body {
 						<tr>
 							<th>프로필</th>
 							<td><div class="usermodify_nickName">
-									<strong class="usermodify_email_current_nickName">${loginUser.nickname }</strong>
-									<button type="button" class="usermodify_nickName_change_btn"
-										id="usermodify_nickName_change_btn"
-										onclick="changeButtonToCanelNickName()">닉네임 변경</button>
-									<button type="button" class="usermodify_nickName_change_cancel"
-										id="usermodify_nickName_change_cancel" style="display: none;"
-										onclick="changeButtonToDefaultNickName()">닉네임 변경 취소</button>
-									<form class="usermodify_nickName_form row g-3" method="post"
-										action="/modify/nickname" id="usermodify_nickName_form"
-										style="display: none;">
-										<div class="col-md-4">
-											<input type="text"
-												class="usermodify_nickName_form_input form-control"
-												id="validationServer02" name="nickname"
-												aria-describedby="validationServer02Feedback"
-												onkeyup="nicknameCheck()" required>
-											<div id="validationServer02Feedback" class="invalid-feedback already_nickname">
-												해당 닉네임이 이미 있습니다.</div>
-											<div id="validationServer02Feedback" class="invalid-feedback empty_nickname" style="display: none;">
-												닉네임을 입력하세요.</div>
-											<div id="validationServer02Feedback" class="valid-feedback">
-												사용가능한 닉네임 입니다.</div>
-										</div>
-										<div class="col-6" style="display: inline-block;">
-											<button
-												class="usermodify_nickName_form_submit btn btn-primary"
-												type="button">닉네임 변경</button>
-										</div>
-									</form>
+									<strong class="usermodify_email_current_nickName"></strong>
+
+									<button type="button" class="usermodify_nickName_change_btn">프로필
+										사진 변경</button>
 								</div></td>
+						</tr>
+						<tr>
+							<th>프로필</th>
+							<td>
+								<form action="/modify/profile/upload" method="post"
+									autocomplete="off" enctype="multipart/form-data">
+									<div style="text-align: center;">
+									<div style="margin: 15px;">
+										<img src="/profileImg/${loginUser.profile }"
+											class="mx-auto rounded d-block"
+											style="width: 200px; height: 200px" id="profile" />프로필사진 사이즈는 가로세로 200px로 맞춰집니다. <label
+											class="text-info"></label>
+									</div>
+										<div class="custom-file" style="magin: 20px;">
+											<input type="file" class="custom-file-input" id="customFile"
+												name="file" accept="image/*" >
+										</div>
+										<div>
+											<button
+												class="usermodify_phoneNumber_form_submit btn btn-primary"
+												type="submit">변경</button>
+										</div>
+									</div>
+									
+									
+								</form>
+								<div>
+									<strong class="usermodify_email_current_nickName">${empty msg ? "" : msg}</strong>
+								</div>
+							</td>
 						</tr>
 
 					</tbody>
@@ -426,22 +432,22 @@ body {
 				success : function(cnt) {
 					console.log(cnt);
 					if (cnt == 0 && nickname_input != "") { /* cnt = DB에 해당닉네임 개수 */
-						$(".already_nickname").css("display","none");
-						$(".empty_nickname").css("display","none");
+						$(".already_nickname").css("display", "none");
+						$(".empty_nickname").css("display", "none");
 						$(".usermodify_nickName_form_input").removeClass(
 								"is-invalid");
 						$(".usermodify_nickName_form_input").addClass(
 								"is-valid");
 					} else if (cnt == 0 && nickname_input == "") {
-						$(".invalid-feedback").css("display","none");
-						$(".empty_nickname").css("display","inline-block");
+						$(".invalid-feedback").css("display", "none");
+						$(".empty_nickname").css("display", "inline-block");
 						$(".usermodify_nickName_form_input").removeClass(
 								"is-valid");
 						$(".usermodify_nickName_form_input").addClass(
 								"is-invalid");
 					} else {
-						$(".already_nickname").css("display","inline-block");
-						$(".empty_nickname").css("display","none");
+						$(".already_nickname").css("display", "inline-block");
+						$(".empty_nickname").css("display", "none");
 						$(".usermodify_nickName_form_input").removeClass(
 								"is-valid");
 						$(".usermodify_nickName_form_input").addClass(

@@ -16,6 +16,7 @@ public class TUniformVo {
 	String uniformImg;
 	String uniformName;
 	String color;
+	String uniSize;
 	int sCount; 
 	int mCount;
 	int lCount;
@@ -35,6 +36,12 @@ public class TUniformVo {
 	
 	
 	
+	public String getUniSize() {
+		return uniSize;
+	}
+	public void setUniSize(String uniSize) {
+		this.uniSize = uniSize;
+	}
 	public String getUsername() {
 		return username;
 	}
@@ -202,10 +209,13 @@ public class TUniformVo {
 		return "TUniformVo [uniInfoNo=" + uniInfoNo + ", uniformNo=" + uniformNo + ", buyer=" + buyer + ", uniCnt="
 				+ uniCnt + ", total=" + total + ", buyDate=" + buyDate + ", state=" + state + ", refund=" + refund
 				+ ", playerNo=" + playerNo + ", price=" + price + ", uniformImg=" + uniformImg + ", uniformName="
-				+ uniformName + ", color=" + color + ", sCount=" + sCount + ", mCount=" + mCount + ", lCount=" + lCount
-				+ ", xlCount=" + xlCount + ", no=" + no + ", name=" + name + ", position=" + position + ", yearSelect="
-				+ yearSelect + ", monSelect=" + monSelect + ", periodBtn=" + periodBtn + "]";
+				+ uniformName + ", color=" + color + ", uniSize=" + uniSize + ", sCount=" + sCount + ", mCount="
+				+ mCount + ", lCount=" + lCount + ", xlCount=" + xlCount + ", no=" + no + ", name=" + name
+				+ ", position=" + position + ", yearSelect=" + yearSelect + ", monSelect=" + monSelect + ", periodBtn="
+				+ periodBtn + ", username=" + username + ", nickname=" + nickname + ", point=" + point + ", phone="
+				+ phone + "]";
 	}
+	
 	
 	
 	

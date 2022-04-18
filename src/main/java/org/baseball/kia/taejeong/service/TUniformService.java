@@ -28,5 +28,9 @@ public class TUniformService {
 	public int updateBuyDateNState(int uniformNo) {
 		return tUniformDao.updateBuyDateByUniformNo(uniformNo);
 	}
+	
+	public int updateSizeCount(TUniformVo tUniformVo) {
+		return tUniformDao.updateSizeCount(tUniformVo);
+	}
 
 }

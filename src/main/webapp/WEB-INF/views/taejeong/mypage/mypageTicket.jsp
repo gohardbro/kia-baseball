@@ -201,7 +201,7 @@ select, option {
 										<td>${ticketList.buyDate }</td>
 										<c:set var="cancelDate" value="cancelDate${status.index}" />
 										<td class="cancelDate">${requestScope[cancelDate]}</td>
-										<td>결제완료</td>
+										<td>${empty ticketList.refund ? "결제완료" : "결제취소" }</td>
 									</tr>
 								</c:forEach>
 							</tbody>

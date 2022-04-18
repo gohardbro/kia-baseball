@@ -28,4 +28,8 @@ public class TUniformDao {
 	public int updateBuyDateByUniformNo(int uniformNo) {
 		return sqlSession.update("tUniform.updateBuyDateByUniformNo", uniformNo);
 	}
+	
+	public int updateSizeCount(TUniformVo tUniformVo) {
+		return sqlSession.update("tUniform.updateSizeCount", tUniformVo);
+	}
 }

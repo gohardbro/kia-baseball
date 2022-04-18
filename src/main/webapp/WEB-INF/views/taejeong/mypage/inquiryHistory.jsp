@@ -154,7 +154,7 @@ select, option {
 									varStatus="status">
 									<tr>
 										<td>${historyList.title }</td>
-										<td><a href="">${historyList.content }</a></td>
+										<td><a href="/inquiry/historyDetail?inquiryNo=${historyList.inquiryNo }">${historyList.content }</a></td>
 										<td>${historyList.answer eq 'N' ? "" : "답변완료"  }</td>
 										<td>${historyList.writeDate }</td>										
 									</tr>
