@@ -14,8 +14,8 @@
 		t.sponsor) where s.schedule_no = #{no}
 	</select>
 
-	<!-- 좌석 6개 라디오  -->
-	<select id="seatList" resultType="seatChoiceVo"> 
+	<!-- 좌석 6개 라디오 -->
+	<select id="seatList" resultType="seatChoiceVo">
 		select baseball_zone
 		from baseball_info
 	</select>
@@ -27,5 +27,6 @@
 		where baseball_zone= #{baseballZone}
 	</select>
 
+	
 
 </mapper>

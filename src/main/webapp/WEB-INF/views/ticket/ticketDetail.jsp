@@ -140,6 +140,7 @@ img.gl-logo {
 
 									<span class="count count-box">
 										
+										<span >예매 매수 : </span>
 										<button type="button" class="btn btn-outline-danger"
 											id="upBtn">△</button> <input type="text" class="countInput"
 										id="quantity" name="countInput" value="0" readonly="readonly"
@@ -150,13 +151,13 @@ img.gl-logo {
 										
 									</span>
 								</div>
+							 
+	
 
 								<!-- 결제할 금액  -->
-								<div id="totalAmount">
-									결제할금액__원 
-								</div>
+								<div>결제금액 : <span id="totalAmount"> </span> 원</div>
 
-								<button type="button" onclick="temp()">결제하기</button>
+								<button type="button" onclick="paymentProcess()" class="amountCheck">결제하기</button>
 							</div>
 						</div>
 					</div>
@@ -177,7 +178,6 @@ img.gl-logo {
 
 <script>
 
-	
 	
 	// 주말여부에 따른 티켓금액 * 좌석(zone) = 가격(response) 
 	var ajaxData;
@@ -205,6 +205,17 @@ img.gl-logo {
 		updatePrice();
 	});
 	
+	// 결제할 총 액 amount(주중,주말여부 적용된 zone요금 * 티켓매수)
+	var amount;
+	
+	
+	function updatePrice() {
+		amount = ajaxData * $("#quantity").val();
+		console.log(amount);
+		$("#totalAmount").html(amount);
+	}
+	
+	 
 	
 	// 티켓 매수 : 업버튼 
 	$("#upBtn").click(function() {
@@ -229,17 +240,11 @@ img.gl-logo {
 	});
 	
 	
-	// 결제할 총 액 amount(주중,주말여부 적용된 zone요금 * 티켓매수)
-	function updatePrice() {
-		var amount = ajaxData * $("#quantity").val();
-		console.log(amount);
-	}	
-	
-	
-	
 	// 결제 function (아임포트)
-	function temp() {
+	
+	function paymentProcess() {
 		console.log("TEMP CALLED");
+		
 		var IMP = window.IMP;
 		IMP.init('imp89839657');
 		// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
@@ -249,17 +254,19 @@ img.gl-logo {
 			pay_method : 'card',
 			merchant_uid : 'merchant_' + new Date().getTime(),
 			name : 'Kia Tigers 경기 예매권(팬페이지 구매)', //상품명
-			amount : 1000, //가격 이것만 있어도 결제는 넘어감 
-			buyer_email : 'iamport@siot.do', //<- id로 
-			buyer_name : '구매자이름',
-			buyer_tel : '010-1234-5678',
-
+			amount : amount, //가격 이것만 있어도 결제는 넘어감 
+			buyer_email : ${loginUser.id},//<- id로 
+			buyer_name :  ${loginUser.name},
+			buyer_tel :  ${loginUser.phone}
+			
 		}, function(rsp) {
 			console.log(rsp);
 			if (rsp.success) {
 				var msg = '결제가 완료되었습니다.';
 				msg += '결제 금액은 : ' + rsp.paid_amount + '원 입니다.';
-
+			
+				
+				
 			} else {
 				var msg = '결제에 실패하였습니다.';
 				msg += '에러내용 : ' + rsp.error_msg;
@@ -267,7 +274,7 @@ img.gl-logo {
 			alert(msg);
 		});
 	};
-
+	 
 </script>
 </html>
 

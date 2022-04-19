@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ticketPayment">
+
+
+	<!--결제완료시 baseball Table에 insert -->
+	<!-- insert는 어차피 int라서 resultType 생략가능 -->
+	<insert id="paymentComplete"> 
+	Insert Into
+	Baseball(Baseball_No,Buyer,Buy_Date,Base_Info_No,Total,Buyer_Cnt,Schedule_No)
+	Values
+	(Baseball_No.Nextval,#{buyer},sysdate,#{baseInfoNo},#{total},#{buyerCnt},#{scheduleNo});
+		<selectKey resultType="int" keyProperty="no" order="AFTER">
+			select Baseball_No.currval from dual
+		</selectKey>
+	</insert>
+	
+	<!--결제 완료 후 결제 정보 출력 -->
+	<select id="showCompleteInfo" resultType="buyerInfoVo" >
+	 select * from baseball where Baseball_No = #{no}
+	</select>
+	
+	
+
+
+</mapper>
