@@ -101,6 +101,18 @@ select, option {
 .main_wrapper {
 	padding: 38px 39px 100px;
 }
+.textZone {
+	padding: 20px; 28px;
+	border: 1px solid rgb(238, 238, 238);
+	background-color: rgb(255, 255, 255);
+}
+.textLine{
+	margin: 5px; 0; 
+	 
+}
+.answer {
+	background-color: rgb(245, 248, 255);
+}
 </style>
 
 <div class="row" style="margin: 0px;">
@@ -113,55 +125,40 @@ select, option {
 			</div>
 			<div class="main_wrapper col-10">
 				<div class="titleZone">
-					<h3>문의내역</h3>
+					<h3>문의내역 상세</h3>
 				</div>
 				<div class="main_content">
 				
-					<div class="divider"></div>
-					<div class="selectZone">
-						<form action="/inquiry/history" method="post">
-							<div class="btn-group" role="group" aria-label="First group">
-								<strong>기간별 조회</strong>
-								<button type="submit" class="btn btn-outline-secondary"
-									id="15dBtn" name="periodBtn" value="15d">15일</button>
-								<button type="submit" class="btn btn-outline-secondary"
-									id="1monBtn" name="periodBtn" value="1mon">1개월</button>
-								<button type="submit" class="btn btn-outline-secondary"
-									id="2monBtn" name="periodBtn" value="2mon">2개월</button>
-								<button type="submit" class="btn btn-outline-secondary"
-									id="4monBtn" name="periodBtn" value="4mon">4개월</button>
-							</div>
-						</form>
+				<div class="divider"></div>
+					
+				<c:forEach items="${historyList }" var="historyList" varStatus="status">
+					<div class="textZone">
+						<div>
+							<div class="textLine" style="font-weight: bold;">문의 제목</div>
+							<div class="textLine" style="font-size: 14px;">${historyList.title }</div>
+							<div class="textLine" style="font-weight: bold;">문의 내용</div>
+							<div class="textLine" style="font-size: 14px;">${historyList.content }</div>
+							<div class="textLine"><small class="text-muted">${historyList.writeDate }</small><small class="text-muted" style="float: right;">${historyList.answer eq 'N' ? "" : "답변완료"  }</small></div>
+						</div>			
 					</div>
-					<div class="divider"></div>
-					<div>
-						<table>
-							<colgroup>
-								<col style="width: 90px;">
-								<col>
-								<col style="width: 130px;">
-							</colgroup>
-							<thead>
-								<tr>
-									<th>제목</th>
-									<th>내용</th>
-									<th></th>
-									<th>문의일시</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${historyList }" var="historyList"
-									varStatus="status">
-									<tr>
-										<td>${historyList.title }</td>
-										<td><a href="/inquiry/historyDetail?${historyList.inquiryNo }">${historyList.content }</a></td>
-										<td>${historyList.answer eq 'N' ? "" : "답변완료"  }</td>
-										<td>${historyList.writeDate }</td>										
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-					</div>
+					<c:if test="${historyList.answer != 'N' }">
+						<div class="textZone answer">
+							<div style="padding-left: 25px;">
+									<svg width="16" height="16" focusable="false"
+										viewBox="0 0 20 20" aria-hidden="true" role="presentation"
+										style="fill: rgb(136, 136, 136);">
+										<g fill="none" fill-rule="evenodd">
+										<path d="M0 0H20V20H0z"></path>
+										<path stroke="#888888" d="M5 3.333L5 13.333 15 13.333"></path>
+										</g>
+									</svg>
+								<div class="textLine" style="font-weight: bold; display: inline-block">관리자</div>
+								<div class="textLine" style="font-size: 14px; padding-left: 21px">답변내용</div>
+								<div class="textLine" style="padding-left: 21px"><small class="text-muted">${historyList.writeDate }</small></div>
+							</div>			
+						</div>
+					</c:if>
+				</c:forEach>
 
 				</div>
 			</div>
@@ -175,6 +172,14 @@ select, option {
 		$(".btn-outline-secondary").removeClass("active");
 		$(this).addClass("active");
 	});
+	
+	/* bootstrap modal*/
+	var myModal = document.getElementById('myModal')
+	var myInput = document.getElementById('myInput')
+
+	myModal.addEventListener('shown.bs.modal', function () {
+	  myInput.focus()
+	})
 </script>
 
 

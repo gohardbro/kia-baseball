@@ -101,10 +101,10 @@ select, option {
 	padding: 38px 39px 100px;
 }
 #bt {
-	float: left;
+	float: right;
 }
 #backBtn {
-	float:right;
+	float:left;
 }
 .btn-lg {
 	margin: 0 20px;

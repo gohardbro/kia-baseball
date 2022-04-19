@@ -145,28 +145,8 @@ body {
 							<th>아이디(이메일)</th>
 							<td><div class="usermodify_email">
 									<strong class="usermodify_email_current_email">${loginUser.id }</strong>
-									<button type="button" class="usermodify_email_change_btn"
-										id="usermodify_email_change_btn"
-										onclick="changeButtonToCanelEmail()">이메일 변경</button>
-									<button type="button" class="usermodify_email_change_cancel"
-										id="usermodify_email_change_cancel" style="display: none;"
-										onclick="changeButtonToDefaultEmail()">이메일 변경 취소</button>
-									<form class="usermodify_email_form row g-3"
-										id="usermodify_email_form" style="display: none;">
-										<div class="col-md-4">
-											<input type="text"
-												class="usermodify_email_form_input form-control is-invalid"
-												id="validationServer01"
-												aria-describedby="validationServer01Feedback" required>
-											<div id="validationServer01Feedback" class="invalid-feedback">
-												validationServer01Feedback</div>
-										</div>
-										<div class="col-6" style="display: inline-block;">
-											<button class="usermodify_email_form_submit btn btn-primary"
-												type="submit">인증메일 전송</button>
-										</div>
-									</form>
-								</div></td>
+								</div>
+							</td>
 						</tr>
 						<tr>
 							<th>닉네임</th>
@@ -183,17 +163,17 @@ body {
 										style="display: none;">
 										<div class="col-md-4">
 											<input type="text"
-												class="usermodify_nickName_form_input form-control"
+												class="usermodify_nickName_form_input form-control nickname"
 												id="validationServer02" name="nickname"
 												aria-describedby="validationServer02Feedback"
 												onkeyup="nicknameCheck()" required>
 											<div id="validationServer02Feedback"
-												class="invalid-feedback already_nickname">해당 닉네임이 이미
+												class="invalid-feedback already_nickname nickname_feedback_invalid">해당 닉네임이 이미
 												있습니다.</div>
 											<div id="validationServer02Feedback"
 												class="invalid-feedback empty_nickname"
 												style="display: none;">닉네임을 입력하세요.</div>
-											<div id="validationServer02Feedback" class="valid-feedback">
+											<div id="validationServer02Feedback" class="valid-feedback nickname_feedback_valid">
 												사용가능한 닉네임 입니다.</div>
 										</div>
 										<div class="col-6" style="display: inline-block;">
@@ -223,18 +203,18 @@ body {
 										id="usermodify_phoneNumber_form" style="display: none;">
 										<div class="col-md-4">
 											<input type="text"
-												class="usermodify_phoneNumber_form_input form-control"
+												class="usermodify_phoneNumber_form_input form-control phone"
 												id="validationServer03" name="phone"
-												aria-describedby="validationServer03Feedback" required>
-											<div id="validationServer03Feedback" class="invalid-feedback">
+												aria-describedby="validationServer03Feedback" onkeyup="phoneCheck()" required>
+											<div id="validationServer03Feedback" class="invalid-feedback phone_feedback_invalid">
 												validationServer03Feedback</div>
-											<div id="validationServer03Feedback" class="valid-feedback">
+											<div id="validationServer03Feedback" class="valid-feedback phone_feedback_valid">
 												validationServer03Feedback</div>
 										</div>
 										<div class="col-6" style="display: inline-block;">
 											<button
 												class="usermodify_phoneNumber_form_submit btn btn-primary"
-												type="submit">변경</button>
+												type="button">변경</button>
 										</div>
 									</form>
 								</div></td>
@@ -253,8 +233,17 @@ body {
 												</tr>
 												<tr>
 													<th>새 비밀번호</th>
-													<td><input class="usermodify_auth_password"
-														type="password" name="new_pw" /></td>
+													<td><small class="pw_rule" style="display:none;">비밀번호: 영문 대,소문자와 숫자가
+															적어도 1개 이상씩 포함된 8자 ~ 20자</small> <input
+														class="usermodify_auth_password pw"
+														id="validationServer05"
+														aria-describedby="validationServer05Feedback"
+														type="password" name="new_pw" onfocus="display_pw_rule()"
+														onkeyup="pwCheck()" />
+														<div id="validationServer05Feedback"
+															class="invalid-feedback pw_feedback_invalid"></div>
+														<div id="validationServer05Feedback"
+															class="valid-feedback pw_feedback_valid"></div></td>
 												</tr>
 												<tr>
 													<th>비밀번호 확인</th>
@@ -269,7 +258,7 @@ body {
 												</tr>
 												<tr>
 													<td>${updatePwMsg }</td>
-													<td><button type="submit" class="usermodify_password_submit">비밀번호 변경</button></td>
+													<td><button type="button" class="usermodify_password_submit">비밀번호 변경</button></td>
 												</tr>
 											</tbody>
 										</table>
@@ -277,16 +266,7 @@ body {
 								</div></td>
 						</tr>
 						<tr>
-							<th>프로필</th>
-							<td><div class="usermodify_nickName">
-									<strong class="usermodify_email_current_nickName"></strong>
-
-									<button type="button" class="usermodify_nickName_change_btn">프로필
-										사진 변경</button>
-								</div></td>
-						</tr>
-						<tr>
-							<th>프로필</th>
+							<th>프로필 사진</th>
 							<td>
 								<form action="/modify/profile/upload" method="post"
 									autocomplete="off" enctype="multipart/form-data">
@@ -302,9 +282,8 @@ body {
 												name="file" accept="image/*" >
 										</div>
 										<div>
-											<button
-												class="usermodify_phoneNumber_form_submit btn btn-primary"
-												type="submit">변경</button>
+											<button type="submit" class="usermodify_nickName_change_btn">프로필
+										사진 변경</button>
 										</div>
 									</div>
 									
@@ -319,7 +298,6 @@ body {
 					</tbody>
 				</table>
 				<div class="usermodify_foot">
-					<!-- 부트스트랩 링크추가해야함 -->
 					<button type="button" onclick="location.href='/mypage'"
 						class="btn btn-secondary btn-sm">나가기</button>
 				</div>
@@ -327,6 +305,213 @@ body {
 		</div>
 	</section>
 	<script>
+		/* 닉네임 양식 유효성검사 함수 */
+		function verifyNickname(){
+			var nickname = $(".nickname").val();
+			
+			var regExp = /^[\wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/; /* 특문 제외 2자 ~ 20자 */
+			
+			if (nickname.match(regExp) != null) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		/* 닉네임 중복검사 & 닉네임 양식 검사 */
+		function nicknameCheck() {
+			var nickname_input = $(".nickname").val();
+
+			$.ajax({
+				type : "POST",
+				url : "/signup/nicknameCheck",
+				data : {
+					nickname : nickname_input
+				},
+				success : function(cnt) {
+					console.log(cnt);
+					if (cnt == 0) { /* cnt = DB에 해당닉네임 개수 */
+						$(".nickname_feedback_valid").text("사용가능한 닉네임 입니다.");
+						$(".nickname").removeClass("is-invalid");
+						$(".nickname").addClass("is-valid");
+						if(verifyNickname() == false){   /* 닉네임 유효성검사 성공시 true반환 */
+							$(".nickname_feedback_invalid").text("닉네임은 특수문자 제외 2자 ~ 20자"); 
+							$(".nickname").removeClass("is-valid");
+							$(".nickname").addClass("is-invalid");
+						}
+					} else {
+						$(".nickname_feedback_invalid").text("해당 닉네임이 이미 있습니다."); 
+						$(".nickname").removeClass("is-valid");
+						$(".nickname").addClass("is-invalid");
+					}
+
+				},
+				error : function() {
+					alert("닉네임중복체크 에러입니다");
+				}
+			});
+		};
+		
+		//비밀번호 일치확인 다시만들기(간결하게)
+		$(".usermodify_auth_password_again").keyup(function() {
+			var password = $(".usermodify_auth_password").val();
+			var passwordAgain = $(".usermodify_auth_password_again").val();
+			if (passwordAgain != password) {
+				$(".usermodify_auth_password_again").removeClass("is-valid");
+				$(".usermodify_auth_password_again").addClass("is-invalid");
+			} else {
+				$(".usermodify_auth_password_again").removeClass("is-invalid");
+				$(".usermodify_auth_password_again").addClass("is-valid");
+			}
+		});
+
+		
+		/* 닉네임 변경 버튼 클릭시 닉네임input 태그의 클래스에서 is-valid를 찾아서 있으면 submit*/
+		$(".usermodify_nickName_form_submit").on("click", function() {
+			var element = $(".usermodify_nickName_form_input").attr("class");
+
+			var classSearch = "";
+			classSearch = element.indexOf("is-valid");
+
+			if (classSearch != -1) {
+				$("#usermodify_nickName_form").submit();
+				alert("닉네임을 변경하였습니다.");
+			}
+
+		});
+		
+		/* 폰번호 양식 유효성검사 */
+		function verifyPhone(){
+			var phone = $(".phone").val();
+			
+			var regExp = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/; 
+			
+			if (phone.match(regExp) != null) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		/* 비밀번호 양식 유효성검사 */
+		function verifyPw(){
+			var pw = $(".pw").val();
+			
+			var regExp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/; /* 영문 대,소문자와 숫자가 적어도 1개 이상씩 포함된 8자 ~ 20자 */
+
+			
+			if (pw.match(regExp) != null) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		/* 비밀번호 유효성검사 */
+		function pwCheck() {
+			var pw_input = $(".pw").val();
+
+			if (verifyPw() == true) { 
+				$(".pw_feedback_valid").text("사용가능한 비밀번호 입니다.");
+				$(".pw").removeClass("is-invalid");
+				$(".pw").addClass("is-valid");
+			} else {
+				$(".pw_feedback_invalid").text("사용할수 없는 비밀번호 입니다.");
+				$(".pw").removeClass("is-valid");
+				$(".pw").addClass("is-invalid");
+			}
+
+		}
+
+		/* 비밀번호재확인 */
+		$(".passwordAgain").keyup(function() {
+			var password = $(".password").val();
+			var passwordAgain = $(".passwordAgain").val();
+			if (passwordAgain != password) {
+				$(".passwordAgain").removeClass("is-valid");
+				$(".passwordAgain").addClass("is-invalid");
+			} else {
+				$(".passwordAgain").removeClass("is-invalid");
+				$(".passwordAgain").addClass("is-valid");
+			}
+		});
+		$(".password").keyup(function() {
+			var password = $(".password").val();
+			var passwordAgain = $(".passwordAgain").val();
+			if (passwordAgain != password) {
+				$(".passwordAgain").removeClass("is-valid");
+				$(".passwordAgain").addClass("is-invalid");
+			} else {
+				$(".passwordAgain").removeClass("is-invalid");
+				$(".passwordAgain").addClass("is-valid");
+			}
+		});
+		
+		/* 폰번호 유효성검사 */
+		function phoneCheck(){
+			
+			if (verifyPhone() == true) { 
+				$(".phone_feedback_valid").text("사용가능한 번호 입니다.");
+				$(".phone").removeClass("is-invalid");
+				$(".phone").addClass("is-valid");
+			} else {
+				$(".phone_feedback_invalid").text("사용할수 없는 번호 입니다.");
+				$(".phone").removeClass("is-valid");
+				$(".phone").addClass("is-invalid");
+			}
+
+		}
+		
+		/* 패스워드 모두다 적합하면 서브밋 */
+		$(".usermodify_password_submit").on(
+				"click",
+				function() {
+					var elements = [$(".pw").attr("class"), $(".usermodify_auth_password_again").attr("class")];
+
+					var classSearch = [];
+
+					for (var i = 0; i < elements.length; i++) {
+						classSearch[i] = elements[i].indexOf("is-valid"); /* indexof값을 못찾으면 -1을 반환함 */
+
+					}
+					if (classSearch[0] != -1 && classSearch[1] != -1) {
+						$(".usermodify_password_form").submit();
+						console.log("서브밋까진 성공");
+
+					} else {
+						alert("비밀번호 변경실패!");
+
+					}
+
+				});
+		
+		/* 폰 적합하면 서브밋 */
+		$(".usermodify_phoneNumber_form_submit").on(
+				"click",
+				function() {
+					var elements = $(".phone").attr("class");
+
+
+					var	classSearch = elements.indexOf("is-valid"); /* indexof값을 못찾으면 -1을 반환함 */
+
+					if (classSearch != -1) {
+						$(".usermodify_phoneNumber_form").submit();
+						console.log("서브밋까진 성공");
+
+					} else {
+						alert("휴대폰번호 변경실패!");
+
+					}
+
+				});
+		
+		
+	
+	
+	
+	
+	
+	
 		function changeButtonToCanelEmail() {
 			var element = document
 					.getElementById('usermodify_email_change_btn');
@@ -406,72 +591,11 @@ body {
 					.getElementById('usermodify_phoneNumber_form');
 			element3.style.cssText = 'display: none;';
 		}
-		//비밀번호 일치확인 다시만들기(간결하게)
-		$(".usermodify_auth_password_again").keyup(function() {
-			var password = $(".usermodify_auth_password").val();
-			var passwordAgain = $(".usermodify_auth_password_again").val();
-			if (passwordAgain != password) {
-				$(".usermodify_auth_password_again").removeClass("is-valid");
-				$(".usermodify_auth_password_again").addClass("is-invalid");
-			} else {
-				$(".usermodify_auth_password_again").removeClass("is-invalid");
-				$(".usermodify_auth_password_again").addClass("is-valid");
-			}
-		});
+		
+		function display_pw_rule() {
+			$(".pw_rule").css("display", "inline-block");
 
-		/* 닉네임 중복체크 */
-		function nicknameCheck() {
-			var nickname_input = $(".usermodify_nickName_form_input").val();
-
-			$.ajax({
-				type : "POST",
-				url : "/signup/nicknameCheck",
-				data : {
-					nickname : nickname_input
-				},
-				success : function(cnt) {
-					console.log(cnt);
-					if (cnt == 0 && nickname_input != "") { /* cnt = DB에 해당닉네임 개수 */
-						$(".already_nickname").css("display", "none");
-						$(".empty_nickname").css("display", "none");
-						$(".usermodify_nickName_form_input").removeClass(
-								"is-invalid");
-						$(".usermodify_nickName_form_input").addClass(
-								"is-valid");
-					} else if (cnt == 0 && nickname_input == "") {
-						$(".invalid-feedback").css("display", "none");
-						$(".empty_nickname").css("display", "inline-block");
-						$(".usermodify_nickName_form_input").removeClass(
-								"is-valid");
-						$(".usermodify_nickName_form_input").addClass(
-								"is-invalid");
-					} else {
-						$(".already_nickname").css("display", "inline-block");
-						$(".empty_nickname").css("display", "none");
-						$(".usermodify_nickName_form_input").removeClass(
-								"is-valid");
-						$(".usermodify_nickName_form_input").addClass(
-								"is-invalid");
-					}
-				},
-				error : function() {
-					alert("닉네임중복체크 에러입니다");
-				}
-			});
-		};
-
-		$(".usermodify_nickName_form_submit").on("click", function() {
-			var element = $(".usermodify_nickName_form_input").attr("class");
-
-			var classSearch = "";
-			classSearch = element.indexOf("is-valid");
-
-			if (classSearch != -1) {
-				$("#usermodify_nickName_form").submit();
-				console.log("서브밋까진 성공");
-			}
-
-		});
+		}
 	</script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

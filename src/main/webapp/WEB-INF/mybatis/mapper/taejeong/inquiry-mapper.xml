@@ -6,6 +6,7 @@
 		(INQUIRY_NO, TITLE, CONTENT, WRITE_DATE, WRITER)
 		VALUES(INQUIRY_NO_SEQ.NEXTVAL, #{title}, #{content}, SYSDATE, #{writer})
 	</insert>
+	
 	<select id="selectListByWriter" resultType="inquiryVo">
 		SELECT *
 		FROM INQUIRY
@@ -24,6 +25,9 @@
 				AND WRITE_DATE BETWEEN ADD_MONTHS(SYSDATE, -4) AND SYSDATE
 			</when>
 		</choose>
+		<if test="inquiryNo != 0"> <!-- 파라미터값에 inquiryNo 가 있으면 --><!-- int타입 이니깐 null이아니라 0으로 표현 -->
+			AND INQUIRY_NO = #{inquiryNo}
+		</if> 
 		ORDER BY WRITE_DATE DESC
 	</select>
 </mapper>

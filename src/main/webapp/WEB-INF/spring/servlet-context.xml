@@ -36,6 +36,34 @@
 			<mvc:mapping path="/ticketDetail" />
 			<bean class="org.baseball.kia.eunji.interceptor.LoginInterceptor" />
 		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/mypage" />
+			<bean class="org.baseball.kia.eunji.interceptor.LoginInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/admin" />
+			<bean class="org.baseball.kia.eunji.interceptor.LoginInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/account" />
+			<bean class="org.baseball.kia.eunji.interceptor.LoginInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/inquiry/*" />
+			<bean class="org.baseball.kia.eunji.interceptor.LoginInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/cart/**" />
+			<bean class="org.baseball.kia.eunji.interceptor.LoginInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/purchaseHistory" />
+			<bean class="org.baseball.kia.eunji.interceptor.LoginInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/ticketDetail" />
+			<bean class="org.baseball.kia.eunji.interceptor.LoginInterceptor" />
+		</mvc:interceptor>
 		
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>

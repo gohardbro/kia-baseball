@@ -153,19 +153,13 @@ select, option {
 										<th>좌석</th>
 										<td>${ticketList.baseballZone }</td>
 										<th>현재상태</th>
-										<td>결제완료했겠지</td>
+										<td>${empty ticketList.refund ? "결제완료" : "결제취소" }</td>
 									</tr>
 									<tr>
 										<th>예매일</th>
 										<td>${ticketList.buyDate }</td>
-										<th></th>
-										<td></td>
-									</tr>
-									<tr>
 										<th>결제수단</th>
-										<td>신용카드했겠지</td>
-										<th></th>
-										<td colspan="2"></td>
+										<td>신용카드</td>
 									</tr>
 									<input type="hidden" id="baseballNo" value="${ticketList.baseballNo}">
 								</c:forEach>

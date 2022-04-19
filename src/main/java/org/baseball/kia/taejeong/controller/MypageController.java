@@ -149,6 +149,10 @@ public class MypageController {
 	/* 문의내역 상세 */
 	@RequestMapping("/inquiry/historyDetail")
 	public String inquiryHistoryDetailHandle(@ModelAttribute InquiryVo inquiryVo, HttpSession httpSession, Model model) {
+		AccountVo loginUserVo = (AccountVo) httpSession.getAttribute("loginUser");
+		inquiryVo.setWriter(loginUserVo.getId());
+		List<InquiryVo> list = inquiryService.getHistory(inquiryVo);
+		model.addAttribute("historyList", list);
 		return "taejeong/mypage/inquiryHistoryDetail";
 	}
 	

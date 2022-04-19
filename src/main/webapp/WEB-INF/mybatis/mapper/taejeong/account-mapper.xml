@@ -36,8 +36,8 @@
 			<if test="point != null">
 				POINT = #{point},
 			</if>
-			<if test="report_cnt != null">
-				REPORT_CNT = #{report_cnt},
+			<if test="reportCnt != null">
+				REPORT_CNT = #{reportCnt},
 			</if>
 			<if test="phone != null">
 				PHONE = #{phone},

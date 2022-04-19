@@ -112,12 +112,15 @@
 								확인</button>
 						</div>
 					</div>
-					<small class="pw_rule">비밀번호: 영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩
+					<small class="pw_rule">비밀번호: 영문 대,소문자와 숫자가 적어도 1개 이상씩
 						포함된 8자 ~ 20자</small>
 					<div class="form-floating mb-3">
-						<form:input type="password" class="password form-control"
-							placeholder="Password" path="pw" onfocus="display_pw_rule()" />
+						<form:input type="password" class="password form-control pw" id="validationServer05 floatingInput"
+							aria-describedby="validationServer05Feedback"
+							placeholder="Password" path="pw" onfocus="display_pw_rule()" onkeyup="pwCheck()"/>
 						<label for="floatingPassword">비밀번호</label>
+						<div id="validationServer05Feedback" class="invalid-feedback pw_feedback_invalid"></div>
+						<div id="validationServer05Feedback" class="valid-feedback pw_feedback_valid"></div>
 						<form:errors path="pw" />
 					</div>
 					<div class="form-floating mb-3">
@@ -145,11 +148,11 @@
 						<form:input type="text" class="phone form-control"
 							id="validationServer04 floatingInput" path="phone"
 							aria-describedby="validationServer04Feedback"
-							placeholder="name@example.com" />
+							placeholder="name@example.com" onkeyup="phoneCheck()"/>
 						<label for="floatingInput">휴대폰 번호</label>
-						<div id="validationServer04Feedback" class="invalid-feedback">
+						<div id="validationServer04Feedback" class="invalid-feedback phone_feedback_invalid">
 							validationServer04Feedback invalid</div>
-						<div id="validationServer04Feedback" class="valid-feedback">
+						<div id="validationServer04Feedback" class="valid-feedback phone_feedback_valid">
 							validationServer04Feedback valid</div>
 						<form:errors path="phone" />
 					</div>
@@ -212,6 +215,20 @@
 			}
 		}
 		
+		/* 비밀번호 양식 유효성검사 */
+		function verifyPw(){
+			var pw = $(".pw").val();
+			
+			var regExp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/; /* 영문 대,소문자와 숫자가 적어도 1개 이상씩 포함된 8자 ~ 20자 */
+
+			
+			if (pw.match(regExp) != null) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
 
 		/* 이메일 인증키 발송 */
 		$("#req").click(function() {
@@ -254,8 +271,35 @@
 			}
 		});
 		
+		/* 비밀번호 유효성검사 */
+		function pwCheck() {
+			var pw_input = $(".pw").val();
+
+			if (verifyPw() == true) { 
+				$(".pw_feedback_valid").text("사용가능한 비밀번호 입니다.");
+				$(".pw").removeClass("is-invalid");
+				$(".pw").addClass("is-valid");
+			} else {
+				$(".pw_feedback_invalid").text("사용할수 없는 비밀번호 입니다.");
+				$(".pw").removeClass("is-valid");
+				$(".pw").addClass("is-invalid");
+			}
+
+		}
+
 		/* 비밀번호재확인 */
 		$(".passwordAgain").keyup(function() {
+			var password = $(".password").val();
+			var passwordAgain = $(".passwordAgain").val();
+			if (passwordAgain != password) {
+				$(".passwordAgain").removeClass("is-valid");
+				$(".passwordAgain").addClass("is-invalid");
+			} else {
+				$(".passwordAgain").removeClass("is-invalid");
+				$(".passwordAgain").addClass("is-valid");
+			}
+		});
+		$(".password").keyup(function() {
 			var password = $(".password").val();
 			var passwordAgain = $(".passwordAgain").val();
 			if (passwordAgain != password) {
@@ -283,13 +327,15 @@
 						$(".nickname_feedback_valid").text("사용가능한 닉네임 입니다.");
 						$(".nickname").removeClass("is-invalid");
 						$(".nickname").addClass("is-valid");
-						if(verifyNickname() == false){   /* 닉네임 유효성검사 성공시 true반환 */
-							$(".nickname_feedback_invalid").text("닉네임은 특수문자 제외 2자 ~ 20자"); 
+						if (verifyNickname() == false) { /* 닉네임 유효성검사 성공시 true반환 */
+							$(".nickname_feedback_invalid").text(
+									"닉네임은 특수문자 제외 2자 ~ 20자");
 							$(".nickname").removeClass("is-valid");
 							$(".nickname").addClass("is-invalid");
 						}
 					} else {
-						$(".nickname_feedback_invalid").text("해당 닉네임이 이미 있습니다."); 
+						$(".nickname_feedback_invalid")
+								.text("해당 닉네임이 이미 있습니다.");
 						$(".nickname").removeClass("is-valid");
 						$(".nickname").addClass("is-invalid");
 					}
@@ -300,41 +346,52 @@
 				}
 			});
 		};
+		
+		/* 폰번호 유효성검사 */
+		function phoneCheck(){
+			
+			if (verifyPhone() == true) { 
+				$(".phone_feedback_valid").text("사용가능한 번호 입니다.");
+				$(".phone").removeClass("is-invalid");
+				$(".phone").addClass("is-valid");
+			} else {
+				$(".phone_feedback_invalid").text("사용할수 없는 번호 입니다.");
+				$(".phone").removeClass("is-valid");
+				$(".phone").addClass("is-invalid");
+			}
 
-		$("#confirmBtn")
-				.on(
-						"click",
-						function() {
-							var elements = [ $(".email_input").attr("class"),
-									$(".authKey_input").attr("class"),
-									$(".passwordAgain").attr("class"),
-									$(".nickname").attr("class") ];
+		}
+		
+		/* 모두다 적합하면 서브밋 */
+		$("#confirmBtn").on(
+				"click",
+				function() {
+					var elements = [ $(".email_input").attr("class"),
+							$(".authKey_input").attr("class"),
+							$(".pw").attr("class"),
+							$(".passwordAgain").attr("class"),
+							$(".nickname").attr("class"),
+							$(".phone").attr("class")];
 
-							var classSearch = [];
+					var classSearch = [];
 
-							for (var i = 0; i < elements.length; i++) {
-								classSearch[i] = elements[i].indexOf("is-valid"); /* indexof값을 못찾으면 -1을 반환함 */
+					for (var i = 0; i < elements.length; i++) {
+						classSearch[i] = elements[i].indexOf("is-valid"); /* indexof값을 못찾으면 -1을 반환함 */
 
-								
-							}
-							if (classSearch[0] != -1
-									&& classSearch[1] != -1
-									&& classSearch[2] != -1
-									&& classSearch[3] != -1) {
-								$("#signup_Form").submit();
-								console.log("서브밋까진 성공");
+					}
+					if (classSearch[0] != -1 && classSearch[1] != -1
+							&& classSearch[2] != -1 && classSearch[3] != -1 
+							&& classSearch[4] != -1 && classSearch[5] != -1) {
+						$("#signup_Form").submit();
+						console.log("서브밋까진 성공");
 
-							} else {
-								console.log(classSearch[0]);
-								console.log(classSearch[1]);
-								console.log(classSearch[2]);
-								console.log(classSearch[3]);
-								alert("회원가입실패");
-								
-							}
+					} else {
+						alert("회원가입실패");
 
-						});
+					}
 
+				});
+		
 		function display_pw_rule() {
 			$(".pw_rule").css("display", "inline-block");
 

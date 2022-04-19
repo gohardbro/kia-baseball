@@ -49,7 +49,9 @@ public class AccountController {
 			accountService.updatePw(vo);
 			model.addAttribute("updatePwMsg","비밀번호가 변경 되었습니다.");
 			System.out.println("비밀번호 변경완료");
-		} 
+		} else {
+			model.addAttribute("updatePwMsg","기존 비밀번호가 틀립니다.");
+		}
 		
 		return "taejeong/account/modify";
 	}
@@ -63,13 +65,13 @@ public class AccountController {
 		if(r) {
 			loginUser.setNickname(vo.getNickname());
 			httpSession.setAttribute("loginUser", loginUser);
-			model.addAttribute("successMsg", "성공");
 			System.out.println("닉네임 변경성공");
 			return "taejeong/account/modify";
 		}
 		
 		return "taejeong/account/modify";
 	}
+
 	
 	@PostMapping("/modify/phone")
 	public String modifyPhoneHandle(@ModelAttribute AccountVo vo, HttpSession httpSession, Model model) {
