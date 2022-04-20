@@ -11,6 +11,7 @@ import org.baseball.kia.yg.service.UniformService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,7 +24,7 @@ public class GoodsController {
 
 	@Autowired
 	UniformService uniformService;
-	
+
 	@Autowired
 	PlayerService playerService;
 
@@ -34,18 +35,26 @@ public class GoodsController {
 	}
 
 	@RequestMapping(value = "/info", method = RequestMethod.GET)
-	public String goodsInfo(Model model, @RequestParam("uniInfoNo") int no, HttpSession httpSession) {
+	public String goodsInfoGet(Model model, @RequestParam("uniInfoNo") int no, HttpSession httpSession) {
 		UniformInfoVo vo = uniInfoService.goodsInfo(no);
 		model.addAttribute("uniInfo", vo);
+
 		model.addAttribute("plyer", playerService.getPlayerNo());
-		
-		AccountVo loginUserVo = (AccountVo) httpSession.getAttribute("loginUser");
-		UniformVo univo = new UniformVo();
-		univo.setBuyer(loginUserVo.getId());
-		
-		model.addAttribute("uniform", univo);
-		
+
 		return "yg/goods/info";
+	}
+
+	@RequestMapping(value = "/info", method = RequestMethod.POST)
+	public String goodsInfoPost(Model model, HttpSession httpSession, @ModelAttribute("vo") UniformVo vo) {
+
+		AccountVo loginUserVo = (AccountVo) httpSession.getAttribute("loginUser");
+		vo.setBuyer(loginUserVo.getId());
+		
+		boolean rst = uniformService.insertBasket(vo);
+		if (!rst) {
+			return "yg/goods/info?no=" + vo.getUniInfoNo();
+		}
+		return "redirect:/goods";
 	}
 
 	@RequestMapping(value = "/basket", method = RequestMethod.GET)
@@ -59,6 +68,7 @@ public class GoodsController {
 		univo.setBuyer(loginUserVo.getId());
 
 		model.addAttribute("uniform", univo);
+		System.out.println("Basket");
 
 		return "yg/goods/uniformbasket";
 	}

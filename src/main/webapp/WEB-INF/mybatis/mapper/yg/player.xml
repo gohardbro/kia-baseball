@@ -7,15 +7,9 @@
 		ORDER BY TO_NUMBER(NO) ASC
 	</select>
 	
-	
-	<!-- 장바구니
-	<select id="selectAllByBuyer" resultType="tUniformVo">
-		SELECT *
-		FROM UNIFORM U INNER JOIN UNIFORM_INFO I
-		USING(UNI_INFO_NO)
-		INNER JOIN PLAYER P
-		ON U.PLAYER_NO = P.NO
-		WHERE BUYER = #{buyer}
-	</select> -->
+	<select id="selectOne" resultType="player">
+		SELECT A.NO FROM PLAYER A
+		WHERE A.NO = #{no}
+	</select>
 	
 </mapper> 

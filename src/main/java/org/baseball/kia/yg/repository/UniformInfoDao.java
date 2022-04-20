@@ -19,6 +19,10 @@ public class UniformInfoDao {
 	public UniformInfoVo goodsInfo(int no) {
 		return sqlSession.selectOne("uniformInfo.selectOne", no);
 	}
+
+	public int getUniInfoNo(int no) {
+		return sqlSession.selectOne("uniformInfo.selectOne", no);
+	}
 	
 	
 }

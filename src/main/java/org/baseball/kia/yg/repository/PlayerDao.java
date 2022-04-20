@@ -16,5 +16,9 @@ public class PlayerDao {
 	public List<PlayerVo> getPlayerNo() {
 		return sqlSession.selectList("player.selectPlayerNo");
 	}
+	
+	public String getPlayerNoOne(String a) {
+		return sqlSession.selectOne("player.selectOne", a);
+	}
 
 }

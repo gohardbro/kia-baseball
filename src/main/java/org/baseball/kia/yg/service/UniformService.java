@@ -16,5 +16,10 @@ public class UniformService {
 		return uniformDao.getBasketList(infovo);
 	}
 	
+	public boolean insertBasket(UniformVo vo) {
+		int r = uniformDao.insertBasket(vo);
+		return r == 1;
+	}
+	
 
 }

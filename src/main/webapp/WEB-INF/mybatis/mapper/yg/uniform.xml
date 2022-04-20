@@ -9,15 +9,17 @@
 		ON A.BUYER = B.ID;
 	</select>
 	
-	<select id="selectPlayerNo" resultType="uniform">
-		SELECT * FROM UNIFORM A
-		LEFT OUTER JOIN PLAYER B
-		ON A.PLAYER_NO = B.NO  
-	</select>
-	
-	<insert id="insetBasket" parameterType="uniform">
-		INSERT INTO
+	<insert id="insertBasket" parameterType="uniform">
+		INSERT INTO UNIFORM 
+		VALUES
+		(SEQ_UNIFORM.NEXTVAL ,
+		(SELECT AC.ID FROM ACCOUNT AC WHERE AC.ID = #{buyer}), 
+		#{uniInfoNo}, #{uniCnt}, #{total}, NULL, NULL, NULL, 
+		(SELECT P.NO FROM PLAYER P WHERE P.NO = #{playerNo}), 
+		#{uniSize})
 	</insert>
+	
+	
 	
 	
 	<!-- 장바구니

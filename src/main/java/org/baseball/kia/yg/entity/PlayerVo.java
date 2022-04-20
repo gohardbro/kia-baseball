@@ -1,16 +1,8 @@
 package org.baseball.kia.yg.entity;
 
 public class PlayerVo {
-	int no;
-	String name, position;
+	String name, position, no;
 
-	public int getNo() {
-		return no;
-	}
-
-	public void setNo(int no) {
-		this.no = no;
-	}
 
 	public String getName() {
 		return name;
@@ -28,8 +20,17 @@ public class PlayerVo {
 		this.position = position;
 	}
 
+	public String getNo() {
+		return no;
+	}
+
+	public void setNo(String no) {
+		this.no = no;
+	}
+
 	@Override
 	public String toString() {
-		return "PlayerVo [no=" + no + ", name=" + name + ", position=" + position + "]";
+		return "PlayerVo [name=" + name + ", position=" + position + ", no=" + no + "]";
 	}
+
 }

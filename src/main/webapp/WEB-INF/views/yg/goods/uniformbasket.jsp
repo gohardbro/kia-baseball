@@ -41,8 +41,5 @@
 <div>
 	<button type="button" onclick="location.href='/payment'">상품 주문</button>
 </div>
-</div>
-
-</div>
 <jsp:include page="/WEB-INF/views/yg/goods/include/bottom.jsp" />
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />

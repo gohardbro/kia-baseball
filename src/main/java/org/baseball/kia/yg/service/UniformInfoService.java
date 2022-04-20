@@ -20,4 +20,8 @@ public class UniformInfoService {
 		UniformInfoVo vo = uniInfoDao.goodsInfo(no);
 		return vo;
 	}
+	
+	public int getUniInfoNo(int no) {
+		return uniInfoDao.getUniInfoNo(no);
+	}
 }

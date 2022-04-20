@@ -15,5 +15,9 @@ public class UniformDao {
 	public UniformVo getBasketList(UniformInfoVo infovo) {
 		return sqlSession.selectOne("uniform.selectOne", infovo);
 	}
+	
+	public int insertBasket (UniformVo vo) {
+		return sqlSession.insert("uniform.insertBasket",vo);
+	}
 
 }

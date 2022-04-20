@@ -6,7 +6,8 @@
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
 
 <div class="container mb-5">
-	<form method="post">
+	<form action='<c:url value="/info"/>' method="post">
+		<input type="hidden" name="uniInfoNo" value="${uniInfo.uniInfoNo }" />
 		<div class="mt-3">
 			<h2>${uniInfo.uniformName }</h2>
 		</div>
@@ -24,8 +25,8 @@
 					<td>${uniInfo.price }</td>
 				</tr>
 				<tr>
-					<th>구매제한</th>
-					<td>최소 1개</td>
+					<th>구매수량</th>
+					<td><input type="number" name="uniCnt" min="1"></td>
 				</tr>
 				<tr>
 					<th>원산지</th>
@@ -33,49 +34,57 @@
 				</tr>
 				<tr>
 					<th>사이즈</th>
-					<td><select>
-							<option id="ssize">S</option>
-							<option id="msize">M</option>
-							<option id="lsize">L</option>
-							<option id="xlsize">XL</option>
-					</select><input type="hidden" id="sizeCheck" value="${size }"></td>
+					<td><select name="uniSize">
+							<option>S</option>
+							<option>M</option>
+							<option>L</option>
+							<option>XL</option>
+					</select></td>
 				</tr>
 				<tr>
 					<th>등번호</th>
-					<td><select>
+					<td><select name="playerNo">
 							<c:forEach var="plyer" items="${plyer }">
 								<option>${plyer.no }</option>
 							</c:forEach>
 					</select></td>
 				</tr>
 			</table>
-
 		</div>
 		<div>
 			<table>
 				<tr>
-					<th></th>
-					<th></th>
-					<th></th>
+					<th>합계</th>
+					<td><input type="text" name="total" readonly></td>
 				</tr>
 			</table>
 		</div>
-	</form>
-	<div>
-		<button type="button" onclick="location.href='/#'">구매하기</button>
-		<button type="button"
-			onclick="location.href='/basket?uniInfoNo=${uniInfo.uniInfoNo}'">장바구니
-		</button>
-		<button type="button" onclick="location.href='/goods'">목록</button>
-	</div>
-</div>
-<div>
-	<div>
 		<div>
+			<button type="submit"
+				onclick="location.href='/info?uniInfoNo=${uniInfo.uniInfoNo }'">구매하기</button>
+			<button type="button" onclick="location.href='/goods'">목록</button>
+			<button type="submit"
+				onclick="location.href='/basket?uniInfoNo=${uniInfo.uniInfoNo}'">장바구니
+			</button>
+		</div>
+	</form>
+</div>
 
-			<script>
-				
-			</script>
+<script>
+	var number = document.getElementById('number');
 
-			<jsp:include page="/WEB-INF/views/yg/goods/include/bottom.jsp" />
-			<jsp:include page="/WEB-INF/views/include/footer.jsp" />
+	number.onkeydown = function(e) {
+		if (!((e.keyCode > 95 && e.keyCode < 106)
+				|| (e.keyCode > 47 && e.keyCode < 58) || e.keyCode == 8)) {
+			return false;
+		}
+	}
+	
+	var basket = 
+		
+		
+		
+</script>
+
+<jsp:include page="/WEB-INF/views/yg/goods/include/bottom.jsp" />
+<jsp:include page="/WEB-INF/views/include/footer.jsp" />

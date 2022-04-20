@@ -17,5 +17,9 @@ public class PlayerService {
 		List<PlayerVo> list = playerDao.getPlayerNo();
 		return list;
 	}
+	
+	public String getPlayerNoOne(String a) {
+		return playerDao.getPlayerNoOne(a);
+	}
 
 }
