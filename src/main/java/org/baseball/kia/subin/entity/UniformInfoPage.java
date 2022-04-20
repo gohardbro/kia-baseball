@@ -5,6 +5,7 @@ import java.util.List;
 public class UniformInfoPage extends PageVo {
 	String uniformName;
 	String color;
+	String viewType;
 	List<UniformInfoVo> uniformInfoList;
 
 	public String getUniformName() {
@@ -23,6 +24,14 @@ public class UniformInfoPage extends PageVo {
 		this.color = color;
 	}
 
+	public String getViewType() {
+		return viewType;
+	}
+
+	public void setViewType(String viewType) {
+		this.viewType = viewType;
+	}
+
 	public List<UniformInfoVo> getUniformInfoList() {
 		return uniformInfoList;
 	}
@@ -34,8 +43,8 @@ public class UniformInfoPage extends PageVo {
 	@Override
 	public String toString() {
 		String str = super.toString();
-		return str + "\n UniformInfoPage [uniformName=" + uniformName + ", color=" + color + ", uniformInfoList="
-				+ uniformInfoList + "]";
+		return str + "\n UniformInfoPage [uniformName=" + uniformName + ", color=" + color + ", viewType=" + viewType
+				+ ", uniformInfoList=" + uniformInfoList + "]";
 	}
 
 }

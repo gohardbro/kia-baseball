@@ -28,9 +28,15 @@ public class UniformInfoController {
 	public String uniformInfoSearchHandle(@ModelAttribute UniformInfoPage page, Model model) { // 유니폼 검색
 		page.setTotalList(uniformInfoService.selectUniformInfoCnt()); // 검색 결과 데이터 개수
 		page.setUniformInfoList(uniformInfoService.selectUniformInfo(page));
-		System.out.println(page);
 		model.addAttribute("page", page);
-		return "/subin/admin/uniformInfo-list";
+		
+		if (page.getViewType().equals("grid")) { // 그리드 타입
+			return "/subin/admin/uniformInfo-grid";
+			
+		} else { // 리스트 타입(기본값) 
+			return "/subin/admin/uniformInfo-list";
+			
+		}
 
 	}
 

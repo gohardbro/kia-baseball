@@ -12,27 +12,17 @@
 				<c:forEach items="${ uniformTop10 }" var="uniform"
 					varStatus="status">
 					<article>
-						<a href="#" class="image featured"><img
+						<a href="#?uniInfoN0=${ uniform.uniInfoNo }" class="image featured"><img
 							src="/images/uniform/${ uniform.uniformImg }" alt="" /></a>
 						<header>
 							<h3>
-								<a href="#">Top ${status.count }</a>
+								<a href="#?uniInfoN0=${ uniform.uniInfoNo }">Top ${status.count }</a>
 							</h3>
 						</header>
 						<p>${ uniform.uniformName }</p>
 					</article>
 				</c:forEach>
 
-				<article>
-					<a href="#" class="image featured"><img
-						src="/images/uniform/${ uniform.uniformImg }" alt="" /></a>
-					<header>
-						<h3>
-							<a href="#">Top ${status.count }</a>
-						</h3>
-					</header>
-					<p>${ uniform.uniformName }</p>
-				</article>
 			</div>
 		</section>
 
@@ -53,7 +43,7 @@
 					<c:forEach items="${ boardHot5 }" var="board" varStatus="status">
 						<tr>
 							<td>${ status.count }</td>
-							<td><a href="#" style="color: inherit;">${ board.title }</a></td>
+							<td><a href="/boardview?no=${ board.boardNo }" style="color: inherit;">${ board.title }</a></td>
 							<td>${ board.writer }</td>
 							<td>${ board.likes }</td>
 							<td>${ board.views }</td>

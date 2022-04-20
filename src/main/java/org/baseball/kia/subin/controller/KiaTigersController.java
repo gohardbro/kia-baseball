@@ -20,7 +20,7 @@ public class KiaTigersController {
 	@Autowired
 	CalendarService calendarService;
 	
-	@RequestMapping({ "/kiaTigers/calendar", "/kiaTigers" })
+	@RequestMapping({"/kiaTigers/calendar", "/kiaTigers"})
 	public String ScheduleHandle(Model model) { // 경기일정 페이지
 		model.addAttribute("menu", "schedule");
 		return "/subin/kiaTigers/calendar";

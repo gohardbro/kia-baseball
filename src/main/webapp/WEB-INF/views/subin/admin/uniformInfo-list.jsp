@@ -1,7 +1,7 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <table class="table">
 	<thead>
@@ -27,7 +27,7 @@
 				<td>${ uniformInfo.mCount }</td>
 				<td>${ uniformInfo.lCount }</td>
 				<td>${ uniformInfo.xlCount }</td>
-				<td>${ uniformInfo.price }</td>
+				<td><fmt:formatNumber value="${ uniformInfo.price }" pattern="#,###원" /></td>
 				<td style="width: 7%"><button type="submit" onclick="location.href='/admin/uniformInfo/update?uniInfoNo=${uniformInfo.uniInfoNo}'"
 						class="btn btn-warning">수정</button></td>
 			</tr>

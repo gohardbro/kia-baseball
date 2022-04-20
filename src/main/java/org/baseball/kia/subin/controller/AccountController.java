@@ -25,7 +25,6 @@ public class AccountController {
 	public String adminAccountHandle(Model model, @ModelAttribute AccountPage page) { // 타입별 계정 정보 조회
 		page.setTotalList(accountService.selectAccountCnt()); // 타입별 회원수
 		page.setAccountList(accountService.selectAccountByType(page)); // 검색된 회원 정보 리스트
-		System.out.println(page); //
 		model.addAttribute("page", page);
 		return "/subin/admin/account-list";
 	}

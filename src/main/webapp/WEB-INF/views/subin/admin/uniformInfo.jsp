@@ -18,6 +18,10 @@
 			<section>
 					<nav class="navbar navbar-expand-sm d-flex justify-content-between">
 						<form class="form-inline" action="/">
+							<select class='form-control' id='viewType' onchange='go_page(1)'>
+								<option value='list' ${page.viewType eq 'list' ? 'selected' : ''}>리스트보기</option>
+								<option value='grid' ${page.viewType eq 'grid' ? 'selected' : ''}>그리드보기</option>
+							</select>
 							<select class="form-control" id="search" style="margin: 10px;">
 								<option selected value="uniformName">상품명</option>
 								<option value="color">색상</option>
@@ -28,7 +32,7 @@
 					<button type="button" class="btn btn-primary" onclick="location.href='/admin/uniformInfo/insert'">등록</button>
 					</nav>
 
-				<table class="table"></table>
+				<div class="uniformInfoList"></div>
 			</section>
 		</article>
 	</div>
@@ -59,6 +63,7 @@
 		var type = $("#search").val();
 		var uniformName = type=='uniformName'? $("#word").val(): '';
 		var color = type=='color'? $("#word").val(): '';
+		var viewType = $("#viewType").val();
 		
 		$.ajax({
 			url : "/admin/uniformInfo/search",
@@ -67,12 +72,17 @@
 				"color" : color,
 				"pageList": 5,// 페이지당 보여질 목록 수
 				"curPage": no, // 요청 페이지 번호
-				"blockPage": 3 //블럭당 보여질 페이지 수
+				"blockPage": 3, //블럭당 보여질 페이지 수
+				"viewType": viewType
 			}
 		
 		}).done(function(data) {
-			$(".table").html(data);
+			$(".uniformInfoList").html(data);
 		});
+	}
+	
+	function viewType(){ // 리스트, 그리드 화면 타입 선택
+		
 	}
 </script>
 
