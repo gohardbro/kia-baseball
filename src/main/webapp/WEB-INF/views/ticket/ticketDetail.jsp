@@ -48,8 +48,9 @@ img.gl-logo {
 	margin-bottom: 100px;
 }
 
-.downBtn.upBtn {
-	
+ 
+.wbox{
+	heigth:500px;
 }
 </style>
 </head>
@@ -79,7 +80,7 @@ img.gl-logo {
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="container">
-							<div class="shadow p-4 mb-4 bg-white" style="height: 350px;">
+							<div class="shadow p-4 mb-4 bg-white" >
 
 								<!-- 예매하실 경기 정보 -->
 								<input type="hidden" class="gameDate"
@@ -113,7 +114,7 @@ img.gl-logo {
 					<!-- 오른쪽 col -->
 					<div class="col-sm-8">
 						<div class="container">
-							<div class="shadow p-4 mb-4 bg-white" style="height: 350px;">
+							<div class="shadow p-4 mb-4 bg-white" >
 								<!-- seatArea고르기 radio 6개 -->
 								<div class="seatChoice">
 									<table>
@@ -131,21 +132,21 @@ img.gl-logo {
 								</div>
 
 								<!-- 수량 업다운 버튼 -->
-								<div class="quantity" style="padding: 5px; ">
+								<div class="quantity" >
 									<span class="count count-box"> <span>예매 매수 : </span>
-										<button type="button" class="btn btn-outline-danger" id="upBtn">△</button> 
+										<button type="button" class="btn btn-outline-danger" id="upBtn" >△</button> 
 										<input type="text" class="countInput" id="quantity" name="quentity" 
-										value="0" readonly="readonly" style="border: none;" />
-										<button type="button" class="btn btn-outline-danger" id="downBtn">▽</button>
+										value="0" readonly="readonly"  display="inline-block;" style="border: none; width:50px; " />
+										<button type="button" class="btn btn-outline-danger" id="downBtn" >▽</button>
 									</span>
 								</div>
 
 								<!-- 결제할 금액  -->
-								<div>
+								<div style="margin-top: 20px; margin-bottom: 20px;">
 									결제금액 :<span id="totalAmount"></span>원
 								</div>
 
-								<button type="button" onclick="progress()" class="amountCheck">결제하기</button>
+								<button type="button" onclick="paymentProcess()" class="amountCheck"  style="width:80%">결제하기</button>
 
 							</div>
 						</div>
@@ -155,13 +156,15 @@ img.gl-logo {
 			</section>
 		</article>
 	</div>
-	<form action="/progress/payment" style="display: none" method="post"
-		id="pform">
-		<input type="hidden" name="seat" id="hidden_seat" /> 
-		<input type="hidden" name="cnt" id="hidden_cnt" /> 
-		<input type="hidden" name="total" id="hidden_total" />
+	<form action="/progress/payment" style="display: none" method="post" id="pform" >
+		<input type="hidden" name="buyer"  value="${loginUser.buyer}"/> 
+		<input type="hidden" name="baseInfoNo" id="hidden_seat"/> 
+		<input type="hidden" name="buyerCnt" id="hidden_cnt"/> 
+		<input type="hidden" name="total" id="hidden_total"/>
+		<input type="hidden" name="scheduleNo"  value="${oneGame.scheduleNo}"/>
 	</form>
 
+	
 
 </body>
 
@@ -250,13 +253,13 @@ img.gl-logo {
 				var msg = '결제가 완료되었습니다.';
 				msg += '결제 금액은 : ' + rsp.paid_amount + '원 입니다.';
 
-				progress();
-
 			} else {
 				var msg = '결제에 실패하였습니다.';
 				msg += '에러내용 : ' + rsp.error_msg;
 			}
+			
 			alert(msg);
+			progress();
 		});
 	}
 
@@ -268,7 +271,9 @@ img.gl-logo {
 		$("#hidden_cnt").val( $("#quantity").val() );
 		$("#hidden_total").val(amount);
 
-		
+		console.log($("#hidden_seat"));
+		console.log($("#hidden_cnt"));
+		console.log($("#hidden_total"));
 		
 		$("#pform").submit();
 	}

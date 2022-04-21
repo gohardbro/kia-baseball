@@ -5,7 +5,7 @@
 
 	<!--결제완료시 baseball Table에 insert -->
 	<!-- insert는 어차피 int라서 resultType 생략가능 -->
-	<insert id="paymentComplete"> 
+	<insert id="paymentComplete" parameterType="buyerInfoVo"> 
 	Insert Into
 	Baseball(Baseball_No,Buyer,Buy_Date,Base_Info_No,Total,Buyer_Cnt,Schedule_No)
 	Values
@@ -17,7 +17,7 @@
 	
 	<!--결제 완료 후 결제 정보 출력 -->
 	<select id="showCompleteInfo" resultType="buyerInfoVo" >
-	 select * from baseball where Baseball_No = #{no}
+	 select * from baseball b full outer join schedule s on b.SCHEDULE_NO=s.SCHEDULE_NO where Baseball_No = #{no}
 	</select>
 	
 	

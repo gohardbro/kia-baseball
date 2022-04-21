@@ -5,8 +5,8 @@ import org.baseball.kia.eunji.service.PaymentCompleteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class paymentCompleteController {
@@ -15,22 +15,18 @@ public class paymentCompleteController {
 	PaymentCompleteService paymentCompleteService;
 
 	// 결제완료시 baseball Table에 insert
-	@RequestMapping("/progress/payment")
-	public String paymenetComplete(@RequestParam BuyerInfoVo info, Model model) {
-
-		// 하나씩 RequestParam으로 받아도 되고, 한꺼번에 받으려면 modelAttribute
+	@PostMapping("/progress/payment")
+	public String paymenetComplete(@ModelAttribute BuyerInfoVo info, Model model) {
 
 		// 1. view에서 넘어온 정보들을 vo에 담아서 -> 서비스로 보낸다(insert)
-		// view->DB 가는거니까 request라서 requestParam으로 가져와서, vo에 담는다
-		BuyerInfoVo vo = new BuyerInfoVo();
-
-		int no = paymentCompleteService.paymentComplete(info);
-		// 2. service에서 넘어온 no를 가지고 select문으로 출력
-		vo = paymentCompleteService.showCompleteInfo(no);
-
-		model.addAttribute("vo", vo);
+		paymentCompleteService.paymentComplete(info);
 		
-		return "";
+		
+		// 2. service에서 넘어온 no를 가지고 select문으로 출력
+		BuyerInfoVo result = paymentCompleteService.showCompleteInfo(info.getBaseballNo());
+		model.addAttribute("result", result);
+		
+		return "/ticket/paymentResult";
 	}
 
 }

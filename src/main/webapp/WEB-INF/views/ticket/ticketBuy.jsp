@@ -34,15 +34,12 @@ img.gl-logo {
 
 <!-- Main -->
 <div class="wrapper style1">
-
 	<div class="container">
 		<article id="main" class="special">
 			<header id="h2">
 				<h2>경기 선택</h2>
 			</header>
 			<article id="gameSelect" class="special">
-
-
 
 				<!-- gamelist + button[예매하기] -->
 				<div class="container">
@@ -58,7 +55,6 @@ img.gl-logo {
 									<td><img src="/images/Logo_Mini/KIA.jpg" class="gl-logo" />
 									</td>
 									<td>VS</td>
-
 									<td><img src="/images/Logo_Mini/${gl.teamImg}"
 										class="gl-logo" /></td>
 									<td id="rival">${gl.sponsor}${gl.teamName}</td>
@@ -67,7 +63,6 @@ img.gl-logo {
 										<button type="button"
 											onclick="location.href='/ticketDetail?scheduleNo=${gl.scheduleNo}'">예매하기</button>
 									</td>
-
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -75,22 +70,14 @@ img.gl-logo {
 					<script type="text/javascript">
 						$(".disp_week").each(function(){
 							var v = $(this).data("value");
-						
 							$(this).text(getInputDayLabel(v));
-						
 						})	
 					</script>
 				</div>
-
-
 			</article>
 		</article>
 	</div>
 </div>
-
-
-
-
 
 <jsp:include page="/WEB-INF/views/ticket/include/bottom.jsp" />
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
