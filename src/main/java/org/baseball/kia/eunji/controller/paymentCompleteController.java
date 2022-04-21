@@ -5,6 +5,7 @@ import org.baseball.kia.eunji.service.PaymentCompleteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -17,7 +18,7 @@ public class paymentCompleteController {
 	// 결제완료시 baseball Table에 insert
 	@PostMapping("/progress/payment")
 	public String paymenetComplete(@ModelAttribute BuyerInfoVo info, Model model) {
-
+		
 		// 1. view에서 넘어온 정보들을 vo에 담아서 -> 서비스로 보낸다(insert)
 		paymentCompleteService.paymentComplete(info);
 		
@@ -28,5 +29,12 @@ public class paymentCompleteController {
 		
 		return "/ticket/paymentResult";
 	}
+	
+		//test
+		@GetMapping("/progress/payment")
+		public String paymenetComplete2(@ModelAttribute BuyerInfoVo info, Model model) {
+			
+			return "/ticket/paymentResult";
+		}
 
 }

@@ -8,7 +8,14 @@
 <!DOCTYPE html>
 <html>
 <head>
- 
+<style>
+.wrapper{
+display: grid;
+place-items: center;
+
+}
+
+</style>
 </head>
 <body>
 
@@ -19,11 +26,18 @@
 				<h2>결제가 완료 되었어요!</h2>
 			</header>
 			
+			
+			<div class="wrapper">
+			
+				<h5>경기가 기대된다면 팬들과 소통해보세요!</h5>
+				<button type="button"><a href="">자유게시판 GO</a></button>
+				 
+			
+			</div>
+			
+			
 		</article>
 		
-		
-		<h5>경기가 기대된다면 팬들과 소통해보세요!</h5>
-		<button type="button">자유게시판으로 GO</button>
 		
 </div>
 
