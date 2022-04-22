@@ -122,7 +122,10 @@ img.gl-logo {
 										<c:forEach var="sc" items="${seatChoice}">
 											<tr>
 												<td><input type="radio" name="zoneCheck" id="seat"
-													value="${sc.baseballZone}"> ${sc.baseballZone}</td>
+													value="${sc.baseInfoNo }"> ${sc.baseballZone}
+																
+																
+													</td>
 												<td>잔여석:(122/200)</td>
 											</tr>
 										</c:forEach>
@@ -156,8 +159,8 @@ img.gl-logo {
 			</section>
 		</article>
 	</div>
-	<form action="/progress/payment" style="display: none" method="post" id="pform" >
-		<input type="hidden" name="buyer"  value="${loginUser.buyer}"/> 
+	<form action="/progress/payment" method="post" name="pform" >
+		<input type="hidden" name="buyer"  value="${loginUser.id}"/> 
 		<input type="hidden" name="baseInfoNo" id="hidden_seat"/> 
 		<input type="hidden" name="buyerCnt" id="hidden_cnt"/> 
 		<input type="hidden" name="total" id="hidden_total"/>
@@ -275,7 +278,7 @@ img.gl-logo {
 		console.log($("#hidden_cnt"));
 		console.log($("#hidden_total"));
 		
-		$("#pform").submit();
+		$("[name=pform]").submit();
 	}
 </script>
 </html>

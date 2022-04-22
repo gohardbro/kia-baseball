@@ -16,7 +16,7 @@
 
 	<!-- 좌석 6개 라디오 -->
 	<select id="seatList" resultType="seatChoiceVo">
-		select baseball_zone
+		select base_info_no, baseball_zone
 		from baseball_info
 	</select>
 

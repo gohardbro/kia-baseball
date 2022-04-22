@@ -13,6 +13,34 @@ public class BuyerInfoVo {
 	Date refund;
 	int scheduleNo;
 	String cancel;
+	String gameDate;
+	String gameTime;
+	String rival;
+	
+	public String getGameDate() {
+		return gameDate;
+	}
+
+	public void setGameDate(String gameDate) {
+		this.gameDate = gameDate;
+	}
+
+	public String getGameTime() {
+		return gameTime;
+	}
+
+	public void setGameTime(String gameTime) {
+		this.gameTime = gameTime;
+	}
+
+	public String getRival() {
+		return rival;
+	}
+
+	public void setRival(String rival) {
+		this.rival = rival;
+	}
+
 
 	public int getBaseballNo() {
 		return baseballNo;
