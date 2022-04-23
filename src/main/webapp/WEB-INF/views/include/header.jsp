@@ -23,7 +23,7 @@
 </noscript>
 
 <!-- Scripts -->
-<body class="left-sidebar is-preload">
+
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/jquery.dropotron.min.js"></script>
 <script src="/assets/js/jquery.scrolly.min.js"></script>
@@ -37,6 +37,7 @@
   <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
 
 </head>
+<body class="left-sidebar is-preload">
 
 
 	<div id="page-wrapper">

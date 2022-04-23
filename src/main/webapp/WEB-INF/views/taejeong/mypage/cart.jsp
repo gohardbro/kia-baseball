@@ -110,6 +110,32 @@ select, option {
 .btn_zone {
 	text-align: center;
 }
+.namePart {
+	border-bottom: 1px solid #e3e3e3;
+}
+.totalPriceOption, .namePart{
+	margin: 7px; 0;
+}
+.addOptionBtn {
+	width: 65px;
+	height: 28px;	
+	padding: 2px;
+	font-size: 11px;
+	border: 1px solid black;
+	background-color: white;
+	color: black;
+	font-weight: bold;
+} 
+.addOptionBtn:hover {
+	background-color: #007bff;
+}
+.selectboxInput {
+	width: 60px;
+	height: 28px;
+}
+.direct{
+	margin: 5px;
+}
 </style>
 
 <div class="row" style="margin: 0px;">
@@ -156,8 +182,8 @@ select, option {
 												, ${uniformCartList.color }, ${uniformCartList.uniSize }
 											</div>
 											<div class="totalPriceOption">
-												<span id="price"><fmt:formatNumber value="${uniformCartList.price }" pattern="#,###"></fmt:formatNumber>원 </span> 
-												<select class="selectbox" data-price="${uniformCartList.price }" data-no="${uniformCartList.uniformNo }" data-cnt="${uniformCartList.uniCnt }">
+												<span id="price"><fmt:formatNumber value="${uniformCartList.price }" pattern="#,###"></fmt:formatNumber>원 </span>
+												<select class="selectbox selectbox${uniformCartList.uniformNo }" data-price="${uniformCartList.price }" data-no="${uniformCartList.uniformNo }" data-cnt="${uniformCartList.uniCnt }">
 													<option value="1" ${uniformCartList.uniCnt == 1 ? "selected" : "" }>1
 													<option value="2" ${uniformCartList.uniCnt == 2 ? "selected" : "" }>2
 													<option value="3" ${uniformCartList.uniCnt == 3 ? "selected" : "" }>3
@@ -167,12 +193,19 @@ select, option {
 													<option value="7" ${uniformCartList.uniCnt == 7 ? "selected" : "" }>7
 													<option value="8" ${uniformCartList.uniCnt == 8 ? "selected" : "" }>8
 													<option value="9" ${uniformCartList.uniCnt == 9 ? "selected" : "" }>9
-													<option value="10" ${uniformCartList.uniCnt == 10 ? "selected" : "" }>10+ 
+													<option value="10+" ${uniformCartList.uniCnt == 10 ? "selected" : "" }>10+ 
+													<c:if test="${uniformCartList.uniCnt > 9}">
+														<option value="${uniformCartList.uniCnt}" selected>${uniformCartList.uniCnt}
+													</c:if>
 												</select>
 												개
+												<div class="direct direct${uniformCartList.uniformNo }" data-no="${uniformCartList.uniformNo }">
+													<input type="number" class="selectboxInput" name="selectboxInput" min="1" max="99"/>
+													<button type="button" class="addOptionBtn">수량 변경</button>
+												</div>
 											</div>
 										</td>
-										<td class="totalPrice${uniformCartList.uniformNo }"><fmt:formatNumber value="${uniformCartList.price * uniformCartList.uniCnt }" pattern="#,###"></fmt:formatNumber>원</td>
+										<td class="totalPrice${uniformCartList.uniformNo }"><strong><fmt:formatNumber value="${uniformCartList.price * uniformCartList.uniCnt }" pattern="#,###"></fmt:formatNumber>원</strong></td>
 									</tr>
 								</c:forEach>
 								<tr>
@@ -195,8 +228,40 @@ select, option {
 </div>
 
 <script>
+	/* 수량변경 입력키 숫자외엔 입력안되게 */
+	$(".selectboxInput").on("keydown", function(e) {
+	    if(!((e.keyCode > 95 && e.keyCode < 106) || (e.keyCode > 47 && e.keyCode < 58) || e.keyCode == 8 || e.keyCode == 9)) {
+	        return false;
+	    }
+	});
+
+	/* select에서 10+ 선택했을때 수량직접입력하게 input 뜸 */
+	$(".direct").hide();
+	$('.selectbox').change(function() {
+	    var r = $(this).val();
+	    var direct = ".direct"+$(this).data("no");
+	    
+	    if (r == '10+') {
+	    	$(direct).show();
+	    } else {
+	    	$(direct).hide();
+	    }
+	  }); 
+	
+	/* 수량변경 버튼 누르면 select에 수량 option 추가되고 selected 됌  */
+	$(".addOptionBtn").click(function(){
+		var direct = ".direct"+$(this).parent().data("no");
+		var selectbox = ".selectbox"+$(this).parent().data("no");
+		var directInputVal = $(direct).children("input").val();
+		$(selectbox).append(
+				"<option value='"+directInputVal+"' selected>" + directInputVal + "</option>");
+		$(".direct").hide();
+		$(selectbox).change();
+		
+	});
+
 	// 체크박스 체크된 상품의 정보 불러온다. 그리고 iamport결제창에 정보넘김.
-	function getCheckedProductInfo(){
+	function getCheckedProductInfo() {
 		var uniNo = "";
 		var info = [];
 		var cartInfo = [];
@@ -205,8 +270,8 @@ select, option {
 		$('input[name=chkList]:checked').each(function(index) {
 			uniNo = $(this).data("unino");
 			info[index] = uniNo;
-			cartInfo[index] = "cartInfo"+uniNo;
-		}); 
+			cartInfo[index] = "cartInfo" + uniNo;
+		});
 
 		$.ajax({
 			type : "POST",
@@ -214,25 +279,25 @@ select, option {
 			data : JSON.stringify(info),
 			contentType : "application/json; charset=UTF-8",
 			success : function(response) {
-				for(var i=0; i<cartInfo.length; i++){
+				for (var i = 0; i < cartInfo.length; i++) {
 					total += response[cartInfo[i]].total;
 					uniformName += response[cartInfo[i]].uniformNo + ", ";
 					uniformName += response[cartInfo[i]].uniformName + ", ";
 					uniformName += response[cartInfo[i]].no + "번, ";
-					uniformName += response[cartInfo[i]].name + ", ";
+					uniformName += response[cartInfo[i]].nickname + ", ";
 					uniformName += response[cartInfo[i]].color + ", ";
 					uniformName += response[cartInfo[i]].uniSize + "/ "; /* 추가 */
 				}
 				var buyer = response[cartInfo[0]].buyer;
 				var username = response[cartInfo[0]].username;
 				var phone = response[cartInfo[0]].phone;
-				
+
 				console.log(buyer);
 				console.log(username);
 				console.log(phone);
 				console.log(uniformName);
 				console.log(total);
-				
+
 				iamportAPI(buyer, username, phone, uniformName, total, info);
 			},
 			error : function() {
@@ -303,18 +368,20 @@ select, option {
 				msg += '결제 금액 : ' + rsp.paid_amount;
 				msg += '카드 승인번호 : ' + rsp.apply_num;
 				var info = rsp.custom_data;
-				for(var i=0; i<info.length; i++){
+				for (var i = 0; i < info.length; i++) {
 					console.log("결제완료된 UNIFORM_NO : " + info[i]);
-					
+
 					$.ajax({
 						type : "POST",
 						url : "/cart/updateBuyDateNSizeCount",
-						data : {"uniformNo" : info[i]},
-						success : function(){
-							console.log("buyDate 업데이트 성공!");
-							
+						data : {
+							"uniformNo" : info[i]
 						},
-						error : function(){
+						success : function() {
+							console.log("buyDate 업데이트 성공!");
+
+						},
+						error : function() {
 							console.log("buyDate 업데이트 실패!");
 						},
 					});
@@ -360,9 +427,6 @@ select, option {
 					uniformNo : $(this).data("no")
 				}
 
-				console.log($(this).data("price") + "/" + $(this).val() + "/"
-						+ $(this).data("no"));
-
 				var uniformNo = $(this).data("no");
 				$.ajax({
 					type : "POST",
@@ -370,7 +434,9 @@ select, option {
 					data : params,
 					success : function(total) {
 						var totalAddedComma = addComma(total);
-						$(".totalPrice" + uniformNo).html(totalAddedComma + "원");
+						$(".totalPrice" + uniformNo).html(
+								"<strong>" + totalAddedComma + "원"
+										+ "</strong>");
 						$(".checkbox" + uniformNo).val(total);
 
 						calTotal();
@@ -383,6 +449,7 @@ select, option {
 
 			});
 
+	
 	$(".btn-outline-secondary").click(function() {
 		$(".btn-outline-secondary").removeClass("active");
 		$(this).addClass("active");

@@ -15,7 +15,6 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 <title>modify</title>
-
 <style>
 body {
 	margin: 0;
@@ -133,192 +132,189 @@ body {
 	height: 30px;
 	padding: 5px 10x;
 }
-
 </style>
 </head>
 <body>
-	<div class="container" >
-		<section class="contents">
-			<div class="contents_container">
-				<section class="usermodify_auth">
-					<h1 class="usermodify_auth_title">회원정보 수정</h1>
-					<table class="usermodify_table">
-						<tbody>
-							<tr>
-								<th>아이디(이메일)</th>
-								<td><div class="usermodify_email">
-										<strong class="usermodify_email_current_email">${loginUser.id }</strong>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<th>닉네임</th>
-								<td><div class="usermodify_nickName">
-										<strong class="usermodify_email_current_nickName">${loginUser.nickname }</strong>
-										<button type="button" class="usermodify_nickName_change_btn"
-											id="usermodify_nickName_change_btn"
-											onclick="changeButtonToCanelNickName()">닉네임 변경</button>
-										<button type="button" class="usermodify_nickName_change_cancel"
-											id="usermodify_nickName_change_cancel" style="display: none;"
-											onclick="changeButtonToDefaultNickName()">닉네임 변경 취소</button>
-										<form class="usermodify_nickName_form row g-3" method="post"
-											action="/modify/nickname" id="usermodify_nickName_form"
-											style="display: none;">
-											<div class="col-md-4">
-												<input type="text"
-													class="usermodify_nickName_form_input form-control nickname"
-													id="validationServer02" name="nickname"
-													aria-describedby="validationServer02Feedback"
-													onkeyup="nicknameCheck()" required>
-												<div id="validationServer02Feedback"
-													class="invalid-feedback already_nickname nickname_feedback_invalid">해당 닉네임이 이미
-													있습니다.</div>
-												<div id="validationServer02Feedback"
-													class="invalid-feedback empty_nickname"
-													style="display: none;">닉네임을 입력하세요.</div>
-												<div id="validationServer02Feedback" class="valid-feedback nickname_feedback_valid">
-													사용가능한 닉네임 입니다.</div>
-											</div>
-											<div class="col-6" style="display: inline-block;">
-												<button
-													class="usermodify_nickName_form_submit btn btn-primary"
-													type="button">닉네임 변경</button>
-											</div>
-										</form>
-									</div></td>
-							</tr>
-							<tr>
-								<th>휴대폰번호</th>
-								<td><div class="usermodify_nickName">
-										<strong class="usermodify_email_current_phoneNumber">${empty loginUser.phone ? '미등록' : loginUser.phone}
-										</strong>
-										<button type="button" class="usermodify_phoneNumber_change_btn"
-											id="usermodify_phoneNumber_change_btn"
-											onclick="changeButtonToCanelPhoneNumber()">휴대폰 번호 변경</button>
-										<button type="button"
-											class="usermodify_phoneNumber_change_cancel"
-											id="usermodify_phoneNumber_change_cancel"
-											style="display: none;"
-											onclick="changeButtonToDefaultPhoneNumber()">휴대폰 번호
-											변경 취소</button>
-										<form class="usermodify_phoneNumber_form row g-3"
-											action="/modify/phone" method="post"
-											id="usermodify_phoneNumber_form" style="display: none;">
-											<div class="col-md-4">
-												<input type="text"
-													class="usermodify_phoneNumber_form_input form-control phone"
-													id="validationServer03" name="phone"
-													aria-describedby="validationServer03Feedback" onkeyup="phoneCheck()" required>
-												<div id="validationServer03Feedback" class="invalid-feedback phone_feedback_invalid">
-													validationServer03Feedback</div>
-												<div id="validationServer03Feedback" class="valid-feedback phone_feedback_valid">
-													validationServer03Feedback</div>
-											</div>
-											<div class="col-6" style="display: inline-block;">
-												<button
-													class="usermodify_phoneNumber_form_submit btn btn-primary"
-													type="button">변경</button>
-											</div>
-										</form>
-									</div></td>
-							</tr>
-							<tr>
-								<th>비밀번호변경</th>
-								<td><div class="usermodify_password">
-										<form class="usermodify_password_form"
-											action="/modify/password" method="post">
-											<table class="usermodify_password_table">
-												<tbody>
-													<tr>
-														<th>현재 비밀번호</th>
-														<td><input class="usermodify_auth_current_password"
-															type="password" name="pw"></td>
-													</tr>
-													<tr>
-														<th>새 비밀번호</th>
-														<td><small class="pw_rule" style="display:none;">비밀번호: 영문 대,소문자와 숫자가
-																적어도 1개 이상씩 포함된 8자 ~ 20자</small> <input
-															class="usermodify_auth_password pw"
-															id="validationServer05"
-															aria-describedby="validationServer05Feedback"
-															type="password" name="new_pw" onfocus="display_pw_rule()"
-															onkeyup="pwCheck()" />
-															<div id="validationServer05Feedback"
-																class="invalid-feedback pw_feedback_invalid"></div>
-															<div id="validationServer05Feedback"
-																class="valid-feedback pw_feedback_valid"></div></td>
-													</tr>
-													<tr>
-														<th>비밀번호 확인</th>
-														<td><input class="usermodify_auth_password_again"
-															id="validationServer04" name="new_pw_again"
-															aria-describedby="validationServer04Feedback"
-															type="password">
-															<div id="validationServer04Feedback"
-																class="invalid-feedback">비밀번호가 일치하지 않습니다.</div>
-															<div id="validationServer04Feedback"
-																class="valid-feedback">비밀번호가 일치합니다.</div></td>
-													</tr>
-													<tr>
-														<td>${updatePwMsg }</td>
-														<td><button type="button" class="usermodify_password_submit">비밀번호 변경</button></td>
-													</tr>
-												</tbody>
-											</table>
-										</form>
-									</div></td>
-							</tr>
-							<tr>
-								<th>프로필 사진</th>
-								<td>
-									<form action="/modify/profile/upload" method="post"
-										autocomplete="off" enctype="multipart/form-data">
-										<div style="text-align: center;">
-										<div style="margin: 15px;">
-										<c:choose>
-											<c:when test="${empty loginUser.profile }">
-												<img src="/images/default-profile.png"
-												class="mx-auto rounded d-block"
-												style="width: 200px; height: 200px" id="profile" />프로필사진 사이즈는 가로세로 200px로 맞춰집니다. <label
-												class="text-info"></label>
-											</c:when>
-											<c:otherwise>
-												<img src="/profileImg/${loginUser.profile }"
-												class="mx-auto rounded d-block"
-												style="width: 200px; height: 200px" id="profile" />프로필사진 사이즈는 가로세로 200px로 맞춰집니다. <label
-												class="text-info"></label>
-											</c:otherwise>
-										</c:choose>
-											
+	<section class="contents">
+		<div class="contents_container">
+			<section class="usermodify_auth">
+				<h1 class="usermodify_auth_title">회원정보 수정</h1>
+				<table class="usermodify_table">
+					<tbody>
+						<tr>
+							<th>아이디(이메일)</th>
+							<td><div class="usermodify_email">
+									<strong class="usermodify_email_current_email">${loginUser.id }</strong>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>닉네임</th>
+							<td><div class="usermodify_nickName">
+									<strong class="usermodify_email_current_nickName">${loginUser.nickname }</strong>
+									<button type="button" class="usermodify_nickName_change_btn"
+										id="usermodify_nickName_change_btn"
+										onclick="changeButtonToCanelNickName()">닉네임 변경</button>
+									<button type="button" class="usermodify_nickName_change_cancel"
+										id="usermodify_nickName_change_cancel" style="display: none;"
+										onclick="changeButtonToDefaultNickName()">닉네임 변경 취소</button>
+									<form class="usermodify_nickName_form row g-3" method="post"
+										action="/modify/nickname" id="usermodify_nickName_form"
+										style="display: none;">
+										<div class="col-md-4">
+											<input type="text"
+												class="usermodify_nickName_form_input form-control nickname"
+												id="validationServer02" name="nickname"
+												aria-describedby="validationServer02Feedback"
+												onkeyup="nicknameCheck()" required>
+											<div id="validationServer02Feedback"
+												class="invalid-feedback already_nickname nickname_feedback_invalid">해당 닉네임이 이미
+												있습니다.</div>
+											<div id="validationServer02Feedback"
+												class="invalid-feedback empty_nickname"
+												style="display: none;">닉네임을 입력하세요.</div>
+											<div id="validationServer02Feedback" class="valid-feedback nickname_feedback_valid">
+												사용가능한 닉네임 입니다.</div>
 										</div>
-											<div class="custom-file" style="magin: 20px;">
-												<input type="file" class="custom-file-input" id="customFile"
-													name="file" accept="image/*" >
-											</div>
-											<div>
-												<button type="submit" class="usermodify_nickName_change_btn">프로필
-											사진 변경</button>
-											</div>
+										<div class="col-6" style="display: inline-block;">
+											<button
+												class="usermodify_nickName_form_submit btn btn-primary"
+												type="button">닉네임 변경</button>
 										</div>
-										
-										
 									</form>
-									<div>
-										<strong class="usermodify_email_current_nickName">${empty msg ? "" : msg}</strong>
+								</div></td>
+						</tr>
+						<tr>
+							<th>휴대폰번호</th>
+							<td><div class="usermodify_nickName">
+									<strong class="usermodify_email_current_phoneNumber">${empty loginUser.phone ? '미등록' : loginUser.phone}
+									</strong>
+									<button type="button" class="usermodify_phoneNumber_change_btn"
+										id="usermodify_phoneNumber_change_btn"
+										onclick="changeButtonToCanelPhoneNumber()">휴대폰 번호 변경</button>
+									<button type="button"
+										class="usermodify_phoneNumber_change_cancel"
+										id="usermodify_phoneNumber_change_cancel"
+										style="display: none;"
+										onclick="changeButtonToDefaultPhoneNumber()">휴대폰 번호
+										변경 취소</button>
+									<form class="usermodify_phoneNumber_form row g-3"
+										action="/modify/phone" method="post"
+										id="usermodify_phoneNumber_form" style="display: none;">
+										<div class="col-md-4">
+											<input type="text"
+												class="usermodify_phoneNumber_form_input form-control phone"
+												id="validationServer03" name="phone"
+												aria-describedby="validationServer03Feedback" onkeyup="phoneCheck()" required>
+											<div id="validationServer03Feedback" class="invalid-feedback phone_feedback_invalid">
+												validationServer03Feedback</div>
+											<div id="validationServer03Feedback" class="valid-feedback phone_feedback_valid">
+												validationServer03Feedback</div>
+										</div>
+										<div class="col-6" style="display: inline-block;">
+											<button
+												class="usermodify_phoneNumber_form_submit btn btn-primary"
+												type="button">변경</button>
+										</div>
+									</form>
+								</div></td>
+						</tr>
+						<tr>
+							<th>비밀번호변경</th>
+							<td><div class="usermodify_password">
+									<form class="usermodify_password_form"
+										action="/modify/password" method="post">
+										<table class="usermodify_password_table">
+											<tbody>
+												<tr>
+													<th>현재 비밀번호</th>
+													<td><input class="usermodify_auth_current_password"
+														type="password" name="pw"></td>
+												</tr>
+												<tr>
+													<th>새 비밀번호</th>
+													<td><small class="pw_rule" style="display:none;">비밀번호: 영문 대,소문자와 숫자가
+															적어도 1개 이상씩 포함된 8자 ~ 20자</small> <input
+														class="usermodify_auth_password pw"
+														id="validationServer05"
+														aria-describedby="validationServer05Feedback"
+														type="password" name="new_pw" onfocus="display_pw_rule()"
+														onkeyup="pwCheck()" />
+														<div id="validationServer05Feedback"
+															class="invalid-feedback pw_feedback_invalid"></div>
+														<div id="validationServer05Feedback"
+															class="valid-feedback pw_feedback_valid"></div></td>
+												</tr>
+												<tr>
+													<th>비밀번호 확인</th>
+													<td><input class="usermodify_auth_password_again"
+														id="validationServer04" name="new_pw_again"
+														aria-describedby="validationServer04Feedback"
+														type="password">
+														<div id="validationServer04Feedback"
+															class="invalid-feedback">비밀번호가 일치하지 않습니다.</div>
+														<div id="validationServer04Feedback"
+															class="valid-feedback">비밀번호가 일치합니다.</div></td>
+												</tr>
+												<tr>
+													<td>${updatePwMsg }</td>
+													<td><button type="button" class="usermodify_password_submit">비밀번호 변경</button></td>
+												</tr>
+											</tbody>
+										</table>
+									</form>
+								</div></td>
+						</tr>
+						<tr>
+							<th>프로필 사진</th>
+							<td>
+								<form action="/modify/profile/upload" method="post"
+									autocomplete="off" enctype="multipart/form-data">
+									<div style="text-align: center;">
+									<div style="margin: 15px;">
+									<c:choose>
+										<c:when test="${empty loginUser.profile }">
+											<img src="/images/default-profile.png"
+											class="mx-auto rounded d-block"
+											style="width: 200px; height: 200px" id="profile" />프로필사진 사이즈는 가로세로 200px로 맞춰집니다. <label
+											class="text-info"></label>
+										</c:when>
+										<c:otherwise>
+											<img src="/profileImg/${loginUser.profile }"
+											class="mx-auto rounded d-block"
+											style="width: 200px; height: 200px" id="profile" />프로필사진 사이즈는 가로세로 200px로 맞춰집니다. <label
+											class="text-info"></label>
+										</c:otherwise>
+									</c:choose>
+										
 									</div>
-								</td>
-							</tr>
-	
-						</tbody>
-					</table>
-					<div class="usermodify_foot">
-						<button type="button" onclick="location.href='/mypage'"
-							class="btn btn-secondary btn-sm">나가기</button>
-					</div>
-				</section>
-			</div>
-		</section>
-	</div>
+										<div class="custom-file" style="magin: 20px;">
+											<input type="file" class="custom-file-input" id="customFile"
+												name="file" accept="image/*" >
+										</div>
+										<div>
+											<button type="submit" class="usermodify_nickName_change_btn">프로필
+										사진 변경</button>
+										</div>
+									</div>
+									
+									
+								</form>
+								<div>
+									<strong class="usermodify_email_current_nickName">${empty msg ? "" : msg}</strong>
+								</div>
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+				<div class="usermodify_foot">
+					<button type="button" onclick="location.href='/mypage'"
+						class="btn btn-secondary btn-sm">나가기</button>
+				</div>
+			</section>
+		</div>
+	</section>
 	<script>
 		/* 닉네임 양식 유효성검사 함수 */
 		function verifyNickname(){

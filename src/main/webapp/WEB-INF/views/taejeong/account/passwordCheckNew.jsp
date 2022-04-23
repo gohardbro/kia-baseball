@@ -1,12 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<jsp:include page="/WEB-INF/views/include/header.jsp" />
-
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>passwordCheck</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
 <style>
 body {
 	margin: 0;
-	background-color: #f5f5f5;
 }
 
 .contents {
@@ -22,7 +29,6 @@ body {
 	min-height: 900px;
 	padding: 50px;
 	background-color: #fff;
-	border: 1px solid #ccc;
 	
 }
 
@@ -43,6 +49,7 @@ body {
 }
 
 .usermodify_table {
+	width: 878px;
 	border-top: 2px solid #969696;
 }
 
@@ -54,7 +61,7 @@ th, td {
 
 th {
 	border-right: 1px solid #ddd;
-	width: 120px;
+	width: 100px;
 	background-color: #eef1f8;
 	text-align: left;
 }
@@ -90,8 +97,9 @@ td {
 	margin-top: 10px;
 }
 </style>
-
-	<div class="container" >
+</head>
+<body>
+	<div class="container">
 		<section class="contents">
 			<div class="contents_container">
 				<section class="usermodify_auth">
@@ -101,7 +109,7 @@ td {
 							<strong class="usermodify_auth_mail">${loginUser.id }</strong> 님의
 							정보를 안전하게 보호하기 위해서 다시 한번 확인 합니다.
 						</p>
-						<table class="usermodify_table">   
+						<table class="usermodify_table">
 							<tbody>
 								<tr>
 									<th>아이디</th>
@@ -119,12 +127,17 @@ td {
 						</table>
 						<div class="usermodify_auth_foot">
 							<button type="submit" class="confirm_btn btn btn-primary btn-sm">확인</button>
-							<a href="/mypage" class="cancel_btn btn btn-secondary btn-sm">
-								취소</a>
+							<button type="button" class="cancel_btn btn btn-secondary btn-sm">
+								취소</button>
 						</div>
 					</form>
 				</section>
 			</div>
 		</section>
 	</div>
-<jsp:include page="/WEB-INF/views/include/footer.jsp" />
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+</body>
+</html>

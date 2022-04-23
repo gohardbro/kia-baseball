@@ -146,8 +146,8 @@ select, option {
 									<tr>
 										<th>경기일시</th>
 										<td>${ticketList.gameDate } ${ticketList.gameTime }</td>
-										<th>티켓수령 방법</th>
-										<td>몰라</td>
+										<th>결제수단</th>
+										<td>신용카드</td>
 									</tr>
 									<tr>
 										<th>좌석</th>
@@ -158,8 +158,9 @@ select, option {
 									<tr>
 										<th>예매일</th>
 										<td>${ticketList.buyDate }</td>
-										<th>결제수단</th>
-										<td>신용카드</td>
+										<th></th>
+										<td></td>
+										
 									</tr>
 									<input type="hidden" id="baseballNo" value="${ticketList.baseballNo}">
 								</c:forEach>

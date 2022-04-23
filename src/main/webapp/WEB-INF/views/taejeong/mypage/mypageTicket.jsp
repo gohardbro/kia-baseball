@@ -120,7 +120,6 @@ select, option {
 						<span style="color: #007BFF">예매번호</span>를 클릭하면 예매 상세 내용을 확인할 수 있습니다.
 					</p>
 
-
 					<div class="selectZone">
 						<form action="/ticket/searchByPeriod" method="get">
 							<div class="btn-group" role="group" aria-label="First group">
