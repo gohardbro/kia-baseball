@@ -28,19 +28,6 @@
 		</div>
 		<table border="1">
 			<tr>
-				<td bgcolor="orange">첨부파일 목록</td>
-				<td><c:forEach var="file" items="${file }">
-						<a class="downlink" id="${file.boardNo }" href="${file.fileName }">${file.fileName }</a>
-						<button type="button" onclick="deleteFile('${file.boardNo }');">삭제</button>
-						<br>
-					</c:forEach></td>
-			</tr>
-			<tr>
-				<td bgcolor="orange" width="70">업로드</td>
-				<td align="left"><input type="file" name="uploadFiles"
-					multiple="multiple"></td>
-			</tr>
-			<tr>
 				<td align="center" colspan="2">
 					<button type="button"
 						onClick="location.href='/update?no=${board.boardNo }'">글
@@ -48,7 +35,6 @@
 					<button type="button"
 						onClick="location.href='/delete?no=${board.boardNo }'">글
 						삭제</button>
-					<button type="button" onclick="goodCheck()">글 추천</button>
 				</td>
 			</tr>
 		</table>

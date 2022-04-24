@@ -55,17 +55,14 @@
 			<table>
 				<tr>
 					<th>합계</th>
-					<td><input type="text" name="total" readonly></td>
+					<td><input type="text" name="totalPrice" readonly></td>
 				</tr>
 			</table>
 		</div>
 		<div>
 			<button type="submit"
-				onclick="location.href='/info?uniInfoNo=${uniInfo.uniInfoNo }'">구매하기</button>
+				onclick="location.href='/info?uniInfoNo=${uniInfo.uniInfoNo }'">장바구니 추가</button>
 			<button type="button" onclick="location.href='/goods'">목록</button>
-			<button type="submit"
-				onclick="location.href='/basket?uniInfoNo=${uniInfo.uniInfoNo}'">장바구니
-			</button>
 		</div>
 	</form>
 </div>
@@ -80,10 +77,16 @@
 		}
 	}
 	
-	var basket = 
-		
-		
-		
+	function totalPrice() {
+        var sum = 0;
+        var count = $("uniCnt").val();
+        var price = $("price").val();
+        
+        sum += Number(price);
+       
+        $("#totalPrice").html(sum + " 원");
+    }
+	
 </script>
 
 <jsp:include page="/WEB-INF/views/yg/goods/include/bottom.jsp" />

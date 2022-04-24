@@ -57,19 +57,4 @@ public class GoodsController {
 		return "redirect:/goods";
 	}
 
-	@RequestMapping(value = "/basket", method = RequestMethod.GET)
-	public String goodsBascket(Model model, HttpSession httpSession, @RequestParam("uniInfoNo") int no) {
-
-		UniformInfoVo infovo = uniInfoService.goodsInfo(no);
-		model.addAttribute("uniInfo", infovo);
-
-		AccountVo loginUserVo = (AccountVo) httpSession.getAttribute("loginUser");
-		UniformVo univo = new UniformVo();
-		univo.setBuyer(loginUserVo.getId());
-
-		model.addAttribute("uniform", univo);
-		System.out.println("Basket");
-
-		return "yg/goods/uniformbasket";
-	}
 }

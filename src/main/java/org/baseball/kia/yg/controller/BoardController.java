@@ -1,7 +1,6 @@
 package org.baseball.kia.yg.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -9,19 +8,15 @@ import javax.servlet.http.HttpSession;
 import org.baseball.kia.taejeong.entity.AccountVo;
 import org.baseball.kia.yg.entity.BoardVo;
 import org.baseball.kia.yg.entity.CommentVo;
-import org.baseball.kia.yg.entity.FileVo;
 import org.baseball.kia.yg.entity.LikeVo;
 import org.baseball.kia.yg.entity.PagingVo;
 import org.baseball.kia.yg.service.BoardService;
 import org.baseball.kia.yg.service.CommentService;
-import org.baseball.kia.yg.service.FileService;
 import org.baseball.kia.yg.service.LikeService;
 import org.baseball.kia.yg.util.Criteria;
-import org.baseball.kia.yg.util.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,9 +27,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 public class BoardController {
 	@Autowired
 	BoardService boardService;
-
-	@Autowired
-	FileService fileService;
 
 	@Autowired
 	CommentService commentService;
@@ -70,14 +62,6 @@ public class BoardController {
 	public String insertPostHandle(@ModelAttribute("vo") BoardVo vo, HttpServletRequest request,
 			MultipartHttpServletRequest mhsr) throws IOException {
 
-		int bno = fileService.getBoardNo();
-
-		FileUtils fileUtils = new FileUtils();
-		List<FileVo> fileList = fileUtils.parseFileInfo(bno, request, mhsr);
-		if (CollectionUtils.isEmpty(fileList) == false) {
-			fileService.insertFileList(fileList);
-		}
-		
 		boolean rst = boardService.addNewOne(vo);
 		if (!rst) {
 			return "/yg/boardwrite";
