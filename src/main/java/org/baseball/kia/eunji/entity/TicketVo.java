@@ -2,14 +2,14 @@ package org.baseball.kia.eunji.entity;
 
 public class TicketVo {
 	
-	String gameDate;
-	String gameTime;
-	String rival;
-	String teamName;
-	String teamImg;
-	String field;
-	String sponsor;
-	int scheduleNo;
+	private String gameDate;
+	private String gameTime;
+	private String rival;
+	private String teamName;
+	private String teamImg;
+	private String field;
+	private String sponsor;
+	private int scheduleNo;
 	
 	public int getScheduleNo() {
 		return scheduleNo;

@@ -41,21 +41,18 @@ public class SeatController {
 	@RequestMapping("/ticketPrice")
 	@ResponseBody
 	public int weekPrice(@RequestParam String yoil, @RequestParam String baseballZone, Model model) {
-
+		System.out.println("ajax controller도착 ");
+		System.out.println(yoil);
 		SeatChoiceVo weekPrice = seatChoiceService.weekPrice(baseballZone);
-
-		switch (yoil) {
-		case "월요일":
-		case "화요일":
-		case "수요일":
-		case "목요일":
-		case "금요일":
-			return weekPrice.getPriceWeekday();
-
-		default:
+		System.out.println( weekPrice );
+		
+		if(yoil.equals("토요일") || yoil.equals("일요일")) {
 			return weekPrice.getPriceWeekend();
+		}else {
+			return weekPrice.getPriceWeekday();
 		}
-
+		 
+		 
 	}
 	
 

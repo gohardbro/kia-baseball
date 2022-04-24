@@ -86,7 +86,6 @@ img.gl-logo {
 								<input type="hidden" class="gameDate"
 									value="${oneGame.gameDate }">
 								<table>
-
 									<tr>
 										<td>${oneGame.gameDate}</td>
 									</tr>
@@ -121,12 +120,12 @@ img.gl-logo {
 
 										<c:forEach var="sc" items="${seatChoice}">
 											<tr>
-												<td><input type="radio" name="zoneCheck" id="seat"
-													value="${sc.baseInfoNo }"> ${sc.baseballZone}
-																
-																
-													</td>
-												<td>잔여석:(122/200)</td>
+												<td>
+												<input type="radio" name="zoneCheck" id="seat"
+													value="${sc.baseballZone}" data-no="${sc.baseInfoNo}"> ${sc.baseballZone}
+												</td>
+												<td>잔여석:(122/200)
+												</td>
 											</tr>
 										</c:forEach>
 
@@ -160,11 +159,11 @@ img.gl-logo {
 		</article>
 	</div>
 	<form action="/progress/payment" method="post" name="pform" >
-		<input type="hidden" name="buyer"  value="${loginUser.id}"/> 
-		<input type="hidden" name="baseInfoNo" id="hidden_seat"/> 
-		<input type="hidden" name="buyerCnt" id="hidden_cnt"/> 
-		<input type="hidden" name="total" id="hidden_total"/>
-		<input type="hidden" name="scheduleNo"  value="${oneGame.scheduleNo}"/>
+		<input type="hidden" name="buyer"  value="${loginUser.id}"/>  
+		<input type="hidden" name="baseInfoNo" />  
+		<input type="hidden" name="total" id="hidden_total"/>   
+		<input type="hidden" name="buyerCnt" id="hidden_cnt"/>  
+		<input type="hidden" name="scheduleNo"  value="${oneGame.scheduleNo}"/>  
 	</form>
 
 	
@@ -183,7 +182,9 @@ img.gl-logo {
 
 		var yoil = getInputDayLabel(data);
 		var basballZone = $(this).val();
+		$('input[name=baseInfoNo]').val($(this).data("no"));
 		console.log(yoil + "/" + basballZone);
+		/* 여기까지 문제없음 */
 		$.ajax({
 			url : "/ticketPrice",
 			data : {
@@ -197,7 +198,6 @@ img.gl-logo {
 			error : function() {
 			}
 		});
-
 		updatePrice();
 	});
 
@@ -255,6 +255,7 @@ img.gl-logo {
 			if (rsp.success) {
 				var msg = '결제가 완료되었습니다.';
 				msg += '결제 금액은 : ' + rsp.paid_amount + '원 입니다.';
+				progress();
 
 			} else {
 				var msg = '결제에 실패하였습니다.';
@@ -262,7 +263,7 @@ img.gl-logo {
 			}
 			
 			alert(msg);
-			progress();
+			
 		});
 	}
 
@@ -270,7 +271,7 @@ img.gl-logo {
 	function progress() {
 		alert("결제완료 페이지로 이동합니다");
 		
-		$("#hidden_seat").val($("input[name=zoneCheck]:checked").val());
+/* 		$("#hidden_infoNo").val(); */
 		$("#hidden_cnt").val( $("#quantity").val() );
 		$("#hidden_total").val(amount);
 

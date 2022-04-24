@@ -15,7 +15,7 @@
 	
 	<!--결제 완료 후 결제 정보 출력 -->
 	<select id="showCompleteInfo" resultType="buyerInfoVo" >
-		select b.buyer_cnt,s.game_date,s.game_time,s.rival,i.baseball_zone
+		select b.buyer_cnt,s.game_date,to_char(to_date(s.game_date),'day') yoil,s.game_time,s.rival,i.baseball_zone
 		from baseball b, schedule s, baseball_info i
 		where b.schedule_no = s.schedule_no
 		and b.base_info_no = i.base_info_no

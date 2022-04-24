@@ -4,18 +4,28 @@ import java.sql.Date;
 
 public class BuyerInfoVo {
 
-	int baseballNo;
-	String buyer;
-	Date buyDate;
-	int baseInfoNo;
-	int total;
-	int buyerCnt;
-	Date refund;
-	int scheduleNo;
-	String cancel;
-	String gameDate;
-	String gameTime;
-	String rival;
+	private int baseballNo;
+	private String baseballZone;
+	private String buyer;
+	private String yoil;
+	private Date buyDate;
+	private int baseInfoNo;
+	private int total;
+	private int buyerCnt;
+	private Date refund;
+	private int scheduleNo;
+	private String cancel;
+	private String gameDate;
+	private String gameTime;
+	private String rival;
+	
+	public String getBaseballZone() {
+		return baseballZone;
+	}
+
+	public void setBaseballZone(String baseballZone) {
+		this.baseballZone = baseballZone;
+	}
 	
 	public String getGameDate() {
 		return gameDate;
@@ -113,5 +123,14 @@ public class BuyerInfoVo {
 	public void setCancel(String cancel) {
 		this.cancel = cancel;
 	}
+	
+	public String getYoil() {
+		return yoil;
+	}
+
+	public void setYoil(String yoil) {
+		this.yoil = yoil;
+	}
+
 
 }
