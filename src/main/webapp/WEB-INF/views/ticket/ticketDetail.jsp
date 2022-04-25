@@ -19,15 +19,21 @@
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-	crossorigin="anonymous"></script>
+<script type="text/javascript" src="/assets/js/todayLabel.js"></script>
+
+
+
+<!-- 아임포트 라이브러리 -->
+<!-- jQuery -->
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript"
+	src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+
+
+
+
 <style>
 img.gl-logo {
 	width: 60px;
@@ -41,109 +47,240 @@ img.gl-logo {
 #h2 {
 	margin-bottom: 100px;
 }
+
+.wbox {
+	heigth: 500px;
+}
 </style>
 </head>
 <body>
-
 	<!-- 선택하신 경기 -->
 	<div class="container">
 		<article id="main" class="special">
 			<header id="h2">
 				<h2>구역 및 매수 선택</h2>
 			</header>
-			<table class="table">
-				<tbody>
-					<tr>
-						<td>${oneGame.gameDate}</td>
-						<td class="disp_week" data-value="${oneGame.gameDate}"></td>
 
-						<td>${oneGame.gameTime}</td>
-						<td>기아타이거즈</td>
-						<td><img src="/images/Logo_Mini/KIA.jpg" class="gl-logo" />
-						</td>
-						<td>VS</td>
+			<section>
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="container">
+							<div class="shadow-none p-4 mb-4 bg-light">
+								<a>※안내사항</a><br> <a> -결제는 1인당 4매까지 가능합니다.</a><br> <a>-제휴카드를
+									포함한 각종 할인 문의, 단체 관람 문의는 기아타이거즈 공식 홈페이지(https://tigers.co.kr/)를
+									이용해 주세요.</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 
-						<td><img src="/images/Logo_Mini/${oneGame.teamImg}"
-							class="gl-logo" /></td>
-						<td id="rival">${oneGame.sponsor}${oneGame.teamName}</td>
-						<td>챔피언스필드</td>
+			<section>
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="container">
+							<div class="shadow p-4 mb-4 bg-white">
+
+								<!-- 예매하실 경기 정보 -->
+								<input type="hidden" class="gameDate"
+									value="${oneGame.gameDate }">
+								<table>
+									<tr>
+										<td>${oneGame.gameDate}</td>
+									</tr>
+									<tr>
+										<td class="disp_week"></td>
+										<td>${oneGame.gameTime}</td>
+									</tr>
+									<tr>
+										<td><img src="/images/Logo_Mini/KIA.jpg" class="gl-logo" />
+										</td>
+										<td>VS</td>
+										<td><img src="/images/Logo_Mini/${oneGame.teamImg}"
+											class="gl-logo" /></td>
+									</tr>
+									<tr>
+										<td>챔피언스필드(홈경기)</td>
+									</tr>
+								</table>
 
 
-					</tr>
+							</div>
+						</div>
+					</div>
 
+					<!-- 오른쪽 col -->
+					<div class="col-sm-8">
+						<div class="container">
+							<div class="shadow p-4 mb-4 bg-white">
+								<!-- seatArea고르기 radio 6개 -->
+								<div class="seatChoice">
+									<table>
 
-				</tbody>
-			</table>
+										<c:forEach var="sc" items="${seatChoice}">
+											<tr>
+												<td><input type="radio" name="zoneCheck" id="seat"
+													value="${sc.baseballZone}" data-no="${sc.baseInfoNo}">
+													${sc.baseballZone}</td>
+											</tr>
+										</c:forEach>
 
-			<script type="text/javascript">
-				$(".disp_week").each(function() {
-					var v = $(this).data("value");
-					$(this).text(getInputDayLabel(v));
-				})
-			</script>
+									</table>
+
+								</div>
+
+								<!-- 수량 업다운 버튼 -->
+								<div class="quantity">
+									<span class="count count-box"> <span>예매 매수 : </span>
+										<button type="button" class="btn btn-outline-danger"
+											id="upBtn">△</button> <input type="text" class="countInput"
+										id="quantity" name="quentity" value="0" readonly="readonly"
+										display="inline-block;" style="border: none; width: 50px;" />
+										<button type="button" class="btn btn-outline-danger"
+											id="downBtn">▽</button>
+									</span>
+								</div>
+
+								<!-- 결제할 금액  -->
+								<div style="margin-top: 20px; margin-bottom: 20px;">
+									결제금액 :<span id="totalAmount"></span>원
+								</div>
+
+								<button type="button" onclick="paymentProcess()"
+									class="amountCheck" style="width: 80%">결제하기</button>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</section>
 		</article>
 	</div>
+	<form action="/progress/payment" method="post" name="pform">
+		<input type="hidden" name="buyer" value="${loginUser.id}" /> <input
+			type="hidden" name="baseInfoNo" /> <input type="hidden" name="total"
+			id="hidden_total" /> <input type="hidden" name="buyerCnt"
+			id="hidden_cnt" /> <input type="hidden" name="scheduleNo"
+			value="${oneGame.scheduleNo}" />
+	</form>
 
 
-<%-- 
-	<div class="areaChoice">
 
-		여기서 좌석 선택하고
-
-		<c:forEach>
-			<div class="form-check">
-				<input class="form-check-input" type="radio" name="flexRadioDefault"
-					id="flexRadioDefault1"> <label class="form-check-label"
-					for="flexRadioDefault1"> ${baseballZone} <-이거 선택하면 넘버 가져다가
-					기본금액 셋팅인데 스크립트 걸어서 요일부분 따와서 c:if걸어서 주중/주말 찾는 컬럼 다르게 </label>
-			</div>
-		</c:forEach>
- --%>
-<%-- 
-
-		매수선택 + 수량 업다운 버튼
-		<td id="quantity<%=i%>" class="quantity">
-		<span class="count count-box">
-				<button type="button" name="countBtn" class="upBtn">
-					<img src=" 올라가는 모양 이미지 ">
-				</button> 
-				<input type="text" class="countInput" id="quantity" <%=i%>
-				name="countInput" value="<%=qtylist.get(i)%>" readonly="readonly"
-				style="width: 20px; border: none;">
-				<button type="button" name="countBtn" class="downBtn">
-					<img src="내려가는 모양 이미지">
-				</button>
-		</span>
-		</td>
-
-		<div>
-		총 결제해야하는 금액 보여주는 곳 
-		</div>
-		
-		<button type="button">결제하기버튼</button> 
-		
-		
-		
-		<script>
-		
-		
-		 버튼누르면 
-		 if($(this).hasClass("upBtn")){
-    		 count++;
-    		
-    	 } else {
-    		 count--;
-    		 if(count < 1) return;
-    	 }
-		 
-		 countInput.val(count);
-    	 totalInput.val(count * price); 
-		 
-		
-		</script>
-		 --%>
-		
 </body>
+
+
+<script>
+	// 주말여부에 따른 티켓금액 * 좌석(zone) = 가격(response) 
+	var ajaxData;
+	var data = $('.gameDate').val();
+	$(".disp_week").html(getInputDayLabel(data));
+
+	$("input[name=zoneCheck]").click(function() {
+		var data = $('.gameDate').val();
+
+		var yoil = getInputDayLabel(data);
+		var baseballZone = $(this).val();
+		console.log(baseballZone);
+		$('input[name=baseInfoNo]').val($(this).data("no"));
+		console.log(yoil + "/" + baseballZone);
+		/* 여기까지 문제없음 */
+		$.ajax({
+			url : "/ticketPrice",
+			data : {
+				"yoil" : yoil,
+				"baseballZone" : baseballZone,
+			},
+			async : false,
+			success : function(response) {
+				ajaxData = response;
+			},
+			error : function() {
+			}
+		});
+		updatePrice();
+	});
+
+	// 결제할 총 액 amount(주중,주말여부 적용된 zone요금 * 티켓매수)
+	var amount;
+	function updatePrice() {
+		amount = ajaxData * $("#quantity").val();
+		console.log(amount);
+		$("#totalAmount").html(amount);
+	}
+
+	// 티켓 매수 : 업버튼 
+	$("#upBtn").click(function() {
+		var count = $("#quantity").val();
+		if (count <= 3) {
+			$("#quantity").val(++count);
+		} else {
+			count = 4;
+		}
+		updatePrice();
+	});
+
+	// 티켓 매수 : 다운버튼 
+	$("#downBtn").click(function() {
+		var count = $("#quantity").val();
+		if (count > 0) {
+			$("#quantity").val(--count);
+		} else {
+			count = 0;
+		}
+		updatePrice();
+	});
+
+	// 결제 function (아임포트)
+
+	function paymentProcess() {
+		console.log("TEMP CALLED");
+
+		var IMP = window.IMP;
+		IMP.init('imp89839657');
+		// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+		// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
+		IMP.request_pay({
+			pg : 'inicis', // version 1.1.0부터 지원.
+			pay_method : 'card',
+			merchant_uid : 'merchant_' + new Date().getTime(),
+			name : 'Kia Tigers 경기 예매권(팬페이지 구매)', //상품명
+			amount : amount, //가격 이것만 있어도 결제는 넘어감 
+		/* buyer_email : ${loginUser.id},//<- id로 
+		buyer_name :  ${loginUser.name},
+		buyer_tel :  ${loginUser.phone} */
+
+		}, function(rsp) {
+			console.log(rsp);
+			if (rsp.success) {
+				var msg = '결제가 완료되었습니다.';
+				msg += '결제 금액은 : ' + rsp.paid_amount + '원 입니다.';
+				msg += '결제완료 페이지로 이동합니다';
+				progress();
+
+			} else {
+				var msg = '결제에 실패하였습니다.';
+				msg += '에러내용 : ' + rsp.error_msg;
+			}
+
+			alert(msg);
+
+		});
+	}
+
+	//결제성공시 성공완료 페이지로 넘어가는 function 
+	function progress() {
+		$("#hidden_cnt").val($("#quantity").val());
+		$("#hidden_total").val(amount);
+
+		console.log($("#hidden_seat"));
+		console.log($("#hidden_cnt"));
+		console.log($("#hidden_total"));
+
+		$("[name=pform]").submit();
+	}
+</script>
 </html>
+
 <jsp:include page="/WEB-INF/views/ticket/include/bottom.jsp" />
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />

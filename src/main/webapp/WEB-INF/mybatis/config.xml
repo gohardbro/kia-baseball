@@ -8,9 +8,8 @@
 		<setting name="jdbcTypeForNull" value="VARCHAR" />
 	</settings>
 	
+	
 	<typeAliases>
-	
-	
 		<!-- 태정 -->
 		<typeAlias type="org.baseball.kia.taejeong.entity.AccountVo" alias="accountVo2"/>
 		<typeAlias type="org.baseball.kia.taejeong.entity.BaseballVo" alias="baseballVo2"/>
@@ -37,8 +36,9 @@
 		<typeAlias type="org.baseball.kia.subin.entity.CalendarVo" alias="calendarVo"/>
 		<typeAlias type="org.baseball.kia.subin.entity.BoardVo" alias="boardVo"/>
 		<!-- 은지 -->
-		<typeAlias type="org.baseball.kia.eunji.entity.TicketVo" alias="TicketVo"/>
-		
+		<typeAlias type="org.baseball.kia.eunji.entity.TicketVo" alias="ticketVo"/>
+		<typeAlias type="org.baseball.kia.eunji.entity.SeatChoiceVo" alias="seatChoiceVo"/>
+		<typeAlias type="org.baseball.kia.eunji.entity.BuyerInfoVo" alias="buyerInfoVo"/>
 	</typeAliases>
 </configuration> 
 

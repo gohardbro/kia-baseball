@@ -42,7 +42,7 @@
 			<div class="row">
 				<div class="col">
 					<div class="seatImg">
-						<a class="seatImg"><img src="images/zone.jpg"
+						<a class="seatImg"><img src="images/ticket/zone.jpg"
 							alt="구역별 좌석 및 예매권 안내" /></a>
 					</div>
 				</div>
@@ -59,7 +59,7 @@
 								</tr>
 							</thead>
 							<tbody>
-							<c:forEach var="st" items="${seat}">
+							<c:forEach var="st" items="${priceTable}">
 								<tr>
 									<td>${st.baseballZone }</td>
 									<td>${st.priceWeekday }</td>

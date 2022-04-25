@@ -195,7 +195,7 @@ select, option {
 											href="/ticket/ticketDetail?baseballNo=${ticketList.baseballNo }">${ticketList.baseballNo }</a></td>
 										<td>KIA Tigers vs ${ticketList.rival }</td>
 										<td><span class="gameDate">${ticketList.gameDate }</span>
-											<br>${ticketList.gameTime }</td>
+											${ticketList.gameTime }</td>
 										<td>${ticketList.buyerCnt }장</td>
 										<td>${ticketList.buyDate }</td>
 										<c:set var="cancelDate" value="cancelDate${status.index}" />

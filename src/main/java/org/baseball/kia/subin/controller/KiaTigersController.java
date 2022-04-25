@@ -20,12 +20,19 @@ public class KiaTigersController {
 	@Autowired
 	CalendarService calendarService;
 	
-	@RequestMapping({"/kiaTigers/calendar", "/kiaTigers"})
+	@RequestMapping({"/kiaTigers", "/kiaTigers/intro"})
 	public String ScheduleHandle(Model model) { // 경기일정 페이지
+		model.addAttribute("menu", "intro");
+		return "/yg/introteam";
+	}
+	
+	@RequestMapping("/kiaTigers/calendar")
+	public String calendarHandle(Model model) {
 		model.addAttribute("menu", "schedule");
 		return "/subin/kiaTigers/calendar";
 	}
-
+	
+	
 	@ResponseBody
 	@RequestMapping("/kiaTigers/calendar/search")
 	public Map<String, CalendarVo> scheduleSearchHandle(@RequestParam String gameMonth) { // 월별 경기일정 불러오기
