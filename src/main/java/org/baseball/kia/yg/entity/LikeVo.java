@@ -1,9 +1,9 @@
 package org.baseball.kia.yg.entity;
 
 public class LikeVo {
-	String idLike;
-	int boardNoLike, likes;
-	int count;
+	private String idLike;
+	private int boardNoLike, likes;
+	private int count;
 	
 	public String getIdLike() {
 		return idLike;

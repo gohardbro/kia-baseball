@@ -1,8 +1,8 @@
 package org.baseball.kia.subin.entity;
 
 public class PlayerVo {
-	int no;
-	String name, position;
+	private int no;
+	private String name, position;
 
 	public int getNo() {
 		return no;

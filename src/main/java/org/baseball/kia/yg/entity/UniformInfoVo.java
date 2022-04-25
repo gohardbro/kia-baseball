@@ -1,9 +1,9 @@
 package org.baseball.kia.yg.entity;
 
 public class UniformInfoVo {
-	int uniInfoNo, price, sCount, mCount, lCount, xlCount;
-	String uniformImg, uniformName, color;
-	int uniformSize;
+	private int uniInfoNo, price, sCount, mCount, lCount, xlCount;
+	private String uniformImg, uniformName, color;
+	private int uniformSize;
 
 	public int getUniformSize() {
 		return uniformSize;

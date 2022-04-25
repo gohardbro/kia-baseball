@@ -3,12 +3,12 @@ package org.baseball.kia.yg.entity;
 import java.util.Date;
 
 public class NoticeVo {
-	int noticeNo;
-	String title;
-	String content;
-	String writer;
-	Date writeDate;
-	Integer views;
+	private int noticeNo;
+	private String title;
+	private String content;
+	private String writer;
+	private Date writeDate;
+	private Integer views;
 
 	public Integer getViews() {
 		return views;
