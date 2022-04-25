@@ -19,6 +19,11 @@
 	
 	<select id="selectAccountCnt" resultType="int"> <!-- 회원 수 조회 -->
 		SELECT COUNT(ID) AS CNT FROM ACCOUNT
+		 <where>
+			<if test="type == 'normal'.toString()">REPORT_CNT &lt; 3 AND REPORT = 'N'</if><!-- 정상계정 -->
+			<if test="type == 'reportCnt'.toString()">REPORT_CNT &gt;= 3</if><!-- 신고계정 -->
+			<if test="type == 'report'.toString()">REPORT = 'Y'</if> <!-- 차단계정 -->
+		</where> 
 	</select>
 
 	<update id="updateReportById"> <!-- 신고계정 차단 설정 --> 

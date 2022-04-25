@@ -54,12 +54,11 @@ public class PageVo {
 		//현재 페이지번호에 따라 보여지는 목록의 시작/끝 목록번호가 달라진다
 		//각 페이지의 끝 목록번호 :  총 목록수 - (페이지번호-1) * 페이지당 보여질 목록수
 		//각 페이지의 시작 목록번호 :  끝 목록번호 - (페이지당 보여질 목록수-1)
-		endList = totalList - (curPage-1) * pageList;
-		beginList = endList - (pageList-1);
+//		endList = totalList - (curPage-1) * pageList;
+//		beginList = endList - (pageList-1);
 		
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//		beginList = (curPage-1) * pageList +1;
-//		endList = curPage * pageList;
+		beginList = (curPage-1) * pageList +1; //각 페이지의 시작 목록번호
+		endList = curPage * pageList; //각 페이지의 끝 목록번호
 		
 		//현재블록번호는 현재페이지번호에 따라 결정
 		//블록번호 : 페이지번호 / 블록당 보여질 페이지수
@@ -72,7 +71,7 @@ public class PageVo {
 		//3블럭일때 21 ~ 26
 		endPage = curBlock * blockPage;
 		beginPage = endPage - (blockPage-1);
-
+		
 		//끝페이지번호가 총 페이지수보다 클 수 없으므로 총 페이지수를 끝 페이지번호로 한다 
 		if( endPage > totalPage) endPage = totalPage;
 	}

@@ -27,8 +27,8 @@ public class LineupService {
 		return lineupDao.insertOne(vo) == 1;
 	}
 
-	public LineupVo selectLineup(LineupVo vo) { // 라인업 조회
-		return lineupDao.selectOne(vo);
+	public LineupVo selectLineup(int scheduleNo) { // 라인업 조회
+		return lineupDao.selectOne(scheduleNo);
 	}
 
 	public boolean updateLineup(LineupVo vo) { // 라인업 수정

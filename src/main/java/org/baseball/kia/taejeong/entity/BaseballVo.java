@@ -131,6 +131,16 @@ public class BaseballVo {
 	public void setPeriodBtn(String periodBtn) {
 		this.periodBtn = periodBtn;
 	}
+	@Override
+	public String toString() {
+		return "BaseballVo [baseballNo=" + baseballNo + ", buyer=" + buyer + ", buyDate=" + buyDate + ", baseInfoNo="
+				+ baseInfoNo + ", total=" + total + ", buyerCnt=" + buyerCnt + ", refund=" + refund + ", scheduleNo="
+				+ scheduleNo + ", gameDate=" + gameDate + ", gameTime=" + gameTime + ", rival=" + rival
+				+ ", priceWeekday=" + priceWeekday + ", baseballZone=" + baseballZone + ", priceWeekend=" + priceWeekend
+				+ ", dateTypeSelect=" + dateTypeSelect + ", yearSelect=" + yearSelect + ", monSelect=" + monSelect
+				+ ", periodBtn=" + periodBtn + "]";
+	}
+	
 	
 	
 	

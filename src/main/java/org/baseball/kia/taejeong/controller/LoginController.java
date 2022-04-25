@@ -29,7 +29,8 @@ public class LoginController {
 	}
 
 	@RequestMapping("/login/accountFind")
-	public String accountFindHandle() {
+	public String accountFindHandle(Model model) {
+		model.addAttribute("menu", 1);
 		return "taejeong/account/accountFind";
 	}
 

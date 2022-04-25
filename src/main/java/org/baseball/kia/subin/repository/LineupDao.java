@@ -15,8 +15,8 @@ public class LineupDao {
 		return sqlSession.insert("lineup.insertOne", vo);
 	}
 	
-	public LineupVo selectOne(LineupVo vo) { // 라인업 조회
-		return sqlSession.selectOne("lineup.selectOne", vo);
+	public LineupVo selectOne(int scheduleNo) { // 라인업 조회
+		return sqlSession.selectOne("lineup.selectOne", scheduleNo);
 	}
 	
 	public int updateOne(LineupVo vo) { // 라인업 수정

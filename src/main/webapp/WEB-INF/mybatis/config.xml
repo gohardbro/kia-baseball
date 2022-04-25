@@ -14,6 +14,9 @@
 		<!-- 태정 -->
 		<typeAlias type="org.baseball.kia.taejeong.entity.AccountVo" alias="accountVo2"/>
 		<typeAlias type="org.baseball.kia.taejeong.entity.BaseballVo" alias="baseballVo2"/>
+		<typeAlias type="org.baseball.kia.taejeong.entity.TUniformVo" alias="tUniformVo"/>
+		<typeAlias type="org.baseball.kia.taejeong.entity.InquiryVo" alias="inquiryVo"/>
+		<typeAlias type="org.baseball.kia.taejeong.entity.TFileVo" alias="tFileVo"/>
 		<!-- 영균 -->
 		<typeAlias type="org.baseball.kia.yg.entity.BoardVo" alias="board" />
 		<typeAlias type="org.baseball.kia.yg.entity.NoticeVo" alias="notice" />
@@ -30,6 +33,9 @@
 		<typeAlias type="org.baseball.kia.subin.entity.PlayerVo" alias="playerVo"/>
 		<typeAlias type="org.baseball.kia.subin.entity.ScheduleVo" alias="scheduleVo"/>
 		<typeAlias type="org.baseball.kia.subin.entity.UniformInfoVo" alias="uniformInfoVo"/>
+		<typeAlias type="org.baseball.kia.subin.entity.ScoreVo" alias="scoreVo"/>
+		<typeAlias type="org.baseball.kia.subin.entity.CalendarVo" alias="calendarVo"/>
+		<typeAlias type="org.baseball.kia.subin.entity.BoardVo" alias="boardVo"/>
 		<!-- 은지 -->
 		<typeAlias type="org.baseball.kia.eunji.entity.TicketVo" alias="TicketVo"/>
 		

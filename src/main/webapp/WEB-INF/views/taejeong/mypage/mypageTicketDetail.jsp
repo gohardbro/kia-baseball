@@ -108,7 +108,7 @@ select, option {
 </style>
 
 <div class="row" style="margin: 0px;">
-	<div class="column side" style="background-color: #f4f4f4;">빈컬럼</div>
+	<div class="column side" style="background-color: #f4f4f4;"></div>
 	<div class="column middle">
 		<div class="row">
 			<div class="side_wrapper col-2">
@@ -145,37 +145,29 @@ select, option {
 									</tr>
 									<tr>
 										<th>경기일시</th>
-										<td>${ticketList.gameDate }${ticketList.gameTime }</td>
-										<th>장소</th>
-										<td>${ticketList.gameDate }</td>
+										<td>${ticketList.gameDate } ${ticketList.gameTime }</td>
+										<th>결제수단</th>
+										<td>신용카드</td>
 									</tr>
 									<tr>
 										<th>좌석</th>
 										<td>${ticketList.baseballZone }</td>
-										<th>티켓수령 방법</th>
-										<td>몰라</td>
+										<th>현재상태</th>
+										<td>${empty ticketList.refund ? "결제완료" : "결제취소" }</td>
 									</tr>
 									<tr>
 										<th>예매일</th>
 										<td>${ticketList.buyDate }</td>
-										<th>현재상태</th>
-										<td>결제완료했겠지</td>
-									</tr>
-									<tr>
-										<th>결제수단</th>
-										<td>신용카드했겠지</td>
 										<th></th>
-										<td colspan="2"></td>
+										<td></td>
+										
 									</tr>
+									<input type="hidden" id="baseballNo" value="${ticketList.baseballNo}">
 								</c:forEach>
 							</tbody>
 						</table>
 						<div class="cancelBtn">
-							<c:forEach items="${ticketList }" var="ticketList"
-								varStatus="status">
-								<a type="button" class="btn btn-secondary" id="cancelBtnA"
-									href="/ticket/ticketCancel?baseballNo=${ticketList.baseballNo}">취소하기</a>
-							</c:forEach>
+							<button type="button" class="btn btn-secondary" id="cancelBtnA" onclick="confirmCheck()">취소하기</button>
 						</div>
 					</div>
 				</div>
@@ -183,18 +175,18 @@ select, option {
 		</div>
 	</div>
 
-	<div class="column side" style="background-color: #f4f4f4;">빈컬럼</div>
+	<div class="column side" style="background-color: #f4f4f4;"></div>
 </div>
 <script>
-	/* 취소하기 버튼클릭시 성공여부 alert */
-	$("#cancelBtnA").click(function(){
-		var ticketCancelMsg = ${ticketCancelMsg};
-		if(ticketCancelMsg != null)
-			alert(ticketCancelMsg);
-		else
-			alert("티켓취소를 실패했습니다.");
-			
-	});
+	/* 예매취소 alert */
+	function confirmCheck(){
+		var baseballNo = $("#baseballNo").val();
+		var con = confirm("예매를 취소 하시겠습니까?");
+		if(con){
+			alert("예매가 취소되었습니다.");
+			location.href = "/ticket/ticketCancel?baseballNo=" + baseballNo;
+		}
+	}
 
 	/* 예매취소 가능일 계산 */
 	function calCancelDate() {
@@ -213,6 +205,8 @@ select, option {
 		$(".btn-outline-secondary").removeClass("active");
 		$(this).addClass("active");
 	});
+	
+	
 </script>
 
 

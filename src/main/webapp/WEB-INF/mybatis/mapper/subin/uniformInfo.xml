@@ -3,13 +3,30 @@
 <mapper namespace="uniformInfo">
 
 	<select id="selectUniformInfo" resultType="uniformInfoVo"> <!-- 유니폼 조회 -->
-		SELECT * FROM UNIFORM_INFO
+		SELECT *
+		FROM (SELECT ROWNUM AS IDX, UI.*
+		      FROM (SELECT * 
+		      		FROM UNIFORM_INFO
+					<where>
+						<if test="uniformName != null and uniformName != ''.toString()">UNIFORM_NAME LIKE '%'||#{uniformName}||'%'</if>
+						<if test="color != null and color != ''.toString()">COLOR LIKE '%'||#{color}||'%'</if>
+					</where>
+		           ORDER BY UNI_INFO_NO) UI
+		     ) UI
+		WHERE IDX BETWEEN #{beginList} AND #{endList}
+	</select>
+	
+	<select id="selectUniformInfoCnt" resultType="int"> <!-- 검색 결과 데이터 개수 조회 -->
+		SELECT COUNT(*) FROM UNIFORM_INFO
 		<where>
-			<if test="uniInfoNo != null and uniInfoNo != 0">UNI_INFO_NO = #{uniInfoNo}</if>
 			<if test="uniformName != null">UNIFORM_NAME LIKE '%'||#{uniformName}||'%'</if>
 			<if test="color != null">COLOR = #{color}</if>
 		</where>
-		ORDER BY UNI_INFO_NO
+	</select>
+	
+	<select id="selectUniformInfoOne" resultType="uniformInfoVo"> <!-- 유니폼 상세 조회 -->
+		SELECT * FROM UNIFORM_INFO
+		WHERE UNI_INFO_NO = #{uniInfoNo}
 	</select>
 	
 	<update id="updateUniformInfo"> <!--유니폼 정보 수정 -->
@@ -18,7 +35,6 @@
 			<if test="uniformName != null">UNIFORM_NAME = #{uniformName},</if> <!-- 상품명 -->
 			<if test="color != null">COLOR = #{color},</if> <!-- 색상 -->
 			<if test="price != null">PRICE = #{price},</if> <!-- 가격 -->
-			<if test="uniformImg != null">UNIFORM_IMG = #{uniformImg},</if> <!-- 사진 -->
 			<if test="sCount != null">S_COUNT = #{sCount},</if>
 			<if test="mCount != null">M_COUNT = #{mCount},</if>
 			<if test="lCount != null">L_COUNT = #{lCount},</if>
@@ -27,13 +43,32 @@
 		WHERE UNI_INFO_NO = #{uniInfoNo}
 	</update>
 	
+	<update id="updateUniformImg">
+		UPDATE UNIFORM_INFO
+		SET UNIFORM_IMG = #{uniformImg}
+		WHERE UNI_INFO_NO = #{uniInfoNo}
+	</update>
+	
 	<insert id="insertUniformInfo"> <!-- 유니폼 등록 -->
-		INSERT INTO UNIFORM_INFO (UNI_INFO_NO, UNIFORM_NAME, COLOR, PRICE, UNIFORM_IMG, S_COUNT, M_COUNT, L_COUNT, XL_COUNT)
-		VALUES (SEQ_UNI_INFO.NEXTVAL, #{uniformName}, #{color}, #{price}, #{uniformImg}, #{sCount}, #{mCount}, #{lCount}, #{xlCount})
+		INSERT INTO UNIFORM_INFO (UNI_INFO_NO, UNIFORM_NAME, COLOR, PRICE, S_COUNT, M_COUNT, L_COUNT, XL_COUNT)
+		VALUES (SEQ_UNI_INFO.NEXTVAL, #{uniformName}, #{color}, #{price}, #{sCount}, #{mCount}, #{lCount}, #{xlCount})
+		<selectKey>
+			SELECT SEQ_UNI_INFO.CURRVAL FROM DUAL
+		</selectKey>
 	</insert>
 	
-	<delete id="deleteUniformInfo">
+	<delete id="deleteUniformInfo"> <!-- 유니폼 삭제 -->
 		DELETE FROM UNIFORM_INFO
 		WHERE UNI_INFO_NO = #{uniInfoNo}
 	</delete>
+	
+	<select id="selectUniformTop10" resultType="uniformInfoVo"> <!-- 인기 유니폼 10개 조회 -->
+		SELECT * FROM UNIFORM_INFO
+		WHERE UNIFORM_NAME IN (SELECT *
+							   FROM (SELECT UI.UNIFORM_NAME
+								     FROM UNIFORM U LEFT OUTER JOIN UNIFORM_INFO UI USING (UNI_INFO_NO)
+								     GROUP BY UI.UNIFORM_NAME
+								     ORDER BY SUM(U.UNI_CNT) DESC)
+							   WHERE ROWNUM <![CDATA[<=]]> 10)
+	</select>
 </mapper>
