@@ -18,8 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class TFileService {
-//	private final String FORMAT_YYYYMMDD = "yyyy/MM/dd"; 
-//    private final DateTimeFormatter DFT = DateTimeFormatter.ofPattern(FORMAT_YYYYMMDD);
     
     /* 프로필 이미지 저장 경로 */
     String basePath = "/Users/anyone/Desktop/upload";
@@ -27,19 +25,6 @@ public class TFileService {
     @Autowired
     TFileDao tFileDao;
     
-    /* 오늘날짜로 폴더만들기 but! 불필요! cause 톰캣서버 server.xml에 직접 context로 외부폴더 고정으로 잡아놓음*/
-//	public Path getPathToday() throws IOException {
-//        String todayPath = LocalDateTime.now().format(DFT);	
-//        Path pathToday = Paths.get(basePath, todayPath);	
-//        if (Files.notExists(pathToday)) {			 
-//            Files.createDirectories(pathToday);
-//        }
-//        return pathToday;
-//    }
-//	
-//	public Path getPathToday(String fileName) throws IOException {
-//        return Paths.get(getPathToday().toString(), fileName);	 
-//    }
 
     public TFileVo saveFile(MultipartFile multipartFile) throws IOException {
     	String uuidFileName = UUID.randomUUID() + "_" + multipartFile.getOriginalFilename();

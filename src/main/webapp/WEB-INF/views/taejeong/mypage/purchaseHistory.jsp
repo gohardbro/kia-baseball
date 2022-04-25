@@ -191,8 +191,8 @@ select, option {
 								<c:forEach items="${uniformList }" var="uniformList">
 									<tr>
 										<td>${uniformList.buyDate }</td>
-										<td><a href="/#" class="link"><img src="/images/uniform/${uniformList.uniformImg }" style="width:64px; height:64px;"></a></td>
-										<td><a href="/#" class="link">${uniformList.uniformName }, ${uniformList.no }번,
+										<td><a href="/info?uniInfoNo=${uniformCartList.uniInfoNo }" class="link"><img src="/images/uniform/${uniformList.uniformImg }" style="width:64px; height:64px;"></a></td>
+										<td><a href="/info?uniInfoNo=${uniformCartList.uniInfoNo }" class="link">${uniformList.uniformName }, ${uniformList.no }번,
 											${uniformList.name }, ${uniformList.color }</a></td>
 										<td><fmt:formatNumber value="${uniformList.total }" pattern="#,###"/></td>
 									</tr>

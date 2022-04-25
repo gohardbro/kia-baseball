@@ -9,15 +9,18 @@ import org.baseball.kia.taejeong.service.AccountService;
 import org.baseball.kia.taejeong.service.MailService;
 import org.baseball.kia.taejeong.service.SignUpService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class SignUpController {
@@ -41,8 +44,8 @@ public class SignUpController {
 
 
 	@PostMapping("/signup")
-	public String signupPostHandle(@ModelAttribute("accountVo") @Valid AccountVo vo, BindingResult result,
-			Model model) {
+	public String signupPostHandle(@ModelAttribute AccountVo vo, BindingResult result,
+			Model model, RedirectAttributes redirectAttributes) {
 		String phone = vo.getPhone();
 		String convertedPhone = accountService.phone_format(phone); //그냥숫자 폰번호양식으로 변환. ex) 01022224444 -> 010-2222-4444
 		vo.setPhone(convertedPhone);
@@ -53,9 +56,12 @@ public class SignUpController {
 		}
 		
 		boolean r = signUpService.registerAccount(vo);
-		System.out.println("회원가입 등록 : " + r);
+		if(r==true)
+			System.out.println("회원가입 등록 : " + r);
+			redirectAttributes.addFlashAttribute("registerAccount", "success");
+		
 
-		return "taejeong/account/login";
+		return "redirect:/login";
 	}
 
 	@RequestMapping("/signup/auth")
@@ -72,6 +78,13 @@ public class SignUpController {
 	public int nickNameCheckHandle(@RequestParam String nickname) {
 		int cnt = signUpService.nickNameCheck(nickname);
 		return cnt;
+	}
+	
+	//아이디 중복시 예외처리
+	@ExceptionHandler(DuplicateKeyException.class)
+	public Object errAlreadyExistId(Model model, RedirectAttributes redirectAttributes) {
+		redirectAttributes.addFlashAttribute("errAlreadyExistId", "1");
+		return "redirect:/signup";
 	}
 
 }

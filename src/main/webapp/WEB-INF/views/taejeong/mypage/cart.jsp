@@ -136,6 +136,12 @@ select, option {
 .direct{
 	margin: 5px;
 }
+.link {
+	color: black;
+}
+.link:hover{
+	color: #007BFF;
+}
 </style>
 
 <div class="row" style="margin: 0px;">
@@ -174,12 +180,14 @@ select, option {
 								<c:forEach items="${uniformCartList }" var="uniformCartList" varStatus="status">
 									<tr>
 										<td><input type="checkbox" class="checkbox checkbox${uniformCartList.uniformNo }" name="chkList" value="${uniformCartList.price * uniformCartList.uniCnt }" data-unino="${uniformCartList.uniformNo }"></td>
-										<td><a href="/#"><img src="images/uniform/${uniformCartList.uniformImg }" style="width:100px; height:100px;"></a></td>
+										<td><a href="/info?uniInfoNo=${uniformCartList.uniInfoNo }" class="link"><img src="images/uniform/${uniformCartList.uniformImg }" style="width:100px; height:100px;"></a></td>
 										<td class="productBox">
 											<div class="namePart">
-												${uniformCartList.uniformName }
-												, ${uniformCartList.no }번 ${uniformCartList.name }
-												, ${uniformCartList.color }, ${uniformCartList.uniSize }
+												<a href="/info?uniInfoNo=${uniformCartList.uniInfoNo }" class="link">
+													${uniformCartList.uniformName }
+													, ${uniformCartList.no }번 ${uniformCartList.name }
+													, ${uniformCartList.color }, ${uniformCartList.uniSize }
+												</a>
 											</div>
 											<div class="totalPriceOption">
 												<span id="price"><fmt:formatNumber value="${uniformCartList.price }" pattern="#,###"></fmt:formatNumber>원 </span>

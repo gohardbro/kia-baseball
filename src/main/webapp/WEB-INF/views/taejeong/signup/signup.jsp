@@ -27,6 +27,10 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 
+<!-- 로딩이미지 -->
+<link rel="stylesheet" type="text/css" href="/assets/css/icons.css"/>
+<script type="text/javascript" src="/assets/js/loadingoverlay.min.js"></script>
+
 
 <style>
 .bd-placeholder-img {
@@ -89,14 +93,12 @@
 				</h1>
 			</header>
 			<div class="col-md-10 mx-auto col-lg-5">
-				<form:form class="p-4 p-md-5 border rounded-3 bg-light"
-					id="signup_Form" action="/signup" method="post"
-					modelAttribute="accountVo">
+				<form class="p-4 p-md-5 border rounded-3 bg-light"
+					id="signup_Form" action="/signup" method="post">
 					<div class="form-floating mb-3">
-						<form:input type="text" class="email_input form-control"
-							id="floatingInput" placeholder="name@example.com" path="id"/>
+						<input type="text" class="email_input form-control"
+							id="floatingInput" placeholder="name@example.com" name="id"/>
 						<label for="floatingInput">아이디(이메일)</label>
-						<form:errors path="id" />
 						<div class="auth_wrapper">
 							<button type="button"
 								class="authKey_send_btn btn btn-secondary mb-2" id="req">이메일
@@ -115,13 +117,12 @@
 					<small class="pw_rule">비밀번호: 영문 대,소문자와 숫자가 적어도 1개 이상씩
 						포함된 8자 ~ 20자</small>
 					<div class="form-floating mb-3">
-						<form:input type="password" class="password form-control pw" id="validationServer05 floatingInput"
-							aria-describedby="validationServer05Feedback"
-							placeholder="Password" path="pw" onfocus="display_pw_rule()" onkeyup="pwCheck()"/>
+						<input type="password" class="password form-control pw" id="validationServer05 floatingInput"
+							aria-describedby="validationServer05Feedback" name="pw"
+							placeholder="Password" onfocus="display_pw_rule()" onkeyup="pwCheck()"/>
 						<label for="floatingPassword">비밀번호</label>
 						<div id="validationServer05Feedback" class="invalid-feedback pw_feedback_invalid"></div>
 						<div id="validationServer05Feedback" class="valid-feedback pw_feedback_valid"></div>
-						<form:errors path="pw" />
 					</div>
 					<div class="form-floating mb-3">
 						<input type="password" class="passwordAgain form-control"
@@ -132,21 +133,20 @@
 							비밀번호가 일치하지 않습니다.</div>
 					</div>
 					<div class="form-floating mb-3">
-						<form:input type="text" class="nickname form-control"
-							id="validationServer03 floatingInput"
+						<input type="text" class="nickname form-control"
+							id="validationServer03 floatingInput" name="nickname"
 							aria-describedby="validationServer03Feedback"
-							placeholder="name@example.com" path="nickname"
+							placeholder="name@example.com" 
 							onkeyup="nicknameCheck()" />
 						<label for="floatingInput">닉네임</label>
 						<div id="validationServer03Feedback" class="invalid-feedback nickname_feedback_invalid">
 							해당 닉네임이 이미 있습니다.</div>
 						<div id="validationServer03Feedback" class="valid-feedback nickname_feedback_valid">
 							사용가능한 닉네임 입니다.</div>
-						<form:errors path="nickname" />
 					</div>
 					<div class="form-floating mb-3">
-						<form:input type="text" class="phone form-control"
-							id="validationServer04 floatingInput" path="phone"
+						<input type="text" class="phone form-control"
+							id="validationServer04 floatingInput" name="phone"
 							aria-describedby="validationServer04Feedback"
 							placeholder="name@example.com" onkeyup="phoneCheck()"/>
 						<label for="floatingInput">휴대폰 번호</label>
@@ -154,7 +154,6 @@
 							validationServer04Feedback invalid</div>
 						<div id="validationServer04Feedback" class="valid-feedback phone_feedback_valid">
 							validationServer04Feedback valid</div>
-						<form:errors path="phone" />
 					</div>
 					
 					<button class="w-100 btn btn-lg btn-primary" type="button"
@@ -162,7 +161,7 @@
 					<hr class="my-4">
 					<small class="text-muted">@KiaTigers Corp. All rights
 						reserved.</small>
-				</form:form>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -193,7 +192,7 @@
 		function verifyNickname(){
 			var nickname = $(".nickname").val();
 			
-			var regExp = /^[\wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/; /* 특문 제외 2자 ~ 20자 */
+			var regExp = /^[\wㄱ-ㅎㅏ-ㅣ가-힣]{2,10}$/; /* 특문 제외 2자 ~ 10자 */
 			
 			if (nickname.match(regExp) != null) {
 				return true;
@@ -233,6 +232,13 @@
 		/* 이메일 인증키 발송 */
 		$("#req").click(function() {
 			if (verifyEmail() == true) { /* 이메일유효성검사 통과시 true */
+				/* 로딩이미지 띄우기 */
+				$.LoadingOverlay("show", {
+					background       : "rgba(0, 0, 0, 0.5)",
+					image            : '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle r="80" cx="500" cy="90"/><circle r="80" cx="500" cy="910"/><circle r="80" cx="90" cy="500"/><circle r="80" cx="910" cy="500"/><circle r="80" cx="212" cy="212"/><circle r="80" cx="788" cy="212"/><circle r="80" cx="212" cy="788"/><circle r="80" cx="788" cy="788"/></svg>',
+					imageColor		 : "#FFFFFF",
+					maxSize          : 60
+				});
 
 				var id = $(".email_input").val();
 				console.log(id);
@@ -246,11 +252,15 @@
 					success : function(res) {
 						alert("인증키 메일전송완료");
 						console.log(res);
+						$.LoadingOverlay("hide"); /* 로딩이미지 숨김 */
+						
 						$("#reqOk").click(function() {
 							var written_authKey = $(".authKey_input").val()
 							console.log(written_authKey);
 							console.log(res);
 							if (written_authKey == res) {
+								$(".email_input").removeClass("is-invalid");
+								$(".authKey_input").removeClass("is-invalid");
 								$(".email_input").addClass("is-valid");
 								$(".authKey_input").addClass("is-valid");
 								$(".email_input").attr("readonly", "true");
@@ -329,7 +339,7 @@
 						$(".nickname").addClass("is-valid");
 						if (verifyNickname() == false) { /* 닉네임 유효성검사 성공시 true반환 */
 							$(".nickname_feedback_invalid").text(
-									"닉네임은 특수문자 제외 2자 ~ 20자");
+									"닉네임은 특수문자 제외 2자 ~ 10자");
 							$(".nickname").removeClass("is-valid");
 							$(".nickname").addClass("is-invalid");
 						}
@@ -396,7 +406,18 @@
 			$(".pw_rule").css("display", "inline-block");
 
 		}
+		
+		/* 아이디중복일경우 alert */
+		var err = "${errAlreadyExistId}";
+		if(err != ""){
+			alert("이미 사용중인 아이디(이메일) 입니다.");
+		} 
+		
+		
+		
 	</script>
+	
+
 
 
 	<script
