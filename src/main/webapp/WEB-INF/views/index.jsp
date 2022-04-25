@@ -12,7 +12,7 @@
 				<c:forEach items="${ uniformTop10 }" var="uniform"
 					varStatus="status">
 					<article>
-						<a href="#?uniInfoN0=${ uniform.uniInfoNo }" class="image featured"><img
+						<a href="/info?uniInfoNo=${ uniform.uniInfoNo }" class="image featured"><img
 							src="/images/uniform/${ uniform.uniformImg }" alt="" /></a>
 						<header>
 							<h3>
@@ -35,7 +35,6 @@
 						<th>#</th>
 						<th>제목</th>
 						<th>작성자</th>
-						<th>좋아요</th>
 						<th>조회수</th>
 					</tr>
 				</thead>
@@ -43,9 +42,8 @@
 					<c:forEach items="${ boardHot5 }" var="board" varStatus="status">
 						<tr>
 							<td>${ status.count }</td>
-							<td><a href="/boardview?no=${ board.boardNo }" style="color: inherit;">${ board.title }</a></td>
+							<td><a href="/boardview?boardNo=${ board.boardNo }" style="color: inherit;">${ board.title }</a></td>
 							<td>${ board.writer }</td>
-							<td>${ board.likes }</td>
 							<td>${ board.views }</td>
 						</tr>
 					</c:forEach>
@@ -53,14 +51,14 @@
 			</table>
 		</section>
 		<div class="row align-content-center">
-			<div class="col-lg-4" onclick="location.href='#'">
-				<img src="/images/main_img/player.png" class=" img-fluid" />
-			</div>
 			<div class="col-lg-4" onclick="location.href='/kiaTigers/calendar'">
 				<img src="/images/main_img/calendar.png" class=" img-fluid" />
 			</div>
 			<div class="col-lg-4" onclick="location.href='/kiaTigers/map'">
 				<img src="/images/main_img/map.png" class=" img-fluid" />
+			</div>
+			<div class="col-lg-4" onclick="location.href='https://twitter.com/Kiatigers'">
+				<img src="/images/main_img/twitter.png" class=" img-fluid" />
 			</div>
 		</div>
 		<div class="row mt-1">
