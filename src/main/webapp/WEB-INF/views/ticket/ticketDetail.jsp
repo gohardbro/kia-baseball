@@ -48,9 +48,8 @@ img.gl-logo {
 	margin-bottom: 100px;
 }
 
- 
-.wbox{
-	heigth:500px;
+.wbox {
+	heigth: 500px;
 }
 </style>
 </head>
@@ -80,7 +79,7 @@ img.gl-logo {
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="container">
-							<div class="shadow p-4 mb-4 bg-white" >
+							<div class="shadow p-4 mb-4 bg-white">
 
 								<!-- 예매하실 경기 정보 -->
 								<input type="hidden" class="gameDate"
@@ -113,19 +112,16 @@ img.gl-logo {
 					<!-- 오른쪽 col -->
 					<div class="col-sm-8">
 						<div class="container">
-							<div class="shadow p-4 mb-4 bg-white" >
+							<div class="shadow p-4 mb-4 bg-white">
 								<!-- seatArea고르기 radio 6개 -->
 								<div class="seatChoice">
 									<table>
 
 										<c:forEach var="sc" items="${seatChoice}">
 											<tr>
-												<td>
-												<input type="radio" name="zoneCheck" id="seat"
-													value="${sc.baseballZone}" data-no="${sc.baseInfoNo}"> ${sc.baseballZone}
-												</td>
-												<td>잔여석:(122/200)
-												</td>
+												<td><input type="radio" name="zoneCheck" id="seat"
+													value="${sc.baseballZone}" data-no="${sc.baseInfoNo}">
+													${sc.baseballZone}</td>
 											</tr>
 										</c:forEach>
 
@@ -134,12 +130,14 @@ img.gl-logo {
 								</div>
 
 								<!-- 수량 업다운 버튼 -->
-								<div class="quantity" >
+								<div class="quantity">
 									<span class="count count-box"> <span>예매 매수 : </span>
-										<button type="button" class="btn btn-outline-danger" id="upBtn" >△</button> 
-										<input type="text" class="countInput" id="quantity" name="quentity" 
-										value="0" readonly="readonly"  display="inline-block;" style="border: none; width:50px; " />
-										<button type="button" class="btn btn-outline-danger" id="downBtn" >▽</button>
+										<button type="button" class="btn btn-outline-danger"
+											id="upBtn">△</button> <input type="text" class="countInput"
+										id="quantity" name="quentity" value="0" readonly="readonly"
+										display="inline-block;" style="border: none; width: 50px;" />
+										<button type="button" class="btn btn-outline-danger"
+											id="downBtn">▽</button>
 									</span>
 								</div>
 
@@ -148,7 +146,8 @@ img.gl-logo {
 									결제금액 :<span id="totalAmount"></span>원
 								</div>
 
-								<button type="button" onclick="paymentProcess()" class="amountCheck"  style="width:80%">결제하기</button>
+								<button type="button" onclick="paymentProcess()"
+									class="amountCheck" style="width: 80%">결제하기</button>
 
 							</div>
 						</div>
@@ -158,15 +157,15 @@ img.gl-logo {
 			</section>
 		</article>
 	</div>
-	<form action="/progress/payment" method="post" name="pform" >
-		<input type="hidden" name="buyer"  value="${loginUser.id}"/>  
-		<input type="hidden" name="baseInfoNo" />  
-		<input type="hidden" name="total" id="hidden_total"/>   
-		<input type="hidden" name="buyerCnt" id="hidden_cnt"/>  
-		<input type="hidden" name="scheduleNo"  value="${oneGame.scheduleNo}"/>  
+	<form action="/progress/payment" method="post" name="pform">
+		<input type="hidden" name="buyer" value="${loginUser.id}" /> <input
+			type="hidden" name="baseInfoNo" /> <input type="hidden" name="total"
+			id="hidden_total" /> <input type="hidden" name="buyerCnt"
+			id="hidden_cnt" /> <input type="hidden" name="scheduleNo"
+			value="${oneGame.scheduleNo}" />
 	</form>
 
-	
+
 
 </body>
 
@@ -181,15 +180,16 @@ img.gl-logo {
 		var data = $('.gameDate').val();
 
 		var yoil = getInputDayLabel(data);
-		var basballZone = $(this).val();
+		var baseballZone = $(this).val();
+		console.log(baseballZone);
 		$('input[name=baseInfoNo]').val($(this).data("no"));
-		console.log(yoil + "/" + basballZone);
+		console.log(yoil + "/" + baseballZone);
 		/* 여기까지 문제없음 */
 		$.ajax({
 			url : "/ticketPrice",
 			data : {
 				"yoil" : yoil,
-				"baseballZone" : basballZone
+				"baseballZone" : baseballZone,
 			},
 			async : false,
 			success : function(response) {
@@ -255,30 +255,28 @@ img.gl-logo {
 			if (rsp.success) {
 				var msg = '결제가 완료되었습니다.';
 				msg += '결제 금액은 : ' + rsp.paid_amount + '원 입니다.';
+				msg += '결제완료 페이지로 이동합니다';
 				progress();
 
 			} else {
 				var msg = '결제에 실패하였습니다.';
 				msg += '에러내용 : ' + rsp.error_msg;
 			}
-			
+
 			alert(msg);
-			
+
 		});
 	}
 
 	//결제성공시 성공완료 페이지로 넘어가는 function 
 	function progress() {
-		alert("결제완료 페이지로 이동합니다");
-		
-/* 		$("#hidden_infoNo").val(); */
-		$("#hidden_cnt").val( $("#quantity").val() );
+		$("#hidden_cnt").val($("#quantity").val());
 		$("#hidden_total").val(amount);
 
 		console.log($("#hidden_seat"));
 		console.log($("#hidden_cnt"));
 		console.log($("#hidden_total"));
-		
+
 		$("[name=pform]").submit();
 	}
 </script>

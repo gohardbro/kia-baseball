@@ -24,7 +24,7 @@
 	<select id="weekPrice" resultType="seatChoiceVo">
 		select *
 		from baseball_info
-		where basebase_info_no = #{baseInfoNo}
+		where baseball_zone = #{baseballZone}
 	</select>
 
 	

@@ -43,6 +43,7 @@ public class SeatController {
 	public int weekPrice(@RequestParam String yoil, @RequestParam String baseballZone, Model model) {
 		System.out.println("ajax controller도착 ");
 		System.out.println(yoil);
+		System.out.println(baseballZone);
 		SeatChoiceVo weekPrice = seatChoiceService.weekPrice(baseballZone);
 		System.out.println( weekPrice );
 		
