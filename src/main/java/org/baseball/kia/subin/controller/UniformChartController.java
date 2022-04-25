@@ -17,6 +17,6 @@ public class UniformChartController {
 		model.addAttribute("menu", "uniformList");
 		model.addAttribute("uniformList", uniformChartService.selectUniformByPopularity());
 		model.addAttribute("playerList", uniformChartService.selectPlayerByPopularity());
-		return "/admin/uniformList";
+		return "/subin/admin/uniformList";
 	}
 }

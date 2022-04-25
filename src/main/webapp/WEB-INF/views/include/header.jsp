@@ -23,7 +23,6 @@
 </noscript>
 
 <!-- Scripts -->
-
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/jquery.dropotron.min.js"></script>
 <script src="/assets/js/jquery.scrolly.min.js"></script>
@@ -35,7 +34,6 @@
 
 <!-- iamport.payment.js -->
   <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
-
 </head>
 <body class="left-sidebar is-preload">
 
@@ -77,7 +75,7 @@
                 </c:choose>
                 <br>
                 <ul class="kia_nav">
-                    <li><a href="#">KIA tigers</a></li>
+                    <li><a href="/kiaTigers">KIA tigers</a></li>
                     <li><a href="/ticket">예매</a></li>
                     <li><a href="/announce">커뮤니티</a></li>
                     <li><a href="/goods">굿즈샵</a></li>
