@@ -117,7 +117,7 @@ public class BoardController {
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String postUpdate(BoardVo vo) {
 		boardService.update(vo);
-		return "redirect:/boardview?no=" + vo.getBoardNo();
+		return "redirect:/boardview?boardNo=" + vo.getBoardNo();
 	}
 
 }

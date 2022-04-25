@@ -3,13 +3,13 @@ package org.baseball.kia.taejeong.entity;
 import java.sql.Date;
 
 public class InquiryVo {
-	int inquiryNo;
-	String title;
-	String content;
-	Date writeDate;
-	String writer;
-	String answer;
-	String periodBtn;
+	private int inquiryNo;
+	private String title;
+	private String content;
+	private Date writeDate;
+	private String writer;
+	private String answer;
+	private String periodBtn;
 	
 	
 	public String getPeriodBtn() {

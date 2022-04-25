@@ -6,12 +6,12 @@ import java.sql.Date;
 public class AccountVo {
 	
 
-	int point, reportCnt;
-	String id, pw, profile, name, nickname, admin, phone, report; 
-	Date joinDate;
+	private int point, reportCnt;
+	private String id, pw, profile, name, nickname, admin, phone, report; 
+	private Date joinDate;
 	private String sessionId;
 	private Date limitTime;
-	String autoLogin;
+	private String autoLogin;
 	
 	
 	
