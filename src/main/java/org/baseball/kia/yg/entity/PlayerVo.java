@@ -1,7 +1,7 @@
 package org.baseball.kia.yg.entity;
 
 public class PlayerVo {
-	String name, position, no;
+	private String name, position, no;
 
 
 	public String getName() {

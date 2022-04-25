@@ -5,10 +5,10 @@ import java.util.List;
 
 public class LineupVo {
 
-	int no; // 번호
-	int scheduleNo; // 경기 날짜 시간
-	String pitcher, hitter1, hitter2, hitter3, hitter4, hitter5, hitter6, hitter7, hitter8, hitter9; // 투수, 1~9번 타자
-	List<String> hitterList;
+	private int no; // 번호
+	private int scheduleNo; // 경기 날짜 시간
+	private String pitcher, hitter1, hitter2, hitter3, hitter4, hitter5, hitter6, hitter7, hitter8, hitter9; // 투수, 1~9번 타자
+	private List<String> hitterList;
 
 	public int getNo() {
 		return no;

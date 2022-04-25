@@ -5,9 +5,9 @@ import java.util.Date;
 import org.springframework.web.multipart.MultipartFile;
 
 public class BoardVo {
-	int boardNo, likes, views;
-	String title, content, writer;
-	Date writeDate;
+	private int boardNo, likes, views;
+	private String title, content, writer;
+	private Date writeDate;
 
 	public int getBoardNo() {
 		return boardNo;

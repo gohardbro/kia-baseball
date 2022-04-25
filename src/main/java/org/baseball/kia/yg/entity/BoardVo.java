@@ -5,14 +5,14 @@ import java.util.Date;
 import org.springframework.web.multipart.MultipartFile;
 
 public class BoardVo {
-	int boardNo;
-	String title;
-	String content;
-	String writer;
-	Date writeDate;
-	Integer views;
-	int likes;
-	MultipartFile uploadFile;
+	private int boardNo;
+	private String title;
+	private String content;
+	private String writer;
+	private Date writeDate;
+	private Integer views;
+	private int likes;
+	private MultipartFile uploadFile;
 
 	public MultipartFile getUploadFile() {
 		return uploadFile;

@@ -1,7 +1,7 @@
 package org.baseball.kia.taejeong.entity;
 
 public class TFileVo {
-	String id, profileName, ContentType, profilePath;
+	private String id, profileName, ContentType, profilePath;
 	
 
 	public String getId() {

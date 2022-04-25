@@ -3,8 +3,8 @@ package org.baseball.kia.subin.entity;
 import java.util.List;
 
 public class AccountPage extends PageVo {
-	String type;
-	List<AccountVo> accountList;
+	private String type;
+	private List<AccountVo> accountList;
 
 	public String getType() {
 		return type;

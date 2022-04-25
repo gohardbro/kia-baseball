@@ -3,35 +3,35 @@ package org.baseball.kia.taejeong.entity;
 import java.sql.Date;
 
 public class TUniformVo {
-	int uniInfoNo;
-	int uniformNo;
-	String buyer;
-	int uniCnt;
-	int total;
-	Date buyDate;
-	String state;
-	Date refund;
-	String playerNo;
-	int price;
-	String uniformImg;
-	String uniformName;
-	String color;
-	String uniSize;
-	int sCount; 
-	int mCount;
-	int lCount;
-	int xlCount;
-	String no;
-	String name;
-	String position;
-	String yearSelect;
-	String monSelect;
-	String periodBtn;
+	private int uniInfoNo;
+	private int uniformNo;
+	private String buyer;
+	private int uniCnt;
+	private int total;
+	private Date buyDate;
+	private String state;
+	private Date refund;
+	private String playerNo;
+	private int price;
+	private String uniformImg;
+	private String uniformName;
+	private String color;
+	private String uniSize;
+	private int sCount; 
+	private int mCount;
+	private int lCount;
+	private int xlCount;
+	private String no;
+	private String name;
+	private String position;
+	private String yearSelect;
+	private String monSelect;
+	private String periodBtn;
 	
-	String username;
-	String nickname;
-	int point;
-	String phone;
+	private String username;
+	private String nickname;
+	private int point;
+	private String phone;
 	
 	
 	
