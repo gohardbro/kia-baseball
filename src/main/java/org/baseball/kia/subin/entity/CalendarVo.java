@@ -1,9 +1,9 @@
 package org.baseball.kia.subin.entity;
 
 public class CalendarVo {
-	int scheduleNo;
-	String gameDate, gameTime, rival, home;
-	String sponsor, teamImg, field, director, cqptain, teamName;
+	private int scheduleNo;
+	private String gameDate, gameTime, rival, home;
+	private String sponsor, teamImg, field, director, cqptain, teamName;
 
 	public int getScheduleNo() {
 		return scheduleNo;

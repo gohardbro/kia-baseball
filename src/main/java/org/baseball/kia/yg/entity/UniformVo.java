@@ -4,9 +4,9 @@ import java.util.Date;
 
 
 public class UniformVo {
-	int uniformNo, uniInfoNo, uniCnt, total;
-	String buyer, refund, state, uniSize, playerNo;
-	Date buyDate;
+	private int uniformNo, uniInfoNo, uniCnt, total;
+	private String buyer, refund, state, uniSize, playerNo;
+	private Date buyDate;
 
 	public String getPlayerNo() {
 		return playerNo;

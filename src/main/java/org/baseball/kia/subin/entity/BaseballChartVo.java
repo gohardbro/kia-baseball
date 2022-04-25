@@ -2,9 +2,9 @@ package org.baseball.kia.subin.entity;
 
 public class BaseballChartVo {
 
-	String month; // yyyy-MM
-	String week; // 주차
-	String zone; // 좌석
+	private String month; // yyyy-MM
+	private String week; // 주차
+	private String zone; // 좌석
 
 	public String getMonth() {
 		return month;

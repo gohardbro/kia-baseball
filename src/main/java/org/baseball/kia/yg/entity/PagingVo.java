@@ -6,13 +6,13 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 public class PagingVo {
 
-	int totalCount;
-	int startPage;
-	int endPage;
-	boolean prev;
-	boolean next;
-	int displayPageNum = 10;
-	Criteria cri;
+	private int totalCount;
+	private int startPage;
+	private int endPage;
+	private boolean prev;
+	private boolean next;
+	private int displayPageNum = 10;
+	private Criteria cri;
 
 	public void setCri(Criteria cri) {
 		this.cri = cri;

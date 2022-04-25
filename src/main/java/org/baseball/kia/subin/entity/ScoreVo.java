@@ -6,11 +6,11 @@ import java.util.List;
 
 public class ScoreVo {
 
-	int scheduleNo;
-	int kiaRuns, kia1, kia2, kia3, kia4, kia5, kia6, kia7, kia8, kia9, kia10, kia11, kia12;
-	int rivalRuns, rival1, rival2, rival3, rival4, rival5, rival6, rival7, rival8, rival9, rival10, rival11, rival12;
-	int[] kiaArray;
-	int[] rivalArray;
+	private int scheduleNo;
+	private int kiaRuns, kia1, kia2, kia3, kia4, kia5, kia6, kia7, kia8, kia9, kia10, kia11, kia12;
+	private int rivalRuns, rival1, rival2, rival3, rival4, rival5, rival6, rival7, rival8, rival9, rival10, rival11, rival12;
+	private int[] kiaArray;
+	private int[] rivalArray;
 
 	public int getScheduleNo() {
 		return scheduleNo;

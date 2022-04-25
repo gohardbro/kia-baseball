@@ -8,9 +8,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 public class AccountVo {
-	int point, reportCnt;
-	String id, pw, profile, name, nickname, admin, phone, report;
-	Date joinDate;
+	private int point, reportCnt;
+	private String id, pw, profile, name, nickname, admin, phone, report;
+	private Date joinDate;
 
 	public String getId() {
 		return id;

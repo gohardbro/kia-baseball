@@ -3,10 +3,10 @@ package org.baseball.kia.subin.entity;
 import java.util.List;
 
 public class UniformInfoPage extends PageVo {
-	String uniformName;
-	String color;
-	String viewType;
-	List<UniformInfoVo> uniformInfoList;
+	private String uniformName;
+	private String color;
+	private String viewType;
+	private List<UniformInfoVo> uniformInfoList;
 
 	public String getUniformName() {
 		return uniformName;

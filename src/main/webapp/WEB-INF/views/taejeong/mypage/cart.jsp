@@ -254,6 +254,7 @@ select, option {
 	    } else {
 	    	$(direct).hide();
 	    }
+	    
 	  }); 
 	
 	/* 수량변경 버튼 누르면 select에 수량 option 추가되고 selected 됌  */
