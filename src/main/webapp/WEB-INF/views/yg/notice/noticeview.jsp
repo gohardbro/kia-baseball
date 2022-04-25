@@ -23,6 +23,14 @@
 			<p>
 			<div class="pb-5">${notice.content }</div>
 		</div>
+		<table border="1">
+			<tr>
+				<td align="center" colspan="2">
+					<button type="button"
+						onClick="location.href='/announce'">글목록</button>
+				</td>
+			</tr>
+		</table>
 	</form>
 </div>
 

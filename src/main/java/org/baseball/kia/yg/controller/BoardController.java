@@ -5,10 +5,8 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.baseball.kia.taejeong.entity.AccountVo;
 import org.baseball.kia.yg.entity.BoardVo;
 import org.baseball.kia.yg.entity.CommentVo;
-import org.baseball.kia.yg.entity.LikeVo;
 import org.baseball.kia.yg.entity.PagingVo;
 import org.baseball.kia.yg.service.BoardService;
 import org.baseball.kia.yg.service.CommentService;
