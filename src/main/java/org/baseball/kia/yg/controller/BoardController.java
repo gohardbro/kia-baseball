@@ -80,23 +80,21 @@ public class BoardController {
 		model.addAttribute("board", vo);
 		model.addAttribute("cmt", new CommentVo());
 		
-		AccountVo loginUserVo = (AccountVo) httpSession.getAttribute("loginUser");
-		LikeVo lvo = new LikeVo();
-		lvo.setBoardNoLike(no);
-		lvo.setIdLike(loginUserVo.getId());
-		
-		int likes = 0;
-		int check = likeService.likeBoardCount(lvo);
-		
-		if(check ==0) {
-			likeService.likeinsert(lvo);
-		}else if(check==1) {
-			likes = likeService.likeViewCount(lvo);
-		}
-		System.out.println(lvo.getIdLike());
-		System.out.println(lvo.getBoardNoLike());
-		
-		model.addAttribute("ltlike",likes);
+//		AccountVo loginUserVo = (AccountVo) httpSession.getAttribute("loginUser");
+//		LikeVo lvo = new LikeVo();
+//		lvo.setBoardNoLike(no);
+//		lvo.setIdLike(loginUserVo.getId());
+//		
+//		int likes = 0;
+//		int check = likeService.likeBoardCount(lvo);
+//		
+//		if(check ==0) {
+//			likeService.likeinsert(lvo);
+//		}else if(check==1) {
+//			likes = likeService.likeViewCount(lvo);
+//		}
+//		
+//		model.addAttribute("ltlike",likes);
 		
 		return "/yg/boardview";
 	}

@@ -38,7 +38,7 @@
 				</td>
 			</tr>
 		</table>
-		<div>
+		<%-- <div>
 			<div class="w3-border w3-center w3-padding">
 				<c:choose>
 					<c:when test="${empty sessionScope.loginUser }">
@@ -54,7 +54,7 @@
 					</c:otherwise>
 				</c:choose>
 			</div>
-		</div>
+		</div> --%>
 	</form>
 	<div class="my-3 p-3 bg-white rounded shadow-sm"
 		style="padding-top: 10px">

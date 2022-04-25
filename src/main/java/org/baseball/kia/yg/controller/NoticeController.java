@@ -1,5 +1,6 @@
 package org.baseball.kia.yg.controller;
 
+import org.baseball.kia.yg.entity.NoticeVo;
 import org.baseball.kia.yg.entity.PagingVo;
 import org.baseball.kia.yg.service.NoticeService;
 import org.baseball.kia.yg.util.Criteria;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class NoticeController {
@@ -28,5 +30,5 @@ public class NoticeController {
 		
 		return "/yg/notice/announcement";
 	}
-
+	
 }
