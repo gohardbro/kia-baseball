@@ -109,4 +109,5 @@
 	margin: 0px;
 }
 </style>
+
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
