@@ -2,8 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="schedule">
 	<select id="selectDateAndTime" resultType="scheduleVo"> <!-- 경기 날짜/시간 조회 -->
-		SELECT GAME_DATE, GAME_TIME FROM SCHEDULE 
+		SELECT * FROM SCHEDULE 
 		WHERE GAME_DATE <![CDATA[<=]]> SYSDATE
 		ORDER BY GAME_DATE DESC 
+	</select>
+	
+	<select id="selectGameDate" resultType="int"> <!-- 경기일자 별 경기일정코드 조회 -->
+		SELECT SCHEDULE_NO FROM SCHEDULE
+		WHERE GAME_DATE = #{gameDate}
+	</select>
+	
+	<select id="selectScheduleByMonth" resultType="calendarVo"> <!-- 월별 경기 일정 조회 -->
+		SELECT * FROM SCHEDULE S LEFT OUTER JOIN TEAM T ON(S.RIVAL = T.SPONSOR)
+		WHERE TO_CHAR(TO_DATE(GAME_DATE), 'yyyy-MM') = #{gameMonth}
+	</select>
+	
+	<select id="selectScheduleByNo" resultType="scheduleVo"> <!-- 경기코드로 경기일정 조회 -->
+		SELECT * FROM SCHEDULE WHERE SCHEDULE_NO = #{scheduleNo}
 	</select>
 </mapper>

@@ -42,6 +42,28 @@
 			<mvc:mapping path="/**"/>
 			<bean class="org.baseball.kia.taejeong.interceptor.AutoLoginInterceptor"/>
 		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/**"/>
+			<bean class="org.baseball.kia.subin.interceptor.AdminInterceptor"/>
+		</mvc:interceptor>
 	</mvc:interceptors>
+	
+	<!-- scheduler -->
+	<bean id="gameScoreTask" class="org.baseball.kia.subin.task.GameScoreTask"/>
+	<task:scheduler id="gameScheduler" pool-size="10"/>
+	<task:scheduled-tasks scheduler="gameScheduler">
+		<task:scheduled ref="gameScoreTask" method="playGame" cron="0 0 0 * * *"/> <!-- 매일 자정 -->
+	</task:scheduled-tasks>
+	<task:annotation-driven/>
 
+	<!-- WebSocket -->
+	<bean id="WsHandler" 
+		class="org.baseball.kia.subin.ws.ChattingWebSocketHandler"/> <!-- Handler 파일 위치-->
+	<websocket:handlers>
+		<websocket:mapping handler="WsHandler" path="/ws/alert"/> <!-- 요청경로 -->
+		<websocket:handshake-interceptors>
+			<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
+		</websocket:handshake-interceptors>
+	</websocket:handlers>
 </beans>

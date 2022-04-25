@@ -192,3 +192,35 @@ create table player (
 	name varchar2(50),
 	position varchar2(50)
 );
+
+-- 경기 스코어
+create table score(
+    schedule_no number,
+    kia_runs number,
+    kia1 number,
+    kia2 number,
+    kia3 number,
+    kia4 number,
+    kia5 number,
+    kia6 number,
+    kia7 number,
+    kia8 number,
+    kia9 number,
+    kia10 number,
+    kia11 number,
+    kia12 number,
+    rival_runs number,
+    rival1 number,
+    rival2 number,
+    rival3 number,
+    rival4 number,
+    rival5 number,
+    rival6 number,
+    rival7 number,
+    rival8 number,
+    rival9 number,
+    rival10 number,
+    rival11 number,
+    rival12 number,
+    constraint score_fk foreign key(schedule_no) references schedule(schedule_no)
+);

@@ -5,7 +5,6 @@
 */
 
 (function($) {
-
 	var	$window = $(window),
 		$body = $('body'),
 		settings = {
@@ -18,7 +17,7 @@
 				},
 
 		};
-
+	
 	// Breakpoints.
 		breakpoints({
 			wide:      [ '1281px',  '1680px' ],
@@ -74,10 +73,12 @@
 					target: $body,
 					visibleClass: 'navPanel-visible'
 				});
-
+			
+			
+			
 	// Carousels.
 		$('.carousel').each(function() {
-
+			
 			var	$t = $(this),
 				$forward = $('<span class="forward"></span>'),
 				$backward = $('<span class="backward"></span>'),
