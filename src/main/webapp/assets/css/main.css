@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,400italic,600");
 @import url("fontawesome-all.min.css");
 
@@ -66,12 +66,14 @@ input::-moz-focus-inner {
 	padding: 0;
 }
 
-/* input, select, textarea {
+input, select, textarea {
+	/* 2022-4월-11 주석처리by장태정/ 이유: 이 설정들 때문에 checkbox 안됌
 	-moz-appearance: none;
-	-webkit-appearance: none;
+	-webkit-appearance: none; 
 	-ms-appearance: none;
-	appearance: none;
-} */
+	appearance: none; 
+	*/
+}
 
 /* Basic */
 
@@ -2503,7 +2505,7 @@ input::-moz-focus-inner {
 					color: rgba(212, 212, 212, 0.85);
 				}
 
-/* Carousel */
+/* carousel */
 
 	.carousel {
 		position: relative;
@@ -2631,7 +2633,7 @@ input::-moz-focus-inner {
 				line-height: 1.75em;
 			}
 
-		/* Carousel */
+		/* carousel */
 
 			.carousel {
 				padding: 1.5em 0 1.5em 0;
@@ -2721,7 +2723,7 @@ input::-moz-focus-inner {
 				padding: 4em 2em 4em 2em;
 			}
 
-		/* Carousel */
+		/* carousel */
 
 			.carousel {
 				padding: 1.25em 0 1.25em 0;
@@ -3116,7 +3118,7 @@ input::-moz-focus-inner {
 				padding-right: 1em;
 			}
 
-		/* Carousel */
+		/* carousel */
 
 			.carousel {
 				padding: 0.5em 0 0.5em 0;
@@ -5641,7 +5643,7 @@ input, select, textarea {
 					color: rgba(212, 212, 212, 0.85);
 				}
 
-/* Carousel */
+/* carousel */
 
 	.carousel {
 		position: relative;
@@ -5769,7 +5771,7 @@ input, select, textarea {
 				line-height: 1.75em;
 			}
 
-		/* Carousel */
+		/* carousel */
 
 			.carousel {
 				padding: 1.5em 0 1.5em 0;
@@ -5859,7 +5861,7 @@ input, select, textarea {
 				padding: 4em 2em 4em 2em;
 			}
 
-		/* Carousel */
+		/* carousel */
 
 			.carousel {
 				padding: 1.25em 0 1.25em 0;
@@ -6254,7 +6256,7 @@ input, select, textarea {
 				padding-right: 1em;
 			}
 
-		/* Carousel */
+		/* carousel */
 
 			.carousel {
 				padding: 0.5em 0 0.5em 0;
@@ -6274,5 +6276,5 @@ input, select, textarea {
 						margin-bottom: 2em;
 					}
 
->>>>>>> refs/remotes/origin/master
+
 	}

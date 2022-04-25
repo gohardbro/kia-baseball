@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
-<jsp:include page="/WEB-INF/views/yg/include/top.jsp" />
+<jsp:include page="/WEB-INF/views/subin/kiaTigers/include/top.jsp" />
 
 <div class="wrapper style1">
 

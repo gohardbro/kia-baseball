@@ -1,6 +1,9 @@
 package org.baseball.kia.subin.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
+import org.baseball.kia.subin.entity.BoardVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -14,4 +17,7 @@ public class BoardDao {
 		return sqlSession.delete("board.deleteBoardByReportId", id);
 	}
 	
+	public List<BoardVo> selectBoardHot5(){
+		return sqlSession.selectList("board.selectBoardHot5");
+	}
 }

@@ -10,28 +10,6 @@
 <div class="wrapper style1">
 
 	<div class="container">
-		 
-		<!-- form method="post">
-			<div style="margin-top: 10px;">
-				<input type="text" name="writer" placeholder="작성자.."
-					style="width: 40%" />
-			</div>
-			<div style="margin-top: 10px;">
-				<input type="text" name="title" class="form-control"
-					placeholder="글제목.." style="width: 82%" />
-			</div>
-			<div style="margin-top: 10px;">
-				<textarea rows="10" name="content" placeholder="글내용.."
-					style="width: 82%;"></textarea>
-			</div>
-			<div style="margin-top: 10px;">
-				<button type="submit">등록</button>
-				<button type="button">취소</button>
-			</div>
-		</form>
-		<div style="margin-top: 10px;">
-			<button type="button" onclick="location.href='/free'">목록</button>
-		</div> -->
 		<form method="post" enctype="multipart/form-data">
 			<table border="1">
 				<tr>

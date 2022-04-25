@@ -23,12 +23,11 @@ public class LineupController {
 	public String lineupHandle(Model model) { // 라인업 페이지 호출
 		model.addAttribute("scheduleList", lineupService.selectSchedule());// 경기일정 조회
 		model.addAttribute("menu", "lineup");
-		return "/admin/lineup";
+		return "/subin/admin/lineup";
 	}
 
 	@RequestMapping(value = "/admin/lineup/insert")
 	public String lineupInsertHandle(Model model, @ModelAttribute LineupVo vo, @RequestParam String service) { // 라인업 입력, 수정
-
 		if (service.equals("insert")) { // 라인업 입력
 			lineupService.insertLineup(vo);
 
@@ -37,16 +36,13 @@ public class LineupController {
 		}
 
 		model.addAttribute("menu", "lineup");
-		return "redirect: /admin/lineup";
+		return "redirect: /subin/admin/lineup";
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "/admin/lineup/select")
-	public LineupVo lineupSelectHandle(Model model, @RequestParam String gameDate, @RequestParam String gameTime) { // 라인업 조회
-		LineupVo vo = new LineupVo();
-		vo.setGameDate(gameDate);
-		vo.setGameTime(gameTime);
-		return lineupService.selectLineup(vo);
+	public LineupVo lineupSelectHandle(Model model, @RequestParam int scheduleNo) { // 라인업 조회
+		return lineupService.selectLineup(scheduleNo);
 	}
 	
 	@ResponseBody

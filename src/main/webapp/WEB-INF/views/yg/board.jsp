@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -16,10 +15,10 @@
 			<c:forEach var="one" items="${all }">
 				<tr>
 					<td>${one.boardNo }</td>
-					<td class="col-9"><a href="/boardview?no=${one.boardNo }">${one.title }</a></td>
+					<td class="col-9"><a href="/boardview?boardNo=${one.boardNo }">${one.title }</a></td>
 					<td><fmt:formatDate value="${one.writeDate }"
 							pattern="yyyy.MM.dd" /> | <img src="/images/eye.png">
-						${one.views } | <img src="/images/like.png"> 43
+						${one.views } | <img src="/images/like.png"> ${one.likes }
 					</td>
 				</tr>
 			</c:forEach>

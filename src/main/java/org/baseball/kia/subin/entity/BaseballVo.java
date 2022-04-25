@@ -4,9 +4,9 @@ import java.sql.Date;
 
 public class BaseballVo {
 
-	int baseballNo, baseInfoNo, total, buyerCnt, scheduleNo;
-	String buyer;
-	Date buyDate, refund;
+	private int baseballNo, baseInfoNo, total, buyerCnt, scheduleNo;
+	private String buyer;
+	private Date buyDate, refund;
 
 	public int getBaseballNo() {
 		return baseballNo;

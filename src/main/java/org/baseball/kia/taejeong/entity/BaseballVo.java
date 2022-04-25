@@ -3,24 +3,24 @@ package org.baseball.kia.taejeong.entity;
 import java.sql.Date;
 
 public class BaseballVo {
-	int baseballNo;
-	String buyer;
-	Date buyDate;
-	int baseInfoNo;
-	int total;
-	int buyerCnt;
-	Date refund;
-	int scheduleNo;
-	String gameDate;
-	String gameTime;
-	String rival;
-	int priceWeekday;
-	String baseballZone;
-	int priceWeekend;
-	String dateTypeSelect; 
-	String yearSelect;
-	String monSelect;
-	String periodBtn;
+	private int baseballNo;
+	private String buyer;
+	private Date buyDate;
+	private int baseInfoNo;
+	private int total;
+	private int buyerCnt;
+	private Date refund;
+	private int scheduleNo;
+	private String gameDate;
+	private String gameTime;
+	private String rival;
+	private int priceWeekday;
+	private String baseballZone;
+	private int priceWeekend;
+	private String dateTypeSelect; 
+	private String yearSelect;
+	private String monSelect;
+	private String periodBtn;
 	
 	
 	public int getBaseballNo() {
@@ -131,6 +131,16 @@ public class BaseballVo {
 	public void setPeriodBtn(String periodBtn) {
 		this.periodBtn = periodBtn;
 	}
+	@Override
+	public String toString() {
+		return "BaseballVo [baseballNo=" + baseballNo + ", buyer=" + buyer + ", buyDate=" + buyDate + ", baseInfoNo="
+				+ baseInfoNo + ", total=" + total + ", buyerCnt=" + buyerCnt + ", refund=" + refund + ", scheduleNo="
+				+ scheduleNo + ", gameDate=" + gameDate + ", gameTime=" + gameTime + ", rival=" + rival
+				+ ", priceWeekday=" + priceWeekday + ", baseballZone=" + baseballZone + ", priceWeekend=" + priceWeekend
+				+ ", dateTypeSelect=" + dateTypeSelect + ", yearSelect=" + yearSelect + ", monSelect=" + monSelect
+				+ ", periodBtn=" + periodBtn + "]";
+	}
+	
 	
 	
 	

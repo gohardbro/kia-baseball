@@ -69,6 +69,7 @@ th {
 }
 
 td {
+	border-bottom: 1px solid #e3e6e5;
 	font-size: 13px;
 	text-align: center;
 	padding: 10px 0px;
@@ -103,7 +104,7 @@ select, option {
 </style>
 
 <div class="row" style="margin: 0px;">
-	<div class="column side" style="background-color: #f4f4f4;">빈컬럼</div>
+	<div class="column side" style="background-color: #f4f4f4;"></div>
 	<div class="column middle">
 		<div class="row">
 			<div class="side_wrapper col-2">
@@ -118,7 +119,6 @@ select, option {
 					<p style="font-size: 13px; color: #999; margin: 36px 0 26px;">
 						<span style="color: #007BFF">예매번호</span>를 클릭하면 예매 상세 내용을 확인할 수 있습니다.
 					</p>
-
 
 					<div class="selectZone">
 						<form action="/ticket/searchByPeriod" method="get">
@@ -170,11 +170,11 @@ select, option {
 							<colgroup>
 								<col style="width: 90px;">
 								<col>
-								<col style="width: 135px;">
+								<col style="width: 130px;">
 								<col style="width: 50px;">
 								<col style="width: 135px;">
 								<col style="width: 100px;">
-								<col style="width: 155px;">
+								<col style="width: 140px;">
 							</colgroup>
 							<thead>
 								<tr>
@@ -200,7 +200,7 @@ select, option {
 										<td>${ticketList.buyDate }</td>
 										<c:set var="cancelDate" value="cancelDate${status.index}" />
 										<td class="cancelDate">${requestScope[cancelDate]}</td>
-										<td>결제완료</td>
+										<td>${empty ticketList.refund ? "결제완료" : "결제취소" }</td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -212,7 +212,7 @@ select, option {
 		</div>
 	</div>
 
-	<div class="column side" style="background-color: #f4f4f4;">빈컬럼</div>
+	<div class="column side" style="background-color: #f4f4f4;"></div>
 </div>
 <script>
 	$(".btn-outline-secondary").click(function() {

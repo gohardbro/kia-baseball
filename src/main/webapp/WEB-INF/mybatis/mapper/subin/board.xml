@@ -7,4 +7,10 @@
 		WHERE WRITER = #{id}
 	</delete>
 	
+	<select id="selectBoardHot5" resultType="boardVo"> <!-- 게시물 hot 5 -->
+		SELECT * FROM ( SELECT ROWNUM, B.*
+						FROM BOARD B
+						ORDER BY VIEWS DESC ) B
+		WHERE ROWNUM <![CDATA[<=]]> 5
+	</select>
 </mapper> 

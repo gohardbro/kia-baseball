@@ -16,12 +16,13 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 
+
+
 <noscript>
 	<link rel="stylesheet" href="/assets/css/noscript.css" />
 </noscript>
 
 <!-- Scripts -->
-<body class="left-sidebar is-preload">
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/jquery.dropotron.min.js"></script>
 <script src="/assets/js/jquery.scrolly.min.js"></script>
@@ -31,8 +32,10 @@
 <script src="/assets/js/util.js"></script>
 <script src="/assets/js/main.js"></script>
 
-
+<!-- iamport.payment.js -->
+  <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
 </head>
+<body class="left-sidebar is-preload">
 
 
 	<div id="page-wrapper">
@@ -62,6 +65,7 @@
                         <ul style="float: right; border-left: 0; border-right: 0;">
                             <li><a href="/mypage">${loginUser.nickname }
                                     (${loginUser.id }) 님</a></li>
+                            <li><a href="/mypage">마이페이지</a></li>
                             <li><a href="/logout">로그아웃</a></li>
                             <c:if test="${loginUser.admin eq 'Y' }">
                                 <li><a href="/admin">Admin</a></li>
@@ -71,7 +75,7 @@
                 </c:choose>
                 <br>
                 <ul class="kia_nav">
-                    <li><a href="#">KIA tigers</a></li>
+                    <li><a href="/kiaTigers">KIA tigers</a></li>
                     <li><a href="/ticket">예매</a></li>
                     <li><a href="/announce">커뮤니티</a></li>
                     <li><a href="/goods">굿즈샵</a></li>

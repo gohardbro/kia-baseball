@@ -4,6 +4,25 @@
 </div>
 </div>
 <style>
+._h6Bar {
+/*     height: 60px; */
+    background: #f8f8fa;
+    font-size: 20px;
+    color: #000;
+    border-top: 1px solid #c4c6c8;
+/*     line-height: 60px; */
+/*     padding-left: 40px; */
+    box-sizing: border-box;
+    margin-bottom: 50px;
+    text-align: left;
+}
+.subheader {
+	width: 100%;
+	height: 200px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-image: url('/images/wordmark.jpg');
+}
 ._btn {
 	float:right;
 	align-items: flex-end;

@@ -41,21 +41,17 @@ public class BoardService {
 	public List<Map<String,Object>> selectBoardList(Criteria cri) {
 		return boardDao.selectBoardList(cri);
 	}
-	
-	public int countBoardListTotal() {
-	    return boardDao.countBoardList();
-	}
 
 	public void boardDelete(int no) {
 		boardDao.boardDelete(no);
 	}
 	
+	public Map<String,Integer> boardCmtDelete(int no) {
+		return boardDao.boardCmtDelete(no);
+	}
+	
 	public void update(BoardVo vo) {
 		boardDao.update(vo);
 	}
-
-	public void addComment(BoardVo boardVo) {
-		
-	}
-
+	
 }

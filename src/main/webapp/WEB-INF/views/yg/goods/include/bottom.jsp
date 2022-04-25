@@ -1,6 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <style>
+.goodsInfo {
+	width: 50%;
+	font-size:1em;
+	line-height:3;
+}
+
 a {
 	border-bottom: inherit;
 	color: black;
@@ -49,10 +55,10 @@ h5 {
 .goods-list ._align {
 	height: 28px;
 	margin: 12px 0 20px;
-/* 	padding: 9px 0 10px; */
+	/* 	padding: 9px 0 10px; */
 	border-top: 1px solid #717171;
-/* 	border-bottom: 1px solid #dadada; */
- 	clear: both; 
+	/* 	border-bottom: 1px solid #dadada; */
+	clear: both;
 }
 
 .goods-list ._align ul {
@@ -79,7 +85,6 @@ ul {
 	margin-block-end: 1em;
 	margin-inline-start: 0px;
 	margin-inline-end: 0px;
-	padding-inline-start: 40px;
 }
 
 li {
@@ -104,23 +109,23 @@ input[type="radio" i] {
 }
 
 .goods-view .goods .image .thumbnail {
-    display: table-cell;
-    width: 398px;
-    height: 398px;
-    border: 1px solid #d1d1d1;
-    text-align: center;
-    vertical-align: middle;
+	display: table-cell;
+	width: 398px;
+	height: 398px;
+	border: 1px solid #d1d1d1;
+	text-align: center;
+	vertical-align: middle;
 }
 
 .goods-thumbnail {
-    position: relative;
-    float: left;
-    width: 35%;
-}
-.goods-info {
-    float: right;
-    width: 65%;
-    position: relative;
+	position: relative;
+	float: left;
+	width: 35%;
 }
 
+.goods-info {
+	float: right;
+	width: 65%;
+	position: relative;
+}
 </style>

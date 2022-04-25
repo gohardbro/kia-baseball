@@ -3,11 +3,11 @@ package org.baseball.kia.yg.entity;
 import java.util.Date;
 
 public class CommentVo {
-	int commentNo;
-	int boardNo;
-	String writer;
-	String content;
-	Date writeDate;
+	private int commentNo;
+	private int boardNo;
+	private String writer;
+	private String content;
+	private Date writeDate;
 
 	public int getCommentNo() {
 		return commentNo;

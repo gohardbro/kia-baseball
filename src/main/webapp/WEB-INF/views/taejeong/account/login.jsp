@@ -113,7 +113,7 @@
 
 					<div class="checkbox mb-3">
 						<label><input type="checkbox" name="autoLogin" value="true">
-							로그인 유지 </label><a class="accountFind" href="/login/accountFind">아이디/비밀번호찾기</a>
+							로그인 유지 </label><!-- <a class="accountFind" href="/login/accountFind">아이디/비밀번호찾기</a> -->
 
 					</div>
 					<button class="w-100 btn btn-lg btn-primary" type="submit"
@@ -136,7 +136,11 @@
 	<div class="b-example-divider mb-0"></div>
 
 	<script>
-		
+		/* 회원가입 성공시 alert*/
+		var r = "${registerAccount}";
+		if(r != ""){
+			alert("회원가입 성공!");
+		}
 		
 	</script>
 

@@ -23,11 +23,7 @@
 					<td align="left">${one.writer }</td>
 				</tr>
 				<tr>
-					<td bgcolor="orange">이전내용</td>
-					<td align="left"></td>
-				</tr>
-				<tr>
-					<td bgcolor="orange">바꿀내용</td>
+					<td bgcolor="orange">내용</td>
 					<td align="left"><textarea name="content" cols="40" rows="10">${one.content }</textarea></td>
 				</tr>
 				<tr>

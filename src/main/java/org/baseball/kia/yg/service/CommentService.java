@@ -11,14 +11,21 @@ import org.springframework.stereotype.Service;
 public class CommentService {
 	@Autowired
 	CommentDao commentDao;
-	
-	public List<CommentVo> readCmt(int boardNo) {
-		return commentDao.readCmt(boardNo);
+
+	public List<CommentVo> getReplyList(int bno) {
+		return commentDao.getCmtList(bno);
 	}
 
-	public void addCmt(CommentVo vo) {
-		commentDao.addCmt(vo);
+	public int insertCmt(CommentVo vo) {
+		return commentDao.insertCmt(vo);
 	}
 
-	
+	public int updateReply(CommentVo vo) {
+		return commentDao.updateCmt(vo);
+	}
+
+	public int deleteReply(int cno) {
+		return commentDao.deleteCmt(cno);
+	}
+
 }
