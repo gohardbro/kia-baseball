@@ -344,7 +344,6 @@ body {
 					nickname : nickname_input
 				},
 				success : function(cnt) {
-					console.log(cnt);
 					if (cnt == 0) { /* cnt = DB에 해당닉네임 개수 */
 						$(".nickname_feedback_valid").text("사용가능한 닉네임 입니다.");
 						$(".nickname").removeClass("is-invalid");
@@ -491,7 +490,6 @@ body {
 					}
 					if (classSearch[0] != -1 && classSearch[1] != -1) {
 						$(".usermodify_password_form").submit();
-						console.log("서브밋까진 성공");
 
 					} else {
 						alert("비밀번호 변경실패!");
@@ -511,7 +509,6 @@ body {
 
 					if (classSearch != -1) {
 						$(".usermodify_phoneNumber_form").submit();
-						console.log("서브밋까진 성공");
 
 					} else {
 						alert("휴대폰번호 변경실패!");

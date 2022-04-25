@@ -158,7 +158,6 @@ select, option {
 	
 	function submitAlert(){
 		const inquryMsg = "${inquryMsg}";
-		console.log(inquryMsg);
 		if(inquryMsg != null){
 			alert("문의를 등록했습니다.");
 		}else{

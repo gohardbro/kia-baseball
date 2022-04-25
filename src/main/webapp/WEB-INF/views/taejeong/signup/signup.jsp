@@ -241,7 +241,6 @@
 				});
 
 				var id = $(".email_input").val();
-				console.log(id);
 
 				$.ajax({
 					type : "POST",
@@ -393,7 +392,6 @@
 							&& classSearch[2] != -1 && classSearch[3] != -1 
 							&& classSearch[4] != -1 && classSearch[5] != -1) {
 						$("#signup_Form").submit();
-						console.log("서브밋까진 성공");
 
 					} else {
 						alert("회원가입실패");

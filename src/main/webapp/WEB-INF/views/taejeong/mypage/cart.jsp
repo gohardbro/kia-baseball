@@ -300,11 +300,7 @@ select, option {
 				var username = response[cartInfo[0]].username;
 				var phone = response[cartInfo[0]].phone;
 
-				console.log(buyer);
-				console.log(username);
-				console.log(phone);
-				console.log(uniformName);
-				console.log(total);
+				
 
 				iamportAPI(buyer, username, phone, uniformName, total, info);
 			},
@@ -377,7 +373,6 @@ select, option {
 				msg += '카드 승인번호 : ' + rsp.apply_num;
 				var info = rsp.custom_data;
 				for (var i = 0; i < info.length; i++) {
-					console.log("결제완료된 UNIFORM_NO : " + info[i]);
 
 					$.ajax({
 						type : "POST",

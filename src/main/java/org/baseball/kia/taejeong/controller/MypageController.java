@@ -205,7 +205,6 @@ public class MypageController {
 		/* 결제완료한 상품 정보 불러오기*/
 		tUniformVo.setUniformNo(uniformNo);
 		TUniformVo productInfo = tUniformService.getInfoByUniformNo(tUniformVo);
-		System.out.println(productInfo.toString()); /*지우기*/
 		
 		/* 결제완료한 상품 불러온 정보를 이용해서 재고 업데이트*/
 		tUniformService.updateSizeCount(productInfo);
