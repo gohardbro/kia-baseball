@@ -39,7 +39,7 @@ public class GoodsController {
 		UniformInfoVo vo = uniInfoService.goodsInfo(no);
 		model.addAttribute("uniInfo", vo);
 
-		model.addAttribute("plyer", playerService.getPlayerNo());
+		model.addAttribute("player", playerService.getPlayerNo());
 
 		return "yg/goods/info";
 	}
