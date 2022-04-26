@@ -50,9 +50,9 @@ public class UniformInfoController {
 	@RequestMapping(value = "/admin/uniformInfo/update", method = RequestMethod.POST)
 	public String uniformInfoUpdatePostHandle(@ModelAttribute UniformInfoVo vo, @RequestParam MultipartFile attach) { // 유니폼 정보 수정
 		if (uniformInfoService.updateUniformInfo(vo, attach)) {
-			return "redirect: /subin/admin/uniformInfo";
+			return "redirect: /admin/uniformInfo";
 		} else {
-			return "redirect: /subin/admin/uniformInfo/update?uniInfoNo=" + vo.getUniInfoNo();
+			return "redirect: /admin/uniformInfo/update?uniInfoNo=" + vo.getUniInfoNo();
 		}
 	}
 
@@ -66,18 +66,18 @@ public class UniformInfoController {
 	@RequestMapping(value = "/admin/uniformInfo/insert", method = RequestMethod.POST)
 	public String uniformInfoInsertPostHandle(@ModelAttribute UniformInfoVo vo, @RequestParam MultipartFile attach) { // 유니폼 정보 등록
 		if (uniformInfoService.insertUniformInfo(vo, attach)) {
-			return "redirect: /subin/admin/uniformInfo";
+			return "redirect: /admin/uniformInfo";
 		} else {
-			return "redirect: /subin/admin/uniformInfo/insert";
+			return "redirect: /admin/uniformInfo/insert";
 		}
 	}
 
 	@RequestMapping(value = "/admin/uniformInfo/delete")
 	public String uniformInfoDeletePostHandle(@RequestParam int uniInfoNo) { // 유니폼 정보 삭제
 		if (uniformInfoService.deleteUniformInfo(uniInfoNo)) {
-			return "redirect: /subin/admin/uniformInfo";
+			return "redirect: /admin/uniformInfo";
 		} else {
-			return "redirect: /subin/admin/uniformInfo/update?uniInfoNo=" + uniInfoNo;
+			return "redirect: /admin/uniformInfo/update?uniInfoNo=" + uniInfoNo;
 		}
 	}
 }
