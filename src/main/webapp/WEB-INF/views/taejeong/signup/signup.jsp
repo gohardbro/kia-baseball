@@ -249,9 +249,9 @@
 						email : id,
 					},
 					success : function(res) {
+						$.LoadingOverlay("hide"); /* 로딩이미지 숨김 */
 						alert("인증키 메일전송완료");
 						console.log(res);
-						$.LoadingOverlay("hide"); /* 로딩이미지 숨김 */
 						
 						$("#reqOk").click(function() {
 							var written_authKey = $(".authKey_input").val()
