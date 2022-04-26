@@ -29,4 +29,10 @@
 	<update id="updateReportById"> <!-- 신고계정 차단 설정 --> 
 		UPDATE ACCOUNT SET REPORT = 'Y' WHERE ID = #{id}
 	</update>
+
+	<update id="updateNoReportById"> <!-- 신고계정 차단 취소 설정 --> 
+		UPDATE ACCOUNT SET REPORT = 'N' WHERE ID = #{id}
+	</update>
+	
+	
 </mapper>
