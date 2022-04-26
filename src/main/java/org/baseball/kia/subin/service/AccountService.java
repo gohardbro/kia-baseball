@@ -32,4 +32,8 @@ public class AccountService {
 		}
 		return accountDao.updateReportById(id) == 1;
 	}
+
+	public boolean noReportAccount(String id) { // 신고 취소
+		return accountDao.updateNoReportById(id) == 1;
+	}
 }
