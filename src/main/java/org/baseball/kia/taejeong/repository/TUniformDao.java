@@ -32,4 +32,8 @@ public class TUniformDao {
 	public int updateSizeCount(TUniformVo tUniformVo) {
 		return sqlSession.update("tUniform.updateSizeCount", tUniformVo);
 	}
+	
+	public int deleteRowByUniformNo(TUniformVo tUniformVo) {
+		return sqlSession.delete("tUniform.deleteRowByUniformNo", tUniformVo);
+	}
 }

@@ -210,6 +210,18 @@ public class MypageController {
 		tUniformService.updateSizeCount(productInfo);
 		return "redirect:/mypage";
 	}
+	
+	/* 장바구니 상품제거 */
+	@RequestMapping("/cart/delete")
+	public String cartDeleteHandle(@ModelAttribute TUniformVo tUniformVo, HttpSession httpSession) {
+		AccountVo loginUserVo = (AccountVo) httpSession.getAttribute("loginUser");
+		tUniformVo.setBuyer(loginUserVo.getId()); 
+		
+		/*uniformNo 와 buyer에 해당하는 상품 삭제*/
+		int r = tUniformService.deleteCartItem(tUniformVo);
+		
+		return "redirect:/cart";
+	}
 
 }
 

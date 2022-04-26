@@ -142,6 +142,9 @@ select, option {
 .link:hover{
 	color: #007BFF;
 }
+.deleteBtn {
+	margin-left: 35px;
+}
 </style>
 
 <div class="row" style="margin: 0px;">
@@ -207,6 +210,7 @@ select, option {
 													</c:if>
 												</select>
 												개
+												<a class="deleteBtn" href="/cart/delete?uniformNo=${uniformCartList.uniformNo }"><img src="/images/delete-cart-item.svg" style="width:20px; height:20px;"></a>
 												<div class="direct direct${uniformCartList.uniformNo }" data-no="${uniformCartList.uniformNo }">
 													<input type="number" class="selectboxInput" name="selectboxInput" min="1" max="99"/>
 													<button type="button" class="addOptionBtn">수량 변경</button>
@@ -236,6 +240,15 @@ select, option {
 </div>
 
 <script>
+
+	/* 장바구니 상품제거 */
+	$(".deleteBtn").click(function(){
+		var uniformNo = $(this).prev("select").data("no");
+		console.log(uniformNo);
+	});
+	
+	
+	
 	
 	
 	/* 수량변경 입력키 숫자외엔 입력안되게 */
