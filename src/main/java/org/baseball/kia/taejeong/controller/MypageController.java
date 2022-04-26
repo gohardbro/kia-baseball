@@ -107,7 +107,7 @@ public class MypageController {
 		AccountVo loginUserVo = (AccountVo) httpSession.getAttribute("loginUser");
 		tUniformVo.setBuyer(loginUserVo.getId());
 		List<TUniformVo> list = tUniformService.getAllByBuyer(tUniformVo);
-
+		
 		model.addAttribute("uniformList", list);
 
 		return "taejeong/mypage/purchaseHistory";
