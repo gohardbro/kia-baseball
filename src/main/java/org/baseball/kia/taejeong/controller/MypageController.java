@@ -74,6 +74,9 @@ public class MypageController {
 			model.addAttribute("cancelDate" + (i++), df.format(calender.getTime()));
 		}
 		model.addAttribute("ticketList", list);
+		
+		/* 기간별조회 버튼 active */
+		model.addAttribute("activeBtn", baseballVo.getPeriodBtn()); 
 
 		return "taejeong/mypage/mypageTicket";
 	}
@@ -109,6 +112,9 @@ public class MypageController {
 		List<TUniformVo> list = tUniformService.getAllByBuyer(tUniformVo);
 		
 		model.addAttribute("uniformList", list);
+		
+		/* 기간별조회 버튼 active */
+		model.addAttribute("activeBtn2", tUniformVo.getPeriodBtn()); 
 
 		return "taejeong/mypage/purchaseHistory";
 	}
@@ -142,6 +148,8 @@ public class MypageController {
 		inquiryVo.setWriter(loginUserVo.getId());
 		List<InquiryVo> list = inquiryService.getHistory(inquiryVo);
 		model.addAttribute("historyList", list);
+		/* 기간별조회 버튼 active */
+		model.addAttribute("activeBtn3", inquiryVo.getPeriodBtn()); 
 
 		return "taejeong/mypage/inquiryHistory";
 	}

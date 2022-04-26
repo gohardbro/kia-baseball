@@ -73,6 +73,7 @@ td {
 	font-size: 13px;
 	text-align: center;
 	padding: 10px 0px;
+	vertical-align: middle;
 }
 
 .divider {
@@ -99,7 +100,7 @@ select, option {
 }
 
 .main_wrapper {
-	padding: 38px 39px 100px;
+	padding: 55px 39px 100px;
 }
 
 .checkbox {
@@ -112,9 +113,13 @@ select, option {
 }
 .namePart {
 	border-bottom: 1px solid #e3e3e3;
+	padding: 10px 0 15px;
 }
 .totalPriceOption, .namePart{
 	margin: 7px; 0;
+}
+.totalPriceOption{
+	padding-left: 60px;
 }
 .addOptionBtn {
 	width: 65px;
@@ -143,7 +148,14 @@ select, option {
 	color: #007BFF;
 }
 .deleteBtn {
-	margin-left: 35px;
+	padding-right: 50px;
+	float: right;
+}
+a {
+	border: none;
+}
+.price{
+	color: #888888;
 }
 </style>
 
@@ -165,7 +177,7 @@ select, option {
 					<div>
 						<table>
 							<colgroup>
-								<col style="width: 70px;">
+								<col style="width: 90px;">
 								<col style="width: 150px;">
 								<col>
 								<col style="width: 130px;">
@@ -183,7 +195,7 @@ select, option {
 								<c:forEach items="${uniformCartList }" var="uniformCartList" varStatus="status">
 									<tr>
 										<td><input type="checkbox" class="checkbox checkbox${uniformCartList.uniformNo }" name="chkList" value="${uniformCartList.price * uniformCartList.uniCnt }" data-unino="${uniformCartList.uniformNo }"></td>
-										<td><a href="/info?uniInfoNo=${uniformCartList.uniInfoNo }" class="link"><img src="images/uniform/${uniformCartList.uniformImg }" style="width:100px; height:100px;"></a></td>
+										<td><a href="/info?uniInfoNo=${uniformCartList.uniInfoNo }" class="link"><img src="images/uniform/${uniformCartList.uniformImg }" style="width:90px; height:90px;"></a></td>
 										<td class="productBox">
 											<div class="namePart">
 												<a href="/info?uniInfoNo=${uniformCartList.uniInfoNo }" class="link">
@@ -474,11 +486,6 @@ select, option {
 
 			});
 
-	
-	$(".btn-outline-secondary").click(function() {
-		$(".btn-outline-secondary").removeClass("active");
-		$(this).addClass("active");
-	});
 
 	/* 체크박스 전체선택 */
 	function checkAll() {
