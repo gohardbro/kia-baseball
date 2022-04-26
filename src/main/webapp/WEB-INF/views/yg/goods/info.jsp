@@ -45,7 +45,7 @@
 					<th>등번호 + 선수이름</th>
 					<td><select name="playerNo">
 							<c:forEach var="player" items="${player }">
-								<option>${player.no } + ${player.name }</option>
+								<option value=${player.no }>${player.no } ${ player.name }</option>
 							</c:forEach>
 					</select></td>
 				</tr>

@@ -12,11 +12,12 @@
 	<div class="container">
 		<form name="update" method="post" enctype="multipart/form-data"
 			action="${path }/update">
-			<input type="hidden" name="boardNo" value="${one.boardNo}"/>
+			<input type="hidden" name="boardNo" value="${one.boardNo}" />
 			<table border="1">
 				<tr>
 					<td bgcolor="orange" width="70">제목</td>
-					<td align="left"><input type="text" name="title" value="${one.title }"/></td>
+					<td align="left"><input type="text" name="title"
+						value="${one.title }" /></td>
 				</tr>
 				<tr>
 					<td bgcolor="orange">작성자</td>
@@ -36,28 +37,15 @@
 					<td align="left">${one.views }</td>
 				</tr>
 				<tr>
-					<td bgcolor="orange">첨부파일 목록</td>
-					<td><c:forEach var="file" items="${file }">
-							<a class="downlink" id="${file.boardNo }"
-								href="${file.fileName }">${file.fileName }</a>
-							<button type="button" onclick="deleteFile('${file.boardNo }');">삭제</button>
-							<br>
-						</c:forEach></td>
-				</tr>
-				<tr>
 					<td bgcolor="orange" width="70">업로드</td>
 					<td align="left"><input type="file" name="uploadFiles"
 						multiple="multiple"></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center"><input type="submit"
-						value="글 수정"></td>
+						value="글 수정"><input type="button" onclick="location.href='/boardview?boardNo=${one.boardNo }'" value="취소"></td>
 				</tr>
 			</table>
-			<div>
-				<input type="submit" class="btn btn-outing-info" value="완료" /> <input
-					type="reset" class="btn btn-outing-info" value="취소" />
-			</div>
 		</form>
 		<hr>
 	</div>
