@@ -100,7 +100,7 @@ public class BoardController {
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String boardDelete(@RequestParam("boardNo") int no) {
 		if (no > 0) {
-			boardService.boardCmtDelete(no);
+			boardService.boardDelete(no);
 		}
 		return "redirect:/free";
 	}

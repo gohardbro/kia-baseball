@@ -39,23 +39,7 @@
 				</td>
 			</tr>
 		</table>
-		<%-- <div>
-			<div class="w3-border w3-center w3-padding">
-				<c:choose>
-					<c:when test="${empty sessionScope.loginUser }">
-					추천 기능은 <button type="button" id="newLogin">
-							<b class="w3-text-blue">로그인</b>
-						</button> 후 사용 가능합니다.<br />
-						<i class="fa fa-heart" style="font-size: 16px; color: red"></i>
-						<span class="rec_count"></span>
-					</c:when>
-					<c:otherwise>
-								<button type="button" class="btn ${ltlike ==0 ? 'btn-light' : 'btn-danger'}" id="likebtn">좋아요</button>
-								<input type="hidden" id="likecheck" value="${ltlike }">
-					</c:otherwise>
-				</c:choose>
-			</div>
-		</div> --%>
+		
 	</form>
 	<div class="my-3 p-3 bg-white rounded shadow-sm"
 		style="padding-top: 10px">
@@ -113,9 +97,7 @@
 						if (result.length < 1) {
 							htmls = "등록된 댓글이 없습니다.";
 						} else {
-							$(result)
-									.each(
-											function() {
+							$(result).each(function() {
 												htmls += '<div class="media text-muted pt-3" id="commentNo' + this.commentNo + '">';
 
 												htmls += '<p class="media-body pb-3 mb-0 small lh-125 border-bottom horder-gray">';
@@ -125,9 +107,9 @@
 												htmls += '<strong class="text-gray-dark">'
 														+ this.writer
 														+ '</strong>';
-
+												
 												htmls += '<span style="padding-left: 7px; font-size: 9pt">';
-
+												
 												htmls += '<a href="javascript:void(0)" onclick="fn_updateCmt('
 														+ this.commentNo
 														+ ', \''
@@ -141,7 +123,7 @@
 														+ ')" >삭제</a>';
 
 												htmls += '</span>';
-
+												
 												htmls += '</span>';
 
 												htmls += this.content;
@@ -167,7 +149,7 @@
 		var paramData = JSON.stringify({
 			"content" : cmtContent,
 			"writer" : cmtWriter,
-			"boardNo" : '${board.boardNo}'
+			"boardNo" : ${board.boardNo}
 		});
 
 		var headers = {
@@ -186,6 +168,7 @@
 				showReplyList();
 				$('#content').val('');
 				$('#writer').val('');
+				location.reload();
 			},
 			error : function(error) {
 				console.log("에러 : " + error);
@@ -245,7 +228,7 @@
 		};
 
 		$.ajax({
-			url : "${pageContext.request.contextPath}/boardviewCtr/updateCmt",
+			url : "/boardviewCtr/updateCmt",
 			headers : headers,
 			data : paramData,
 			type : 'POST',
@@ -266,7 +249,7 @@
 		};
 
 		$.ajax({
-			url : '${pageContext.request.contextPath}/boardviewCtr/deleteCmt',
+			url : '/boardviewCtr/deleteCmt',
 			data : paramData,
 			type : 'POST',
 			dataType : 'text',
