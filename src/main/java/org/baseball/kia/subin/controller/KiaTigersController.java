@@ -21,13 +21,13 @@ public class KiaTigersController {
 	CalendarService calendarService;
 	
 	@RequestMapping({"/kiaTigers", "/kiaTigers/intro"})
-	public String ScheduleHandle(Model model) { // 경기일정 페이지
+	public String ScheduleHandle(Model model) { // 팀소개 페이지
 		model.addAttribute("menu", "intro");
 		return "/yg/introteam";
 	}
 	
 	@RequestMapping("/kiaTigers/calendar")
-	public String calendarHandle(Model model) {
+	public String calendarHandle(Model model) { // 경기일정 페이지
 		model.addAttribute("menu", "schedule");
 		return "/subin/kiaTigers/calendar";
 	}
