@@ -236,6 +236,8 @@ select, option {
 </div>
 
 <script>
+	
+	
 	/* 수량변경 입력키 숫자외엔 입력안되게 */
 	$(".selectboxInput").on("keydown", function(e) {
 	    if(!((e.keyCode > 95 && e.keyCode < 106) || (e.keyCode > 47 && e.keyCode < 58) || e.keyCode == 8 || e.keyCode == 9)) {
@@ -421,6 +423,12 @@ select, option {
 		var regexp = /\B(?=(\d{3})+(?!\d))/g;
 		return num.toString().replace(regexp, ',');
 	}
+	
+	/* 장바구니 화면출력시 셀렉트 변경효과 줘야지 토탈가격 db에 저장됨*/
+	$(function() { // 페이지 로딩시 자동 실행
+		$(".selectbox").change();
+	});
+	
 
 	/* 셀렉트박스 바뀔때마다 db에 가격바로 저장 */
 	$(".selectbox").change(
