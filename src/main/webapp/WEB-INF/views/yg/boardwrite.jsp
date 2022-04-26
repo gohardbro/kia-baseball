@@ -18,7 +18,7 @@
 				</tr>
 				<tr>
 					<td bgcolor="orange">작성자</td>
-					<td align="left"><input type="text" name="writer" size="10"></td>
+					<td align="left">${loginUser.id }<input type="hidden" id="writer" name="writer" value="${loginUser.id }"></td>
 				</tr>
 				<tr>
 					<td bgcolor="orange">내용</td>

@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
+import org.baseball.kia.taejeong.entity.AccountVo;
 import org.baseball.kia.yg.entity.CommentVo;
 import org.baseball.kia.yg.entity.LikeVo;
 import org.baseball.kia.yg.service.CommentService;
