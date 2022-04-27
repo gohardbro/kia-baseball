@@ -47,10 +47,7 @@ img.gl-logo {
 #h2 {
 	margin-bottom: 100px;
 }
-
-.wbox {
-	heigth: 500px;
-}
+ 
 </style>
 </head>
 <body>
@@ -78,9 +75,9 @@ img.gl-logo {
 			<section>
 				<div class="row">
 					<div class="col-sm-4">
-						<div class="container">
-							<div class="shadow p-4 mb-4 bg-white">
-
+						<div class="container"style="heigth:200px;" >
+							<div class="shadow p-4 mb-4 bg-white" >
+								<!-- 왼쪽 col -->
 								<!-- 예매하실 경기 정보 -->
 								<input type="hidden" class="gameDate"
 									value="${oneGame.gameDate }">
