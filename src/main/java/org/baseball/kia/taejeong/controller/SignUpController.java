@@ -63,7 +63,8 @@ public class SignUpController {
 
 		return "redirect:/login";
 	}
-
+	
+	//이메일 인증키 발송
 	@RequestMapping("/signup/auth")
 	@ResponseBody
 	public String authHandle(@RequestParam String email) {
