@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
+import org.baseball.kia.taejeong.entity.AccountVo;
 import org.baseball.kia.yg.entity.CommentVo;
 import org.baseball.kia.yg.entity.LikeVo;
 import org.baseball.kia.yg.service.CommentService;
@@ -31,9 +34,11 @@ public class RestBoardController {
 	}
 
 	@RequestMapping(value = "/insertCmt", method = RequestMethod.POST)
-	public Map<String, Object> insertCmt(@RequestBody CommentVo vo) throws Exception {
+	public Map<String, Object> insertCmt(@RequestBody CommentVo vo, HttpSession httpSession) throws Exception {
 		Map<String, Object> result = new HashMap<>();
+		AccountVo loginUserVo = (AccountVo) httpSession.getAttribute("loginUser");
 		try {
+			vo.setWriter(loginUserVo.getId());
 			commentService.insertCmt(vo);
 			result.put("status", "OK");
 		} catch (Exception e) {
