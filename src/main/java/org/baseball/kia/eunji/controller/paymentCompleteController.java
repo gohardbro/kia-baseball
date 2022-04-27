@@ -33,17 +33,4 @@ public class paymentCompleteController {
 		
 		return "ticket/paymentResult";
 	}
-	
-	
-	
-	
-	
-	  //test
-	  @GetMapping("/progress/payment") 
-	  public String paymenetComplete2(@ModelAttribute BuyerInfoVo info, Model model) {
-	   
-		  return "/ticket/paymentResult"; 
-	  }
-	  
-
 }
