@@ -22,8 +22,8 @@ public class AccountService {
 		return accountDao.selectByType(page);
 	}
 	
-	public int selectAccountCnt() { // 회원수 조회
-		return accountDao.selectAccountCnt();
+	public int selectAccountCnt(String type) { // 회원수 조회
+		return accountDao.selectAccountCnt(type);
 	}
 
 	public boolean reportAccount(String id) { // 신고계정 차단 설정 + 기존 게시물 삭제

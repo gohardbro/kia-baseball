@@ -22,8 +22,8 @@ public class AccountDao {
 		return sqlSession.update("account.updateReportById", id);
 	}
 	
-	public int selectAccountCnt() { // 회원수 조회
-		return sqlSession.selectOne("account.selectAccountCnt");
+	public int selectAccountCnt(String type) { // 회원수 조회
+		return sqlSession.selectOne("account.selectAccountCnt", type);
 	}
 
 	public int updateNoReportById(String id) { // 신고계정 차단 취소 설정

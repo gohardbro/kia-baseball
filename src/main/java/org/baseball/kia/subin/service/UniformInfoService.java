@@ -26,8 +26,8 @@ public class UniformInfoService {
 		return uniformInfoDao.selectUniformInfo(page);
 	}
 	
-	public int selectUniformInfoCnt() { // 유니폼 검색 결과 개수
-		return uniformInfoDao.selectUniformInfoCnt();
+	public int selectUniformInfoCnt(UniformInfoPage page) { // 유니폼 검색 결과 개수
+		return uniformInfoDao.selectUniformInfoCnt(page);
 	}
 	
 	public UniformInfoVo selectUniformInfoOne(int uniInfoNo) { // 유니폼 상세정보 조회

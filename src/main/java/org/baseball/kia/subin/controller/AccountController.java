@@ -14,7 +14,7 @@ public class AccountController {
 
 	@Autowired
 	AccountService accountService;
-	
+
 	@RequestMapping(value = "/admin")
 	public String adminHandle(Model model) { // 계정 관리 페이지 호출
 		model.addAttribute("menu", "account");
@@ -23,7 +23,7 @@ public class AccountController {
 
 	@RequestMapping(value = "/admin/account")
 	public String adminAccountHandle(Model model, @ModelAttribute AccountPage page) { // 타입별 계정 정보 조회
-		page.setTotalList(accountService.selectAccountCnt()); // 타입별 회원수
+		page.setTotalList(accountService.selectAccountCnt(page.getType())); // 타입별 회원수
 		page.setAccountList(accountService.selectAccountByType(page)); // 검색된 회원 정보 리스트
 		model.addAttribute("page", page);
 		return "/subin/admin/account-list";
@@ -34,16 +34,16 @@ public class AccountController {
 		accountService.reportAccount(id);
 		return "redirect: /admin";
 	}
-	
+
 	@RequestMapping(value = "/admin/account/noReport")
 	public String adminAccountNoReportHandle(@RequestParam String id) { // 신고 계정 차단 취소 설정
 		accountService.noReportAccount(id);
 		return "redirect: /admin";
 	}
-	
-	@RequestMapping(value = "/admin/account/page")
-	public String pageHandle(@RequestParam AccountPage page, Model model) { // 페이지 정보
-		model.addAttribute("page", page);
-		return "/subin/admin/include/page";
-	}
+
+//	@RequestMapping(value = "/admin/account/page")
+//	public String pageHandle(@RequestParam AccountPage page, Model model) { // 페이지 정보
+//		model.addAttribute("page", page);
+//		return "/subin/admin/include/page";
+//	}
 }
