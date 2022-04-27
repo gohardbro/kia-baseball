@@ -35,6 +35,7 @@
 					<button type="button"
 						onClick="location.href='/delete?no=${board.boardNo }'">글
 						삭제</button>
+					<button type="button" onClick="location.href='/free'">글목록</button>
 				</td>
 			</tr>
 		</table>
@@ -84,104 +85,110 @@
 </div>
 
 <script>
-
-	$(document).ready(function(){
+	$(document).ready(function() {
 		showReplyList();
 	});
-	
+
 	function showReplyList() {
 		var url = "${pageContext.request.contextPath}/boardviewCtr/getCmtList";
 		var paramData = {
 			"boardNo" : "${board.boardNo}"
 		};
-		$.ajax({
-            type: 'POST',
-            url: url,
-            data: paramData,
-            dataType: 'json',
+		$
+				.ajax({
+					type : 'POST',
+					url : url,
+					data : paramData,
+					dataType : 'json',
 
-            success: function(result) {
-               	var htmls = "";
-				if(result.length < 1){
-					htmls="등록된 댓글이 없습니다.";
-				} else {
-					$(result).each(function() {
-							htmls += '<div class="media text-muted pt-3" id="commentNo' + this.commentNo + '">';
-	
-							htmls += '<p class="media-body pb-3 mb-0 small lh-125 border-bottom horder-gray">';
-	
-							htmls += '<span class="d-block">';
-	
-							htmls += '<strong class="text-gray-dark">'
-										+ this.writer
-										+ '</strong>';
-	
-							htmls += '<span style="padding-left: 7px; font-size: 9pt">';
-	
-							htmls += '<a href="javascript:void(0)" onclick="fn_updateCmt('
-										+ this.commentNo
-										+ ', \''
-										+ this.writer
-										+ '\', \''
-										+ this.content
-										+ '\' )" style="padding-right:5px">수정</a>';
-	
-							htmls += '<a href="javascript:void(0)" onclick="fn_deleteCmt('
-										+ this.commentNo
-										+ ')" >삭제</a>';
-	
-							htmls += '</span>';
-	
-							htmls += '</span>';
-	
-							htmls += this.content;
-							
-							htmls += '<br/>' + this.writeDate;
-	
-							htmls += '</p>';
-	
-							htmls += '</div>';
-							}); 
+					success : function(result) {
+						var htmls = "";
+						if (result.length < 1) {
+							htmls = "등록된 댓글이 없습니다.";
+						} else {
+							$(result)
+									.each(
+											function() {
+												htmls += '<div class="media text-muted pt-3" id="commentNo' + this.commentNo + '">';
 
-					}
+												htmls += '<p class="media-body pb-3 mb-0 small lh-125 border-bottom horder-gray">';
+
+												htmls += '<span class="d-block">';
+
+												htmls += '<strong class="text-gray-dark">'
+														+ this.writer
+														+ '</strong>';
+
+												htmls += '<span style="padding-left: 7px; font-size: 9pt">';
+
+												htmls += '<a href="javascript:void(0)" onclick="fn_updateCmt('
+														+ this.commentNo
+														+ ', \''
+														+ this.writer
+														+ '\', \''
+														+ this.content
+														+ '\' )" style="padding-right:5px">수정</a>';
+
+												htmls += '<a href="javascript:void(0)" onclick="fn_deleteCmt('
+														+ this.commentNo
+														+ ')" >삭제</a>';
+
+												htmls += '</span>';
+
+												htmls += '</span>';
+
+												htmls += this.content;
+
+												htmls += '<br/>'
+														+ this.writeDate;
+
+												htmls += '</p>';
+
+												htmls += '</div>';
+											});
+
+						}
 
 						$("#commentList").html(htmls);
-				} 
-			});
-		}
-	
-	$(document).on('click', '#insetCmt_btn', function(){
+					}
+				});
+	}
+
+	$(document).on('click', '#insetCmt_btn', function() {
 		var cmtContent = $('#content').val();
 		var cmtWriter = $('#writer').val();
-		
-		var paramData = JSON.stringify({"content": cmtContent
-				, "writer": cmtWriter
-				, "boardNo":'${board.boardNo}'
+
+		var paramData = JSON.stringify({
+			"content" : cmtContent,
+			"writer" : cmtWriter,
+			"boardNo" : '${board.boardNo}'
 		});
 
-		var headers = {"Content-Type" : "application/json"
-				, "X-HTTP-Method-Override" : "POST"};
+		var headers = {
+			"Content-Type" : "application/json",
+			"X-HTTP-Method-Override" : "POST"
+		};
 
 		$.ajax({
 
-			url: "${pageContext.request.contextPath}/boardviewCtr/insertCmt"
-			, headers : headers
-			, data : paramData
-			, type : 'POST'
-			, dataType : 'text'
-			, success: function(result){
+			url : "${pageContext.request.contextPath}/boardviewCtr/insertCmt",
+			headers : headers,
+			data : paramData,
+			type : 'POST',
+			dataType : 'text',
+			success : function(result) {
 				showReplyList();
-				
+
 				$('#content').val('');
 				$('#writer').val('');
-			}
-			, error: function(error){
+			},
+			error : function(error) {
 				console.log("에러 : " + error);
 			}
 		});
 	});
-	
-	function fn_updateCmt(commentNo, writer, content){
+
+	function fn_updateCmt(commentNo, writer, content) {
 
 		var htmls = "";
 
@@ -195,76 +202,83 @@
 
 		htmls += '<span style="padding-left: 7px; font-size: 9pt">';
 
-		htmls += '<a href="javascript:void(0)" onclick="fn_saveCmt(' + commentNo + ', \'' + writer + '\')" style="padding-right:5px">저장</a>';
+		htmls += '<a href="javascript:void(0)" onclick="fn_saveCmt('
+				+ commentNo + ', \'' + writer
+				+ '\')" style="padding-right:5px">저장</a>';
 
 		htmls += '<a href="javascript:void(0)" onClick="showReplyList()">취소<a>';
 
 		htmls += '</span>';
 
-		htmls += '</span>';		
+		htmls += '</span>';
 
 		htmls += '<textarea name="editContent" id="editContent" class="form-control" rows="3">';
 
 		htmls += content;
 
 		htmls += '</textarea>';
-		
+
 		htmls += '</p>';
-		
+
 		htmls += '</div>';
 
 		$('#commentNo' + commentNo).replaceWith(htmls);
 		$('#commentNo' + commentNo + ' #editContent').focus();
 	}
-	
-	function fn_saveCmt(commentNo, writer){
+
+	function fn_saveCmt(commentNo, writer) {
 		var cmtEditContent = $('#editContent').val();
 
-		var paramData = JSON.stringify({"content": cmtEditContent
-				, "commentNo": commentNo
+		var paramData = JSON.stringify({
+			"content" : cmtEditContent,
+			"commentNo" : commentNo
 		});
 
-		var headers = {"Content-Type" : "application/json"
-				, "X-HTTP-Method-Override" : "POST"};
+		var headers = {
+			"Content-Type" : "application/json",
+			"X-HTTP-Method-Override" : "POST"
+		};
 
 		$.ajax({
-			url: "${pageContext.request.contextPath}/boardviewCtr/updateCmt"
-			, headers : headers
-			, data : paramData
-			, type : 'POST'
-			, dataType : 'text'
-			, success: function(result){
-                console.log(result);
+			url : "${pageContext.request.contextPath}/boardviewCtr/updateCmt",
+			headers : headers,
+			data : paramData,
+			type : 'POST',
+			dataType : 'text',
+			success : function(result) {
+				console.log(result);
 				showReplyList();
-			}
-			, error: function(error){
+			},
+			error : function(error) {
 				console.log("에러 : " + error);
 			}
 		});
 	}
-	
-	function fn_deleteCmt(commentNo){
-		var paramData = {"commentNo": commentNo};
+
+	function fn_deleteCmt(commentNo) {
+		var paramData = {
+			"commentNo" : commentNo
+		};
 
 		$.ajax({
-			url: '${pageContext.request.contextPath}/boardviewCtr/deleteCmt'
-			, data : paramData
-			, type : 'POST'
-			, dataType : 'text'
-			, success: function(result){
+			url : '${pageContext.request.contextPath}/boardviewCtr/deleteCmt',
+			data : paramData,
+			type : 'POST',
+			dataType : 'text',
+			success : function(result) {
 				showReplyList();
-			}
-			, error: function(error){
+			},
+			error : function(error) {
 				console.log("에러 : " + error);
 			}
 		});
 	}
-	
-	$('#likebtn').click(function(){
+
+	$('#likebtn').click(function() {
 		likeupdate();
 	});
-	
-	function likeupdate(){
+
+	function likeupdate() {
 		var paramData = JSON.stringify({
 			idLike : $('#id').val(),
 			boardNoLike : $('#boardNo').val(),
@@ -274,23 +288,24 @@
 		$.ajax({
 			url : '/boardviewCtr/likeupdate',
 			type : 'POST',
-			contentType: 'application/json',
+			contentType : 'application/json',
 			data : paramData,
-			success : function(result){
+			success : function(result) {
 				console.log("수정" + result.result);
-				if($('#likecheck').val() == 0){
+				if ($('#likecheck').val() == 0) {
 					console.log("좋아요 취소");
-					 $('#likecheck').val(0);
-					 $('#likebtn').attr('class','btn btn-light');
-				}else if($('#likecheck').val() == 1){
+					$('#likecheck').val(0);
+					$('#likebtn').attr('class', 'btn btn-light');
+				} else if ($('#likecheck').val() == 1) {
 					console.log("좋아요!");
 					$('#likecheck').val(1);
-					$('#likebtn').attr('class','btn btn-danger');
+					$('#likebtn').attr('class', 'btn btn-danger');
 				}
-			}, error : function(result){
+			},
+			error : function(result) {
 				console.log("에러" + result.result)
 			}
-		
+
 		});
 	};
 </script>

@@ -74,6 +74,9 @@ public class MypageController {
 			model.addAttribute("cancelDate" + (i++), df.format(calender.getTime()));
 		}
 		model.addAttribute("ticketList", list);
+		
+		/* 기간별조회 버튼 active */
+		model.addAttribute("activeBtn", baseballVo.getPeriodBtn()); 
 
 		return "taejeong/mypage/mypageTicket";
 	}
@@ -107,8 +110,11 @@ public class MypageController {
 		AccountVo loginUserVo = (AccountVo) httpSession.getAttribute("loginUser");
 		tUniformVo.setBuyer(loginUserVo.getId());
 		List<TUniformVo> list = tUniformService.getAllByBuyer(tUniformVo);
-
+		
 		model.addAttribute("uniformList", list);
+		
+		/* 기간별조회 버튼 active */
+		model.addAttribute("activeBtn2", tUniformVo.getPeriodBtn()); 
 
 		return "taejeong/mypage/purchaseHistory";
 	}
@@ -142,6 +148,8 @@ public class MypageController {
 		inquiryVo.setWriter(loginUserVo.getId());
 		List<InquiryVo> list = inquiryService.getHistory(inquiryVo);
 		model.addAttribute("historyList", list);
+		/* 기간별조회 버튼 active */
+		model.addAttribute("activeBtn3", inquiryVo.getPeriodBtn()); 
 
 		return "taejeong/mypage/inquiryHistory";
 	}
@@ -209,6 +217,18 @@ public class MypageController {
 		/* 결제완료한 상품 불러온 정보를 이용해서 재고 업데이트*/
 		tUniformService.updateSizeCount(productInfo);
 		return "redirect:/mypage";
+	}
+	
+	/* 장바구니 상품제거 */
+	@RequestMapping("/cart/delete")
+	public String cartDeleteHandle(@ModelAttribute TUniformVo tUniformVo, HttpSession httpSession) {
+		AccountVo loginUserVo = (AccountVo) httpSession.getAttribute("loginUser");
+		tUniformVo.setBuyer(loginUserVo.getId()); 
+		
+		/*uniformNo 와 buyer에 해당하는 상품 삭제*/
+		int r = tUniformService.deleteCartItem(tUniformVo);
+		
+		return "redirect:/cart";
 	}
 
 }

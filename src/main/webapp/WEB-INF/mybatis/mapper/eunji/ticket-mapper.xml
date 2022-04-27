@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ticket">
+
+
+	<!-- ticketBuy.jsp 페이지 기준 mapper  -->
+
+
+
+	  <!-- zoneInfo 좌석요금표 table  --> 
+	<select id="seatPriceTable" resultType="baseballVo2">
+
+		SELECT * FROM BASEBALL_INFO
+
+	</select>
+
+
+
+	<!--ticketBuy 예매가능한 경기 목록 -->
+	<select id="showGameList" resultType="ticketVo">
+		select *  from ( select * from schedule
+		                 where (game_date between to_char(sysdate,'yyyy-mm-dd') and to_char(sysdate+6,'yyyy-mm-dd'))
+		                
+		                UNION
+		        
+		                (select * from schedule
+		                 where game_date = to_char(sysdate,'yyyy-MM-dd')
+		                 and sysdate between to_date('00:00', 'HH24:Mi') and to_date(game_time, 'HH24:Mi')+3/48 )) s
+		inner join team t on(s.rival = t.sponsor)
+		where home = 'Y'
+		order by game_date asc
+	</select>
+
+	
+	
+	
+
+</mapper>

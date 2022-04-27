@@ -24,9 +24,5 @@ public class TicketDao {
 		return sqlSession.selectList("ticket.showGameList");
 	}
 
-	// ticketDetail
-	public TicketVo selectGame(int no) {
-		return sqlSession.selectOne("ticket.selectGame", no);
-	}
-
+	
 }

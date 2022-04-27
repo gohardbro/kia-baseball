@@ -21,10 +21,11 @@ public class TicketContoller {
 
 	
 	  //예매 첫 화면 : zoneInfo
-	  
-	  @GetMapping("/ticket") public String ticketHome(Model model) {
+	  @GetMapping("/ticket") 
+	  public String ticketHome(Model model) {
 	  List<BaseballVo> list = ticketService.seatPriceTable();
-	  model.addAttribute("seat",list); model.addAttribute("menu","zoneInfo" );
+	  model.addAttribute("priceTable",list);
+	  model.addAttribute("menu","zoneInfo" );
 	  return "/ticket/zoneInfo"; }
 	 
 
@@ -37,14 +38,5 @@ public class TicketContoller {
 		return "/ticket/ticketBuy";
 	}
 
-	// ticketDetail (선택한 경기 정보 1건)
-	@RequestMapping("/ticketDetail")
-	public String selectGame(@RequestParam int scheduleNo, Model model) {
-		System.out.println("controller");
-		model.addAttribute("oneGame", ticketService.selectGame(scheduleNo));
-		model.addAttribute("menu", "ticketDetail");
-
-		return "/ticket/ticketDetail";
-	}
-
+	
 }

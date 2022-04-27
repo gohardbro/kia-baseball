@@ -132,7 +132,7 @@ select, option {
 					<div class="selectZone">
 						<form action="/purchaseHistory/searchByPeriod" method="get">
 							<div class="btn-group" role="group" aria-label="First group">
-								<strong>기간별 조회</strong>
+								<strong style="padding:8px 6px 7px;">기간별 조회</strong>
 								<button type="submit" class="btn btn-outline-secondary"
 									id="15dBtn" name="periodBtn" value="15d">15일</button>
 								<button type="submit" class="btn btn-outline-secondary"
@@ -171,7 +171,7 @@ select, option {
 
 					</div>
 					<div class="divider"></div>
-					<div>
+					<div style="margin-top: 20px;">
 						<table>
 							<colgroup>
 								<col style="width: 120px;">
@@ -190,9 +190,9 @@ select, option {
 							<tbody>
 								<c:forEach items="${uniformList }" var="uniformList">
 									<tr>
-										<td>${uniformList.buyDate }</td>
-										<td><a href="/info?uniInfoNo=${uniformCartList.uniInfoNo }" class="link"><img src="/images/uniform/${uniformList.uniformImg }" style="width:64px; height:64px;"></a></td>
-										<td><a href="/info?uniInfoNo=${uniformCartList.uniInfoNo }" class="link">${uniformList.uniformName }, ${uniformList.no }번,
+										<td>${uniformList.buyDate } </td>
+										<td><a href="/info?uniInfoNo=${uniformList.uniInfoNo }" class="link"><img src="/images/uniform/${uniformList.uniformImg }" style="width:64px; height:64px;"></a></td>
+										<td><a href="/info?uniInfoNo=${uniformList.uniInfoNo }" class="link">${uniformList.uniformName }, ${uniformList.no }번,
 											${uniformList.name }, ${uniformList.color }</a></td>
 										<td><fmt:formatNumber value="${uniformList.total }" pattern="#,###"/></td>
 									</tr>
@@ -200,6 +200,7 @@ select, option {
 							</tbody>
 						</table>
 					</div>
+					<span class="activeBtn" hidden="">${activeBtn2 }</span>
 
 				</div>
 			</div>
@@ -209,10 +210,25 @@ select, option {
 	<div class="column side" style="background-color: #f4f4f4;"></div>
 </div>
 <script>
-	$(".btn-outline-secondary").click(function() {
-		$(".btn-outline-secondary").removeClass("active");
-		$(this).addClass("active");
-	});
+	/* 화면출력시 기간별 조회 버튼 active */
+	$(function(){
+		var activeBtn = $(".activeBtn").text();
+		console.log(activeBtn);
+		if(activeBtn == "15d"){
+			$(".btn-outline-secondary").removeClass("active");
+			$("#15dBtn").addClass("active");
+		}else if(activeBtn =="1mon"){
+			$(".btn-outline-secondary").removeClass("active");
+			$("#1monBtn").addClass("active");
+		}else if(activeBtn =="2mon"){
+			$(".btn-outline-secondary").removeClass("active");
+			$("#2monBtn").addClass("active");
+		}else if(activeBtn =="4mon"){
+			$(".btn-outline-secondary").removeClass("active");
+			$("#4monBtn").addClass("active");
+		}
+		
+	}); 
 </script>
 
 

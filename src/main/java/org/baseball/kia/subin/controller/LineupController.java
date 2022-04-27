@@ -36,7 +36,7 @@ public class LineupController {
 		}
 
 		model.addAttribute("menu", "lineup");
-		return "redirect: /subin/admin/lineup";
+		return "redirect: /admin/lineup";
 	}
 
 	@ResponseBody

@@ -96,6 +96,7 @@ select, option {
 
 .titleZone {
 	border-bottom: 2px solid #999;
+	padding-top: 10px;
 }
 
 .main_wrapper {
@@ -123,7 +124,7 @@ select, option {
 					<div class="selectZone">
 						<form action="/ticket/searchByPeriod" method="get">
 							<div class="btn-group" role="group" aria-label="First group">
-								<strong>기간별 조회</strong>
+								<strong style="padding:8px 6px 7px;">기간별 조회</strong>
 								<button type="submit" class="btn btn-outline-secondary"
 									id="15dBtn" name="periodBtn" value="15d">15일</button>
 								<button type="submit" class="btn btn-outline-secondary"
@@ -165,13 +166,13 @@ select, option {
 
 					</div>
 					<div class="divider"></div>
-					<div>
+					<div style="margin-top: 20px;">
 						<table>
 							<colgroup>
 								<col style="width: 90px;">
-								<col>
-								<col style="width: 130px;">
-								<col style="width: 50px;">
+								<col style="width: 170px;">
+								<col style="width: 140px;">
+								<col style="width: 60px;">
 								<col style="width: 135px;">
 								<col style="width: 100px;">
 								<col style="width: 140px;">
@@ -195,7 +196,7 @@ select, option {
 											href="/ticket/ticketDetail?baseballNo=${ticketList.baseballNo }">${ticketList.baseballNo }</a></td>
 										<td>KIA Tigers vs ${ticketList.rival }</td>
 										<td><span class="gameDate">${ticketList.gameDate }</span>
-											<br>${ticketList.gameTime }</td>
+											${ticketList.gameTime }</td>
 										<td>${ticketList.buyerCnt }장</td>
 										<td>${ticketList.buyDate }</td>
 										<c:set var="cancelDate" value="cancelDate${status.index}" />
@@ -206,7 +207,8 @@ select, option {
 							</tbody>
 						</table>
 					</div>
-
+					<span class="activeBtn" hidden="">${activeBtn }</span>
+					
 				</div>
 			</div>
 		</div>
@@ -215,10 +217,25 @@ select, option {
 	<div class="column side" style="background-color: #f4f4f4;"></div>
 </div>
 <script>
-	$(".btn-outline-secondary").click(function() {
-		$(".btn-outline-secondary").removeClass("active");
-		$(this).addClass("active");
-	});
+	/* 화면출력시 기간별 조회 버튼 active */
+	$(function(){
+		var activeBtn = $(".activeBtn").text();
+		console.log(activeBtn);
+		if(activeBtn == "15d"){
+			$(".btn-outline-secondary").removeClass("active");
+			$("#15dBtn").addClass("active");
+		}else if(activeBtn =="1mon"){
+			$(".btn-outline-secondary").removeClass("active");
+			$("#1monBtn").addClass("active");
+		}else if(activeBtn =="2mon"){
+			$(".btn-outline-secondary").removeClass("active");
+			$("#2monBtn").addClass("active");
+		}else if(activeBtn =="4mon"){
+			$(".btn-outline-secondary").removeClass("active");
+			$("#4monBtn").addClass("active");
+		}
+		
+	}); 
 </script>
 
 

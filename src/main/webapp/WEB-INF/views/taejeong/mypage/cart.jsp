@@ -73,6 +73,7 @@ td {
 	font-size: 13px;
 	text-align: center;
 	padding: 10px 0px;
+	vertical-align: middle;
 }
 
 .divider {
@@ -99,7 +100,7 @@ select, option {
 }
 
 .main_wrapper {
-	padding: 38px 39px 100px;
+	padding: 55px 39px 100px;
 }
 
 .checkbox {
@@ -112,9 +113,13 @@ select, option {
 }
 .namePart {
 	border-bottom: 1px solid #e3e3e3;
+	padding: 10px 0 15px;
 }
 .totalPriceOption, .namePart{
 	margin: 7px; 0;
+}
+.totalPriceOption{
+	padding-left: 60px;
 }
 .addOptionBtn {
 	width: 65px;
@@ -142,6 +147,16 @@ select, option {
 .link:hover{
 	color: #007BFF;
 }
+.deleteBtn {
+	padding-right: 50px;
+	float: right;
+}
+a {
+	border: none;
+}
+.price{
+	color: #888888;
+}
 </style>
 
 <div class="row" style="margin: 0px;">
@@ -162,7 +177,7 @@ select, option {
 					<div>
 						<table>
 							<colgroup>
-								<col style="width: 70px;">
+								<col style="width: 90px;">
 								<col style="width: 150px;">
 								<col>
 								<col style="width: 130px;">
@@ -180,7 +195,7 @@ select, option {
 								<c:forEach items="${uniformCartList }" var="uniformCartList" varStatus="status">
 									<tr>
 										<td><input type="checkbox" class="checkbox checkbox${uniformCartList.uniformNo }" name="chkList" value="${uniformCartList.price * uniformCartList.uniCnt }" data-unino="${uniformCartList.uniformNo }"></td>
-										<td><a href="/info?uniInfoNo=${uniformCartList.uniInfoNo }" class="link"><img src="images/uniform/${uniformCartList.uniformImg }" style="width:100px; height:100px;"></a></td>
+										<td><a href="/info?uniInfoNo=${uniformCartList.uniInfoNo }" class="link"><img src="images/uniform/${uniformCartList.uniformImg }" style="width:90px; height:90px;"></a></td>
 										<td class="productBox">
 											<div class="namePart">
 												<a href="/info?uniInfoNo=${uniformCartList.uniInfoNo }" class="link">
@@ -207,6 +222,7 @@ select, option {
 													</c:if>
 												</select>
 												개
+												<a class="deleteBtn" href="/cart/delete?uniformNo=${uniformCartList.uniformNo }"><img src="/images/delete-cart-item.svg" style="width:20px; height:20px;"></a>
 												<div class="direct direct${uniformCartList.uniformNo }" data-no="${uniformCartList.uniformNo }">
 													<input type="number" class="selectboxInput" name="selectboxInput" min="1" max="99"/>
 													<button type="button" class="addOptionBtn">수량 변경</button>
@@ -236,6 +252,17 @@ select, option {
 </div>
 
 <script>
+
+	/* 장바구니 상품제거 */
+	$(".deleteBtn").click(function(){
+		var uniformNo = $(this).prev("select").data("no");
+		console.log(uniformNo);
+	});
+	
+	
+	
+	
+	
 	/* 수량변경 입력키 숫자외엔 입력안되게 */
 	$(".selectboxInput").on("keydown", function(e) {
 	    if(!((e.keyCode > 95 && e.keyCode < 106) || (e.keyCode > 47 && e.keyCode < 58) || e.keyCode == 8 || e.keyCode == 9)) {
@@ -421,6 +448,12 @@ select, option {
 		var regexp = /\B(?=(\d{3})+(?!\d))/g;
 		return num.toString().replace(regexp, ',');
 	}
+	
+	/* 장바구니 화면출력시 셀렉트 변경효과 줘야지 토탈가격 db에 저장됨*/
+	$(function() { // 페이지 로딩시 자동 실행
+		$(".selectbox").change();
+	});
+	
 
 	/* 셀렉트박스 바뀔때마다 db에 가격바로 저장 */
 	$(".selectbox").change(
@@ -453,11 +486,6 @@ select, option {
 
 			});
 
-	
-	$(".btn-outline-secondary").click(function() {
-		$(".btn-outline-secondary").removeClass("active");
-		$(this).addClass("active");
-	});
 
 	/* 체크박스 전체선택 */
 	function checkAll() {

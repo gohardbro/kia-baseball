@@ -26,11 +26,15 @@
 						pattern="yyyy-MM-dd" /></td>
 				<td>${ account.report eq 'N'? '정상': '차단' }</td>
 				<td>${ account.reportCnt  }</td>
-				<td><c:if
-						test="${ account.reportCnt >= 3 && account.report eq 'N'}">
+				<td><c:if test="${ account.reportCnt >= 3 && account.report eq 'N'}">
 						<a href="/admin/account/report?id=${ account.id }"
 							style="color: red;">차단</a>
-					</c:if></td>
+					</c:if>
+					<c:if test="${ account.report eq 'Y' }">
+						<a href="/admin/account/noReport?id=${ account.id }"
+							style="color: red;">취소</a>
+					</c:if>
+				</td>
 			</tr>
 		</c:forEach>
 	</tbody>

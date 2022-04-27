@@ -13,22 +13,33 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class NoticeController {
-	
+
 	@Autowired
 	NoticeService noticeService;
-	
+
 	@RequestMapping(value = "/announce", method = RequestMethod.GET)
 	public String announceHandle(Model model, Criteria cri) {
 		model.addAttribute("menu", "announce");
-		model.addAttribute("all", noticeService.getAll(cri));
-		
+		model.addAttribute("notice", noticeService.getAll(cri));
+
 		PagingVo pvo = new PagingVo();
 		pvo.setCri(cri);
 		pvo.setTotalCount(noticeService.listCount());
 
 		model.addAttribute("pvo", pvo);
-		
+
 		return "/yg/notice/announcement";
 	}
-	
+
+	@RequestMapping(value = "/noticeview", method = RequestMethod.GET)
+	public String boardView(@RequestParam("noticeNo") int no, Model model) {
+		noticeService.updateCnt(no);
+		NoticeVo vo = noticeService.getOneByNo(no);
+		if (vo == null) {
+			return "redirect:/announce";
+		}
+		model.addAttribute("notice", vo);
+
+		return "/yg/notice/noticeview";
+	}
 }
