@@ -16,9 +16,6 @@ public class BoardDao {
 	@Autowired
 	SqlSession sqlSession;
 
-	@Autowired
-	CommentDao commentDao;
-
 	public int insertOne(BoardVo vo) {
 		return sqlSession.insert("board.insertOne", vo);
 	}
@@ -48,7 +45,7 @@ public class BoardDao {
 		int cdel = 0;
 		bdel = sqlSession.delete("board.boardDelete", no);
 		if (bdel > 0) {
-			cdel = sqlSession.delete("comment.deleteBoardCmt", no);
+			cdel = sqlSession.delete("comment.deleteCmt", no);
 		}
 		Map<String, Integer> deleteMap = new HashMap<String, Integer>();
 		deleteMap.put("bdel", bdel);

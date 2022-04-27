@@ -18,7 +18,7 @@ public class HomeController {
 	@Autowired
 	HomeService homeService;
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		model.addAttribute("uniformTop10", homeService.selectUniformInfoTop10()); // 인기 유니폼 정보
 		model.addAttribute("boardHot5", homeService.selectBoardHot5());

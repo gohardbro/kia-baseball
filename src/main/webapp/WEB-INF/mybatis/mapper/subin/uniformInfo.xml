@@ -20,7 +20,7 @@
 		SELECT COUNT(*) FROM UNIFORM_INFO
 		<where>
 			<if test="uniformName != null">UNIFORM_NAME LIKE '%'||#{uniformName}||'%'</if>
-			<if test="color != null">COLOR = #{color}</if>
+			<if test="color != null">COLOR LIKE '%'||#{color}||'%'</if>
 		</where>
 	</select>
 	

@@ -26,7 +26,21 @@ public class UniformInfoController {
 
 	@RequestMapping(value = "/admin/uniformInfo/search")
 	public String uniformInfoSearchHandle(@ModelAttribute UniformInfoPage page, Model model) { // 유니폼 검색
-		page.setTotalList(uniformInfoService.selectUniformInfoCnt()); // 검색 결과 데이터 개수
+
+		if(!page.getUniformName().equals("")){
+			page.setColor(null);
+			page.setTotalList(uniformInfoService.selectUniformInfoCnt(page)); // 상품명 검색 결과 데이터 개수
+			
+		} else if (!page.getColor().equals("")) {
+			page.setUniformName(null);
+			page.setTotalList(uniformInfoService.selectUniformInfoCnt(page)); // 색상 검색 결과 데이터 개수
+			
+		}else {
+			page.setUniformName(null);
+			page.setColor(null);
+			page.setTotalList(uniformInfoService.selectUniformInfoCnt(page)); // 모든 상품 데이터 개수
+		}
+		
 		page.setUniformInfoList(uniformInfoService.selectUniformInfo(page));
 		model.addAttribute("page", page);
 		

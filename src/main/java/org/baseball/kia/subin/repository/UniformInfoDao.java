@@ -18,8 +18,8 @@ public class UniformInfoDao {
 		return sqlSession.selectList("uniformInfo.selectUniformInfo", page);
 	}
 	
-	public int selectUniformInfoCnt() { // 유니폼 검색 결과 개수
-		return sqlSession.selectOne("uniformInfo.selectUniformInfoCnt");
+	public int selectUniformInfoCnt(UniformInfoPage page) { // 유니폼 검색 결과 개수
+		return sqlSession.selectOne("uniformInfo.selectUniformInfoCnt", page);
 	}
 	
 	public UniformInfoVo selectUniformInfoOne(int uniInfoNo) { // 유니폼 상세정보 조회

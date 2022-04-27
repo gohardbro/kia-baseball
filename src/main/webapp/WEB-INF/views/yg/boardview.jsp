@@ -33,48 +33,38 @@
 						onClick="location.href='/update?no=${board.boardNo }'">글
 						수정</button>
 					<button type="button"
-						onClick="location.href='/delete?no=${board.boardNo }'">글
+						onClick="location.href='/delete?boardNo=${board.boardNo }'">글
 						삭제</button>
 					<button type="button" onClick="location.href='/free'">글목록</button>
 				</td>
 			</tr>
 		</table>
-		<%-- <div>
-			<div class="w3-border w3-center w3-padding">
-				<c:choose>
-					<c:when test="${empty sessionScope.loginUser }">
-					추천 기능은 <button type="button" id="newLogin">
-							<b class="w3-text-blue">로그인</b>
-						</button> 후 사용 가능합니다.<br />
-						<i class="fa fa-heart" style="font-size: 16px; color: red"></i>
-						<span class="rec_count"></span>
-					</c:when>
-					<c:otherwise>
-								<button type="button" class="btn ${ltlike ==0 ? 'btn-light' : 'btn-danger'}" id="likebtn">좋아요</button>
-								<input type="hidden" id="likecheck" value="${ltlike }">
-					</c:otherwise>
-				</c:choose>
-			</div>
-		</div> --%>
+		
 	</form>
 	<div class="my-3 p-3 bg-white rounded shadow-sm"
 		style="padding-top: 10px">
 		<form:form name="form" id="form" role="form" modelAttribute="cmt"
 			method="post">
 			<form:hidden path="boardNo" id="boardNo" />
-			<div class="row">
-				<div class="col-sm-10">
-					<form:textarea path="content" id="content" class="form-control"
-						rows="3" placeholder="댓글을 입력해 주세요"></form:textarea>
-				</div>
-				<div class="col-sm-2">
-					<form:input path="writer" class="form-control" id="writer"
-						placeholder="댓글 작성자"></form:input>
-					<button type="button" class="btn btn-sm btn-primary"
-						id="insetCmt_btn" style="width: 100%; margin-top: 10px">
-						저 장</button>
-				</div>
-			</div>
+			<c:choose>
+				<c:when test="${empty sessionScope.loginUser }">
+				</c:when>
+				<c:otherwise>
+					<div class="row">
+						<div class="col-sm-10">
+							<form:textarea path="content" id="content" class="form-control" 
+								rows="3" placeholder="댓글을 입력해 주세요"></form:textarea>
+						</div>
+						<div class="col-sm-2">
+							<input type="hidden" id="writer" name="writer" value="${loginUser.id }">
+							<button type="button" class="btn btn-sm btn-primary"
+								id="insetCmt_btn" style="width: 100%; margin-top: 10px">
+								저 장</button>
+						</div>
+					</div>
+				</c:otherwise>
+			</c:choose>
+
 		</form:form>
 	</div>
 	<div class="my-3 p-3 bg-white rounded shadow-sm"
@@ -85,6 +75,7 @@
 </div>
 
 <script>
+
 	$(document).ready(function() {
 		showReplyList();
 	});
@@ -92,7 +83,7 @@
 	function showReplyList() {
 		var url = "${pageContext.request.contextPath}/boardviewCtr/getCmtList";
 		var paramData = {
-			"boardNo" : "${board.boardNo}"
+			"boardNo" : ${board.boardNo}
 		};
 		$
 				.ajax({
@@ -106,9 +97,7 @@
 						if (result.length < 1) {
 							htmls = "등록된 댓글이 없습니다.";
 						} else {
-							$(result)
-									.each(
-											function() {
+							$(result).each(function() {
 												htmls += '<div class="media text-muted pt-3" id="commentNo' + this.commentNo + '">';
 
 												htmls += '<p class="media-body pb-3 mb-0 small lh-125 border-bottom horder-gray">';
@@ -118,9 +107,9 @@
 												htmls += '<strong class="text-gray-dark">'
 														+ this.writer
 														+ '</strong>';
-
+												
 												htmls += '<span style="padding-left: 7px; font-size: 9pt">';
-
+												
 												htmls += '<a href="javascript:void(0)" onclick="fn_updateCmt('
 														+ this.commentNo
 														+ ', \''
@@ -134,7 +123,7 @@
 														+ ')" >삭제</a>';
 
 												htmls += '</span>';
-
+												
 												htmls += '</span>';
 
 												htmls += this.content;
@@ -157,11 +146,10 @@
 	$(document).on('click', '#insetCmt_btn', function() {
 		var cmtContent = $('#content').val();
 		var cmtWriter = $('#writer').val();
-
 		var paramData = JSON.stringify({
 			"content" : cmtContent,
 			"writer" : cmtWriter,
-			"boardNo" : '${board.boardNo}'
+			"boardNo" : ${board.boardNo}
 		});
 
 		var headers = {
@@ -178,9 +166,9 @@
 			dataType : 'text',
 			success : function(result) {
 				showReplyList();
-
 				$('#content').val('');
 				$('#writer').val('');
+				location.reload();
 			},
 			error : function(error) {
 				console.log("에러 : " + error);
@@ -240,7 +228,7 @@
 		};
 
 		$.ajax({
-			url : "${pageContext.request.contextPath}/boardviewCtr/updateCmt",
+			url : "/boardviewCtr/updateCmt",
 			headers : headers,
 			data : paramData,
 			type : 'POST',
@@ -261,7 +249,7 @@
 		};
 
 		$.ajax({
-			url : '${pageContext.request.contextPath}/boardviewCtr/deleteCmt',
+			url : '/boardviewCtr/deleteCmt',
 			data : paramData,
 			type : 'POST',
 			dataType : 'text',
