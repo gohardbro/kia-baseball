@@ -4,10 +4,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class Criteria {
-	int page;
-	int perPageNum;
-	int rowStart;
-	int rowEnd;
+	private int page, perPageNum, rowStart, rowEnd;
 	
 	public Criteria() {
 		this.page = 1;

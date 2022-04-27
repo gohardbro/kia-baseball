@@ -1,7 +1,6 @@
 package org.baseball.kia.yg.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.baseball.kia.yg.entity.NoticeVo;
 import org.baseball.kia.yg.repository.NoticeDao;
@@ -14,11 +13,6 @@ public class NoticeService {
 
 	@Autowired
 	NoticeDao noticeDao;
-
-	public boolean addNewOne(NoticeVo vo) {
-		int r = noticeDao.insertOne(vo);
-		return r == 1;
-	}
 
 	public List<NoticeVo> getAll(Criteria cri) {
 		List<NoticeVo> list = noticeDao.listPage(cri);
@@ -39,15 +33,4 @@ public class NoticeService {
 		return noticeDao.selectOne(no);
 	}
 
-	public List<Map<String, Object>> selectBoardList(Criteria cri) {
-		return noticeDao.selectBoardList(cri);
-	}
-
-	public void boardDelete(int no) {
-		noticeDao.boardDelete(no);
-	}
-
-	public void update(NoticeVo vo) {
-		noticeDao.update(vo);
-	}
 }

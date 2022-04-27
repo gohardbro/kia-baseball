@@ -121,19 +121,21 @@ select, option {
 					<h3>문의하기</h3>
 				</div>
 				<div class="main_content">
+					<p style="font-size: 13px; color: #999; margin: 36px 0 26px;">
+						문의 내용은 <span style="color: #007BFF">500자</span> 제한이 있습니다.
+					</p>
 
-					<div class="divider"></div>
 					<div>
 						<form method="post" autocomplete="off" action="/inquiry/write"
 							enctype="multipart/form-data">
 							<b>제목</b>
 							<div class="form-group">
-								<input type="text" class="title" name="title">
+								<input type="text" class="title" name="title" maxlength="55">
 							</div>
 							<b>내용</b>
 							<div class="form-group">
 								<textarea class="form-control" rows="10" id="comment"
-									placeholder="문의내용" name="content"></textarea>
+									placeholder="문의내용" name="content" maxlength="500"></textarea>
 							</div>
 							<div>
 								<button type="submit" class="btn btn-primary btn-lg" id="bt" onclick="submitAlert()" >문의하기</button>
@@ -150,11 +152,6 @@ select, option {
 	<div class="column side" style="background-color: #f4f4f4;"></div>
 </div>
 <script>
-	$(".btn-outline-secondary").click(function() {
-		$(".btn-outline-secondary").removeClass("active");
-		$(this).addClass("active");
-	});
-	
 	
 	function submitAlert(){
 		const inquryMsg = "${inquryMsg}";

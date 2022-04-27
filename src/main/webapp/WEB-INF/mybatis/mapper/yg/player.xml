@@ -3,7 +3,7 @@
 <mapper namespace="player">
 	
 	<select id="selectPlayerNo" resultType="player">
-		SELECT PLAYER.NO FROM PLAYER
+		SELECT * FROM PLAYER
 		ORDER BY TO_NUMBER(NO) ASC
 	</select>
 	

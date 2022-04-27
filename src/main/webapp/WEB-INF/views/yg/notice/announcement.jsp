@@ -12,13 +12,13 @@
 	<div class="container">
 		<h2>공지사항</h2>
 		<table class="table">
-			<c:forEach var="one" items="${all }">
+			<c:forEach var="notice" items="${notice }">
 				<tr>
-					<td>${one.noticeNo }</td>
-					<td class="col-9"><a href="/noticeview?noticeNo=${one.noticeNo }">${one.title }</a></td>
-					<td><fmt:formatDate value="${one.writeDate }"
+					<td>${notice.noticeNo }</td>
+					<td class="col-9"><a href="/noticeview?noticeNo=${notice.noticeNo }">${notice.title }</a></td>
+					<td><fmt:formatDate value="${notice.writeDate }"
 							pattern="yyyy.MM.dd" /> | <img src="/images/eye.png">
-						${one.views }		
+						${notice.views }
 					</td>
 				</tr>
 			</c:forEach>
@@ -26,13 +26,13 @@
 		<div class="paging">
 			<ul>
 				<c:if test="${pvo.prev }">
-					<li><a href="free${pvo.makeQuery(pvo.startPage - 1) }">이전</a>
+					<li><a href="announce${pvo.makeQuery(pvo.startPage - 1) }">이전</a>
 				</c:if>
 				<c:forEach begin="${pvo.startPage }" end="${pvo.endPage }" var="cnt">
-					<li><a href="free${pvo.makeQuery(cnt) }">${cnt }</a></li>
+					<li><a href="announce${pvo.makeQuery(cnt) }">${cnt }</a></li>
 				</c:forEach>
 				<c:if test="${pvo.next && pvo.endPage > 0 }">
-					<li><a href="free${pvo.makeQuery(pvo.endPage + 1) }">다음</a></li>
+					<li><a href="announce${pvo.makeQuery(pvo.endPage + 1) }">다음</a></li>
 				</c:if>
 			</ul>
 		</div>

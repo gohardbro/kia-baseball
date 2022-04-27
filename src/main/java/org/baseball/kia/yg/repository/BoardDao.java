@@ -35,16 +35,8 @@ public class BoardDao {
 		return sqlSession.selectOne("board.selectOne", no);
 	}
 
-	public List<BoardVo> selectListByNo(int no) {
-		return sqlSession.selectList("board.selectOne", no);
-	}
-
 	public void updateCntview(int no) {
 		sqlSession.update("board.updateCnt", no);
-	}
-
-	public List<Map<String, Object>> selectBoardList(Criteria cri) {
-		return sqlSession.selectList("board.selectBoardList", cri);
 	}
 
 	public void boardDelete(int no) {
