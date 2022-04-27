@@ -32,5 +32,9 @@ public class TUniformService {
 	public int updateSizeCount(TUniformVo tUniformVo) {
 		return tUniformDao.updateSizeCount(tUniformVo);
 	}
+	
+	public int deleteCartItem(TUniformVo tUniformVo) {
+		return tUniformDao.deleteRowByUniformNo(tUniformVo);
+	}
 
 }

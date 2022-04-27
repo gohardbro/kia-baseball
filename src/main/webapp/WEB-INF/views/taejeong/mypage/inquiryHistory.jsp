@@ -101,6 +101,10 @@ select, option {
 .main_wrapper {
 	padding: 38px 39px 100px;
 }
+.contentLink {
+	color: black;
+	border: none;
+}
 </style>
 
 <div class="row" style="margin: 0px;">
@@ -116,12 +120,11 @@ select, option {
 					<h3>문의내역</h3>
 				</div>
 				<div class="main_content">
-				
 					<div class="divider"></div>
 					<div class="selectZone">
 						<form action="/inquiry/history" method="post">
 							<div class="btn-group" role="group" aria-label="First group">
-								<strong>기간별 조회</strong>
+								<strong style="padding:8px 6px 7px;">기간별 조회</strong>
 								<button type="submit" class="btn btn-outline-secondary"
 									id="15dBtn" name="periodBtn" value="15d">15일</button>
 								<button type="submit" class="btn btn-outline-secondary"
@@ -146,7 +149,7 @@ select, option {
 									<th>제목</th>
 									<th>내용</th>
 									<th></th>
-									<th>문의일시</th>
+									<th>문의일자</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -154,14 +157,15 @@ select, option {
 									varStatus="status">
 									<tr>
 										<td>${historyList.title }</td>
-										<td><a href="/inquiry/historyDetail?inquiryNo=${historyList.inquiryNo }">${historyList.content }</a></td>
+										<td><a href="/inquiry/historyDetail?inquiryNo=${historyList.inquiryNo }" class="contentLink">${historyList.content }</a></td>
 										<td>${historyList.answer eq 'N' ? "" : "답변완료"  }</td>
-										<td>${historyList.writeDate }</td>										
+										<td style="color: #888888;">${historyList.writeDate }</td>										
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
 					</div>
+					<span class="activeBtn" hidden="">${activeBtn3 }</span>
 
 				</div>
 			</div>
@@ -171,10 +175,25 @@ select, option {
 	<div class="column side" style="background-color: #f4f4f4;"></div>
 </div>
 <script>
-	$(".btn-outline-secondary").click(function() {
-		$(".btn-outline-secondary").removeClass("active");
-		$(this).addClass("active");
-	});
+	/* 화면출력시 기간별 조회 버튼 active */
+	$(function(){
+		var activeBtn = $(".activeBtn").text();
+		console.log(activeBtn);
+		if(activeBtn == "15d"){
+			$(".btn-outline-secondary").removeClass("active");
+			$("#15dBtn").addClass("active");
+		}else if(activeBtn =="1mon"){
+			$(".btn-outline-secondary").removeClass("active");
+			$("#1monBtn").addClass("active");
+		}else if(activeBtn =="2mon"){
+			$(".btn-outline-secondary").removeClass("active");
+			$("#2monBtn").addClass("active");
+		}else if(activeBtn =="4mon"){
+			$(".btn-outline-secondary").removeClass("active");
+			$("#4monBtn").addClass("active");
+		}
+		
+	}); 
 </script>
 
 

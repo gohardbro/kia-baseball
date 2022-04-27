@@ -95,15 +95,12 @@
 		
 	</update>
 	
-	<!-- <update id="updateSizeCount">  !!Bad Grammer
-		UPDATE UNIFORM_INFO
-		컬럼에 변수를 하는건 안된다!!
-		SET #{uniSize}_COUNT = (SELECT #{uniSize}_COUNT - #{uniCnt} 
-								FROM UNIFORM_INFO
-								WHERE UNI_INFO_NO = #{uniInfoNo})
-		WHERE UNI_INFO_NO = #{uniInfoNo}
-	</update> -->
-	
+	<!-- 장바구니 상품 제거 -->
+	<delete id="deleteRowByUniformNo">
+		DELETE FROM UNIFORM
+		WHERE BUYER = #{buyer}
+		AND UNIFORM_NO = #{uniformNo}
+	</delete>
 </mapper>
 
 

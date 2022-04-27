@@ -32,7 +32,13 @@ public class AccountController {
 	@RequestMapping(value = "/admin/account/report")
 	public String adminAccountReportHandle(@RequestParam String id) { // 신고 계정 차단 설정
 		accountService.reportAccount(id);
-		return "redirect: /subin/admin";
+		return "redirect: /admin";
+	}
+	
+	@RequestMapping(value = "/admin/account/noReport")
+	public String adminAccountNoReportHandle(@RequestParam String id) { // 신고 계정 차단 취소 설정
+		accountService.noReportAccount(id);
+		return "redirect: /admin";
 	}
 	
 	@RequestMapping(value = "/admin/account/page")

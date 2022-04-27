@@ -49,7 +49,8 @@ public class MailService {
 		}
 		return true;
 	}
-
+	
+	/* 이메일 인증키 전송 */
 	public Map<String, Object> sendAuthMailTo(String email) {
 		Map<String, Object> map = new LinkedHashMap<String, Object>();
 		
