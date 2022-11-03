@@ -20,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class TFileService {
     
     /* 프로필 이미지 저장 경로 */
-    String basePath = "C:\\TeamInjungProject\\util\\profiles";
+    String basePath = "/Users/anyone/Desktop/git/baseball/src/main/webapp/images/profile/";
     
     @Autowired
     TFileDao tFileDao;

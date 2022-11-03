@@ -46,11 +46,12 @@ public class MypageController {
 	public String homeHandle() {
 		return "index";
 	}
-
+	
 	@RequestMapping("/mypage")
 	public String mypageHandle() {
-		return "taejeong/mypage/mypageTicket";
+		return "redirect:/ticket/searchByPeriod?periodBtn=4mon";
 	}
+
 
 	@RequestMapping({ "/ticket/search", "/ticket/searchByPeriod" })
 	public String ticketHandle(@ModelAttribute BaseballVo baseballVo, HttpSession httpSession, Model model) {
@@ -102,7 +103,7 @@ public class MypageController {
 	@RequestMapping("/purchaseHistory")
 	public String purchaseHistoryHandle() {
 
-		return "taejeong/mypage/purchaseHistory";
+		return "redirect:/purchaseHistory/searchByPeriod?periodBtn=4mon";
 	}
 
 	@RequestMapping({ "/purchaseHistory/search", "/purchaseHistory/searchByPeriod" })
@@ -139,11 +140,11 @@ public class MypageController {
 
 	@RequestMapping("/inquiry/history")
 	public String inquiryHistoryHandle() {
-		return "taejeong/mypage/inquiryHistory";
+		return "redirect:/inquiry/history/searchByPeriod?periodBtn=4mon";
 	}
 
-	@PostMapping("/inquiry/history")
-	public String inquiryHistoryPostHandle(@ModelAttribute InquiryVo inquiryVo, HttpSession httpSession, Model model) {
+	@RequestMapping("/inquiry/history/searchByPeriod")
+	public String inquiryHistoryHandle(@ModelAttribute InquiryVo inquiryVo, HttpSession httpSession, Model model) {
 		AccountVo loginUserVo = (AccountVo) httpSession.getAttribute("loginUser");
 		inquiryVo.setWriter(loginUserVo.getId());
 		List<InquiryVo> list = inquiryService.getHistory(inquiryVo);

@@ -234,8 +234,10 @@ select, option {
 			$(".btn-outline-secondary").removeClass("active");
 			$("#4monBtn").addClass("active");
 		}
-		
-	}); 
+	});
+	
+
+
 </script>
 
 
