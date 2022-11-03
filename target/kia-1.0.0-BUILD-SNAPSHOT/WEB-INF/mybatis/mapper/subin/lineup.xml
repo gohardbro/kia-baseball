@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lineup">
+	<insert id="insertOne"> <!-- 라인업 등록 -->
+		INSERT INTO LINEUP (LINEUP_NO, PITCHER, HITTER1,
+		HITTER2, HITTER3, HITTER4, HITTER5, HITTER6, HITTER7, HITTER8,
+		HITTER9, SCHEDULE_NO)
+
+		VALUES (SEQ_LINEUP.NEXTVAL, #{pitcher}, #{hitter1},
+		#{hitter2}, #{hitter3}, #{hitter4}, #{hitter5}, #{hitter6}, #{hitter7}, #{hitter8},
+		#{hitter9}, #{scheduleNo})
+	</insert>
+
+	<select id="selectOne" resultType="lineupVo"> <!-- 라인업 조회  -->
+		SELECT * FROM LINEUP
+		WHERE SCHEDULE_NO =  #{scheduleNo}
+	</select>
+
+	<update id="updateOne"> <!-- 라인업 수정 -->
+		UPDATE LINEUP
+		SET PITCHER = #{pitcher}, HITTER1 = #{hitter1}, HITTER2 = #{hitter2},
+		HITTER3 = #{hitter3}, HITTER4 = #{hitter4}, HITTER5 = #{hitter5}, 
+		HITTER6 = #{hitter6}, HITTER7 = #{hitter7}, HITTER8 = #{hitter8}, 
+		HITTER9 = #{hitter9}
+		
+		WHERE SCHEDULE_NO =  #{scheduleNo}
+	</update>
+</mapper>

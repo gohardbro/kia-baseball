@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="baseball">
+	<select id="selectAllById" resultType="baseballVo2">
+		SELECT *
+		FROM BASEBALL B INNER JOIN SCHEDULE S
+		USING(SCHEDULE_NO)
+		INNER
+		JOIN BASEBALL_INFO
+		USING(BASE_INFO_NO)
+		WHERE BUYER = #{buyer}
+		AND CANCEL = 'N'
+		<choose>
+			<when test="periodBtn == '15d'">
+				AND BUY_DATE BETWEEN SYSDATE-15 AND SYSDATE
+			</when>
+			<when test="periodBtn == '1mon'">
+				AND BUY_DATE BETWEEN ADD_MONTHS(SYSDATE, -1) AND SYSDATE
+			</when>
+			<when test="periodBtn == '2mon'">
+				AND BUY_DATE BETWEEN ADD_MONTHS(SYSDATE, -2) AND SYSDATE
+			</when>
+			<when test="periodBtn == '4mon'">
+				AND BUY_DATE BETWEEN ADD_MONTHS(SYSDATE, -4) AND SYSDATE
+			</when>
+		</choose>
+
+		<if test="dateTypeSelect == '예매일' and yearSelect != null and monSelect != null">
+			AND TO_CHAR(BUY_DATE, 'YYYY') = #{yearSelect}
+			AND TO_CHAR(BUY_DATE, 'MM') = #{monSelect}
+		</if>
+		<if test="dateTypeSelect == '경기일' and yearSelect != null and monSelect != null">
+			AND SUBSTR(GAME_DATE, 0, INSTR(GAME_DATE, '-', 1, 2)-1 ) = #{yearSelect}||'-'||#{monSelect}
+		</if>
+		<if test="baseballNo != 0">
+			AND BASEBALL_NO = #{baseballNo}
+		</if>
+		ORDER BY BUY_DATE DESC
+	</select>
+	
+	<update id="updateCancelByBaseballNo">
+		UPDATE BASEBALL
+		SET CANCEL = 'Y'
+		WHERE BASEBALL_NO = #{baseballNo}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
