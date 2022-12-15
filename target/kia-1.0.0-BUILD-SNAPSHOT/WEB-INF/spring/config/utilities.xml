@@ -16,8 +16,8 @@
 		<property name="defaultEncoding" value="UTF-8"/>
 		<property name="host" value="smtp.gmail.com"/>
 		<property name="username" value="teaminjung2@gmail.com"/>
-		<property name="password" value="xladlswjd"/>
-		<property name="port" value="465"/>
+		<property name="password" value="cxdopgqgupujmzza"/>
+		<property name="port" value="587"/>
 	</bean>
 
 </beans>

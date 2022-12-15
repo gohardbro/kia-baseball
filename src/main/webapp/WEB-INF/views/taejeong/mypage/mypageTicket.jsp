@@ -143,9 +143,9 @@ select, option {
 							</select> <select class="selectBtn" name="yearSelect" style="width: 90px;">
 								<!-- 바꿔: 이번년도 부터 -3년도 까지 자동계산으로 바꾸기  -->
 								<option value="연도" class="">연도</option>
+								<option value="2023" class="">2023년</option>
 								<option value="2022" class="">2022년</option>
 								<option value="2021" class="">2021년</option>
-								<option value="2020" class="">2020년</option>
 							</select> <select class="selectBtn" name="monSelect" style="width: 70px;">
 								<option value="" class="">월</option>
 								<option value="01" class="">1월</option>

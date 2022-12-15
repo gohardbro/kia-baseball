@@ -69,8 +69,7 @@ public class SignUpController {
 	@ResponseBody
 	public String authHandle(@RequestParam String email) {
 		Map<String, Object> map = mailService.sendAuthMailTo(email);
-		String authKey = (String) map.get("authKey");
-		return authKey;
+		return (String) map.get("authKey");
 	}
 
 	// 닉네임 중복체크

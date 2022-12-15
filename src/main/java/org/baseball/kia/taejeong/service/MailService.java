@@ -52,8 +52,8 @@ public class MailService {
 	
 	/* 이메일 인증키 전송 */
 	public Map<String, Object> sendAuthMailTo(String email) {
-		Map<String, Object> map = new LinkedHashMap<String, Object>();
-		
+		Map<String, Object> map = new LinkedHashMap<>();
+
 		SimpleMailMessage message = new SimpleMailMessage();
 		
 		String raw = UUID.randomUUID().toString();

@@ -122,7 +122,7 @@ select, option {
 				<div class="main_content">
 					<div class="divider"></div>
 					<div class="selectZone">
-						<form action="/inquiry/history" method="post">
+						<form action="/inquiry/history/searchByPeriod" method="get">
 							<div class="btn-group" role="group" aria-label="First group">
 								<strong style="padding:8px 6px 7px;">기간별 조회</strong>
 								<button type="submit" class="btn btn-outline-secondary"
@@ -192,8 +192,9 @@ select, option {
 			$(".btn-outline-secondary").removeClass("active");
 			$("#4monBtn").addClass("active");
 		}
-
 	});
+	
+	
 
 
 </script>

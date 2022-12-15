@@ -102,12 +102,12 @@ select, option {
 	padding: 38px 39px 100px;
 }
 .textZone {
-	padding: 20px; 28px;
+	padding: 20px 28px;
 	border: 1px solid rgb(238, 238, 238);
 	background-color: rgb(255, 255, 255);
 }
 .textLine{
-	margin: 5px; 0; 
+	margin: 5px 0;
 	 
 }
 .answer {

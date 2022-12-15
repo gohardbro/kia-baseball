@@ -283,7 +283,7 @@ body {
 												class="text-info"></label>
 											</c:when>
 											<c:otherwise>
-												<img src="/profileImg/${loginUser.profile }"
+												<img src="/images/profile/${loginUser.profile }"
 												class="mx-auto rounded d-block"
 												style="width: 200px; height: 200px" id="profile" />프로필사진 사이즈는 가로세로 200px로 맞춰집니다. <label
 												class="text-info"></label>
