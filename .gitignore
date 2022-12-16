@@ -270,6 +270,6 @@ datasource.xml
 utilities.xml
 
 # 빌드폴더
-target
+target/
 
 # End of https://www.toptal.com/developers/gitignore/api/java,macos,windows,intellij,eclipse
