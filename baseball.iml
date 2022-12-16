@@ -29,15 +29,11 @@
     <facet type="Spring" name="Spring">
       <configuration>
         <fileset id="fileset" name="Datasource" removed="false">
+          <file>file://$MODULE_DIR$/kia-baseball-submodule/datasource.xml</file>
           <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/spring/config/datasource.xml</file>
         </fileset>
-        <fileset id="fileset2" name="Interceptor" removed="false">
-          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/spring/config/interceptor.xml</file>
-        </fileset>
-        <fileset id="fileset3" name="Security" removed="false">
-          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/spring/config/security.xml</file>
-        </fileset>
-        <fileset id="fileset4" name="Utilities" removed="false">
+        <fileset id="fileset2" name="Utilities" removed="false">
+          <file>file://$MODULE_DIR$/kia-baseball-submodule/utilities.xml</file>
           <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/spring/config/utilities.xml</file>
         </fileset>
       </configuration>

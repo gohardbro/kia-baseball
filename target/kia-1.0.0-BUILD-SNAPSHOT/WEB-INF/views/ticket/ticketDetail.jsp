@@ -62,7 +62,7 @@ img.gl-logo {
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="container">
-							<div class="shadow-none p-4 mb-4 bg-light">
+							<div class="shadow-none p-4 mb-4 bg-light" >
 								<a>※안내사항</a><br> <a> -결제는 1인당 4매까지 가능합니다.</a><br> <a>-제휴카드를
 									포함한 각종 할인 문의, 단체 관람 문의는 기아타이거즈 공식 홈페이지(https://tigers.co.kr/)를
 									이용해 주세요.</a>
@@ -74,9 +74,9 @@ img.gl-logo {
 
 			<section>
 				<div class="row">
-					<div class="col-sm-4">
-						<div class="container"style="heigth:200px;" >
-							<div class="shadow p-4 mb-4 bg-white" >
+					<div class="col-sm-5">
+						<div class="container">
+							<div class="shadow p-4 mb-4 bg-white" style="height:366px;" >
 								<!-- 왼쪽 col -->
 								<!-- 예매하실 경기 정보 -->
 								<input type="hidden" class="gameDate"
@@ -100,6 +100,8 @@ img.gl-logo {
 										<td>챔피언스필드(홈경기)</td>
 									</tr>
 								</table>
+								
+								<div></div>
 
 
 							</div>
@@ -107,9 +109,9 @@ img.gl-logo {
 					</div>
 
 					<!-- 오른쪽 col -->
-					<div class="col-sm-8">
+					<div class="col-sm-7">
 						<div class="container">
-							<div class="shadow p-4 mb-4 bg-white">
+							<div class="shadow p-4 mb-4 bg-white" style="width:">
 								<!-- seatArea고르기 radio 6개 -->
 								<div class="seatChoice">
 									<table>
