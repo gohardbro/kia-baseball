@@ -24,8 +24,8 @@ public class AutoLoginInterceptor extends HandlerInterceptorAdapter {
 		
 		if(loginCookie != null) {
 			String sessionId = loginCookie.getValue(); //쿠키에서 등록했던 세션아디뽑기
-			AccountVo accountVo = accountService.getAccountBySessionId(sessionId);
-			if(accountVo != null) {
+			AccountVo accountVo = accountService.getAccountBySessionId(sessionId); /* 저장했던 세션아이디에 맞는 아이디 정보를 불러옴 */
+			if(accountVo != null) { /* 세션에 맞는 아이디 정보가 있으면 */
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", accountVo);
 			}
