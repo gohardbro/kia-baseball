@@ -116,7 +116,7 @@ select, option {
 	padding: 10px 0 15px;
 }
 .totalPriceOption, .namePart{
-	margin: 7px; 0;
+	margin: 7px 0;
 }
 .totalPriceOption{
 	padding-left: 60px;
@@ -369,13 +369,6 @@ a {
 			'phone':휴대폰소액결제
 			 */
 			merchant_uid : 'merchant_' + new Date().getTime(),
-			/*
-			merchant_uid에 경우
-			https://docs.iamport.kr/implementation/payment
-			위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
-			참고하세요.
-			나중에 포스팅 해볼게요.
-			 */
 			name : uniformName,
 			//결제창에서 보여질 이름
 			amount : total,
@@ -400,10 +393,13 @@ a {
 				msg += '결제 금액 : ' + rsp.paid_amount;
 				msg += '카드 승인번호 : ' + rsp.apply_num;
 				var info = rsp.custom_data;
-				for (var i = 0; i < info.length; i++) {
 
+				console.log("info.length = " + info.length);
+				console.log("info = " + info);
+				for (var i = 0; i < info.length; i++) {
+					console.log("info[i] = " + info[i])
 					$.ajax({
-						type : "POST",
+						type : "GET",
 						url : "/cart/updateBuyDateNSizeCount",
 						data : {
 							"uniformNo" : info[i]
@@ -414,15 +410,17 @@ a {
 						},
 						error : function() {
 							console.log("buyDate 업데이트 실패!");
-						},
+						}
 					});
 					window.location = ""
 				}
+				alert(msg);
+
 			} else {
 				var msg = '결제에 실패하였습니다.';
 				msg += '에러내용 : ' + rsp.error_msg;
+				alert(msg);
 			}
-			alert(msg);
 		});
 	};
 	/* ----------------------------------------------------------------------------------------------------------------- */

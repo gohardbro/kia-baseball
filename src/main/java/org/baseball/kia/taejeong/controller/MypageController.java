@@ -22,12 +22,7 @@ import org.baseball.kia.taejeong.service.TUniformService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -206,8 +201,8 @@ public class MypageController {
 	@RequestMapping("/cart/updateBuyDateNSizeCount")
 	public String cartUpdateBuyDateNSizeCountHandle(@RequestParam int uniformNo, TUniformVo tUniformVo, HttpSession httpSession) {
 		/* 결제완료한 상품 STATE랑 BUY_DATE 업데이트*/
-		tUniformService.updateBuyDateNState(uniformNo); 
-		
+		tUniformService.updateBuyDateNState(uniformNo);
+
 		AccountVo loginUserVo = (AccountVo) httpSession.getAttribute("loginUser");
 		tUniformVo.setBuyer(loginUserVo.getId());
 		

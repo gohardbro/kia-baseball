@@ -158,7 +158,7 @@ create table uniform(
     total number,
     buy_date date,
     refund date, --환불한 날짜
-    state varchar2(10), --(찜 cart, 구매 buy)
+    state varchar2(30), --(찜 cart, 구매 buy)
     PLAYER_NO number,
     uni_size varchar2(10),
     constraint uni_fk foreign key(uni_info_no) references uniform_info(uni_info_no)

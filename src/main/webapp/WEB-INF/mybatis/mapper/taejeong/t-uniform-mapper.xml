@@ -60,7 +60,7 @@
 	<update id="updateBuyDateByUniformNo">
 		UPDATE UNIFORM
 		SET BUY_DATE = SYSDATE,
-			STATE = '결제완료'
+		    STATE = '결제완료'
 		WHERE UNIFORM_NO = #{uniformNo}
 	</update>
 	
@@ -71,24 +71,24 @@
 		
 		<choose>
 			<when test="uniSize == 'XL'">
-				SET XL_COUNT = (SELECT XL_COUNT - #{uniCnt} 
-		 						  FROM UNIFORM_INFO
-		 						  WHERE UNI_INFO_NO = #{uniInfoNo})
+				SET XL_COUNT = (SELECT XL_COUNT
+				                FROM UNIFORM_INFO
+				                WHERE UNI_INFO_NO = #{uniInfoNo}) - #{uniCnt}
 			</when>
 			<when test="uniSize == 'L'">
-				SET L_COUNT = (SELECT XL_COUNT - #{uniCnt} 
-		 						 FROM UNIFORM_INFO
-		  						 WHERE UNI_INFO_NO = #{uniInfoNo})
+				SET L_COUNT = (SELECT L_COUNT
+							   FROM UNIFORM_INFO
+							   WHERE UNI_INFO_NO = #{uniInfoNo}) - #{uniCnt}
 			</when>
 			<when test="uniSize == 'M'">
-				SET M_COUNT = (SELECT XL_COUNT - #{uniCnt} 
-		   						FROM UNIFORM_INFO
-		   						WHERE UNI_INFO_NO = #{uniInfoNo})
+				SET M_COUNT = (SELECT M_COUNT
+		   					   FROM UNIFORM_INFO
+		   					   WHERE UNI_INFO_NO = #{uniInfoNo}) - #{uniCnt}
 			</when>
 			<when test="uniSize == 'S'">
-				SET S_COUNT = (SELECT XL_COUNT - #{uniCnt} 
-		   						FROM UNIFORM_INFO
-		   						WHERE UNI_INFO_NO = #{uniInfoNo})
+				SET S_COUNT = (SELECT S_COUNT
+		   					   FROM UNIFORM_INFO
+		   					   WHERE UNI_INFO_NO = #{uniInfoNo}) - #{uniCnt}
 			</when>
 		</choose>
 		WHERE UNI_INFO_NO = #{uniInfoNo}
