@@ -267,3 +267,10 @@ CREATE SEQUENCE INQUIRY_NO_SEQ
 	nocycle
 	nocache
 	noorder;
+
+CREATE TABLE profile (
+id varchar2(50),
+profile_name varchar2(200),
+content_type varchar2(50),
+profile_path varchar2(200)
+);
