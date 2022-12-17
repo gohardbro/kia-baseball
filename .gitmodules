@@ -1,0 +1,3 @@
+[submodule "kia-baseball-submodule"]
+	path = kia-baseball-submodule
+	url = https://github.com/gohardbro/kia-baseball-submodule.git
